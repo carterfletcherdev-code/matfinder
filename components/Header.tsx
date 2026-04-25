@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
@@ -72,10 +73,8 @@ export default function Header() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <a
-          href="https://github.com/carterfletcherdev-code"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/add-gym"
           style={{
             fontFamily: "'Inter Tight', sans-serif",
             fontSize: 13,
@@ -89,7 +88,7 @@ export default function Header() {
           }}
         >
           Add your gym →
-        </a>
+        </Link>
         <button
           onClick={toggleTheme}
           aria-label="Toggle theme"

@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
-      <body style={{ height: '100%', margin: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <html lang="en" style={{ height: '100dvh', overflow: 'hidden' }}>
+      <body style={{ height: '100dvh', margin: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <Header />
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
+        <main style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           {children}
         </main>
       </body>
