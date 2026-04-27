@@ -235,7 +235,22 @@ export default function GymCard({ gym, isSelected, isMobile, mapOverlay, onClick
           <span>{gym.city}{gym.state ? `, ${gym.state}` : ''}</span>
         )}
         <span style={{ opacity: 0.4 }}>·</span>
-        <span>{gym.country}</span>
+        {onCityClick && gym.country ? (
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onCityClick(gym.country); }}
+            title="Search from this country"
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer', padding: 0, margin: 0,
+              fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+              color: 'rgba(245,241,232,0.65)',
+              textDecoration: 'underline dotted rgba(245,241,232,0.35)',
+              textUnderlineOffset: 2,
+            }}
+          >{gym.country}</button>
+        ) : (
+          <span>{gym.country}</span>
+        )}
         {typeof distanceKm === 'number' && (
           <>
             <span style={{ opacity: 0.4 }}>·</span>

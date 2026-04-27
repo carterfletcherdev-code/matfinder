@@ -13,21 +13,39 @@ export const MAP_STYLES: Record<string, { label: string; url: string }> = {
   satellite: { label: 'Satellite', url: 'mapbox://styles/mapbox/satellite-streets-v12' },
 };
 
-// Mapbox match expression for discipline → marker color
+// Mapbox match expression for discipline → marker color.
+// Tuned for max contrast across all map styles. No two share a hue family.
 const DISCIPLINE_COLOR_EXPR = [
   'match', ['get', 'discipline'],
-  'bjj',        '#C9A24A',
-  'nogi_bjj',   '#F97316',
-  'gi_bjj',     '#3B82F6',
-  'wrestling',  '#22C55E',
-  'judo',       '#EF4444',
-  'muay_thai',  '#EC4899',
-  'mma',        '#8B5CF6',
-  'kickboxing', '#F59E0B',
-  'boxing',     '#F43F5E',
-  'karate',     '#10B981',
-  'taekwondo',  '#0EA5E9',
+  'bjj',        '#C9A24A', // gold
+  'nogi_bjj',   '#F97316', // orange
+  'gi_bjj',     '#1E40AF', // deep blue (darker than water)
+  'wrestling',  '#854D0E', // dark amber (avoids terrain green)
+  'judo',       '#DC2626', // red
+  'muay_thai',  '#DB2777', // hot pink
+  'mma',        '#7C3AED', // purple
+  'kickboxing', '#0D9488', // teal
+  'boxing',     '#1F2937', // charcoal
+  'karate',     '#84CC16', // lime
+  'taekwondo',  '#6366F1', // indigo
   '#C9A24A', // default
+];
+
+// Single-letter glyph per discipline — recognizable without color.
+const DISCIPLINE_GLYPH_EXPR = [
+  'match', ['get', 'discipline'],
+  'bjj',        'B',
+  'nogi_bjj',   'N',
+  'gi_bjj',     'G',
+  'wrestling',  'W',
+  'judo',       'J',
+  'muay_thai',  'T',
+  'mma',        'M',
+  'kickboxing', 'K',
+  'boxing',     'X',
+  'karate',     'A',
+  'taekwondo',  'D',
+  '',
 ];
 
 export interface MapController {
@@ -278,7 +296,7 @@ export default function Map({
 
   function addGymLayers(map: any) {
     // Remove existing layers if present (on style reload)
-    ['clusters', 'cluster-count', 'unclustered-point', 'unclustered-point-stroke'].forEach(id => {
+    ['clusters', 'cluster-count', 'unclustered-point', 'unclustered-point-stroke', 'unclustered-point-label'].forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
     });
 
@@ -290,10 +308,10 @@ export default function Map({
       filter: ['has', 'point_count'],
       paint: {
         'circle-color': '#5C4430',
-        'circle-radius': ['step', ['get', 'point_count'], 16, 10, 20, 100, 25, 750, 30],
-        'circle-stroke-width': 2,
-        'circle-stroke-color': 'rgba(255,255,255,0.85)',
-        'circle-opacity': 0.92,
+        'circle-radius': ['step', ['get', 'point_count'], 18, 10, 22, 100, 28, 750, 34],
+        'circle-stroke-width': 2.5,
+        'circle-stroke-color': 'rgba(255,255,255,0.9)',
+        'circle-opacity': 0.94,
       },
     });
 
@@ -315,7 +333,10 @@ export default function Map({
       paint: { 'text-color': '#F5F1E8' },
     });
 
-    // Individual gym point stroke
+    // Individual gym point stroke (slightly bigger on mobile via window width)
+    const isMobileViewport = typeof window !== 'undefined' && window.innerWidth < 640;
+    const strokeR = isMobileViewport ? 11 : 9;
+    const fillR = isMobileViewport ? 9 : 7.5;
     map.addLayer({
       id: 'unclustered-point-stroke',
       type: 'circle',
@@ -323,8 +344,8 @@ export default function Map({
       filter: ['!', ['has', 'point_count']],
       paint: {
         'circle-color': 'white',
-        'circle-radius': 8,
-        'circle-opacity': 0.9,
+        'circle-radius': strokeR,
+        'circle-opacity': 0.92,
       },
     });
 
@@ -336,8 +357,29 @@ export default function Map({
       filter: ['!', ['has', 'point_count']],
       paint: {
         'circle-color': DISCIPLINE_COLOR_EXPR as any,
-        'circle-radius': 6,
+        'circle-radius': fillR,
         'circle-stroke-width': 0,
+      },
+    });
+
+    // Single-letter glyph centered on the pin (visible above zoom 6)
+    map.addLayer({
+      id: 'unclustered-point-label',
+      type: 'symbol',
+      source: 'gyms',
+      filter: ['!', ['has', 'point_count']],
+      minzoom: 6,
+      layout: {
+        'text-field': DISCIPLINE_GLYPH_EXPR as any,
+        'text-size': isMobileViewport ? 10 : 9,
+        'text-font': ['DIN Offc Pro Bold', 'Arial Unicode MS Bold'],
+        'text-allow-overlap': true,
+        'text-ignore-placement': true,
+      },
+      paint: {
+        'text-color': '#FFFFFF',
+        'text-halo-color': 'rgba(0,0,0,0.35)',
+        'text-halo-width': 0.6,
       },
     });
   }

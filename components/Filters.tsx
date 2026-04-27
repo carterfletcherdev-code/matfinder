@@ -599,7 +599,12 @@ function HorizontalExpandFilters({
                 background: active ? c.bg : 'transparent',
                 color: active ? c.text : inactiveText,
               }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.marker, flexShrink: 0, display: 'inline-block' }} />
+                <span style={{
+                  width: 14, height: 14, borderRadius: '50%', background: c.marker,
+                  flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#FFFFFF', fontSize: 9, fontWeight: 800, fontFamily: "'Inter Tight', sans-serif",
+                  lineHeight: 1,
+                }}>{c.glyph}</span>
                 {DISCIPLINE_LABELS[d]}
               </button>
             );
