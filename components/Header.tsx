@@ -1,27 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 
 export default function Header() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const { user, signOut, requireAuth } = useAuth();
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const t = saved ?? preferred;
-    setTheme(t);
-    document.documentElement.setAttribute('data-theme', t);
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  };
 
   return (
     <header style={{
@@ -126,24 +109,6 @@ export default function Header() {
             }}
           >Sign in</button>
         )}
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          style={{
-            width: 34,
-            height: 34,
-            borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border)',
-            background: 'transparent',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 16,
-          }}
-        >
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
       </div>
     </header>
   );

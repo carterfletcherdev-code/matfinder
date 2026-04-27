@@ -83,7 +83,7 @@ export default function UpgradePage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden', background: 'var(--bg)', color: 'var(--fg)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden', background: 'var(--surface-base)', color: 'var(--text-primary)' }}>
       <style>{`
         .upgrade-card:hover {
           transform: scale(1.025);
@@ -114,7 +114,7 @@ export default function UpgradePage() {
               const isCurrent = tier === plan.id;
               return (
                 <div key={plan.id} className="upgrade-card" style={{
-                  background: 'var(--bg-elev)',
+                  background: 'var(--surface-raised)',
                   border: `2px solid ${isCurrent ? plan.color : 'var(--bone)'}`,
                   borderRadius: 12, padding: 22,
                   position: 'relative',
