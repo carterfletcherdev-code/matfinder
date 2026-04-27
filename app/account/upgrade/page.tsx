@@ -137,8 +137,15 @@ export default function UpgradePage() {
                         </span>
                       )}
                     </div>
-                    <div style={{ fontSize: 20, fontWeight: 800, fontFamily: "'Inter Tight', sans-serif" }}>
-                      {plan.price}<span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1, fontFamily: "'Inter Tight', sans-serif" }}>
+                      <div style={{ fontSize: 20, fontWeight: 800 }}>
+                        {plan.price}<span style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
+                      </div>
+                      {plan.billings.length > 1 && (
+                        <div style={{ fontSize: 11, fontWeight: 600, color: plan.color, letterSpacing: '0.01em' }}>
+                          or $79.99/year
+                        </div>
+                      )}
                     </div>
                   </div>
                   <ul style={{ margin: '0 0 16px', paddingLeft: 0, listStyle: 'none', fontSize: 13, color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: 5, fontFamily: "'Inter Tight', sans-serif" }}>

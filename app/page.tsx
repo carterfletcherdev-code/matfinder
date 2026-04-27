@@ -361,13 +361,27 @@ export default function Home() {
       arr = arr.filter(g => haversine(sortOrigin.lat, sortOrigin.lng, g.lat, g.lng) <= POPULAR_RADIUS_KM);
     }
 
+    // Bayesian average — rewards both volume AND quality of ratings.
+    // score = (count × avg + minVotes × globalAvg) / (count + minVotes)
+    // A gym with few ratings gets pulled toward the global mean.
+    const MIN_VOTES = 10;
+    const ratingEntries = Object.values(ratingsAgg).filter(r => r.count > 0);
+    const globalAvg = ratingEntries.length > 0
+      ? ratingEntries.reduce((s, r) => s + r.avg, 0) / ratingEntries.length
+      : 4;
+    function bayesianScore(gymId: string): number {
+      const r = ratingsAgg[gymId];
+      if (!r || r.count === 0) return 0;
+      return (r.count * r.avg + MIN_VOTES * globalAvg) / (r.count + MIN_VOTES);
+    }
+
     if (sortMode === 'popular') {
-      arr.sort((a, b) => (ratingsAgg[b.id]?.avg ?? 0) - (ratingsAgg[a.id]?.avg ?? 0));
+      arr.sort((a, b) => bayesianScore(b.id) - bayesianScore(a.id));
     } else if (sortMode === 'featured') {
       arr.sort((a, b) => {
         const f = Number(!!b.featured) - Number(!!a.featured);
         if (f !== 0) return f;
-        return (ratingsAgg[b.id]?.avg ?? 0) - (ratingsAgg[a.id]?.avg ?? 0);
+        return bayesianScore(b.id) - bayesianScore(a.id);
       });
     } else if (sortMode === 'nearest' && sortReference) {
       arr.sort((a, b) =>
