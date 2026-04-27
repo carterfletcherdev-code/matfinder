@@ -514,6 +514,7 @@ export default function Home() {
       <div
         className="map-toolbar-float"
         style={{
+          position: 'sticky', top: 0, zIndex: 50,
           display: 'inline-flex', alignItems: 'center', gap: 4,
           padding: '4px 6px', marginBottom: 6, alignSelf: 'flex-start',
         }}
@@ -583,7 +584,7 @@ export default function Home() {
         ))}
         {filteredGyms.length > 100 && (
           <div style={{ padding: '12px', textAlign: 'center', fontSize: 12, color: 'var(--text-muted)', fontFamily: "'JetBrains Mono', monospace" }}>
-            Showing 100 of {filteredGyms.length}{sortOrigin ? ' (closest first)' : ''} — use filters or map to narrow down
+            Showing 100 of {filteredGyms.length.toLocaleString()}{sortOrigin ? ' (closest first)' : ''} — use filters or map to narrow down
           </div>
         )}
       </>
@@ -692,7 +693,7 @@ export default function Home() {
               <div className="bottom-sheet-handle" />
               {!mobileSheetOpen && (
                 <div style={{ textAlign: 'center', marginTop: 6, fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', fontFamily: "'Inter Tight', sans-serif" }}>
-                  {loading ? 'Loading…' : `${filteredGyms.length} gym${filteredGyms.length !== 1 ? 's' : ''} — tap to browse`}
+                  {loading ? 'Loading…' : `${filteredGyms.length.toLocaleString()} gym${filteredGyms.length !== 1 ? 's' : ''} — tap to browse`}
                 </div>
               )}
             </div>
@@ -874,6 +875,25 @@ export default function Home() {
 
           {/* Search bar — independent of the list, lives in the toolbar */}
           {searchBar}
+
+          {/* Total gym count badge — highlighted, beside the search box */}
+          <span
+            title={`${allGyms.length.toLocaleString()} gyms in MatFinder`}
+            style={{
+              display: 'inline-flex', alignItems: 'baseline', gap: 4,
+              padding: '3px 10px', borderRadius: 'var(--radius-full)',
+              background: 'rgba(201,162,74,0.18)',
+              border: '1.5px solid #C9A24A',
+              color: '#C9A24A',
+              fontFamily: "'Inter Tight', sans-serif",
+              whiteSpace: 'nowrap', flexShrink: 0,
+            }}
+          >
+            <span style={{ fontSize: 12, fontWeight: 800 }}>
+              {allGyms.length.toLocaleString()}
+            </span>
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em' }}>GYMS</span>
+          </span>
         </div>
 
         {/* Filter bar — horizontal row below the primary toolbar */}
@@ -1019,7 +1039,7 @@ export default function Home() {
                   fontWeight: 700, fontSize: 14,
                   color: 'var(--text-primary)',
                 }}>
-                  {loading ? 'Loading…' : `${filteredGyms.length} gym${filteredGyms.length !== 1 ? 's' : ''}`}
+                  {loading ? 'Loading…' : `${filteredGyms.length.toLocaleString()} gym${filteredGyms.length !== 1 ? 's' : ''}`}
                   {sortOrigin && <span style={{ fontWeight: 400, color: 'var(--text-muted)', fontSize: 12 }}> — sorted by distance</span>}
                 </span>
                 <button

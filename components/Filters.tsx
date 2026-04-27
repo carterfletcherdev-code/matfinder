@@ -196,7 +196,7 @@ export default function Filters({
           fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
           color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 4,
         }}>
-          {resultCount} gym{resultCount !== 1 ? 's' : ''}
+          {resultCount.toLocaleString()} gym{resultCount !== 1 ? 's' : ''}
         </span>
 
         {hasActiveFilters && onReset && (
@@ -467,7 +467,7 @@ function VerticalFilters({
           fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
           color: 'rgba(245,241,232,0.65)',
         }}>
-          {resultCount} gym{resultCount !== 1 ? 's' : ''}
+          {resultCount.toLocaleString()} gym{resultCount !== 1 ? 's' : ''}
         </span>
         {hasActiveFilters && onReset && (
           <button onClick={onReset} style={{
@@ -670,7 +670,7 @@ function HorizontalExpandFilters({
         fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
         color: 'rgba(245,241,232,0.65)', whiteSpace: 'nowrap', flexShrink: 0,
       }}>
-        {resultCount} gym{resultCount !== 1 ? 's' : ''}
+        {resultCount.toLocaleString()} gym{resultCount !== 1 ? 's' : ''}
       </span>
 
       {hasActiveFilters && onReset && (
