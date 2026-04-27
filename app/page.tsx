@@ -699,45 +699,152 @@ export default function Home() {
 
   // ── MOBILE ──────────────────────────────────────────────────────────────────
   if (isMobile) {
+    const tapBtn: React.CSSProperties = {
+      minHeight: 38, minWidth: 38,
+      padding: '6px 12px', borderRadius: 'var(--radius-full)',
+      border: '1.5px solid var(--bone)', background: 'transparent',
+      color: 'var(--bone)', fontSize: 13, fontWeight: 700,
+      fontFamily: "'Inter Tight', sans-serif",
+      cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+    };
+    const filterCount = selectedDisciplines.length + selectedDays.length + selectedRegions.length
+      + (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0);
+
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-        <Filters
-          selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
-          freeOnly={freeOnly} startingSoonOnly={startingSoonOnly} region={region}
-          onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
-          onFreeOnlyToggle={() => setFreeOnly(v => !v)}
-          onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
-          onRegionChange={handleRegionChange}
-              selectedRegions={selectedRegions}
-          onReset={resetFilters}
-          resultCount={loading ? 0 : filteredGyms.length}
-          isMobile
-        />
-        <div style={{ flex: 1, minHeight: 0, position: 'relative' }}>
-          <div style={{ position: 'absolute', inset: 4, borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '2px solid var(--map-border)', boxShadow: 'var(--shadow-md)' }}>
-            <Map {...mapProps} />
-          </div>
-          {/* Mobile bottom sheet */}
-          <div className="bottom-sheet" style={{ height: mobileSheetOpen ? '65%' : 52 }}>
-            <div
-              style={{ padding: '10px 0 8px', cursor: 'pointer', flexShrink: 0 }}
-              onClick={() => setMobileSheetOpen(v => !v)}
-            >
-              <div className="bottom-sheet-handle" />
-              {!mobileSheetOpen && (
-                <div style={{ textAlign: 'center', marginTop: 6, fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', fontFamily: "'Inter Tight', sans-serif" }}>
-                  {loading ? 'Loading…' : `${filteredGyms.length.toLocaleString()} gym${filteredGyms.length !== 1 ? 's' : ''} — tap to browse`}
-                </div>
-              )}
-            </div>
-            {mobileSheetOpen && (
-              <div className="no-scrollbar" style={{ overflowY: 'auto', flex: 1, padding: '0 8px 12px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {sortPills}
-                {featuredPills}
-                {gymCards}
-              </div>
+      <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
+        {/* Map fills the screen */}
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <Map {...mapProps} hideStyleSwitcher hideNavigationControl controllerRef={mapControllerRef} onStyleChange={key => setMapStyleKey(key)} />
+        </div>
+
+        {/* Top toolbar: logo + filters + GYMS count */}
+        <div className="map-toolbar-float" style={{
+          position: 'absolute', top: 10, left: 10, right: 10, zIndex: 600,
+          display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px',
+          borderRadius: 'var(--radius-lg)',
+        }}>
+          <Link href="/" style={{
+            fontFamily: "'Archivo Black', sans-serif", fontSize: 14,
+            color: 'var(--bone)', textDecoration: 'none', flexShrink: 0,
+          }}>MF</Link>
+          <div style={{ width: 1, height: 18, background: 'var(--border)', flexShrink: 0 }} />
+          <button onClick={() => setFilterOpen(v => !v)} style={{
+            ...tapBtn,
+            border: `1.5px solid ${filterOpen || filterCount > 0 ? 'var(--accent)' : 'var(--bone)'}`,
+            background: filterOpen ? 'var(--accent)' : 'transparent',
+          }}>
+            Filters
+            {filterCount > 0 && (
+              <span style={{
+                background: 'var(--accent)', color: 'var(--bone)',
+                borderRadius: 'var(--radius-full)', padding: '0 6px',
+                fontSize: 10, fontWeight: 800, lineHeight: '14px', minWidth: 14, textAlign: 'center',
+              }}>{filterCount}</span>
             )}
+          </button>
+          <span style={{ flex: 1 }} />
+          <span title={`${allGyms.length.toLocaleString()} gyms`} style={{
+            position: 'relative',
+            display: 'inline-flex', alignItems: 'baseline', gap: 4,
+            padding: '4px 9px', borderRadius: 'var(--radius-full)',
+            border: '1.5px solid var(--border)',
+            color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif",
+            whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            <span style={{ position: 'absolute', top: -4, right: -3, fontSize: 9, color: '#C9A24A', lineHeight: 1, pointerEvents: 'none' }}>★</span>
+            <span style={{ fontSize: 12, fontWeight: 800 }}>{allGyms.length.toLocaleString()}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', opacity: 0.7 }}>GYMS</span>
+          </span>
+        </div>
+
+        {/* Filter bar — same horizontal-expand as desktop, drops below toolbar */}
+        {filterOpen && (
+          <div className="map-toolbar-float no-scrollbar" style={{
+            position: 'absolute', top: 60, left: 10, right: 10, zIndex: 700,
+            overflowX: 'auto', borderRadius: 'var(--radius-lg)', maxHeight: '60vh', overflowY: 'auto',
+          }}>
+            <Filters
+              selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
+              freeOnly={freeOnly} startingSoonOnly={startingSoonOnly} region={region}
+              selectedRegions={selectedRegions}
+              onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
+              onFreeOnlyToggle={() => setFreeOnly(v => !v)}
+              onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
+              onRegionChange={handleRegionChange}
+              onReset={resetFilters}
+              resultCount={loading ? 0 : filteredGyms.length}
+              noBackground
+              horizontalExpand
+            />
           </div>
+        )}
+
+        {/* GPS + add gym — right side stack */}
+        <div style={{
+          position: 'absolute', top: filterOpen ? 116 : 60, right: 10, zIndex: 600,
+          display: 'flex', flexDirection: 'column', gap: 8,
+          transition: 'top 0.15s ease',
+        }}>
+          <button
+            onClick={() => {
+              setGpsFlashing(true);
+              setTimeout(() => setGpsFlashing(false), 500);
+              if (!navigator.geolocation) { setGeoError('GPS unavailable'); return; }
+              setGeocoding(true);
+              navigator.geolocation.getCurrentPosition((pos) => {
+                const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                homeLocationRef.current = loc;
+                setSortLocation({ ...loc, label: 'Your location' });
+                setMapFlyTarget({ ...loc, zoom: 12 });
+                setSortMode('nearest');
+                setGeocoding(false);
+              }, () => { setGeoError('GPS denied'); setGeocoding(false); });
+            }}
+            title="My location"
+            style={{
+              width: 42, height: 42, borderRadius: '50%',
+              border: `2px solid ${isGpsActive ? 'var(--accent)' : 'var(--bone)'}`,
+              background: gpsFlashing || isGpsActive ? 'var(--accent)' : 'rgba(26,19,16,0.7)',
+              backdropFilter: 'blur(8px)',
+              color: 'var(--bone)', fontSize: 18, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: 'var(--shadow-md)',
+            }}
+          >📍</button>
+          <Link href="/add-gym" title="Add Gym" style={{
+            width: 42, height: 42, borderRadius: '50%',
+            border: '2px solid var(--bone)',
+            background: 'rgba(26,19,16,0.7)',
+            backdropFilter: 'blur(8px)',
+            color: 'var(--bone)', fontSize: 22, fontWeight: 700,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: 'var(--shadow-md)', textDecoration: 'none', lineHeight: 1,
+          }}>+</Link>
+          <ProfileDropdown
+            gymNameById={gymNameById}
+            onGymClick={(gymId) => handleMapGymSelect(gymId)}
+          />
+        </div>
+
+        {/* Bottom sheet — half height, 65% opacity */}
+        <div className="bottom-sheet" style={{ height: mobileSheetOpen ? '50%' : 56 }}>
+          <div
+            style={{ padding: '10px 0 6px', cursor: 'pointer', flexShrink: 0 }}
+            onClick={() => setMobileSheetOpen(v => !v)}
+          >
+            <div className="bottom-sheet-handle" />
+            <div style={{ textAlign: 'center', marginTop: 6, fontSize: 12, fontWeight: 700, color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif" }}>
+              {loading ? 'Loading…' : `${filteredGyms.length.toLocaleString()} gym${filteredGyms.length !== 1 ? 's' : ''}${mobileSheetOpen ? '' : ' — tap to browse'}`}
+            </div>
+          </div>
+          {mobileSheetOpen && (
+            <div className="no-scrollbar" style={{ overflowY: 'auto', flex: 1, padding: '0 10px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {sortPills}
+              {featuredPills}
+              {gymCards}
+            </div>
+          )}
         </div>
       </div>
     );
