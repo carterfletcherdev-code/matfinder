@@ -113,18 +113,20 @@ export const DISCIPLINE_LABELS: Record<Discipline, string> = {
 
 // 11 distinct hues — each one map-friendly (saturated enough to pop on light/dark/satellite map styles).
 // No two share a hue family.
+// 11 distinct hues — chosen for maximum separation across the color wheel.
+// No two disciplines share a hue family (no double reds/oranges/blues).
 export const DISCIPLINE_COLORS: Record<Discipline, { bg: string; text: string; marker: string }> = {
   bjj:        { bg: '#FBF0D4', text: '#5C4515', marker: '#C9A24A' }, // gold
-  nogi_bjj:   { bg: '#FEE0C0', text: '#7C2D12', marker: '#EA580C' }, // orange
+  nogi_bjj:   { bg: '#FFEDD5', text: '#7C2D12', marker: '#F97316' }, // bright orange
   gi_bjj:     { bg: '#DBEAFE', text: '#1E3A5F', marker: '#2563EB' }, // royal blue
   wrestling:  { bg: '#DCFCE7', text: '#14532D', marker: '#15803D' }, // forest green
   judo:       { bg: '#FEE2E2', text: '#7F1D1D', marker: '#DC2626' }, // red
   muay_thai:  { bg: '#FCE7F3', text: '#831843', marker: '#DB2777' }, // hot pink
-  mma:        { bg: '#EDE9FE', text: '#2E1065', marker: '#6D28D9' }, // deep purple
-  kickboxing: { bg: '#CFFAFE', text: '#155E75', marker: '#0891B2' }, // cyan
-  boxing:     { bg: '#FEF3C7', text: '#451A03', marker: '#78350F' }, // brown
+  mma:        { bg: '#EDE9FE', text: '#2E1065', marker: '#7C3AED' }, // purple
+  kickboxing: { bg: '#CCFBF1', text: '#134E4A', marker: '#0D9488' }, // teal
+  boxing:     { bg: '#E5E7EB', text: '#1F2937', marker: '#374151' }, // charcoal
   karate:     { bg: '#ECFCCB', text: '#365314', marker: '#84CC16' }, // lime
-  taekwondo:  { bg: '#E2E8F0', text: '#1E293B', marker: '#475569' }, // slate
+  taekwondo:  { bg: '#E0E7FF', text: '#312E81', marker: '#6366F1' }, // indigo
 };
 
 export const DAY_LABELS: Record<DayOfWeek, string> = {

@@ -31,6 +31,7 @@ interface FiltersProps {
   isMobile?: boolean;
   noBackground?: boolean;
   floatingFilters?: boolean;
+  horizontalExpand?: boolean;
 }
 
 const scrollRow: React.CSSProperties = {
@@ -48,6 +49,7 @@ export default function Filters({
   selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
   onRegionChange, onReset, resultCount, isMobile, noBackground, floatingFilters,
+  horizontalExpand,
 }: FiltersProps) {
   const hasActiveFilters = selectedDisciplines.length > 0 || selectedDays.length > 0 || freeOnly || startingSoonOnly;
   const [flashRegion, setFlashRegion] = useState<string | null>(null);
@@ -56,6 +58,29 @@ export default function Filters({
     setTimeout(() => setFlashRegion(null), 500);
     // Click an active non-"all" region again to toggle back to "all".
     onRegionChange(r !== 'all' && region === r ? 'all' : r);
+  }
+
+  // ── Horizontal category-pill variant — boxes that expand sideways ──
+  if (horizontalExpand) {
+    return (
+      <HorizontalExpandFilters
+        selectedDisciplines={selectedDisciplines}
+        selectedDays={selectedDays}
+        freeOnly={freeOnly}
+        startingSoonOnly={startingSoonOnly}
+        region={region}
+        onDisciplineToggle={onDisciplineToggle}
+        onDayToggle={onDayToggle}
+        onFreeOnlyToggle={onFreeOnlyToggle}
+        onStartingSoonToggle={onStartingSoonToggle}
+        onRegionChange={onRegionChange}
+        onReset={onReset}
+        resultCount={resultCount}
+        hasActiveFilters={hasActiveFilters}
+        flashRegion={flashRegion}
+        handleRegionClick={handleRegionClick}
+      />
+    );
   }
 
   // ── Vertical category-accordion variant — only used in the floating dropdown ──
@@ -458,6 +483,207 @@ function VerticalFilters({
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Horizontal expand variant — category boxes that expand sideways inline
+// ────────────────────────────────────────────────────────────────────────────
+
+interface HorizontalExpandProps {
+  selectedDisciplines: Discipline[];
+  selectedDays: DayOfWeek[];
+  freeOnly: boolean;
+  startingSoonOnly: boolean;
+  region: Region;
+  onDisciplineToggle: (d: Discipline) => void;
+  onDayToggle: (d: DayOfWeek) => void;
+  onFreeOnlyToggle: () => void;
+  onStartingSoonToggle: () => void;
+  onRegionChange: (r: Region) => void;
+  onReset?: () => void;
+  resultCount: number;
+  hasActiveFilters: boolean;
+  flashRegion: string | null;
+  handleRegionClick: (r: Region) => void;
+}
+
+type GroupKey = 'disciplines' | 'days' | 'toggles' | 'region' | null;
+
+function HorizontalExpandFilters({
+  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
+}: HorizontalExpandProps) {
+  const [openGroup, setOpenGroup] = useState<GroupKey>(null);
+
+  const inactiveBorder = 'rgba(245,241,232,0.30)';
+  const inactiveText = 'rgba(245,241,232,0.85)';
+
+  const togglesActive = (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0);
+  const counts: Record<Exclude<GroupKey, null>, number> = {
+    disciplines: selectedDisciplines.length,
+    days: selectedDays.length,
+    toggles: togglesActive,
+    region: region !== 'all' ? 1 : 0,
+  };
+
+  function CategoryPill({ k, label }: { k: Exclude<GroupKey, null>; label: string }) {
+    const isOpen = openGroup === k;
+    const count = counts[k];
+    const hasSelection = count > 0;
+    return (
+      <button
+        onClick={() => setOpenGroup(isOpen ? null : k)}
+        style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          padding: '5px 12px',
+          borderRadius: 'var(--radius-full)',
+          border: `1.5px solid ${isOpen || hasSelection ? 'var(--bone)' : inactiveBorder}`,
+          background: isOpen ? 'rgba(245,241,232,0.12)' : 'transparent',
+          color: 'var(--bone)',
+          fontSize: 12, fontWeight: 700, fontFamily: "'Inter Tight', sans-serif",
+          cursor: 'pointer', transition: 'all 0.15s',
+          whiteSpace: 'nowrap', flexShrink: 0,
+        }}
+      >
+        {label}
+        {count > 0 && (
+          <span style={{
+            background: 'var(--accent)', color: 'var(--bone)',
+            borderRadius: 'var(--radius-full)', padding: '0 6px',
+            fontSize: 10, fontWeight: 700, lineHeight: '14px', minWidth: 14, textAlign: 'center',
+          }}>
+            {count}
+          </span>
+        )}
+        <span style={{
+          fontSize: 9, opacity: 0.7, marginLeft: 1,
+          transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+          transition: 'transform 0.15s', display: 'inline-block',
+        }}>›</span>
+      </button>
+    );
+  }
+
+  const optionPill: React.CSSProperties = {
+    padding: '4px 10px',
+    borderRadius: 'var(--radius-full)',
+    fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+    cursor: 'pointer', transition: 'all 0.12s',
+    whiteSpace: 'nowrap', flexShrink: 0,
+  };
+
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', flexWrap: 'wrap',
+      gap: 6, padding: '8px 10px', color: 'var(--bone)',
+    }}>
+      <CategoryPill k="disciplines" label="Disciplines" />
+      {openGroup === 'disciplines' && (
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+          {DISCIPLINES.map((d) => {
+            const active = selectedDisciplines.includes(d);
+            const c = DISCIPLINE_COLORS[d];
+            return (
+              <button key={d} onClick={() => onDisciplineToggle(d)} style={{
+                ...optionPill,
+                display: 'inline-flex', alignItems: 'center', gap: 5,
+                paddingLeft: 7,
+                border: `1.5px solid ${active ? c.text : inactiveBorder}`,
+                background: active ? c.bg : 'transparent',
+                color: active ? c.text : inactiveText,
+              }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.marker, flexShrink: 0, display: 'inline-block' }} />
+                {DISCIPLINE_LABELS[d]}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <CategoryPill k="days" label="Days" />
+      {openGroup === 'days' && (
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+          {DAYS.map((d) => {
+            const active = selectedDays.includes(d);
+            return (
+              <button key={d} onClick={() => onDayToggle(d)} style={{
+                ...optionPill,
+                fontFamily: "'JetBrains Mono', monospace",
+                border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
+                background: active ? 'var(--accent)' : 'transparent',
+                color: active ? 'var(--bone)' : inactiveText,
+              }}>
+                {DAY_LABELS[d]}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <CategoryPill k="toggles" label="Filters" />
+      {openGroup === 'toggles' && (
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+          <button onClick={onStartingSoonToggle} style={{
+            ...optionPill,
+            border: `1.5px solid ${startingSoonOnly ? '#D97706' : inactiveBorder}`,
+            background: startingSoonOnly ? 'var(--bone)' : 'transparent',
+            color: startingSoonOnly ? '#5C4430' : inactiveText,
+          }}>
+            Starting Soon
+          </button>
+          <button onClick={onFreeOnlyToggle} style={{
+            ...optionPill,
+            border: `1.5px solid ${freeOnly ? '#5E8B5E' : inactiveBorder}`,
+            background: freeOnly ? '#D4DDD3' : 'transparent',
+            color: freeOnly ? '#27402A' : inactiveText,
+          }}>
+            Free only
+          </button>
+        </div>
+      )}
+
+      <CategoryPill k="region" label="Region" />
+      {openGroup === 'region' && (
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+          {REGIONS.map((r) => {
+            const active = region === r;
+            return (
+              <button key={r} onClick={() => handleRegionClick(r)} style={{
+                ...optionPill,
+                border: `1.5px solid ${active || flashRegion === r ? 'var(--bone)' : inactiveBorder}`,
+                background: active ? 'rgba(245,241,232,0.15)' : 'transparent',
+                color: active ? 'var(--bone)' : inactiveText,
+              }}>
+                {REGION_LABELS[r]}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <span style={{ flex: 1 }} />
+
+      <span style={{
+        fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+        color: 'rgba(245,241,232,0.65)', whiteSpace: 'nowrap', flexShrink: 0,
+      }}>
+        {resultCount} gym{resultCount !== 1 ? 's' : ''}
+      </span>
+
+      {hasActiveFilters && onReset && (
+        <button onClick={onReset} style={{
+          ...optionPill,
+          border: `1.5px solid ${inactiveBorder}`,
+          background: 'transparent',
+          color: inactiveText,
+          opacity: 0.8,
+        }}>
+          Reset ✕
+        </button>
+      )}
     </div>
   );
 }

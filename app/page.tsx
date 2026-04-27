@@ -730,7 +730,7 @@ export default function Home() {
           <div
             className="no-scrollbar"
             style={{
-              position: 'absolute', top: filterOpen ? 162 : 56, left: 12, bottom: 0, width: LIST_W,
+              position: 'absolute', top: filterOpen ? 112 : 56, left: 12, bottom: 0, width: LIST_W,
               zIndex: 500, overflowY: 'auto',
               padding: '4px 0 10px', display: 'flex', flexDirection: 'column', gap: 8,
               transition: 'top 0.15s ease',
@@ -900,6 +900,7 @@ export default function Home() {
               onReset={resetFilters}
               resultCount={loading ? 0 : filteredGyms.length}
               noBackground
+              horizontalExpand
             />
           </div>
         )}
