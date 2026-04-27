@@ -126,7 +126,18 @@ export default function UpgradePage() {
                       background: plan.color, color: '#1A1310',
                       fontSize: 9, fontWeight: 800, fontFamily: "'Inter Tight', sans-serif",
                       letterSpacing: '0.08em', padding: '2px 8px', borderRadius: 4,
-                    }}>{plan.badge}</div>
+                    }}>
+                      {plan.badge}
+                      <span style={{
+                        position: 'absolute', top: -10, right: -8,
+                        fontSize: 14, lineHeight: 1,
+                        transform: 'rotate(22deg)',
+                        filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.4))',
+                        pointerEvents: 'none',
+                      }}>
+                        👑
+                      </span>
+                    </div>
                   )}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
