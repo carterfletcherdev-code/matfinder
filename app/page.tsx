@@ -65,7 +65,9 @@ export default function Home() {
   const [selectedDays, setSelectedDays] = useState<DayOfWeek[]>([]);
   const [freeOnly, setFreeOnly] = useState(false);
   const [startingSoonOnly, setStartingSoonOnly] = useState(false);
-  const [region, setRegion] = useState<Region>('all');
+  const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
+  // Derived "primary" region for places that still expect a single value (last-clicked or 'all').
+  const region: Region = selectedRegions.length > 0 ? selectedRegions[selectedRegions.length - 1] : 'all';
 
   // Search-locked regions: each chip locks the visible pins to its bbox.
   // When empty → no search lock. Multiple chips → union of bboxes.
@@ -289,8 +291,23 @@ export default function Home() {
   }
 
   function handleRegionChange(r: Region) {
-    setRegion(r);
-    setMapFlyTarget(REGION_FLYTO[r]);
+    if (r === 'all') {
+      setSelectedRegions([]);
+      setMapFlyTarget(REGION_FLYTO['all']);
+      return;
+    }
+    setSelectedRegions(prev => {
+      const has = prev.includes(r);
+      if (has) {
+        const next = prev.filter(x => x !== r);
+        // If this was the last one, fly to world view
+        if (next.length === 0) setMapFlyTarget(REGION_FLYTO['all']);
+        return next;
+      }
+      // Add and fly to it
+      setMapFlyTarget(REGION_FLYTO[r]);
+      return [...prev, r];
+    });
   }
 
   function handleStyleChange(key: string) {
@@ -385,6 +402,7 @@ export default function Home() {
     setSelectedDays([]);
     setFreeOnly(false);
     setStartingSoonOnly(false);
+    setSelectedRegions([]);
   }
 
   function handleCardClick(gymId: string) {
@@ -676,6 +694,7 @@ export default function Home() {
           onFreeOnlyToggle={() => setFreeOnly(v => !v)}
           onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
           onRegionChange={handleRegionChange}
+              selectedRegions={selectedRegions}
           onReset={resetFilters}
           resultCount={loading ? 0 : filteredGyms.length}
           isMobile
@@ -876,23 +895,29 @@ export default function Home() {
           {/* Search bar — independent of the list, lives in the toolbar */}
           {searchBar}
 
-          {/* Total gym count badge — highlighted, beside the search box */}
+          {/* Total gym count badge — bone white, subtle star accent */}
           <span
             title={`${allGyms.length.toLocaleString()} gyms in MatFinder`}
             style={{
+              position: 'relative',
               display: 'inline-flex', alignItems: 'baseline', gap: 4,
               padding: '3px 10px', borderRadius: 'var(--radius-full)',
-              background: 'rgba(201,162,74,0.18)',
-              border: '1.5px solid #C9A24A',
-              color: '#C9A24A',
+              background: 'transparent',
+              border: '1.5px solid var(--border)',
+              color: 'var(--bone)',
               fontFamily: "'Inter Tight', sans-serif",
               whiteSpace: 'nowrap', flexShrink: 0,
             }}
           >
+            <span style={{
+              position: 'absolute', top: -4, right: -3,
+              fontSize: 9, color: '#C9A24A', lineHeight: 1,
+              pointerEvents: 'none',
+            }}>★</span>
             <span style={{ fontSize: 12, fontWeight: 800 }}>
               {allGyms.length.toLocaleString()}
             </span>
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em' }}>GYMS</span>
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', opacity: 0.7 }}>GYMS</span>
           </span>
         </div>
 
@@ -917,6 +942,7 @@ export default function Home() {
               onFreeOnlyToggle={() => setFreeOnly(v => !v)}
               onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
               onRegionChange={handleRegionChange}
+              selectedRegions={selectedRegions}
               onReset={resetFilters}
               resultCount={loading ? 0 : filteredGyms.length}
               noBackground
@@ -1059,6 +1085,7 @@ export default function Home() {
                 onFreeOnlyToggle={() => setFreeOnly(v => !v)}
                 onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
                 onRegionChange={handleRegionChange}
+              selectedRegions={selectedRegions}
                 onReset={resetFilters}
                 resultCount={loading ? 0 : filteredGyms.length}
               />

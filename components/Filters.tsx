@@ -21,6 +21,7 @@ interface FiltersProps {
   freeOnly: boolean;
   startingSoonOnly: boolean;
   region: Region;
+  selectedRegions?: Region[];
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
@@ -47,6 +48,7 @@ const scrollRow: React.CSSProperties = {
 
 export default function Filters({
   selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  selectedRegions = [],
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
   onRegionChange, onReset, resultCount, isMobile, noBackground, floatingFilters,
   horizontalExpand,
@@ -56,8 +58,8 @@ export default function Filters({
   function handleRegionClick(r: Region) {
     setFlashRegion(r);
     setTimeout(() => setFlashRegion(null), 500);
-    // Click an active non-"all" region again to toggle back to "all".
-    onRegionChange(r !== 'all' && region === r ? 'all' : r);
+    // page-level handler manages multi-toggle state; just forward the click.
+    onRegionChange(r);
   }
 
   // ── Horizontal category-pill variant — boxes that expand sideways ──
@@ -69,6 +71,7 @@ export default function Filters({
         freeOnly={freeOnly}
         startingSoonOnly={startingSoonOnly}
         region={region}
+        selectedRegions={selectedRegions}
         onDisciplineToggle={onDisciplineToggle}
         onDayToggle={onDayToggle}
         onFreeOnlyToggle={onFreeOnlyToggle}
@@ -497,6 +500,7 @@ interface HorizontalExpandProps {
   freeOnly: boolean;
   startingSoonOnly: boolean;
   region: Region;
+  selectedRegions: Region[];
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
@@ -512,7 +516,7 @@ interface HorizontalExpandProps {
 type GroupKey = 'disciplines' | 'days' | 'toggles' | 'region' | null;
 
 function HorizontalExpandFilters({
-  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, selectedRegions,
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
   handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
 }: HorizontalExpandProps) {
@@ -526,7 +530,7 @@ function HorizontalExpandFilters({
     disciplines: selectedDisciplines.length,
     days: selectedDays.length,
     toggles: togglesActive,
-    region: region !== 'all' ? 1 : 0,
+    region: selectedRegions.length,
   };
 
   function CategoryPill({ k, label }: { k: Exclude<GroupKey, null>; label: string }) {
@@ -649,7 +653,7 @@ function HorizontalExpandFilters({
       {openGroup === 'region' && (
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
           {REGIONS.map((r) => {
-            const active = region === r;
+            const active = r === 'all' ? selectedRegions.length === 0 : selectedRegions.includes(r);
             return (
               <button key={r} onClick={() => handleRegionClick(r)} style={{
                 ...optionPill,
