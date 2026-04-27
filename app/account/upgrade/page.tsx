@@ -132,10 +132,11 @@ export default function UpgradePage() {
                       disabled={!!loading}
                       style={{
                         width: '100%', padding: '11px', fontSize: 14, fontWeight: 700,
-                        background: isLoading ? `${plan.color}cc` : plan.color,
+                        background: plan.color,
                         color: '#1A1310', border: 'none',
-                        borderRadius: 8, cursor: loading ? (isLoading ? 'wait' : 'not-allowed') : 'pointer',
-                        opacity: !loading || isLoading ? 1 : 0.4,
+                        borderRadius: 8,
+                        cursor: isLoading ? 'wait' : loading ? 'not-allowed' : 'pointer',
+                        opacity: isLoading ? 0.7 : 1,
                         fontFamily: "'Inter Tight', sans-serif",
                         transition: 'opacity 0.15s',
                       }}

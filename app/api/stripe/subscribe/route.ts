@@ -14,12 +14,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const priceId = PRICE_IDS[planId];
+    let priceId = PRICE_IDS[planId];
     if (!priceId || !process.env.STRIPE_SECRET_KEY) {
       return NextResponse.json({ error: 'Plan not configured' }, { status: 503 });
     }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+    // If a product ID was configured instead of a price ID, resolve the default price
+    if (priceId.startsWith('prod_')) {
+      const product = await stripe.products.retrieve(priceId);
+      if (!product.default_price) {
+        return NextResponse.json({ error: 'No default price on product' }, { status: 503 });
+      }
+      priceId = typeof product.default_price === 'string' ? product.default_price : product.default_price.id;
+    }
+
     const origin = req.headers.get('origin') || 'https://matfinder.io';
 
     const session = await stripe.checkout.sessions.create({
