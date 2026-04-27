@@ -84,6 +84,12 @@ export default function UpgradePage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden', background: 'var(--bg)', color: 'var(--fg)' }}>
+      <style>{`
+        .upgrade-card:hover {
+          transform: scale(1.025);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(245,241,232,0.4);
+        }
+      `}</style>
       <Header />
       <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 48px' }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
@@ -107,11 +113,12 @@ export default function UpgradePage() {
             {PLANS.map(plan => {
               const isCurrent = tier === plan.id;
               return (
-                <div key={plan.id} style={{
+                <div key={plan.id} className="upgrade-card" style={{
                   background: 'var(--bg-elev)',
-                  border: `2px solid ${isCurrent ? plan.color : 'var(--border)'}`,
+                  border: `2px solid ${isCurrent ? plan.color : 'var(--bone)'}`,
                   borderRadius: 12, padding: 22,
                   position: 'relative',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
                 }}>
                   {plan.badge && (
                     <div style={{
