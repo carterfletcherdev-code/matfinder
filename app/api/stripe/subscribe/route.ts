@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 const PRICE_IDS: Record<string, string | undefined> = {
   standard: process.env.STRIPE_STANDARD_PRICE_ID,
   pro: process.env.STRIPE_PRO_PRICE_ID,
+  pro_annual: process.env.STRIPE_PRO_YEARLY_PRICE_ID,
 };
 
 export async function POST(req: NextRequest) {

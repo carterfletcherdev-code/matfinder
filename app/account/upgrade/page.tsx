@@ -5,7 +5,17 @@ import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import Header from '@/components/Header';
 
-const PLANS = [
+type Billing = { id: string; label: string; price: string; sublabel?: string; savings?: string };
+
+const PLANS: {
+  id: 'pro' | 'standard';
+  name: string;
+  price: string;
+  color: string;
+  badge: string | null;
+  features: string[];
+  billings: Billing[];
+}[] = [
   {
     id: 'pro',
     name: 'Pro',
@@ -22,6 +32,10 @@ const PLANS = [
       'Early access to new features',
       'Gym analytics for claimed listings',
     ],
+    billings: [
+      { id: 'pro',        label: 'Monthly',  price: '$9.99/mo' },
+      { id: 'pro_annual', label: 'Annually', price: '$79.99/yr', sublabel: '$6.67/mo', savings: 'Save $40 — 4 months free' },
+    ],
   },
   {
     id: 'standard',
@@ -33,6 +47,9 @@ const PLANS = [
       'Up to 30 saved gyms',
       'Session logs with notes',
       'Check-in history',
+    ],
+    billings: [
+      { id: 'standard', label: 'Monthly', price: '$4.99/mo' },
     ],
   },
 ];
@@ -89,7 +106,6 @@ export default function UpgradePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {PLANS.map(plan => {
               const isCurrent = tier === plan.id;
-              const isLoading = loading === plan.id;
               return (
                 <div key={plan.id} style={{
                   background: 'var(--bg-elev)',
@@ -127,22 +143,46 @@ export default function UpgradePage() {
                     ))}
                   </ul>
                   {!isCurrent && (
-                    <button
-                      onClick={() => subscribe(plan.id)}
-                      disabled={!!loading}
-                      style={{
-                        width: '100%', padding: '11px', fontSize: 14, fontWeight: 700,
-                        background: plan.color,
-                        color: '#1A1310', border: 'none',
-                        borderRadius: 8,
-                        cursor: isLoading ? 'wait' : loading ? 'not-allowed' : 'pointer',
-                        opacity: isLoading ? 0.7 : 1,
-                        fontFamily: "'Inter Tight', sans-serif",
-                        transition: 'opacity 0.15s',
-                      }}
-                    >
-                      {isLoading ? 'Opening checkout…' : `Get ${plan.name} — ${plan.price}/mo`}
-                    </button>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {plan.billings.map(b => {
+                        const isLoading = loading === b.id;
+                        return (
+                          <button
+                            key={b.id}
+                            onClick={() => subscribe(b.id)}
+                            disabled={!!loading}
+                            style={{
+                              width: '100%', padding: '11px 14px',
+                              display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8,
+                              fontSize: 14, fontWeight: 700,
+                              background: plan.color,
+                              color: '#1A1310', border: 'none',
+                              borderRadius: 8,
+                              cursor: isLoading ? 'wait' : loading ? 'not-allowed' : 'pointer',
+                              opacity: isLoading ? 0.7 : 1,
+                              fontFamily: "'Inter Tight', sans-serif",
+                              transition: 'opacity 0.15s',
+                              textAlign: 'left',
+                            }}
+                          >
+                            <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1 }}>
+                              <span>{isLoading ? 'Opening checkout…' : `Get ${plan.name} ${b.label}`}</span>
+                              {b.savings && !isLoading && (
+                                <span style={{ fontSize: 10, fontWeight: 700, opacity: 0.75, letterSpacing: '0.02em' }}>
+                                  {b.savings}
+                                </span>
+                              )}
+                            </span>
+                            <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1 }}>
+                              <span style={{ fontSize: 14, fontWeight: 800 }}>{b.price}</span>
+                              {b.sublabel && (
+                                <span style={{ fontSize: 10, fontWeight: 600, opacity: 0.7 }}>{b.sublabel}</span>
+                              )}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   )}
                 </div>
               );
