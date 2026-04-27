@@ -1,51 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, supabaseEnabled } from '@/lib/supabase';
 
-// GET /api/ratings?gym_id=123
+// GET /api/ratings — returns aggregates { gymId: { avg, count } }
+// Writes are performed client-side via the authenticated supabase client + RLS.
 export async function GET(req: NextRequest) {
   const gymId = req.nextUrl.searchParams.get('gym_id');
-  if (!gymId) return NextResponse.json({ error: 'Missing gym_id' }, { status: 400 });
 
   if (!supabaseEnabled) {
-    return NextResponse.json({ avg: null, count: 0, userRating: null });
+    return NextResponse.json(gymId ? { avg: null, count: 0 } : { aggregates: {} });
   }
 
-  const { data, error } = await supabase
-    .from('ratings')
-    .select('score, comment, created_at')
-    .eq('gym_id', gymId)
-    .order('created_at', { ascending: false });
+  if (gymId) {
+    const { data, error } = await supabase.from('ratings').select('score').eq('gym_id', gymId);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    const count = data?.length ?? 0;
+    const avg = count ? data!.reduce((s, r) => s + r.score, 0) / count : null;
+    return NextResponse.json({ avg, count });
+  }
 
+  const { data, error } = await supabase.from('ratings').select('gym_id, score');
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  const avg = data?.length
-    ? data.reduce((s, r) => s + r.score, 0) / data.length
-    : null;
-
-  return NextResponse.json({ avg, count: data?.length ?? 0, ratings: data ?? [] });
-}
-
-// POST /api/ratings  { gym_id, score, comment? }
-export async function POST(req: NextRequest) {
-  if (!supabaseEnabled) {
-    return NextResponse.json({ error: 'Ratings not configured yet' }, { status: 503 });
+  const sums: Record<string, { sum: number; count: number }> = {};
+  for (const r of data ?? []) {
+    const a = sums[r.gym_id] ?? (sums[r.gym_id] = { sum: 0, count: 0 });
+    a.sum += r.score; a.count += 1;
   }
-
-  const body = await req.json();
-  const { gym_id, score, comment } = body;
-
-  if (!gym_id || !score || score < 1 || score > 5) {
-    return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
+  const aggregates: Record<string, { avg: number; count: number }> = {};
+  for (const [id, { sum, count }] of Object.entries(sums)) {
+    aggregates[id] = { avg: sum / count, count };
   }
-
-  // Use IP as anonymous identifier (no auth required)
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
-
-  const { error } = await supabase.from('ratings').upsert(
-    { gym_id, score, comment: comment?.slice(0, 500) ?? null, ip_hash: ip },
-    { onConflict: 'gym_id,ip_hash' }
-  );
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ aggregates });
 }

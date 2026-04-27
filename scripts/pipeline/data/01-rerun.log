@@ -1,0 +1,7 @@
+─── Stage 1: Find websites via Google Places API ───
+Total gyms in data.ts:     12474
+Gyms missing website:      4406
+Mode:                      FILL MISSING only
+Will process:              4406
+
+  25/4406 — found 25, no_match 0, errors 0  

@@ -1,0 +1,758 @@
+[
+  {
+    "id": "2035",
+    "name": "John's Gym (Austin)",
+    "address": "11416 Ranch Rd 620 N",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.4653,
+    "lng": -97.8679,
+    "open_mats": [
+      {
+        "id": "2035-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      },
+      {
+        "id": "2035-2-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2036",
+    "name": "East Austin Jiujitsu Parlor",
+    "address": "979 Springdale Rd Suite #111",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.2626,
+    "lng": -97.7008,
+    "open_mats": [
+      {
+        "id": "2036-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "19:00",
+        "end_time": "20:00",
+        "is_free": true
+      },
+      {
+        "id": "2036-2-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2037",
+    "name": "Claunch Academy of Brazilian Jiu-Jitsu",
+    "address": "12112 Ranch Road 620 N",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.4723,
+    "lng": -97.8389,
+    "open_mats": [
+      {
+        "id": "2037-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "09:00",
+        "end_time": "10:00",
+        "is_free": true
+      },
+      {
+        "id": "2037-2-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "16:30",
+        "end_time": "17:30",
+        "is_free": true
+      },
+      {
+        "id": "2037-3-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "17:30",
+        "end_time": "18:30",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2038",
+    "name": "Aces Jiu Jitsu Club (Pflugerville)",
+    "address": "1700 Grand Ave Pkwy #220",
+    "city": "Pflugerville",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.4394,
+    "lng": -97.6203,
+    "open_mats": [
+      {
+        "id": "2038-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "19:00",
+        "end_time": "21:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2039",
+    "name": "VOW Jiu-Jitsu (Village of Wolves)",
+    "address": "5555 Lamar Blvd H115",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.3267,
+    "lng": -97.7457,
+    "open_mats": [
+      {
+        "id": "2039-1-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2040",
+    "name": "Austin Kickboxing Academy",
+    "address": "3906 Warehouse Row",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.2376,
+    "lng": -97.7698,
+    "open_mats": [
+      {
+        "id": "2040-1-1",
+        "discipline": "kickboxing",
+        "day": "tuesday",
+        "start_time": "18:00",
+        "end_time": "19:00",
+        "is_free": true
+      },
+      {
+        "id": "2040-2-1",
+        "discipline": "kickboxing",
+        "day": "thursday",
+        "start_time": "18:00",
+        "end_time": "19:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2041",
+    "name": "Stoic Jiu Jitsu",
+    "address": "391 Sportsplex Dr Suite A",
+    "city": "Dripping Springs",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.1892,
+    "lng": -98.0862,
+    "open_mats": [
+      {
+        "id": "2041-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2042",
+    "name": "Brazilian Top Team Austin",
+    "address": "9313 Anderson Mill Rd",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.4529,
+    "lng": -97.8062,
+    "open_mats": [
+      {
+        "id": "2042-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "is_free": true
+      },
+      {
+        "id": "2042-1-2",
+        "discipline": "mma",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2043",
+    "name": "Relson Gracie Jiu-Jitsu South Austin",
+    "address": "8213 Brodie Ln Suite 107",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.185,
+    "lng": -97.8543,
+    "open_mats": [
+      {
+        "id": "2043-1-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2044",
+    "name": "Atos Brazilian Jiu-Jitsu Austin",
+    "address": "11701 Bee Caves Rd #110",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.2933,
+    "lng": -97.9397,
+    "open_mats": [
+      {
+        "id": "2044-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "11:30",
+        "end_time": "13:30",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2045",
+    "name": "Test BJJ Academy 1f1TMa",
+    "address": "123 Test Street",
+    "city": "Austin",
+    "state": "TX",
+    "country": "US",
+    "lat": 30.272921,
+    "lng": -97.744386,
+    "open_mats": [
+      {
+        "id": "2045-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2046",
+    "name": "Fortis MMA",
+    "address": "301 Texas St",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2046-1-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      },
+      {
+        "id": "2046-1-2",
+        "discipline": "boxing",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      },
+      {
+        "id": "2046-1-3",
+        "discipline": "mma",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      },
+      {
+        "id": "2046-1-4",
+        "discipline": "kickboxing",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2047",
+    "name": "New Concept BJJ",
+    "address": "7035 Greenville Ave, Suite 101A",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2047-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "13:00",
+        "end_time": "15:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2048",
+    "name": "VA Academy Jui Jitsu",
+    "address": "709 Business Way Suite 110, Wylie, TX 75098",
+    "city": "Wylie",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.0151,
+    "lng": -96.5389,
+    "open_mats": [
+      {
+        "id": "2048-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2049",
+    "name": "TEST",
+    "address": "2502 Lovers Lane",
+    "city": "Ruston",
+    "state": "Louisiana",
+    "country": "US",
+    "lat": 32.556418,
+    "lng": -92.649915,
+    "open_mats": [
+      {
+        "id": "2049-1-1",
+        "discipline": "gi_bjj",
+        "day": "monday",
+        "start_time": "17:00",
+        "end_time": "19:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2050",
+    "name": "Mohler MMA - Brazilian Jiu Jitsu and boxing",
+    "address": "201 N Starnes St",
+    "city": "Grapevine",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.941784,
+    "lng": -97.076778,
+    "open_mats": [
+      {
+        "id": "2050-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      },
+      {
+        "id": "2050-1-2",
+        "discipline": "boxing",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      },
+      {
+        "id": "2050-1-3",
+        "discipline": "mma",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2051",
+    "name": "Caio Terra Academy",
+    "address": "2804 N O'Connor Rd",
+    "city": "Irving",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.844867,
+    "lng": -96.950772,
+    "open_mats": [
+      {
+        "id": "2051-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2052",
+    "name": "Sloth BJJ Academy",
+    "address": "218 N Main St",
+    "city": "Euless",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.839951,
+    "lng": -97.082166,
+    "open_mats": [
+      {
+        "id": "2052-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2053",
+    "name": "Marcelo Garcia Jiu-Jitsu Dallas",
+    "address": "5706 E Mockingbird Ln, Suite 230",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2053-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2054",
+    "name": "Octagon MMA Dallas",
+    "address": "124 Leslie St",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2054-1-1",
+        "discipline": "mma",
+        "day": "monday",
+        "start_time": "12:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2055",
+    "name": "John Machado",
+    "address": "111 Central Expy S #116",
+    "city": "Allen",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.10443,
+    "lng": -96.679335,
+    "open_mats": [
+      {
+        "id": "2055-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2056",
+    "name": "Renzo Gracie Jiu Jitsu DFW",
+    "address": "420 Grapevine Hwy, Suite 118",
+    "city": "Hurst",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.8234,
+    "lng": -97.1706,
+    "open_mats": [
+      {
+        "id": "2056-1-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2057",
+    "name": "10th Planet Jiu Jitsu Fort Worth",
+    "address": "5364 Wedgmont Circle North",
+    "city": "Fort Worth",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7555,
+    "lng": -97.3308,
+    "open_mats": [
+      {
+        "id": "2057-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "18:00",
+        "end_time": "19:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2058",
+    "name": "Alex Martins Brazilian Jiu Jitsu",
+    "address": "427 W Commerce St",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2058-1-1",
+        "discipline": "gi_bjj",
+        "day": "monday",
+        "start_time": "06:00",
+        "end_time": "07:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2059",
+    "name": "North South Jiu Jitsu",
+    "address": "2010 N Plano Rd, Suite 103",
+    "city": "Richardson",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.9483,
+    "lng": -96.7299,
+    "open_mats": [
+      {
+        "id": "2059-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "18:00",
+        "end_time": "19:30",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2060",
+    "name": "Brazilian Top Team North Dallas",
+    "address": "670 N Coit Rd, Suite 2373",
+    "city": "Richardson",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.9483,
+    "lng": -96.7299,
+    "open_mats": [
+      {
+        "id": "2060-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "11:00",
+        "end_time": "12:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2061",
+    "name": "Maple Avenue Boxing & MMA",
+    "address": "2525 Butler St",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2061-1-1",
+        "discipline": "mma",
+        "day": "sunday",
+        "start_time": "09:00",
+        "end_time": "13:00",
+        "is_free": true
+      },
+      {
+        "id": "2061-1-2",
+        "discipline": "boxing",
+        "day": "sunday",
+        "start_time": "09:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2062",
+    "name": "Cobra Brazilian Jiu-Jitsu Plano",
+    "address": "1441 Coit Rd, Suite G",
+    "city": "Plano",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.0198,
+    "lng": -96.6989,
+    "open_mats": [
+      {
+        "id": "2062-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "18:00",
+        "end_time": "19:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2063",
+    "name": "5 Elements Studio (Jiu-Jitsu & Fitness)",
+    "address": "2613 N Carroll Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2063-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "10:00",
+        "end_time": "11:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2064",
+    "name": "Next Generation MMA (Frisco)",
+    "address": "2995 Preston Rd, Suite 1550",
+    "city": "Frisco",
+    "state": "TX",
+    "country": "US",
+    "lat": 33.1507,
+    "lng": -96.8236,
+    "open_mats": [
+      {
+        "id": "2064-1-1",
+        "discipline": "mma",
+        "day": "sunday",
+        "start_time": "11:00",
+        "end_time": "12:00",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2065",
+    "name": "Genesis Jiu Jitsu (Haltom City)",
+    "address": "5512 River Oaks Blvd",
+    "city": "Fort Worth",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7555,
+    "lng": -97.3308,
+    "open_mats": [
+      {
+        "id": "2065-1-1",
+        "discipline": "gi_bjj",
+        "day": "sunday",
+        "start_time": "12:00",
+        "end_time": "13:30",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2066",
+    "name": "Abdias Brazilian Jiu-Jitsu",
+    "address": "900 E Clarendon Dr, Suite 170",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2066-1-1",
+        "discipline": "gi_bjj",
+        "day": "friday",
+        "start_time": "18:15",
+        "end_time": "19:30",
+        "is_free": true
+      }
+    ]
+  },
+  {
+    "id": "2067",
+    "name": "144 Academy",
+    "address": "1320 E Griffin St E",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.7767,
+    "lng": -96.797,
+    "open_mats": [
+      {
+        "id": "2067-1-1",
+        "discipline": "gi_bjj",
+        "day": "saturday",
+        "start_time": "11:00",
+        "end_time": "13:00",
+        "is_free": true
+      }
+    ]
+  }
+]

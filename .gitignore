@@ -24,6 +24,13 @@
 .DS_Store
 *.pem
 
+# scripts with API keys
+scripts/run-geocoding.sh
+scripts/run-schedules.sh
+scripts/test-schedules.sh
+scripts/schedule-test.json
+scripts/schedule-report*.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*

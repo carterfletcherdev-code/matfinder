@@ -1,0 +1,48 @@
+[--ids filter] kept 715/2254 requested gyms
+─── Stage 2: Find relevant schedule pages ───
+Sites with website (Stage 1):  715
+Confidence threshold:          high, medium
+Will process:                  715
+Concurrency:                   12
+
+  12/715 — pages found 9, failed 3    24/715 — pages found 19, failed 5    36/715 — pages found 29, failed 7    48/715 — pages found 35, failed 13    60/715 — pages found 41, failed 19    72/715 — pages found 50, failed 22    84/715 — pages found 62, failed 22    96/715 — pages found 73, failed 23    108/715 — pages found 81, failed 27    120/715 — pages found 91, failed 29    132/715 — pages found 101, failed 31    144/715 — pages found 112, failed 32    156/715 — pages found 123, failed 33    168/715 — pages found 131, failed 37    180/715 — pages found 141, failed 39    192/715 — pages found 153, failed 39    204/715 — pages found 164, failed 40    216/715 — pages found 173, failed 43    228/715 — pages found 182, failed 46    240/715 — pages found 193, failed 47    252/715 — pages found 203, failed 49    264/715 — pages found 213, failed 51    276/715 — pages found 221, failed 55    288/715 — pages found 230, failed 58    300/715 — pages found 240, failed 60    312/715 — pages found 246, failed 66    324/715 — pages found 256, failed 68    336/715 — pages found 264, failed 72    348/715 — pages found 276, failed 72    360/715 — pages found 287, failed 73    372/715 — pages found 296, failed 76    384/715 — pages found 304, failed 80    396/715 — pages found 315, failed 81    408/715 — pages found 324, failed 84    420/715 — pages found 334, failed 86    432/715 — pages found 345, failed 87    444/715 — pages found 356, failed 88    456/715 — pages found 364, failed 92    468/715 — pages found 374, failed 94    480/715 — pages found 381, failed 99    492/715 — pages found 386, failed 106    504/715 — pages found 394, failed 110    516/715 — pages found 402, failed 114    528/715 — pages found 408, failed 120    540/715 — pages found 415, failed 125    552/715 — pages found 423, failed 129    564/715 — pages found 432, failed 132    576/715 — pages found 437, failed 139    588/715 — pages found 446, failed 142    600/715 — pages found 451, failed 149    612/715 — pages found 461, failed 151    624/715 — pages found 471, failed 153    636/715 — pages found 481, failed 155    648/715 — pages found 491, failed 157    660/715 — pages found 501, failed 159    672/715 — pages found 508, failed 164    684/715 — pages found 515, failed 169    696/715 — pages found 525, failed 171    708/715 — pages found 533, failed 175    715/715 — pages found 537, failed 178  
+
+Wrote 3061 entries to scripts/pipeline/data/02-relevant-pages.json
+Wrote 279 entries to scripts/pipeline/data/02-failures.json
+
+Summary:
+  Processed:       715
+  Pages found:     537
+  Failed:          178
+
+Discovery method:
+  sitemap            133
+  homepage_crawl     404
+
+Failure reasons:
+  fetch failed       121
+  HTTP 404           20
+  HTTP 403           10
+  HTTP 503           4
+  HTTP 410           2
+  Failed to parse URL from axevancouver.com 1
+  Failed to parse URL from www.taekwondocentre.com 1
+  HTTP 401           1
+  Failed to parse URL from www.3fires.ca 1
+  Failed to parse URL from www.karate514.com 1
+  Failed to parse URL from www.ovboxing.com 1
+  Failed to parse URL from www.tigrenegrooaxaca.com.mx 1
+  Failed to parse URL from www.karatesul.com.br 1
+  timeout            1
+  Failed to parse URL from miyazatodojo.com 1
+  Failed to parse URL from hinomaruclub.wordpress.comn 1
+  Failed to parse URL from www.venplay.com 1
+  Failed to parse URL from www.livingwell.com.au 1
+  Failed to parse URL from Kumiai Ryu Port Macquarie 1
+  Failed to parse URL from cukum.com 1
+  Failed to parse URL from www.safaagym.com 1
+  Failed to parse URL from www.khaosaigalaxymuaythaigym.com 1
+  Failed to parse URL from www.spartansboxing.com/buona-vista 1
+  Failed to parse URL from www.prakritikyodha.com 1
+  Failed to parse URL from m8fitclub.ir 1
+  Failed to parse URL from www.aikikokoro.ru 1

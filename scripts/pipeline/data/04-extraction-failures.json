@@ -1,0 +1,4763 @@
+{
+  "317": {
+    "error": "no_corpus"
+  },
+  "521": {
+    "error": "api_error: fetch failed"
+  },
+  "522": {
+    "error": "api_error: fetch failed"
+  },
+  "523": {
+    "error": "no_corpus"
+  },
+  "527": {
+    "error": "no_corpus"
+  },
+  "529": {
+    "error": "no_corpus"
+  },
+  "531": {
+    "error": "no_corpus"
+  },
+  "533": {
+    "error": "no_corpus"
+  },
+  "534": {
+    "error": "no_corpus"
+  },
+  "536": {
+    "error": "no_corpus"
+  },
+  "538": {
+    "error": "no_corpus"
+  },
+  "539": {
+    "error": "no_corpus"
+  },
+  "542": {
+    "error": "no_corpus"
+  },
+  "543": {
+    "error": "no_corpus"
+  },
+  "544": {
+    "error": "no_corpus"
+  },
+  "546": {
+    "error": "no_corpus"
+  },
+  "547": {
+    "error": "no_corpus"
+  },
+  "549": {
+    "error": "no_corpus"
+  },
+  "550": {
+    "error": "no_corpus"
+  },
+  "551": {
+    "error": "no_corpus"
+  },
+  "554": {
+    "error": "no_corpus"
+  },
+  "555": {
+    "error": "no_corpus"
+  },
+  "557": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "558": {
+    "error": "no_corpus"
+  },
+  "559": {
+    "error": "no_corpus"
+  },
+  "560": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "561": {
+    "error": "no_corpus"
+  },
+  "562": {
+    "error": "no_corpus"
+  },
+  "564": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "565": {
+    "error": "no_corpus"
+  },
+  "566": {
+    "error": "no_corpus"
+  },
+  "567": {
+    "error": "no_corpus"
+  },
+  "569": {
+    "error": "no_corpus"
+  },
+  "570": {
+    "error": "no_corpus"
+  },
+  "574": {
+    "error": "no_corpus"
+  },
+  "576": {
+    "error": "no_corpus"
+  },
+  "577": {
+    "error": "no_corpus"
+  },
+  "580": {
+    "error": "no_corpus"
+  },
+  "582": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "583": {
+    "error": "no_corpus"
+  },
+  "584": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "585": {
+    "error": "no_corpus"
+  },
+  "586": {
+    "error": "no_corpus"
+  },
+  "587": {
+    "error": "no_corpus"
+  },
+  "588": {
+    "error": "no_corpus"
+  },
+  "589": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "590": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "591": {
+    "error": "no_corpus"
+  },
+  "592": {
+    "error": "no_corpus"
+  },
+  "593": {
+    "error": "no_corpus"
+  },
+  "594": {
+    "error": "no_corpus"
+  },
+  "596": {
+    "error": "no_corpus"
+  },
+  "598": {
+    "error": "no_corpus"
+  },
+  "599": {
+    "error": "no_corpus"
+  },
+  "600": {
+    "error": "no_corpus"
+  },
+  "606": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "607": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "608": {
+    "error": "no_corpus"
+  },
+  "609": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "610": {
+    "error": "no_corpus"
+  },
+  "611": {
+    "error": "no_corpus"
+  },
+  "613": {
+    "error": "no_corpus"
+  },
+  "614": {
+    "error": "no_corpus"
+  },
+  "616": {
+    "error": "no_corpus"
+  },
+  "618": {
+    "error": "no_corpus"
+  },
+  "619": {
+    "error": "no_corpus"
+  },
+  "620": {
+    "error": "no_corpus"
+  },
+  "622": {
+    "error": "no_corpus"
+  },
+  "624": {
+    "error": "no_corpus"
+  },
+  "625": {
+    "error": "no_corpus"
+  },
+  "626": {
+    "error": "no_corpus"
+  },
+  "630": {
+    "error": "no_corpus"
+  },
+  "631": {
+    "error": "no_corpus"
+  },
+  "632": {
+    "error": "no_corpus"
+  },
+  "634": {
+    "error": "no_corpus"
+  },
+  "637": {
+    "error": "no_corpus"
+  },
+  "638": {
+    "error": "no_corpus"
+  },
+  "639": {
+    "error": "no_corpus"
+  },
+  "640": {
+    "error": "no_corpus"
+  },
+  "643": {
+    "error": "no_corpus"
+  },
+  "646": {
+    "error": "no_corpus"
+  },
+  "647": {
+    "error": "no_corpus"
+  },
+  "649": {
+    "error": "no_corpus"
+  },
+  "650": {
+    "error": "no_corpus"
+  },
+  "651": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "654": {
+    "error": "no_corpus"
+  },
+  "655": {
+    "error": "no_corpus"
+  },
+  "657": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "658": {
+    "error": "no_corpus"
+  },
+  "659": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "661": {
+    "error": "no_corpus"
+  },
+  "663": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "664": {
+    "error": "no_corpus"
+  },
+  "666": {
+    "error": "no_corpus"
+  },
+  "669": {
+    "error": "no_corpus"
+  },
+  "670": {
+    "error": "no_corpus"
+  },
+  "673": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "676": {
+    "error": "no_corpus"
+  },
+  "677": {
+    "error": "no_corpus"
+  },
+  "682": {
+    "error": "no_corpus"
+  },
+  "683": {
+    "error": "no_corpus"
+  },
+  "684": {
+    "error": "no_corpus"
+  },
+  "685": {
+    "error": "no_corpus"
+  },
+  "687": {
+    "error": "no_corpus"
+  },
+  "689": {
+    "error": "no_corpus"
+  },
+  "693": {
+    "error": "no_corpus"
+  },
+  "694": {
+    "error": "no_corpus"
+  },
+  "697": {
+    "error": "no_corpus"
+  },
+  "698": {
+    "error": "no_corpus"
+  },
+  "700": {
+    "error": "no_corpus"
+  },
+  "701": {
+    "error": "no_corpus"
+  },
+  "702": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "703": {
+    "error": "no_corpus"
+  },
+  "704": {
+    "error": "no_corpus"
+  },
+  "706": {
+    "error": "no_corpus"
+  },
+  "707": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "708": {
+    "error": "no_corpus"
+  },
+  "710": {
+    "error": "no_corpus"
+  },
+  "711": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "712": {
+    "error": "no_corpus"
+  },
+  "713": {
+    "error": "no_corpus"
+  },
+  "715": {
+    "error": "no_corpus"
+  },
+  "716": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "717": {
+    "error": "no_corpus"
+  },
+  "718": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "719": {
+    "error": "no_corpus"
+  },
+  "721": {
+    "error": "no_corpus"
+  },
+  "722": {
+    "error": "no_corpus"
+  },
+  "724": {
+    "error": "no_corpus"
+  },
+  "725": {
+    "error": "no_corpus"
+  },
+  "726": {
+    "error": "no_corpus"
+  },
+  "729": {
+    "error": "no_corpus"
+  },
+  "730": {
+    "error": "no_corpus"
+  },
+  "732": {
+    "error": "no_corpus"
+  },
+  "733": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "735": {
+    "error": "no_corpus"
+  },
+  "737": {
+    "error": "no_corpus"
+  },
+  "739": {
+    "error": "no_corpus"
+  },
+  "740": {
+    "error": "no_corpus"
+  },
+  "744": {
+    "error": "no_corpus"
+  },
+  "745": {
+    "error": "no_corpus"
+  },
+  "747": {
+    "error": "no_corpus"
+  },
+  "751": {
+    "error": "no_corpus"
+  },
+  "754": {
+    "error": "no_corpus"
+  },
+  "756": {
+    "error": "no_corpus"
+  },
+  "757": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "764": {
+    "error": "no_corpus"
+  },
+  "767": {
+    "error": "no_corpus"
+  },
+  "768": {
+    "error": "no_corpus"
+  },
+  "769": {
+    "error": "no_corpus"
+  },
+  "772": {
+    "error": "no_corpus"
+  },
+  "774": {
+    "error": "no_corpus"
+  },
+  "775": {
+    "error": "no_corpus"
+  },
+  "776": {
+    "error": "no_corpus"
+  },
+  "778": {
+    "error": "no_corpus"
+  },
+  "779": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "780": {
+    "error": "no_corpus"
+  },
+  "781": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "782": {
+    "error": "no_corpus"
+  },
+  "783": {
+    "error": "no_corpus"
+  },
+  "785": {
+    "error": "no_corpus"
+  },
+  "787": {
+    "error": "no_corpus"
+  },
+  "789": {
+    "error": "no_corpus"
+  },
+  "791": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "793": {
+    "error": "no_corpus"
+  },
+  "796": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "798": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "799": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "800": {
+    "error": "no_corpus"
+  },
+  "801": {
+    "error": "no_corpus"
+  },
+  "802": {
+    "error": "no_corpus"
+  },
+  "803": {
+    "error": "no_corpus"
+  },
+  "806": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "807": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "808": {
+    "error": "no_corpus"
+  },
+  "809": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "813": {
+    "error": "no_corpus"
+  },
+  "814": {
+    "error": "no_corpus"
+  },
+  "815": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "816": {
+    "error": "no_corpus"
+  },
+  "819": {
+    "error": "no_corpus"
+  },
+  "820": {
+    "error": "no_corpus"
+  },
+  "824": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "825": {
+    "error": "no_corpus"
+  },
+  "827": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "828": {
+    "error": "no_corpus"
+  },
+  "830": {
+    "error": "no_corpus"
+  },
+  "831": {
+    "error": "no_corpus"
+  },
+  "832": {
+    "error": "no_corpus"
+  },
+  "834": {
+    "error": "no_corpus"
+  },
+  "836": {
+    "error": "no_corpus"
+  },
+  "837": {
+    "error": "no_corpus"
+  },
+  "839": {
+    "error": "no_corpus"
+  },
+  "840": {
+    "error": "no_corpus"
+  },
+  "841": {
+    "error": "no_corpus"
+  },
+  "842": {
+    "error": "no_corpus"
+  },
+  "843": {
+    "error": "no_corpus"
+  },
+  "846": {
+    "error": "no_corpus"
+  },
+  "848": {
+    "error": "no_corpus"
+  },
+  "850": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "852": {
+    "error": "no_corpus"
+  },
+  "853": {
+    "error": "no_corpus"
+  },
+  "854": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "856": {
+    "error": "no_corpus"
+  },
+  "857": {
+    "error": "no_corpus"
+  },
+  "858": {
+    "error": "no_corpus"
+  },
+  "860": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "862": {
+    "error": "no_corpus"
+  },
+  "867": {
+    "error": "no_corpus"
+  },
+  "869": {
+    "error": "no_corpus"
+  },
+  "873": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "877": {
+    "error": "no_corpus"
+  },
+  "878": {
+    "error": "no_corpus"
+  },
+  "879": {
+    "error": "no_corpus"
+  },
+  "880": {
+    "error": "no_corpus"
+  },
+  "881": {
+    "error": "no_corpus"
+  },
+  "882": {
+    "error": "no_corpus"
+  },
+  "884": {
+    "error": "no_corpus"
+  },
+  "885": {
+    "error": "no_corpus"
+  },
+  "886": {
+    "error": "no_corpus"
+  },
+  "888": {
+    "error": "no_corpus"
+  },
+  "891": {
+    "error": "no_corpus"
+  },
+  "893": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "898": {
+    "error": "no_corpus"
+  },
+  "899": {
+    "error": "no_corpus"
+  },
+  "901": {
+    "error": "no_corpus"
+  },
+  "903": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "906": {
+    "error": "no_corpus"
+  },
+  "909": {
+    "error": "no_corpus"
+  },
+  "910": {
+    "error": "no_corpus"
+  },
+  "911": {
+    "error": "no_corpus"
+  },
+  "913": {
+    "error": "no_corpus"
+  },
+  "915": {
+    "error": "no_corpus"
+  },
+  "917": {
+    "error": "no_corpus"
+  },
+  "918": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "919": {
+    "error": "no_corpus"
+  },
+  "921": {
+    "error": "no_corpus"
+  },
+  "922": {
+    "error": "no_corpus"
+  },
+  "923": {
+    "error": "no_corpus"
+  },
+  "924": {
+    "error": "no_corpus"
+  },
+  "926": {
+    "error": "no_corpus"
+  },
+  "927": {
+    "error": "no_corpus"
+  },
+  "928": {
+    "error": "no_corpus"
+  },
+  "929": {
+    "error": "no_corpus"
+  },
+  "931": {
+    "error": "no_corpus"
+  },
+  "933": {
+    "error": "no_corpus"
+  },
+  "934": {
+    "error": "no_corpus"
+  },
+  "935": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "937": {
+    "error": "no_corpus"
+  },
+  "938": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "940": {
+    "error": "no_corpus"
+  },
+  "941": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "942": {
+    "error": "no_corpus"
+  },
+  "944": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "945": {
+    "error": "no_corpus"
+  },
+  "946": {
+    "error": "no_corpus"
+  },
+  "949": {
+    "error": "no_corpus"
+  },
+  "951": {
+    "error": "no_corpus"
+  },
+  "952": {
+    "error": "no_corpus"
+  },
+  "953": {
+    "error": "no_corpus"
+  },
+  "954": {
+    "error": "no_corpus"
+  },
+  "955": {
+    "error": "no_corpus"
+  },
+  "956": {
+    "error": "no_corpus"
+  },
+  "957": {
+    "error": "no_corpus"
+  },
+  "958": {
+    "error": "no_corpus"
+  },
+  "959": {
+    "error": "no_corpus"
+  },
+  "962": {
+    "error": "no_corpus"
+  },
+  "963": {
+    "error": "no_corpus"
+  },
+  "964": {
+    "error": "no_corpus"
+  },
+  "966": {
+    "error": "no_corpus"
+  },
+  "967": {
+    "error": "no_corpus"
+  },
+  "968": {
+    "error": "no_corpus"
+  },
+  "971": {
+    "error": "no_corpus"
+  },
+  "976": {
+    "error": "no_corpus"
+  },
+  "977": {
+    "error": "no_corpus"
+  },
+  "978": {
+    "error": "no_corpus"
+  },
+  "979": {
+    "error": "no_corpus"
+  },
+  "981": {
+    "error": "no_verified_entries",
+    "raw_count": 1,
+    "rejected_count": 1
+  },
+  "982": {
+    "error": "no_corpus"
+  },
+  "984": {
+    "error": "no_corpus"
+  },
+  "986": {
+    "error": "no_corpus"
+  },
+  "987": {
+    "error": "no_corpus"
+  },
+  "988": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "990": {
+    "error": "no_corpus"
+  },
+  "991": {
+    "error": "no_corpus"
+  },
+  "997": {
+    "error": "no_corpus"
+  },
+  "1000": {
+    "error": "no_corpus"
+  },
+  "1002": {
+    "error": "no_corpus"
+  },
+  "1004": {
+    "error": "no_corpus"
+  },
+  "1005": {
+    "error": "no_corpus"
+  },
+  "1006": {
+    "error": "no_corpus"
+  },
+  "1007": {
+    "error": "no_corpus"
+  },
+  "1009": {
+    "error": "no_corpus"
+  },
+  "1010": {
+    "error": "no_corpus"
+  },
+  "1011": {
+    "error": "no_corpus"
+  },
+  "1014": {
+    "error": "no_corpus"
+  },
+  "1015": {
+    "error": "no_corpus"
+  },
+  "1016": {
+    "error": "no_corpus"
+  },
+  "1017": {
+    "error": "no_corpus"
+  },
+  "1018": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1019": {
+    "error": "no_corpus"
+  },
+  "1020": {
+    "error": "no_corpus"
+  },
+  "1021": {
+    "error": "no_corpus"
+  },
+  "1022": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1023": {
+    "error": "no_corpus"
+  },
+  "1025": {
+    "error": "no_corpus"
+  },
+  "1532": {
+    "error": "no_corpus"
+  },
+  "1533": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1538": {
+    "error": "no_corpus"
+  },
+  "1539": {
+    "error": "no_corpus"
+  },
+  "1540": {
+    "error": "no_corpus"
+  },
+  "1541": {
+    "error": "no_corpus"
+  },
+  "1542": {
+    "error": "no_corpus"
+  },
+  "1545": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1546": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1547": {
+    "error": "no_corpus"
+  },
+  "1550": {
+    "error": "no_corpus"
+  },
+  "1552": {
+    "error": "no_corpus"
+  },
+  "1553": {
+    "error": "no_corpus"
+  },
+  "1554": {
+    "error": "no_corpus"
+  },
+  "1557": {
+    "error": "no_corpus"
+  },
+  "1561": {
+    "error": "no_corpus"
+  },
+  "1562": {
+    "error": "no_corpus"
+  },
+  "1564": {
+    "error": "no_corpus"
+  },
+  "1565": {
+    "error": "no_corpus"
+  },
+  "1566": {
+    "error": "no_corpus"
+  },
+  "1567": {
+    "error": "no_corpus"
+  },
+  "1568": {
+    "error": "no_corpus"
+  },
+  "1570": {
+    "error": "no_corpus"
+  },
+  "1571": {
+    "error": "no_corpus"
+  },
+  "1572": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1573": {
+    "error": "no_corpus"
+  },
+  "1574": {
+    "error": "no_corpus"
+  },
+  "1575": {
+    "error": "no_corpus"
+  },
+  "1576": {
+    "error": "no_corpus"
+  },
+  "1577": {
+    "error": "no_corpus"
+  },
+  "1578": {
+    "error": "no_corpus"
+  },
+  "1580": {
+    "error": "no_corpus"
+  },
+  "1582": {
+    "error": "no_corpus"
+  },
+  "1583": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1584": {
+    "error": "no_corpus"
+  },
+  "1586": {
+    "error": "no_corpus"
+  },
+  "1587": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1588": {
+    "error": "no_corpus"
+  },
+  "1589": {
+    "error": "no_corpus"
+  },
+  "1590": {
+    "error": "no_corpus"
+  },
+  "1591": {
+    "error": "no_corpus"
+  },
+  "1593": {
+    "error": "no_corpus"
+  },
+  "1597": {
+    "error": "no_corpus"
+  },
+  "1600": {
+    "error": "json_parse_failed",
+    "raw": "```json\n{\n  \"schedule\": [\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Adult Jiu Jitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Monday - 6:00 AM - 7:00 AM Adult Jiu Jitsu (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult Jiu Jitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult Jiu Jitsu (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"10:00\",\n      \"class_name\": \"Adult Competition BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 10:00 AM Adult Competition BJJ (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (No-Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (No-Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Adult Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Adult Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"16:45\",\n      \"class_name\": \"Mighty Mite Jiujitsu Group 1 (4-5yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 4:45 PM Mighty Mite Jiujitsu Group 1 (4-5yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Jrs Beg Jiujitsu (8-12yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"level\": \"beginner\",\n      \"source_quote\": \"4:00 PM - 5:00 PM Jrs Beg Jiujitsu (8-12yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Muay Thai (7+ yrs)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Muay Thai (7+ yrs)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (3yo-7yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Tots Jiujitsu (3yo-7yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (6-8yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiujitsu (6-8yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiu Jitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiu Jitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (8-12yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (8-12yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Youth Wrestling (8-12yo)\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Youth Wrestling (8-12yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (6-12yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (6-12yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beg BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beg BJJ (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu (GI) (8yo-12yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu (GI) (8yo-12yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Beginners Adult Jiu Jitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Beginners Adult Jiu Jitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (5-12 yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (5-12 yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (7yo-14yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (7yo-14yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beginner BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beginner BJJ (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Wrestling\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Wrestling\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Kids Jiu Jitsu (No-Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Kids Jiu Jitsu (No-Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiu Jitsu Advanced Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"advanced\",\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiu Jitsu Advanced Gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Fundamental Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Fundamental Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Youth Muay Thai (7yo-14yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Youth Muay Thai (7yo-14yo)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Beg. MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Beg. MMA\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Beg Adult Jiujitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Beg Adult Jiujitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Muay Thai Pads Class\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Muay Thai Pads Class\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Jiujitsu (GI) All Levels\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"all-levels\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Jiujitsu (GI) All Levels\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult No-Gi BJJ\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult No-Gi BJJ\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult MMA\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi) All Levels\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"all-levels\",\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Jiujitsu (Gi) All Levels\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:30\",\n      \"end_time\": \"21:30\",\n      \"class_name\": \"Adult BJJ (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:30 PM - 9:30 PM Adult BJJ (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Adult No-gi\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 AM - 7:00 AM Adult No-gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Adult Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 AM - 7:00 AM Adult Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 AM - 7:00 AM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult No-gi\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult No-gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult Jiu Jitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult Jiu Jitsu (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"10:00\",\n      \"class_name\": \"Womens Only Self-Defense\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 10:00 AM Womens Only Self-Defense\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"10:30\",\n      \"end_time\": \"11:15\",\n      \"class_name\": \"Kids Home-School BJJ\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"10:30 AM - 11:15 AM Kids Home-School BJJ\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (No-Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (No-Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"12:45\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Adult Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:45 PM - 1:45 PM Adult Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"12:45\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Adult BJJ (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:45 PM - 1:45 PM Adult BJJ (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"16:45\",\n      \"class_name\": \"Mighty Mite Jiujitsu Group 2 (4-5yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 4:45 PM Mighty Mite Jiujitsu Group 2 (4-5yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (3yo-7yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Tots Jiujitsu (3yo-7yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (6-8yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiujitsu (6-8yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots (4-7yrs) Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots (4-7yrs) Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (8-12yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (8-12yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (6-12yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (6-12yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beg BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beg BJJ (GI)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu (Gi) (8yo-12yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu (Gi) (8yo-12yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (5yo-12yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (5yo-12yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Beginners Adult Jiu Jitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Beginners Adult Jiu Jitsu\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (7yo-14yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (7yo-14yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beginner BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beginner BJJ (GI)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult No-gi\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult No-gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Teens Jiujitsu (12-16yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Teens Jiujitsu (12-16yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiujitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiujitsu (No Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Kids Wrestling\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Kids Wrestling\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiu Jitsu Advanced Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"advanced\",\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiu Jitsu Advanced Gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Fundamental Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Fundamental Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Youth Wrestling (7yo-14yo)\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Youth Wrestling (7yo-14yo)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Beg Adult Jiujitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Beg Adult Jiujitsu\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM MMA\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Jiujitsu (GI) All Levels\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"all-levels\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Jiujitsu (GI) All Levels\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult No-Gi BJJ\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult No-Gi BJJ\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Jiu Jitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Jiu Jitsu (Gi)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Wrestling All Levels\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"all-levels\",\n      \"source_quote\": \"7:00 PM - 8:00 PM Wrestling All Levels\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Fundamental Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Fundamental Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult No-Gi BJJ\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult No-Gi BJJ\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Beg, MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Beg, MMA\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi) All Levels\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"all-levels\",\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Jiujitsu (Gi) All Levels\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult MMA\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"20:30\",\n      \"end_time\": \"21:30\",\n      \"class_name\": \"Adult BJJ (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:30 PM - 9:30 PM Adult BJJ (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 AM - 7:00 AM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"07:00\",\n      \"end_time\": \"08:00\",\n      \"class_name\": \"Adult Jiu Jitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 AM - 8:00 AM Adult Jiu Jitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"10:00\",\n      \"class_name\": \"Adult Competition BJJ (No-Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 10:00 AM Adult Competition BJJ (No-Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Muay Thai\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:30\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Adult Jiujitsu (No-Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:30 AM - 12:30 PM Adult Jiujitsu (No-Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Adult Jiujitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Adult Jiujitsu (GI)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Adult Jiu Jitsu Gi\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Adult Jiu Jitsu Gi\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"16:45\",\n      \"class_name\": \"Mighty Mite Jiujitsu Group 1 (4-5yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 4:45 PM Mighty Mite Jiujitsu Group 1 (4-5yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Jrs Beg Jiujitsu (8-12yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"level\": \"beginner\",\n      \"source_quote\": \"4:00 PM - 5:00 PM Jrs Beg Jiujitsu (8-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Muay Thai (7+ yrs)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Muay Thai (7+ yrs)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (3yo-7yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Tots Jiujitsu (3yo-7yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots Jiujitsu (6-8yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots Jiujitsu (6-8yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"16:45\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 4:45 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tots (4-7yrs) Jiu Jitsu (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:00 PM Tots (4-7yrs) Jiu Jitsu (GI)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (8-12yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (8-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Youth Wrestling (8-12yo)\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Youth Wrestling (8-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (6-12yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (6-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beg BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beg BJJ (GI)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu (GI) (8yo-12yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu (GI) (8yo-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Beginners Adult Jiu Jitsu\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Beginners Adult Jiu Jitsu\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Muay Thai (5yo-12yo)\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Muay Thai (5yo-12yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Tots Jiu Jitsu (Gi) (4yo-7yo)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Tots Jiu Jitsu (Gi) (4yo-7yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Jiu Jitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Jiu Jitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Jrs Jiujitsu (7yo-14yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Jrs Jiujitsu (7yo-14yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Adult Beginner BJJ (GI)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"level\": \"beginner\",\n      \"source_quote\": \"5:00 PM - 6:00 PM Adult Beginner BJJ (GI)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Adult Jiujitsu (Gi)\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Adult Jiujitsu (Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Teens Jiujitsu (12-16yo)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"6:00 PM - 7:00 PM Teens Jiujitsu (12-16yo)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Adult Wrestling\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - ",
+    "parse_error": "no_balanced_json"
+  },
+  "1603": {
+    "error": "no_corpus"
+  },
+  "1610": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1611": {
+    "error": "no_corpus"
+  },
+  "1612": {
+    "error": "no_corpus"
+  },
+  "1614": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1618": {
+    "error": "no_corpus"
+  },
+  "1619": {
+    "error": "no_corpus"
+  },
+  "1621": {
+    "error": "no_corpus"
+  },
+  "1622": {
+    "error": "no_corpus"
+  },
+  "1623": {
+    "error": "no_corpus"
+  },
+  "1625": {
+    "error": "no_corpus"
+  },
+  "1629": {
+    "error": "no_corpus"
+  },
+  "1633": {
+    "error": "no_corpus"
+  },
+  "1636": {
+    "error": "no_corpus"
+  },
+  "1637": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1639": {
+    "error": "no_corpus"
+  },
+  "1640": {
+    "error": "no_corpus"
+  },
+  "1641": {
+    "error": "no_corpus"
+  },
+  "1642": {
+    "error": "no_corpus"
+  },
+  "1643": {
+    "error": "no_corpus"
+  },
+  "1644": {
+    "error": "no_corpus"
+  },
+  "1648": {
+    "error": "no_corpus"
+  },
+  "1649": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1653": {
+    "error": "no_corpus"
+  },
+  "1654": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1657": {
+    "error": "no_corpus"
+  },
+  "1659": {
+    "error": "no_corpus"
+  },
+  "1660": {
+    "error": "no_corpus"
+  },
+  "1664": {
+    "error": "no_corpus"
+  },
+  "1665": {
+    "error": "no_corpus"
+  },
+  "1666": {
+    "error": "no_corpus"
+  },
+  "1669": {
+    "error": "no_corpus"
+  },
+  "1670": {
+    "error": "no_corpus"
+  },
+  "1672": {
+    "error": "no_corpus"
+  },
+  "1677": {
+    "error": "no_corpus"
+  },
+  "1679": {
+    "error": "no_corpus"
+  },
+  "1680": {
+    "error": "no_corpus"
+  },
+  "1681": {
+    "error": "no_corpus"
+  },
+  "1682": {
+    "error": "no_corpus"
+  },
+  "1686": {
+    "error": "no_corpus"
+  },
+  "1693": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1699": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1700": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1702": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1703": {
+    "error": "no_corpus"
+  },
+  "1704": {
+    "error": "no_corpus"
+  },
+  "1705": {
+    "error": "no_corpus"
+  },
+  "1706": {
+    "error": "no_corpus"
+  },
+  "1707": {
+    "error": "no_corpus"
+  },
+  "1708": {
+    "error": "no_corpus"
+  },
+  "1710": {
+    "error": "no_corpus"
+  },
+  "1711": {
+    "error": "no_corpus"
+  },
+  "1712": {
+    "error": "no_corpus"
+  },
+  "1713": {
+    "error": "no_corpus"
+  },
+  "1715": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1717": {
+    "error": "no_corpus"
+  },
+  "1718": {
+    "error": "no_corpus"
+  },
+  "1719": {
+    "error": "no_corpus"
+  },
+  "1720": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1721": {
+    "error": "no_corpus"
+  },
+  "1722": {
+    "error": "no_corpus"
+  },
+  "1723": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1724": {
+    "error": "no_corpus"
+  },
+  "1725": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1726": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1729": {
+    "error": "no_corpus"
+  },
+  "1730": {
+    "error": "no_corpus"
+  },
+  "1732": {
+    "error": "no_corpus"
+  },
+  "1734": {
+    "error": "no_corpus"
+  },
+  "1738": {
+    "error": "no_corpus"
+  },
+  "1740": {
+    "error": "no_corpus"
+  },
+  "1741": {
+    "error": "no_corpus"
+  },
+  "1742": {
+    "error": "no_corpus"
+  },
+  "1744": {
+    "error": "no_corpus"
+  },
+  "1745": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1747": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1748": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1751": {
+    "error": "no_corpus"
+  },
+  "1753": {
+    "error": "no_corpus"
+  },
+  "1755": {
+    "error": "no_corpus"
+  },
+  "1757": {
+    "error": "no_corpus"
+  },
+  "1759": {
+    "error": "no_corpus"
+  },
+  "1762": {
+    "error": "no_corpus"
+  },
+  "1764": {
+    "error": "no_corpus"
+  },
+  "1765": {
+    "error": "no_corpus"
+  },
+  "1767": {
+    "error": "no_corpus"
+  },
+  "1769": {
+    "error": "no_corpus"
+  },
+  "1771": {
+    "error": "no_corpus"
+  },
+  "1772": {
+    "error": "no_corpus"
+  },
+  "1773": {
+    "error": "no_corpus"
+  },
+  "1774": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1778": {
+    "error": "no_corpus"
+  },
+  "1779": {
+    "error": "no_corpus"
+  },
+  "1780": {
+    "error": "no_corpus"
+  },
+  "1782": {
+    "error": "no_corpus"
+  },
+  "1783": {
+    "error": "no_corpus"
+  },
+  "1785": {
+    "error": "no_corpus"
+  },
+  "1789": {
+    "error": "no_corpus"
+  },
+  "1791": {
+    "error": "no_corpus"
+  },
+  "1794": {
+    "error": "no_corpus"
+  },
+  "1796": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1798": {
+    "error": "no_corpus"
+  },
+  "1799": {
+    "error": "no_corpus"
+  },
+  "1803": {
+    "error": "no_corpus"
+  },
+  "1806": {
+    "error": "no_corpus"
+  },
+  "1810": {
+    "error": "no_corpus"
+  },
+  "1811": {
+    "error": "no_corpus"
+  },
+  "1818": {
+    "error": "no_corpus"
+  },
+  "1819": {
+    "error": "no_corpus"
+  },
+  "1822": {
+    "error": "no_corpus"
+  },
+  "1823": {
+    "error": "no_corpus"
+  },
+  "1825": {
+    "error": "no_corpus"
+  },
+  "1827": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1831": {
+    "error": "no_corpus"
+  },
+  "1833": {
+    "error": "no_corpus"
+  },
+  "1836": {
+    "error": "no_corpus"
+  },
+  "1838": {
+    "error": "no_corpus"
+  },
+  "1840": {
+    "error": "no_corpus"
+  },
+  "1843": {
+    "error": "no_corpus"
+  },
+  "1844": {
+    "error": "no_corpus"
+  },
+  "1845": {
+    "error": "no_corpus"
+  },
+  "1846": {
+    "error": "no_corpus"
+  },
+  "1847": {
+    "error": "no_corpus"
+  },
+  "1848": {
+    "error": "no_corpus"
+  },
+  "1849": {
+    "error": "no_corpus"
+  },
+  "1850": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1853": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1854": {
+    "error": "no_corpus"
+  },
+  "1856": {
+    "error": "no_corpus"
+  },
+  "1857": {
+    "error": "no_corpus"
+  },
+  "1858": {
+    "error": "no_corpus"
+  },
+  "1859": {
+    "error": "no_corpus"
+  },
+  "1860": {
+    "error": "no_corpus"
+  },
+  "1863": {
+    "error": "no_corpus"
+  },
+  "1865": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1867": {
+    "error": "no_corpus"
+  },
+  "1877": {
+    "error": "no_corpus"
+  },
+  "1879": {
+    "error": "no_corpus"
+  },
+  "1880": {
+    "error": "no_corpus"
+  },
+  "1881": {
+    "error": "no_corpus"
+  },
+  "1882": {
+    "error": "no_corpus"
+  },
+  "1883": {
+    "error": "no_corpus"
+  },
+  "1885": {
+    "error": "no_corpus"
+  },
+  "1888": {
+    "error": "no_corpus"
+  },
+  "1890": {
+    "error": "no_corpus"
+  },
+  "1910": {
+    "error": "no_corpus"
+  },
+  "1929": {
+    "error": "no_corpus"
+  },
+  "1930": {
+    "error": "no_corpus"
+  },
+  "1931": {
+    "error": "no_corpus"
+  },
+  "1933": {
+    "error": "no_corpus"
+  },
+  "1937": {
+    "error": "no_corpus"
+  },
+  "1938": {
+    "error": "no_corpus"
+  },
+  "1942": {
+    "error": "json_parse_failed",
+    "raw": "```json\n{\n  \"schedule\": [\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Brazilian Jiu-jitsu No-gi\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Monday - 6:00 AM - 7:00 AM Brazilian Jiu-jitsu No-gi\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"06:30\",\n      \"end_time\": \"07:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:30 AM - 7:30 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"08:00\",\n      \"end_time\": \"09:00\",\n      \"class_name\": \"cardio kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 AM - 9:00 AM cardio kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 11:00 AM MMA\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:30 AM Boxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:00 AM Boxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"No Gi Jiujitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:30 PM No Gi Jiujitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Brazilian Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Brazilian Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"12:30\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:30 PM - 1:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"15:30\",\n      \"end_time\": \"16:15\",\n      \"class_name\": \"Pre school mma (ages 3-6)\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"3:30 PM - 4:15 PM Pre school mma (ages 3-6)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Kickboxing (Ages 5-12)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Kickboxing (Ages 5-12)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Boxing (Ages 5-8)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Boxing (Ages 5-8)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:15\",\n      \"class_name\": \"Youth Kickboxing (ages7+)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:15 PM Youth Kickboxing (ages7+)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"16:30\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tiny Tigers Boxing (4-7)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:30 PM - 5:00 PM Tiny Tigers Boxing (4-7)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Boxing (Ages 9-12)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Boxing (Ages 9-12)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"No-Gi BJJ for Kids\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM No-Gi BJJ for Kids\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"5:15 PM - 6:15 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Youth Jiu Jitsu (ages 7+)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:15 PM - 6:15 PM Youth Jiu Jitsu (ages 7+)\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Boxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"BJJ No GI\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM BJJ No GI\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM Boxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:30 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:15\",\n      \"end_time\": \"20:15\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:15 PM - 8:15 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Boxing\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"20:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 8:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Muay Thai\"\n    },\n    {\n      \"day\": \"monday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Sparring\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Sparring\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"06:30\",\n      \"end_time\": \"07:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Tuesday - 6:30 AM - 7:30 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"08:00\",\n      \"end_time\": \"09:00\",\n      \"class_name\": \"cardio kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 AM - 9:00 AM cardio kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 11:00 AM MMA\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"09:45\",\n      \"end_time\": \"11:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:45 AM - 11:30 AM Boxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:00 AM Boxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"No Gi Jiujitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:30 PM No Gi Jiujitsu\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"12:30\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:30 PM - 1:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"15:30\",\n      \"end_time\": \"16:15\",\n      \"class_name\": \"Pre School mma (ages 3-6)\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"3:30 PM - 4:15 PM Pre School mma (ages 3-6)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Kickboxing (Ages 5-12)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Kickboxing (Ages 5-12)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Boxing (age 5-8)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Boxing (age 5-8)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:15\",\n      \"class_name\": \"Youth Boxing (ages 7+)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:15 PM Youth Boxing (ages 7+)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"16:30\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tiny Tigers Kickboxing (4-7)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:30 PM - 5:00 PM Tiny Tigers Kickboxing (4-7)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Boxing ( Ages 9-12)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Boxing ( Ages 9-12)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"KIDS GI BJJ\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM KIDS GI BJJ\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"5:15 PM - 6:15 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Youth Jiu Jitsu (ages 7+)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:15 PM - 6:15 PM Youth Jiu Jitsu (ages 7+)\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Boxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"BJJ GI\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM BJJ GI\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"Boxing Fundamentals\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM Boxing Fundamentals\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:30 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:30 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:30 PM MMA\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Boxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 8:30 PM Muay Thai\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"tuesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"06:00\",\n      \"end_time\": \"07:00\",\n      \"class_name\": \"Brazilian Jiu-jitsu No-gi\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Wednesday - 6:00 AM - 7:00 AM Brazilian Jiu-jitsu No-gi\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"06:30\",\n      \"end_time\": \"07:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:30 AM - 7:30 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"08:00\",\n      \"end_time\": \"09:00\",\n      \"class_name\": \"cardio kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 AM - 9:00 AM cardio kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 11:00 AM MMA\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:30 AM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:00 AM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"No Gi Jiujitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:30 PM No Gi Jiujitsu\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Brazilian Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Brazilian Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"12:30\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:30 PM - 1:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"15:30\",\n      \"end_time\": \"16:15\",\n      \"class_name\": \"Pre school mma (ages 3-6)\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"3:30 PM - 4:15 PM Pre school mma (ages 3-6)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Kickboxing (Ages 5-12)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Kickboxing (Ages 5-12)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Boxing (Ages 5-8)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Boxing (Ages 5-8)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:15\",\n      \"class_name\": \"Youth Kickboxing (ages 7+)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:15 PM Youth Kickboxing (ages 7+)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"16:30\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tiny Tigers Boxing (4-7)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:30 PM - 5:00 PM Tiny Tigers Boxing (4-7)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Boxing (Ages 9-12)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Boxing (Ages 9-12)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"No-GI BJJ for Kids\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM No-GI BJJ for Kids\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"5:15 PM - 6:15 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Youth Jiu Jitsu (ages 7+)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:15 PM - 6:15 PM Youth Jiu Jitsu (ages 7+)\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"BJJ No GI\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM BJJ No GI\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:30 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Gi Brazilian Jiu Jitsu\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Gi Brazilian Jiu Jitsu\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"19:15\",\n      \"end_time\": \"20:15\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:15 PM - 8:15 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Boxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"20:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 8:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"wednesday\",\n      \"start_time\": \"20:00\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Sparring\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 PM - 9:00 PM Sparring\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"06:30\",\n      \"end_time\": \"07:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Thursday - 6:30 AM - 7:30 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"08:00\",\n      \"end_time\": \"09:00\",\n      \"class_name\": \"cardio kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 AM - 9:00 AM cardio kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 11:00 AM MMA\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:30 AM Boxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:00 AM Boxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"No Gi Jiujitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:30 PM No Gi Jiujitsu\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"12:30\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:30 PM - 1:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"15:30\",\n      \"end_time\": \"16:15\",\n      \"class_name\": \"Pre School mma (ages 3-6)\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"3:30 PM - 4:15 PM Pre School mma (ages 3-6)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Kickboxing (Ages 5-12)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Kickboxing (Ages 5-12)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Boxing (Ages 5-8)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Boxing (Ages 5-8)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"16:15\",\n      \"end_time\": \"17:15\",\n      \"class_name\": \"Youth boxing (ages 7+)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:15 PM - 5:15 PM Youth boxing (ages 7+)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"16:30\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Tiny Tigers Kickboxing (4-7)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:30 PM - 5:00 PM Tiny Tigers Kickboxing (4-7)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Boxing (Ages 9-12)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Boxing (Ages 9-12)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids GI BJJ\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids GI BJJ\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"5:15 PM - 6:15 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Youth Jiu Jitsu (ages 7+)\",\n      \"discipline\": \"bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:15 PM - 6:15 PM Youth Jiu Jitsu (ages 7+)\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Boxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"BJJ GI\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM BJJ GI\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"Boxing Fundamentals\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM Boxing Fundamentals\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:30 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:30 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:30 PM MMA\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"21:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 9:00 PM Boxing\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"19:30\",\n      \"end_time\": \"20:30\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:30 PM - 8:30 PM Muay Thai\"\n    },\n    {\n      \"day\": \"thursday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"7:00 PM - 8:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"06:30\",\n      \"end_time\": \"07:30\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"Friday - 6:30 AM - 7:30 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"08:00\",\n      \"end_time\": \"09:00\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"8:00 AM - 9:00 AM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"09:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"MMA\",\n      \"discipline\": \"mma\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"9:00 AM - 11:00 AM MMA\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:30 AM Boxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"10:00\",\n      \"end_time\": \"11:00\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"10:00 AM - 11:00 AM Boxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:30\",\n      \"class_name\": \"Gi Jiujitsu\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:30 PM Gi Jiujitsu\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"11:00\",\n      \"end_time\": \"12:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"11:00 AM - 12:00 PM Muay Thai Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Brazilian Jiu Jitsu (No Gi)\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Brazilian Jiu Jitsu (No Gi)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"12:00\",\n      \"end_time\": \"13:00\",\n      \"class_name\": \"Wrestling\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:00 PM - 1:00 PM Wrestling\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"12:30\",\n      \"end_time\": \"13:45\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"12:30 PM - 1:45 PM Muay Thai\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Kickboxing (Ages 5-12)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Kickboxing (Ages 5-12)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"16:00\",\n      \"end_time\": \"17:00\",\n      \"class_name\": \"Kids Boxing (Ages 5-8)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:00 PM - 5:00 PM Kids Boxing (Ages 5-8)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"16:14\",\n      \"end_time\": \"17:15\",\n      \"class_name\": \"Youth Kickboxing (ages 7+)\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"4:14 PM - 5:15 PM Youth Kickboxing (ages 7+)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Boxing (Ages 9-12)\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Boxing (Ages 9-12)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"17:00\",\n      \"end_time\": \"18:00\",\n      \"class_name\": \"Kids Gi BJJ\",\n      \"discipline\": \"gi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:00 PM - 6:00 PM Kids Gi BJJ\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"17:15\",\n      \"end_time\": \"18:15\",\n      \"class_name\": \"Youth Wrestling (ages 7+)\",\n      \"discipline\": \"wrestling\",\n      \"is_open_mat\": false,\n      \"is_kids\": true,\n      \"source_quote\": \"5:15 PM - 6:15 PM Youth Wrestling (ages 7+)\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Boxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:30\",\n      \"class_name\": \"Muay Thai\",\n      \"discipline\": \"muay_thai\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:30 PM Muay Thai\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"BJJ No GI\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM BJJ No GI\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:00\",\n      \"end_time\": \"19:00\",\n      \"class_name\": \"Cardio Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:00 PM - 7:00 PM Cardio Kickboxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"Boxing\",\n      \"discipline\": \"boxing\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM Boxing\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"18:15\",\n      \"end_time\": \"19:15\",\n      \"class_name\": \"No Gi Jiu Jitsu\",\n      \"discipline\": \"nogi_bjj\",\n      \"is_open_mat\": false,\n      \"is_kids\": false,\n      \"source_quote\": \"6:15 PM - 7:15 PM No Gi Jiu Jitsu\"\n    },\n    {\n      \"day\": \"friday\",\n      \"start_time\": \"19:00\",\n      \"end_time\": \"20:00\",\n      \"class_name\": \"Muay Thai Kickboxing\",\n      \"discipline\": \"kickboxing\",\n      \"is_open_mat\": false,\n      \"is_kids\":",
+    "parse_error": "no_balanced_json"
+  },
+  "1943": {
+    "error": "no_corpus"
+  },
+  "1944": {
+    "error": "no_corpus"
+  },
+  "1946": {
+    "error": "no_corpus"
+  },
+  "1947": {
+    "error": "no_corpus"
+  },
+  "1949": {
+    "error": "no_corpus"
+  },
+  "1953": {
+    "error": "no_corpus"
+  },
+  "1955": {
+    "error": "no_corpus"
+  },
+  "1959": {
+    "error": "no_corpus"
+  },
+  "1960": {
+    "error": "no_corpus"
+  },
+  "1963": {
+    "error": "no_corpus"
+  },
+  "1964": {
+    "error": "no_corpus"
+  },
+  "1965": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1967": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1968": {
+    "error": "no_corpus"
+  },
+  "1971": {
+    "error": "no_corpus"
+  },
+  "1972": {
+    "error": "no_corpus"
+  },
+  "1973": {
+    "error": "no_corpus"
+  },
+  "1974": {
+    "error": "no_corpus"
+  },
+  "1976": {
+    "error": "no_corpus"
+  },
+  "1977": {
+    "error": "no_corpus"
+  },
+  "1979": {
+    "error": "no_corpus"
+  },
+  "1985": {
+    "error": "no_corpus"
+  },
+  "1987": {
+    "error": "no_corpus"
+  },
+  "1988": {
+    "error": "no_corpus"
+  },
+  "1989": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1990": {
+    "error": "no_corpus"
+  },
+  "1992": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1995": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "1996": {
+    "error": "no_corpus"
+  },
+  "2001": {
+    "error": "no_corpus"
+  },
+  "2002": {
+    "error": "no_corpus"
+  },
+  "2004": {
+    "error": "no_corpus"
+  },
+  "2005": {
+    "error": "no_corpus"
+  },
+  "2006": {
+    "error": "no_corpus"
+  },
+  "2007": {
+    "error": "no_corpus"
+  },
+  "2010": {
+    "error": "no_corpus"
+  },
+  "2011": {
+    "error": "no_corpus"
+  },
+  "2012": {
+    "error": "no_corpus"
+  },
+  "2013": {
+    "error": "no_corpus"
+  },
+  "2022": {
+    "error": "no_corpus"
+  },
+  "2024": {
+    "error": "no_corpus"
+  },
+  "2030": {
+    "error": "no_corpus"
+  },
+  "2032": {
+    "error": "no_corpus"
+  },
+  "2038": {
+    "error": "no_corpus"
+  },
+  "2045": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2046": {
+    "error": "no_corpus"
+  },
+  "2047": {
+    "error": "no_corpus"
+  },
+  "2049": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2050": {
+    "error": "no_corpus"
+  },
+  "2051": {
+    "error": "no_corpus"
+  },
+  "2054": {
+    "error": "no_corpus"
+  },
+  "2055": {
+    "error": "no_corpus"
+  },
+  "2058": {
+    "error": "no_corpus"
+  },
+  "2059": {
+    "error": "no_corpus"
+  },
+  "2063": {
+    "error": "no_corpus"
+  },
+  "2064": {
+    "error": "no_corpus"
+  },
+  "2067": {
+    "error": "no_corpus"
+  },
+  "2082": {
+    "error": "no_corpus"
+  },
+  "2099": {
+    "error": "no_corpus"
+  },
+  "2114": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2125": {
+    "error": "no_corpus"
+  },
+  "2128": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2149": {
+    "error": "no_corpus"
+  },
+  "2193": {
+    "error": "no_corpus"
+  },
+  "2207": {
+    "error": "no_corpus"
+  },
+  "2220": {
+    "error": "no_corpus"
+  },
+  "2283": {
+    "error": "no_corpus"
+  },
+  "2377": {
+    "error": "no_corpus"
+  },
+  "2535": {
+    "error": "no_corpus"
+  },
+  "2540": {
+    "error": "no_corpus"
+  },
+  "2558": {
+    "error": "no_corpus"
+  },
+  "2586": {
+    "error": "no_corpus"
+  },
+  "2715": {
+    "error": "no_corpus"
+  },
+  "2729": {
+    "error": "no_corpus"
+  },
+  "2731": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2781": {
+    "error": "no_corpus"
+  },
+  "2832": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2844": {
+    "error": "no_corpus"
+  },
+  "2854": {
+    "error": "no_corpus"
+  },
+  "2863": {
+    "error": "no_corpus"
+  },
+  "2867": {
+    "error": "no_corpus"
+  },
+  "2868": {
+    "error": "no_corpus"
+  },
+  "2870": {
+    "error": "no_corpus"
+  },
+  "2873": {
+    "error": "no_corpus"
+  },
+  "2875": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "2877": {
+    "error": "no_corpus"
+  },
+  "2888": {
+    "error": "no_corpus"
+  },
+  "2890": {
+    "error": "no_corpus"
+  },
+  "2895": {
+    "error": "no_corpus"
+  },
+  "2898": {
+    "error": "no_corpus"
+  },
+  "2905": {
+    "error": "no_corpus"
+  },
+  "2912": {
+    "error": "no_corpus"
+  },
+  "2926": {
+    "error": "no_corpus"
+  },
+  "2927": {
+    "error": "no_corpus"
+  },
+  "2932": {
+    "error": "no_corpus"
+  },
+  "2934": {
+    "error": "no_corpus"
+  },
+  "2937": {
+    "error": "no_corpus"
+  },
+  "2939": {
+    "error": "no_corpus"
+  },
+  "2950": {
+    "error": "no_corpus"
+  },
+  "2951": {
+    "error": "no_corpus"
+  },
+  "2964": {
+    "error": "no_corpus"
+  },
+  "2980": {
+    "error": "no_corpus"
+  },
+  "2983": {
+    "error": "no_corpus"
+  },
+  "2990": {
+    "error": "no_corpus"
+  },
+  "2993": {
+    "error": "no_corpus"
+  },
+  "2995": {
+    "error": "no_corpus"
+  },
+  "3022": {
+    "error": "no_corpus"
+  },
+  "3024": {
+    "error": "no_corpus"
+  },
+  "3028": {
+    "error": "no_corpus"
+  },
+  "3051": {
+    "error": "no_corpus"
+  },
+  "3068": {
+    "error": "no_corpus"
+  },
+  "3101": {
+    "error": "no_corpus"
+  },
+  "3104": {
+    "error": "no_corpus"
+  },
+  "3106": {
+    "error": "no_corpus"
+  },
+  "3107": {
+    "error": "no_corpus"
+  },
+  "3122": {
+    "error": "no_corpus"
+  },
+  "3125": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3135": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3149": {
+    "error": "no_corpus"
+  },
+  "3151": {
+    "error": "no_corpus"
+  },
+  "3152": {
+    "error": "no_corpus"
+  },
+  "3157": {
+    "error": "no_corpus"
+  },
+  "3158": {
+    "error": "no_corpus"
+  },
+  "3165": {
+    "error": "no_corpus"
+  },
+  "3170": {
+    "error": "no_corpus"
+  },
+  "3171": {
+    "error": "no_corpus"
+  },
+  "3178": {
+    "error": "no_corpus"
+  },
+  "3180": {
+    "error": "no_corpus"
+  },
+  "3187": {
+    "error": "no_corpus"
+  },
+  "3208": {
+    "error": "no_corpus"
+  },
+  "3209": {
+    "error": "no_corpus"
+  },
+  "3215": {
+    "error": "no_corpus"
+  },
+  "3217": {
+    "error": "no_corpus"
+  },
+  "3218": {
+    "error": "no_corpus"
+  },
+  "3229": {
+    "error": "no_corpus"
+  },
+  "3231": {
+    "error": "no_corpus"
+  },
+  "3243": {
+    "error": "no_corpus"
+  },
+  "3244": {
+    "error": "no_corpus"
+  },
+  "3250": {
+    "error": "no_corpus"
+  },
+  "3261": {
+    "error": "no_corpus"
+  },
+  "3265": {
+    "error": "no_corpus"
+  },
+  "3271": {
+    "error": "no_corpus"
+  },
+  "3275": {
+    "error": "no_corpus"
+  },
+  "3278": {
+    "error": "no_corpus"
+  },
+  "3369": {
+    "error": "no_corpus"
+  },
+  "3380": {
+    "error": "no_corpus"
+  },
+  "3385": {
+    "error": "no_corpus"
+  },
+  "3387": {
+    "error": "no_corpus"
+  },
+  "3394": {
+    "error": "no_corpus"
+  },
+  "3396": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3401": {
+    "error": "no_corpus"
+  },
+  "3406": {
+    "error": "no_corpus"
+  },
+  "3412": {
+    "error": "no_corpus"
+  },
+  "3433": {
+    "error": "no_corpus"
+  },
+  "3451": {
+    "error": "no_corpus"
+  },
+  "3458": {
+    "error": "no_corpus"
+  },
+  "3468": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3472": {
+    "error": "no_corpus"
+  },
+  "3484": {
+    "error": "no_corpus"
+  },
+  "3485": {
+    "error": "no_corpus"
+  },
+  "3492": {
+    "error": "no_corpus"
+  },
+  "3499": {
+    "error": "no_corpus"
+  },
+  "3511": {
+    "error": "no_corpus"
+  },
+  "3515": {
+    "error": "no_corpus"
+  },
+  "3518": {
+    "error": "no_corpus"
+  },
+  "3523": {
+    "error": "no_corpus"
+  },
+  "3531": {
+    "error": "no_corpus"
+  },
+  "3533": {
+    "error": "no_corpus"
+  },
+  "3557": {
+    "error": "no_corpus"
+  },
+  "3569": {
+    "error": "no_corpus"
+  },
+  "3581": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3582": {
+    "error": "no_corpus"
+  },
+  "3587": {
+    "error": "no_corpus"
+  },
+  "3618": {
+    "error": "no_corpus"
+  },
+  "3630": {
+    "error": "no_corpus"
+  },
+  "3634": {
+    "error": "no_corpus"
+  },
+  "3635": {
+    "error": "no_corpus"
+  },
+  "3640": {
+    "error": "no_corpus"
+  },
+  "3644": {
+    "error": "no_corpus"
+  },
+  "3646": {
+    "error": "no_corpus"
+  },
+  "3651": {
+    "error": "no_corpus"
+  },
+  "3667": {
+    "error": "no_corpus"
+  },
+  "3673": {
+    "error": "no_corpus"
+  },
+  "3678": {
+    "error": "no_corpus"
+  },
+  "3695": {
+    "error": "no_corpus"
+  },
+  "3718": {
+    "error": "no_corpus"
+  },
+  "3719": {
+    "error": "no_corpus"
+  },
+  "3722": {
+    "error": "no_corpus"
+  },
+  "3737": {
+    "error": "no_corpus"
+  },
+  "3743": {
+    "error": "no_corpus"
+  },
+  "3770": {
+    "error": "no_corpus"
+  },
+  "3774": {
+    "error": "no_corpus"
+  },
+  "3784": {
+    "error": "no_corpus"
+  },
+  "3798": {
+    "error": "no_corpus"
+  },
+  "3809": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "3812": {
+    "error": "no_corpus"
+  },
+  "3816": {
+    "error": "no_corpus"
+  },
+  "3825": {
+    "error": "no_corpus"
+  },
+  "3829": {
+    "error": "no_corpus"
+  },
+  "3832": {
+    "error": "no_corpus"
+  },
+  "3844": {
+    "error": "no_corpus"
+  },
+  "3851": {
+    "error": "no_corpus"
+  },
+  "3863": {
+    "error": "no_corpus"
+  },
+  "3869": {
+    "error": "no_corpus"
+  },
+  "3886": {
+    "error": "no_corpus"
+  },
+  "3887": {
+    "error": "no_corpus"
+  },
+  "3907": {
+    "error": "no_corpus"
+  },
+  "3912": {
+    "error": "no_corpus"
+  },
+  "3918": {
+    "error": "no_corpus"
+  },
+  "3921": {
+    "error": "no_corpus"
+  },
+  "3924": {
+    "error": "no_corpus"
+  },
+  "3925": {
+    "error": "no_corpus"
+  },
+  "3931": {
+    "error": "no_corpus"
+  },
+  "3941": {
+    "error": "no_corpus"
+  },
+  "3943": {
+    "error": "no_corpus"
+  },
+  "3951": {
+    "error": "no_corpus"
+  },
+  "3956": {
+    "error": "no_corpus"
+  },
+  "3963": {
+    "error": "no_corpus"
+  },
+  "3965": {
+    "error": "no_corpus"
+  },
+  "3970": {
+    "error": "no_corpus"
+  },
+  "3974": {
+    "error": "no_corpus"
+  },
+  "3981": {
+    "error": "no_corpus"
+  },
+  "3986": {
+    "error": "no_corpus"
+  },
+  "3995": {
+    "error": "no_corpus"
+  },
+  "4014": {
+    "error": "no_corpus"
+  },
+  "4019": {
+    "error": "no_corpus"
+  },
+  "4021": {
+    "error": "no_corpus"
+  },
+  "4023": {
+    "error": "no_corpus"
+  },
+  "4040": {
+    "error": "no_corpus"
+  },
+  "4044": {
+    "error": "no_corpus"
+  },
+  "4056": {
+    "error": "no_corpus"
+  },
+  "4059": {
+    "error": "no_corpus"
+  },
+  "4060": {
+    "error": "no_corpus"
+  },
+  "4067": {
+    "error": "no_corpus"
+  },
+  "4101": {
+    "error": "no_corpus"
+  },
+  "4458": {
+    "error": "no_corpus"
+  },
+  "4486": {
+    "error": "no_corpus"
+  },
+  "4517": {
+    "error": "no_corpus"
+  },
+  "4620": {
+    "error": "no_corpus"
+  },
+  "5028": {
+    "error": "no_corpus"
+  },
+  "5035": {
+    "error": "no_corpus"
+  },
+  "5051": {
+    "error": "no_corpus"
+  },
+  "5055": {
+    "error": "no_corpus"
+  },
+  "5064": {
+    "error": "no_corpus"
+  },
+  "5067": {
+    "error": "no_corpus"
+  },
+  "5071": {
+    "error": "no_corpus"
+  },
+  "5075": {
+    "error": "no_corpus"
+  },
+  "5076": {
+    "error": "no_corpus"
+  },
+  "5088": {
+    "error": "no_corpus"
+  },
+  "5093": {
+    "error": "no_corpus"
+  },
+  "5107": {
+    "error": "no_corpus"
+  },
+  "5108": {
+    "error": "no_corpus"
+  },
+  "5109": {
+    "error": "no_corpus"
+  },
+  "5110": {
+    "error": "no_corpus"
+  },
+  "5113": {
+    "error": "no_corpus"
+  },
+  "5117": {
+    "error": "no_corpus"
+  },
+  "5127": {
+    "error": "no_corpus"
+  },
+  "5129": {
+    "error": "no_corpus"
+  },
+  "5134": {
+    "error": "no_corpus"
+  },
+  "5154": {
+    "error": "no_corpus"
+  },
+  "5188": {
+    "error": "no_corpus"
+  },
+  "5192": {
+    "error": "no_corpus"
+  },
+  "5194": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "5200": {
+    "error": "no_corpus"
+  },
+  "5209": {
+    "error": "no_corpus"
+  },
+  "5220": {
+    "error": "no_corpus"
+  },
+  "5233": {
+    "error": "no_corpus"
+  },
+  "5269": {
+    "error": "no_corpus"
+  },
+  "5287": {
+    "error": "no_corpus"
+  },
+  "5296": {
+    "error": "no_corpus"
+  },
+  "5302": {
+    "error": "no_corpus"
+  },
+  "5310": {
+    "error": "no_corpus"
+  },
+  "5325": {
+    "error": "no_corpus"
+  },
+  "5337": {
+    "error": "no_corpus"
+  },
+  "5354": {
+    "error": "no_corpus"
+  },
+  "5357": {
+    "error": "no_corpus"
+  },
+  "5376": {
+    "error": "no_corpus"
+  },
+  "5389": {
+    "error": "no_corpus"
+  },
+  "5403": {
+    "error": "no_corpus"
+  },
+  "5406": {
+    "error": "no_corpus"
+  },
+  "5408": {
+    "error": "no_corpus"
+  },
+  "5411": {
+    "error": "no_corpus"
+  },
+  "5412": {
+    "error": "no_corpus"
+  },
+  "5416": {
+    "error": "no_corpus"
+  },
+  "5417": {
+    "error": "no_corpus"
+  },
+  "5420": {
+    "error": "no_corpus"
+  },
+  "5428": {
+    "error": "no_corpus"
+  },
+  "5447": {
+    "error": "no_corpus"
+  },
+  "5462": {
+    "error": "no_corpus"
+  },
+  "5466": {
+    "error": "no_corpus"
+  },
+  "5467": {
+    "error": "no_corpus"
+  },
+  "5476": {
+    "error": "no_corpus"
+  },
+  "5477": {
+    "error": "no_corpus"
+  },
+  "5479": {
+    "error": "no_corpus"
+  },
+  "5484": {
+    "error": "no_corpus"
+  },
+  "5488": {
+    "error": "no_corpus"
+  },
+  "5496": {
+    "error": "no_corpus"
+  },
+  "5503": {
+    "error": "no_corpus"
+  },
+  "5507": {
+    "error": "no_corpus"
+  },
+  "5519": {
+    "error": "no_corpus"
+  },
+  "5521": {
+    "error": "no_corpus"
+  },
+  "5523": {
+    "error": "no_corpus"
+  },
+  "5525": {
+    "error": "no_corpus"
+  },
+  "5538": {
+    "error": "no_corpus"
+  },
+  "5545": {
+    "error": "no_corpus"
+  },
+  "5549": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "5550": {
+    "error": "no_corpus"
+  },
+  "5555": {
+    "error": "no_corpus"
+  },
+  "5558": {
+    "error": "no_corpus"
+  },
+  "5564": {
+    "error": "no_corpus"
+  },
+  "5572": {
+    "error": "no_corpus"
+  },
+  "5584": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "5587": {
+    "error": "no_corpus"
+  },
+  "5598": {
+    "error": "no_corpus"
+  },
+  "5600": {
+    "error": "no_corpus"
+  },
+  "5604": {
+    "error": "no_corpus"
+  },
+  "5607": {
+    "error": "no_corpus"
+  },
+  "5615": {
+    "error": "no_corpus"
+  },
+  "5622": {
+    "error": "no_corpus"
+  },
+  "5629": {
+    "error": "no_corpus"
+  },
+  "5631": {
+    "error": "no_corpus"
+  },
+  "5634": {
+    "error": "no_corpus"
+  },
+  "5637": {
+    "error": "no_corpus"
+  },
+  "5647": {
+    "error": "no_corpus"
+  },
+  "5651": {
+    "error": "no_corpus"
+  },
+  "5660": {
+    "error": "no_corpus"
+  },
+  "6015": {
+    "error": "no_corpus"
+  },
+  "6063": {
+    "error": "no_corpus"
+  },
+  "6182": {
+    "error": "no_corpus"
+  },
+  "6194": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6266": {
+    "error": "no_corpus"
+  },
+  "6349": {
+    "error": "no_corpus"
+  },
+  "6355": {
+    "error": "no_corpus"
+  },
+  "6357": {
+    "error": "no_corpus"
+  },
+  "6358": {
+    "error": "no_corpus"
+  },
+  "6363": {
+    "error": "no_corpus"
+  },
+  "6377": {
+    "error": "no_corpus"
+  },
+  "6379": {
+    "error": "no_corpus"
+  },
+  "6385": {
+    "error": "no_corpus"
+  },
+  "6400": {
+    "error": "no_corpus"
+  },
+  "6402": {
+    "error": "no_corpus"
+  },
+  "6404": {
+    "error": "no_corpus"
+  },
+  "6406": {
+    "error": "no_corpus"
+  },
+  "6420": {
+    "error": "no_corpus"
+  },
+  "6428": {
+    "error": "no_corpus"
+  },
+  "6438": {
+    "error": "no_corpus"
+  },
+  "6439": {
+    "error": "no_corpus"
+  },
+  "6455": {
+    "error": "no_corpus"
+  },
+  "6457": {
+    "error": "no_corpus"
+  },
+  "6460": {
+    "error": "no_corpus"
+  },
+  "6466": {
+    "error": "no_corpus"
+  },
+  "6471": {
+    "error": "no_corpus"
+  },
+  "6482": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6484": {
+    "error": "no_corpus"
+  },
+  "6487": {
+    "error": "no_corpus"
+  },
+  "6490": {
+    "error": "no_corpus"
+  },
+  "6518": {
+    "error": "no_corpus"
+  },
+  "6528": {
+    "error": "no_corpus"
+  },
+  "6529": {
+    "error": "no_corpus"
+  },
+  "6531": {
+    "error": "no_corpus"
+  },
+  "6540": {
+    "error": "no_corpus"
+  },
+  "6541": {
+    "error": "no_corpus"
+  },
+  "6543": {
+    "error": "no_corpus"
+  },
+  "6545": {
+    "error": "no_corpus"
+  },
+  "6554": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6569": {
+    "error": "no_corpus"
+  },
+  "6578": {
+    "error": "no_corpus"
+  },
+  "6579": {
+    "error": "no_corpus"
+  },
+  "6580": {
+    "error": "no_corpus"
+  },
+  "6582": {
+    "error": "no_corpus"
+  },
+  "6588": {
+    "error": "no_corpus"
+  },
+  "6596": {
+    "error": "no_corpus"
+  },
+  "6599": {
+    "error": "no_corpus"
+  },
+  "6607": {
+    "error": "no_corpus"
+  },
+  "6608": {
+    "error": "no_corpus"
+  },
+  "6642": {
+    "error": "no_corpus"
+  },
+  "6644": {
+    "error": "no_corpus"
+  },
+  "6645": {
+    "error": "no_corpus"
+  },
+  "6667": {
+    "error": "no_corpus"
+  },
+  "6673": {
+    "error": "no_corpus"
+  },
+  "6677": {
+    "error": "no_corpus"
+  },
+  "6685": {
+    "error": "no_corpus"
+  },
+  "6686": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6689": {
+    "error": "no_corpus"
+  },
+  "6691": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6712": {
+    "error": "no_corpus"
+  },
+  "6718": {
+    "error": "no_corpus"
+  },
+  "6723": {
+    "error": "no_corpus"
+  },
+  "6725": {
+    "error": "no_corpus"
+  },
+  "6726": {
+    "error": "no_corpus"
+  },
+  "6729": {
+    "error": "no_corpus"
+  },
+  "6730": {
+    "error": "no_corpus"
+  },
+  "6733": {
+    "error": "no_corpus"
+  },
+  "6734": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6741": {
+    "error": "no_corpus"
+  },
+  "6742": {
+    "error": "no_corpus"
+  },
+  "6744": {
+    "error": "no_corpus"
+  },
+  "6751": {
+    "error": "no_corpus"
+  },
+  "6765": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6776": {
+    "error": "no_corpus"
+  },
+  "6779": {
+    "error": "no_corpus"
+  },
+  "6781": {
+    "error": "no_corpus"
+  },
+  "6784": {
+    "error": "no_corpus"
+  },
+  "6789": {
+    "error": "no_corpus"
+  },
+  "6790": {
+    "error": "no_corpus"
+  },
+  "6795": {
+    "error": "no_corpus"
+  },
+  "6800": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6802": {
+    "error": "no_corpus"
+  },
+  "6806": {
+    "error": "no_corpus"
+  },
+  "6807": {
+    "error": "no_corpus"
+  },
+  "6819": {
+    "error": "no_corpus"
+  },
+  "6821": {
+    "error": "no_corpus"
+  },
+  "6824": {
+    "error": "no_corpus"
+  },
+  "6826": {
+    "error": "no_corpus"
+  },
+  "6829": {
+    "error": "no_corpus"
+  },
+  "6833": {
+    "error": "no_corpus"
+  },
+  "6838": {
+    "error": "no_corpus"
+  },
+  "6906": {
+    "error": "no_corpus"
+  },
+  "6935": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "6976": {
+    "error": "no_corpus"
+  },
+  "7193": {
+    "error": "no_corpus"
+  },
+  "7269": {
+    "error": "no_corpus"
+  },
+  "7592": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "7825": {
+    "error": "no_corpus"
+  },
+  "7831": {
+    "error": "no_corpus"
+  },
+  "7836": {
+    "error": "no_corpus"
+  },
+  "7846": {
+    "error": "no_corpus"
+  },
+  "7847": {
+    "error": "no_corpus"
+  },
+  "7852": {
+    "error": "no_corpus"
+  },
+  "7860": {
+    "error": "no_corpus"
+  },
+  "7863": {
+    "error": "no_corpus"
+  },
+  "7864": {
+    "error": "no_corpus"
+  },
+  "7875": {
+    "error": "no_corpus"
+  },
+  "7892": {
+    "error": "no_corpus"
+  },
+  "7908": {
+    "error": "no_corpus"
+  },
+  "7918": {
+    "error": "no_corpus"
+  },
+  "7919": {
+    "error": "no_corpus"
+  },
+  "7925": {
+    "error": "no_corpus"
+  },
+  "7927": {
+    "error": "no_corpus"
+  },
+  "7928": {
+    "error": "no_corpus"
+  },
+  "7929": {
+    "error": "no_corpus"
+  },
+  "7937": {
+    "error": "no_corpus"
+  },
+  "7951": {
+    "error": "no_corpus"
+  },
+  "7954": {
+    "error": "no_corpus"
+  },
+  "7968": {
+    "error": "no_corpus"
+  },
+  "7969": {
+    "error": "no_corpus"
+  },
+  "7977": {
+    "error": "no_corpus"
+  },
+  "7981": {
+    "error": "no_corpus"
+  },
+  "7991": {
+    "error": "no_corpus"
+  },
+  "7997": {
+    "error": "no_corpus"
+  },
+  "8005": {
+    "error": "no_corpus"
+  },
+  "8019": {
+    "error": "no_corpus"
+  },
+  "8023": {
+    "error": "no_corpus"
+  },
+  "8027": {
+    "error": "no_corpus"
+  },
+  "8039": {
+    "error": "no_corpus"
+  },
+  "8042": {
+    "error": "no_corpus"
+  },
+  "8050": {
+    "error": "no_corpus"
+  },
+  "8056": {
+    "error": "no_corpus"
+  },
+  "8067": {
+    "error": "no_corpus"
+  },
+  "8078": {
+    "error": "no_corpus"
+  },
+  "8088": {
+    "error": "no_corpus"
+  },
+  "8092": {
+    "error": "no_corpus"
+  },
+  "8102": {
+    "error": "no_corpus"
+  },
+  "8104": {
+    "error": "no_corpus"
+  },
+  "8112": {
+    "error": "no_corpus"
+  },
+  "8117": {
+    "error": "no_corpus"
+  },
+  "8122": {
+    "error": "no_corpus"
+  },
+  "8123": {
+    "error": "no_corpus"
+  },
+  "8127": {
+    "error": "no_corpus"
+  },
+  "8144": {
+    "error": "no_corpus"
+  },
+  "8159": {
+    "error": "no_corpus"
+  },
+  "8171": {
+    "error": "no_corpus"
+  },
+  "8172": {
+    "error": "no_corpus"
+  },
+  "8177": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8178": {
+    "error": "no_corpus"
+  },
+  "8180": {
+    "error": "no_corpus"
+  },
+  "8203": {
+    "error": "no_corpus"
+  },
+  "8210": {
+    "error": "no_corpus"
+  },
+  "8226": {
+    "error": "no_corpus"
+  },
+  "8230": {
+    "error": "no_corpus"
+  },
+  "8240": {
+    "error": "no_corpus"
+  },
+  "8246": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8252": {
+    "error": "no_corpus"
+  },
+  "8263": {
+    "error": "no_corpus"
+  },
+  "8274": {
+    "error": "no_corpus"
+  },
+  "8288": {
+    "error": "no_corpus"
+  },
+  "8293": {
+    "error": "no_corpus"
+  },
+  "8295": {
+    "error": "no_corpus"
+  },
+  "8308": {
+    "error": "no_corpus"
+  },
+  "8312": {
+    "error": "no_corpus"
+  },
+  "8316": {
+    "error": "no_corpus"
+  },
+  "8318": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8322": {
+    "error": "no_corpus"
+  },
+  "8328": {
+    "error": "no_corpus"
+  },
+  "8330": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8336": {
+    "error": "no_corpus"
+  },
+  "8337": {
+    "error": "no_corpus"
+  },
+  "8344": {
+    "error": "no_corpus"
+  },
+  "8362": {
+    "error": "no_corpus"
+  },
+  "8364": {
+    "error": "no_corpus"
+  },
+  "8369": {
+    "error": "no_corpus"
+  },
+  "8392": {
+    "error": "no_corpus"
+  },
+  "8396": {
+    "error": "no_corpus"
+  },
+  "8400": {
+    "error": "no_corpus"
+  },
+  "8405": {
+    "error": "no_corpus"
+  },
+  "8408": {
+    "error": "no_corpus"
+  },
+  "8416": {
+    "error": "no_corpus"
+  },
+  "8417": {
+    "error": "no_corpus"
+  },
+  "8418": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8425": {
+    "error": "no_corpus"
+  },
+  "8431": {
+    "error": "no_corpus"
+  },
+  "8435": {
+    "error": "no_corpus"
+  },
+  "8437": {
+    "error": "no_corpus"
+  },
+  "8438": {
+    "error": "no_corpus"
+  },
+  "8440": {
+    "error": "no_corpus"
+  },
+  "8446": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "8452": {
+    "error": "no_corpus"
+  },
+  "8453": {
+    "error": "no_corpus"
+  },
+  "8455": {
+    "error": "no_corpus"
+  },
+  "8456": {
+    "error": "no_corpus"
+  },
+  "8458": {
+    "error": "no_corpus"
+  },
+  "8465": {
+    "error": "no_corpus"
+  },
+  "8466": {
+    "error": "no_corpus"
+  },
+  "8468": {
+    "error": "no_corpus"
+  },
+  "8473": {
+    "error": "no_corpus"
+  },
+  "8478": {
+    "error": "no_corpus"
+  },
+  "8480": {
+    "error": "no_corpus"
+  },
+  "8504": {
+    "error": "no_corpus"
+  },
+  "8506": {
+    "error": "no_corpus"
+  },
+  "8667": {
+    "error": "no_corpus"
+  },
+  "8697": {
+    "error": "no_corpus"
+  },
+  "8711": {
+    "error": "no_corpus"
+  },
+  "8904": {
+    "error": "no_corpus"
+  },
+  "8914": {
+    "error": "no_corpus"
+  },
+  "8925": {
+    "error": "no_corpus"
+  },
+  "8930": {
+    "error": "no_corpus"
+  },
+  "8933": {
+    "error": "no_corpus"
+  },
+  "8934": {
+    "error": "no_corpus"
+  },
+  "8937": {
+    "error": "no_corpus"
+  },
+  "8941": {
+    "error": "no_corpus"
+  },
+  "8944": {
+    "error": "no_corpus"
+  },
+  "8946": {
+    "error": "no_corpus"
+  },
+  "8951": {
+    "error": "no_corpus"
+  },
+  "8954": {
+    "error": "no_corpus"
+  },
+  "8964": {
+    "error": "no_corpus"
+  },
+  "8965": {
+    "error": "no_corpus"
+  },
+  "8976": {
+    "error": "no_corpus"
+  },
+  "8983": {
+    "error": "no_corpus"
+  },
+  "8989": {
+    "error": "no_corpus"
+  },
+  "8990": {
+    "error": "no_corpus"
+  },
+  "8998": {
+    "error": "no_corpus"
+  },
+  "9004": {
+    "error": "no_corpus"
+  },
+  "9005": {
+    "error": "no_corpus"
+  },
+  "9011": {
+    "error": "no_corpus"
+  },
+  "9013": {
+    "error": "no_corpus"
+  },
+  "9017": {
+    "error": "no_corpus"
+  },
+  "9039": {
+    "error": "no_corpus"
+  },
+  "9048": {
+    "error": "no_corpus"
+  },
+  "9051": {
+    "error": "no_corpus"
+  },
+  "9065": {
+    "error": "no_corpus"
+  },
+  "9066": {
+    "error": "no_corpus"
+  },
+  "9070": {
+    "error": "no_corpus"
+  },
+  "9116": {
+    "error": "no_corpus"
+  },
+  "9117": {
+    "error": "no_corpus"
+  },
+  "9150": {
+    "error": "no_corpus"
+  },
+  "9157": {
+    "error": "no_corpus"
+  },
+  "9165": {
+    "error": "no_corpus"
+  },
+  "9174": {
+    "error": "no_corpus"
+  },
+  "9185": {
+    "error": "no_corpus"
+  },
+  "9197": {
+    "error": "no_corpus"
+  },
+  "9199": {
+    "error": "no_corpus"
+  },
+  "9303": {
+    "error": "no_corpus"
+  },
+  "9343": {
+    "error": "no_corpus"
+  },
+  "9345": {
+    "error": "no_corpus"
+  },
+  "9346": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9352": {
+    "error": "no_corpus"
+  },
+  "9353": {
+    "error": "no_corpus"
+  },
+  "9355": {
+    "error": "no_corpus"
+  },
+  "9408": {
+    "error": "no_corpus"
+  },
+  "9438": {
+    "error": "no_corpus"
+  },
+  "9439": {
+    "error": "no_corpus"
+  },
+  "9442": {
+    "error": "no_corpus"
+  },
+  "9458": {
+    "error": "no_corpus"
+  },
+  "9465": {
+    "error": "no_corpus"
+  },
+  "9466": {
+    "error": "no_corpus"
+  },
+  "9471": {
+    "error": "no_corpus"
+  },
+  "9476": {
+    "error": "no_corpus"
+  },
+  "9478": {
+    "error": "no_corpus"
+  },
+  "9479": {
+    "error": "no_corpus"
+  },
+  "9480": {
+    "error": "no_corpus"
+  },
+  "9483": {
+    "error": "no_corpus"
+  },
+  "9484": {
+    "error": "no_corpus"
+  },
+  "9486": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9489": {
+    "error": "no_corpus"
+  },
+  "9491": {
+    "error": "no_corpus"
+  },
+  "9492": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9493": {
+    "error": "no_corpus"
+  },
+  "9495": {
+    "error": "no_corpus"
+  },
+  "9496": {
+    "error": "no_corpus"
+  },
+  "9499": {
+    "error": "no_corpus"
+  },
+  "9501": {
+    "error": "no_corpus"
+  },
+  "9503": {
+    "error": "no_corpus"
+  },
+  "9506": {
+    "error": "no_corpus"
+  },
+  "9507": {
+    "error": "no_corpus"
+  },
+  "9510": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9511": {
+    "error": "no_corpus"
+  },
+  "9512": {
+    "error": "no_corpus"
+  },
+  "9513": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9515": {
+    "error": "no_corpus"
+  },
+  "9517": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9522": {
+    "error": "no_corpus"
+  },
+  "9526": {
+    "error": "no_corpus"
+  },
+  "9528": {
+    "error": "no_corpus"
+  },
+  "9529": {
+    "error": "no_corpus"
+  },
+  "9532": {
+    "error": "no_corpus"
+  },
+  "9535": {
+    "error": "no_corpus"
+  },
+  "9540": {
+    "error": "no_corpus"
+  },
+  "9544": {
+    "error": "no_corpus"
+  },
+  "9545": {
+    "error": "no_corpus"
+  },
+  "9546": {
+    "error": "no_corpus"
+  },
+  "9548": {
+    "error": "no_corpus"
+  },
+  "9549": {
+    "error": "no_corpus"
+  },
+  "9550": {
+    "error": "no_corpus"
+  },
+  "9552": {
+    "error": "no_corpus"
+  },
+  "9554": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9555": {
+    "error": "no_corpus"
+  },
+  "9557": {
+    "error": "no_corpus"
+  },
+  "9558": {
+    "error": "no_corpus"
+  },
+  "9559": {
+    "error": "no_corpus"
+  },
+  "9566": {
+    "error": "no_corpus"
+  },
+  "9576": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9585": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9586": {
+    "error": "no_corpus"
+  },
+  "9588": {
+    "error": "no_corpus"
+  },
+  "9589": {
+    "error": "no_corpus"
+  },
+  "9598": {
+    "error": "no_corpus"
+  },
+  "9612": {
+    "error": "no_corpus"
+  },
+  "9619": {
+    "error": "no_corpus"
+  },
+  "9620": {
+    "error": "no_corpus"
+  },
+  "9622": {
+    "error": "no_corpus"
+  },
+  "9651": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9696": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "9703": {
+    "error": "no_corpus"
+  },
+  "9766": {
+    "error": "no_corpus"
+  },
+  "9902": {
+    "error": "no_corpus"
+  },
+  "9979": {
+    "error": "no_corpus"
+  },
+  "10131": {
+    "error": "no_corpus"
+  },
+  "10377": {
+    "error": "no_corpus"
+  },
+  "10393": {
+    "error": "no_corpus"
+  },
+  "10406": {
+    "error": "no_corpus"
+  },
+  "10415": {
+    "error": "no_corpus"
+  },
+  "10419": {
+    "error": "no_corpus"
+  },
+  "10435": {
+    "error": "no_corpus"
+  },
+  "10438": {
+    "error": "no_corpus"
+  },
+  "10442": {
+    "error": "no_corpus"
+  },
+  "10443": {
+    "error": "no_corpus"
+  },
+  "10450": {
+    "error": "no_corpus"
+  },
+  "10451": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10456": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10457": {
+    "error": "no_corpus"
+  },
+  "10461": {
+    "error": "no_corpus"
+  },
+  "10462": {
+    "error": "no_corpus"
+  },
+  "10463": {
+    "error": "no_corpus"
+  },
+  "10464": {
+    "error": "no_corpus"
+  },
+  "10465": {
+    "error": "no_corpus"
+  },
+  "10470": {
+    "error": "no_corpus"
+  },
+  "10473": {
+    "error": "no_corpus"
+  },
+  "10496": {
+    "error": "no_corpus"
+  },
+  "10500": {
+    "error": "no_corpus"
+  },
+  "10503": {
+    "error": "no_corpus"
+  },
+  "10505": {
+    "error": "no_corpus"
+  },
+  "10506": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10513": {
+    "error": "no_corpus"
+  },
+  "10520": {
+    "error": "no_corpus"
+  },
+  "10521": {
+    "error": "no_corpus"
+  },
+  "10527": {
+    "error": "no_corpus"
+  },
+  "10532": {
+    "error": "no_corpus"
+  },
+  "10536": {
+    "error": "no_corpus"
+  },
+  "10537": {
+    "error": "no_corpus"
+  },
+  "10540": {
+    "error": "no_corpus"
+  },
+  "10541": {
+    "error": "no_corpus"
+  },
+  "10545": {
+    "error": "no_corpus"
+  },
+  "10547": {
+    "error": "no_corpus"
+  },
+  "10553": {
+    "error": "no_corpus"
+  },
+  "10560": {
+    "error": "no_corpus"
+  },
+  "10564": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10567": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10571": {
+    "error": "no_corpus"
+  },
+  "10573": {
+    "error": "no_corpus"
+  },
+  "10575": {
+    "error": "no_corpus"
+  },
+  "10588": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10593": {
+    "error": "no_corpus"
+  },
+  "10596": {
+    "error": "no_corpus"
+  },
+  "10597": {
+    "error": "no_corpus"
+  },
+  "10600": {
+    "error": "no_corpus"
+  },
+  "10601": {
+    "error": "no_corpus"
+  },
+  "10603": {
+    "error": "no_corpus"
+  },
+  "10609": {
+    "error": "no_corpus"
+  },
+  "10611": {
+    "error": "no_corpus"
+  },
+  "10634": {
+    "error": "no_corpus"
+  },
+  "10642": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10645": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10652": {
+    "error": "no_corpus"
+  },
+  "10670": {
+    "error": "no_corpus"
+  },
+  "10671": {
+    "error": "no_corpus"
+  },
+  "10674": {
+    "error": "no_corpus"
+  },
+  "10677": {
+    "error": "no_corpus"
+  },
+  "10679": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10680": {
+    "error": "no_corpus"
+  },
+  "10684": {
+    "error": "no_corpus"
+  },
+  "10689": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10691": {
+    "error": "no_corpus"
+  },
+  "10696": {
+    "error": "no_corpus"
+  },
+  "10701": {
+    "error": "no_corpus"
+  },
+  "10702": {
+    "error": "no_corpus"
+  },
+  "10705": {
+    "error": "no_corpus"
+  },
+  "10707": {
+    "error": "no_corpus"
+  },
+  "10709": {
+    "error": "no_corpus"
+  },
+  "10710": {
+    "error": "no_corpus"
+  },
+  "10712": {
+    "error": "no_corpus"
+  },
+  "10713": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10716": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10717": {
+    "error": "no_corpus"
+  },
+  "10721": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10729": {
+    "error": "no_corpus"
+  },
+  "10734": {
+    "error": "no_corpus"
+  },
+  "10740": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10744": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10746": {
+    "error": "no_corpus"
+  },
+  "10757": {
+    "error": "no_corpus"
+  },
+  "10758": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10761": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10764": {
+    "error": "no_corpus"
+  },
+  "10765": {
+    "error": "no_corpus"
+  },
+  "10766": {
+    "error": "no_corpus"
+  },
+  "10776": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10779": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10780": {
+    "error": "no_corpus"
+  },
+  "10785": {
+    "error": "no_corpus"
+  },
+  "10787": {
+    "error": "no_corpus"
+  },
+  "10803": {
+    "error": "no_corpus"
+  },
+  "10805": {
+    "error": "no_corpus"
+  },
+  "10811": {
+    "error": "no_corpus"
+  },
+  "10816": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10827": {
+    "error": "no_corpus"
+  },
+  "10830": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10839": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10845": {
+    "error": "no_corpus"
+  },
+  "10848": {
+    "error": "no_corpus"
+  },
+  "10860": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10866": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10875": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10876": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10883": {
+    "error": "no_corpus"
+  },
+  "10890": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10913": {
+    "error": "no_corpus"
+  },
+  "10915": {
+    "error": "no_corpus"
+  },
+  "10918": {
+    "error": "no_corpus"
+  },
+  "10920": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10922": {
+    "error": "no_corpus"
+  },
+  "10923": {
+    "error": "no_corpus"
+  },
+  "10924": {
+    "error": "no_corpus"
+  },
+  "10941": {
+    "error": "no_corpus"
+  },
+  "10952": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10955": {
+    "error": "no_corpus"
+  },
+  "10958": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10969": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10970": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10972": {
+    "error": "no_corpus"
+  },
+  "10977": {
+    "error": "no_corpus"
+  },
+  "10982": {
+    "error": "no_corpus"
+  },
+  "10985": {
+    "error": "no_corpus"
+  },
+  "10986": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "10994": {
+    "error": "no_corpus"
+  },
+  "10996": {
+    "error": "no_corpus"
+  },
+  "10998": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11000": {
+    "error": "no_corpus"
+  },
+  "11007": {
+    "error": "no_corpus"
+  },
+  "11011": {
+    "error": "no_corpus"
+  },
+  "11015": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11021": {
+    "error": "no_corpus"
+  },
+  "11023": {
+    "error": "no_corpus"
+  },
+  "11027": {
+    "error": "no_corpus"
+  },
+  "11033": {
+    "error": "no_corpus"
+  },
+  "11036": {
+    "error": "no_corpus"
+  },
+  "11039": {
+    "error": "no_corpus"
+  },
+  "11040": {
+    "error": "no_corpus"
+  },
+  "11045": {
+    "error": "no_corpus"
+  },
+  "11046": {
+    "error": "no_corpus"
+  },
+  "11058": {
+    "error": "no_corpus"
+  },
+  "11062": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11069": {
+    "error": "no_corpus"
+  },
+  "11075": {
+    "error": "no_corpus"
+  },
+  "11082": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11084": {
+    "error": "no_corpus"
+  },
+  "11089": {
+    "error": "no_verified_entries",
+    "raw_count": 1,
+    "rejected_count": 1
+  },
+  "11092": {
+    "error": "no_corpus"
+  },
+  "11093": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11094": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11097": {
+    "error": "no_corpus"
+  },
+  "11108": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11120": {
+    "error": "no_corpus"
+  },
+  "11121": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11123": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "11152": {
+    "error": "no_corpus"
+  },
+  "11156": {
+    "error": "no_corpus"
+  },
+  "11238": {
+    "error": "no_corpus"
+  },
+  "11503": {
+    "error": "no_corpus"
+  },
+  "11519": {
+    "error": "no_corpus"
+  },
+  "11582": {
+    "error": "no_corpus"
+  },
+  "11662": {
+    "error": "no_corpus"
+  },
+  "11786": {
+    "error": "no_corpus"
+  },
+  "11972": {
+    "error": "no_corpus"
+  },
+  "11977": {
+    "error": "no_corpus"
+  },
+  "11979": {
+    "error": "no_corpus"
+  },
+  "11980": {
+    "error": "no_corpus"
+  },
+  "11989": {
+    "error": "no_corpus"
+  },
+  "11998": {
+    "error": "no_corpus"
+  },
+  "11999": {
+    "error": "no_corpus"
+  },
+  "12012": {
+    "error": "no_corpus"
+  },
+  "12014": {
+    "error": "no_corpus"
+  },
+  "12022": {
+    "error": "no_corpus"
+  },
+  "12025": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12038": {
+    "error": "no_corpus"
+  },
+  "12071": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12072": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12078": {
+    "error": "no_corpus"
+  },
+  "12079": {
+    "error": "no_corpus"
+  },
+  "12085": {
+    "error": "no_corpus"
+  },
+  "12087": {
+    "error": "no_corpus"
+  },
+  "12089": {
+    "error": "no_corpus"
+  },
+  "12093": {
+    "error": "no_corpus"
+  },
+  "12094": {
+    "error": "no_corpus"
+  },
+  "12096": {
+    "error": "no_corpus"
+  },
+  "12097": {
+    "error": "no_corpus"
+  },
+  "12098": {
+    "error": "no_corpus"
+  },
+  "12099": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12101": {
+    "error": "no_corpus"
+  },
+  "12102": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12106": {
+    "error": "no_corpus"
+  },
+  "12107": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12108": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12112": {
+    "error": "no_corpus"
+  },
+  "12117": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12118": {
+    "error": "no_corpus"
+  },
+  "12131": {
+    "error": "no_corpus"
+  },
+  "12134": {
+    "error": "no_corpus"
+  },
+  "12142": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12145": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12148": {
+    "error": "no_corpus"
+  },
+  "12150": {
+    "error": "no_corpus"
+  },
+  "12157": {
+    "error": "no_corpus"
+  },
+  "12161": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12162": {
+    "error": "no_corpus"
+  },
+  "12165": {
+    "error": "no_corpus"
+  },
+  "12168": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12173": {
+    "error": "no_corpus"
+  },
+  "12175": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12176": {
+    "error": "no_corpus"
+  },
+  "12177": {
+    "error": "no_corpus"
+  },
+  "12178": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12180": {
+    "error": "no_corpus"
+  },
+  "12195": {
+    "error": "no_corpus"
+  },
+  "12197": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12204": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12206": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12211": {
+    "error": "no_corpus"
+  },
+  "12218": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12219": {
+    "error": "no_corpus"
+  },
+  "12227": {
+    "error": "no_corpus"
+  },
+  "12230": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12233": {
+    "error": "no_corpus"
+  },
+  "12236": {
+    "error": "no_corpus"
+  },
+  "12250": {
+    "error": "no_corpus"
+  },
+  "12253": {
+    "error": "no_corpus"
+  },
+  "12260": {
+    "error": "no_corpus"
+  },
+  "12266": {
+    "error": "no_corpus"
+  },
+  "12268": {
+    "error": "no_corpus"
+  },
+  "12269": {
+    "error": "no_corpus"
+  },
+  "12270": {
+    "error": "no_corpus"
+  },
+  "12271": {
+    "error": "no_corpus"
+  },
+  "12275": {
+    "error": "no_corpus"
+  },
+  "12279": {
+    "error": "no_corpus"
+  },
+  "12284": {
+    "error": "no_corpus"
+  },
+  "12293": {
+    "error": "no_corpus"
+  },
+  "12297": {
+    "error": "no_corpus"
+  },
+  "12305": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12307": {
+    "error": "no_corpus"
+  },
+  "12311": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12313": {
+    "error": "no_corpus"
+  },
+  "12318": {
+    "error": "no_corpus"
+  },
+  "12337": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12339": {
+    "error": "no_corpus"
+  },
+  "12340": {
+    "error": "no_corpus"
+  },
+  "12350": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12357": {
+    "error": "no_corpus"
+  },
+  "12365": {
+    "error": "no_corpus"
+  },
+  "12367": {
+    "error": "no_corpus"
+  },
+  "12381": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12386": {
+    "error": "no_corpus"
+  },
+  "12390": {
+    "error": "no_corpus"
+  },
+  "12401": {
+    "error": "no_corpus"
+  },
+  "12402": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12406": {
+    "error": "no_corpus"
+  },
+  "12409": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12411": {
+    "error": "no_corpus"
+  },
+  "12416": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12420": {
+    "error": "no_corpus"
+  },
+  "12436": {
+    "error": "no_corpus"
+  },
+  "12439": {
+    "error": "no_corpus"
+  },
+  "12441": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12450": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12452": {
+    "error": "no_corpus"
+  },
+  "12453": {
+    "error": "no_corpus"
+  },
+  "12457": {
+    "error": "no_corpus"
+  },
+  "12460": {
+    "error": "no_corpus"
+  },
+  "12465": {
+    "error": "no_corpus"
+  },
+  "12466": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12469": {
+    "error": "no_verified_entries",
+    "raw_count": 4,
+    "rejected_count": 8
+  },
+  "12471": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12472": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12473": {
+    "error": "no_corpus"
+  },
+  "12474": {
+    "error": "no_corpus"
+  },
+  "12482": {
+    "error": "no_corpus"
+  },
+  "12489": {
+    "error": "no_corpus"
+  },
+  "12490": {
+    "error": "no_corpus"
+  },
+  "12496": {
+    "error": "no_corpus"
+  },
+  "12498": {
+    "error": "no_corpus"
+  },
+  "12503": {
+    "error": "no_corpus"
+  },
+  "12504": {
+    "error": "no_corpus"
+  },
+  "12510": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12517": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12523": {
+    "error": "no_corpus"
+  },
+  "12524": {
+    "error": "no_corpus"
+  },
+  "12529": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12532": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12534": {
+    "error": "no_corpus"
+  },
+  "12543": {
+    "error": "no_corpus"
+  },
+  "12548": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12549": {
+    "error": "no_corpus"
+  },
+  "12556": {
+    "error": "no_corpus"
+  },
+  "12559": {
+    "error": "no_corpus"
+  },
+  "12563": {
+    "error": "no_verified_entries",
+    "raw_count": 0,
+    "rejected_count": 0
+  },
+  "12565": {
+    "error": "no_corpus"
+  }
+}

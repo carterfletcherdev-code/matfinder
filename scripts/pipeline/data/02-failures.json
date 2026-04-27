@@ -1,0 +1,4630 @@
+{
+  "12": {
+    "website": "https://www.flowmma.org/contact",
+    "error": "fetch failed"
+  },
+  "16": {
+    "website": "https://www.gteambjj.com",
+    "error": "fetch failed"
+  },
+  "44": {
+    "website": "http://10thplanetlasvegascentral.com",
+    "error": "HTTP 401"
+  },
+  "53": {
+    "website": "http://www.villsbrosbjj.com",
+    "error": "fetch failed"
+  },
+  "123": {
+    "website": "http://ensojiujitsuportland.com",
+    "error": "HTTP 403"
+  },
+  "140": {
+    "website": "https://whyjj.com",
+    "error": "fetch failed"
+  },
+  "145": {
+    "website": "http://cleverjiujitsuacademy.com",
+    "error": "fetch failed"
+  },
+  "176": {
+    "website": "http://www.rootsbjjhawaii.com",
+    "error": "HTTP 404"
+  },
+  "183": {
+    "website": "http://www.hawaiijiujitsulab.com",
+    "error": "fetch failed"
+  },
+  "265": {
+    "website": "https://760jiujitsu.com",
+    "error": "HTTP 403"
+  },
+  "318": {
+    "website": "http://undisputedfightacademy.com",
+    "error": "fetch failed"
+  },
+  "374": {
+    "website": "http://www.paragonbjjsm.com",
+    "error": "timeout"
+  },
+  "470": {
+    "website": "https://aurumjitsu.com",
+    "error": "fetch failed"
+  },
+  "484": {
+    "website": "http://www.bjjsocialclubaz.com",
+    "error": "timeout"
+  },
+  "506": {
+    "website": "http://www.nosurrenderathletics.com",
+    "error": "HTTP 403"
+  },
+  "524": {
+    "website": "http://www.teammonstrobjj.org",
+    "error": "fetch failed"
+  },
+  "537": {
+    "website": "http://www.vibejiujitsu.com",
+    "error": "fetch failed"
+  },
+  "695": {
+    "website": "https://fusionmartialarts.net/program/brazilian-jiu-jitsu",
+    "error": "HTTP 404"
+  },
+  "749": {
+    "website": "https://www.bryantbjj.com",
+    "error": "HTTP 503"
+  },
+  "826": {
+    "website": "http://www.dafirmatc.com",
+    "error": "fetch failed"
+  },
+  "855": {
+    "website": "http://pejakmartialarts.com",
+    "error": "timeout"
+  },
+  "861": {
+    "website": "http://www.gbclermont.com",
+    "error": "HTTP 404"
+  },
+  "894": {
+    "website": "https://www.brownsbrazilianjiujitsu.com",
+    "error": "HTTP 404"
+  },
+  "947": {
+    "website": "https://lp.abdiasjiujitsu.com/?utm_source=google&utm_medium=my-business",
+    "error": "fetch failed"
+  },
+  "1008": {
+    "website": "http://www.trueartbjj.com",
+    "error": "timeout"
+  },
+  "1101": {
+    "website": "https://www.roguebjj.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=981420827031740980",
+    "error": "HTTP 404"
+  },
+  "1113": {
+    "website": "https://www.carolinacombatives.com",
+    "error": "fetch failed"
+  },
+  "1237": {
+    "website": "https://absolute-martialartsandfitness.com",
+    "error": "HTTP 403"
+  },
+  "1249": {
+    "website": "http://killerbeessouthflorida.com",
+    "error": "HTTP 403"
+  },
+  "1255": {
+    "website": "http://www.gothamcityjiujitsu.com",
+    "error": "fetch failed"
+  },
+  "1274": {
+    "website": "http://rinekarate.com",
+    "error": "fetch failed"
+  },
+  "1292": {
+    "website": "http://www.oldlouisvillejiujitsuacademy.com",
+    "error": "timeout"
+  },
+  "1296": {
+    "website": "https://theparadigmacademy.com",
+    "error": "timeout"
+  },
+  "1399": {
+    "website": "http://www.garudamissoula.com",
+    "error": "HTTP 404"
+  },
+  "1414": {
+    "website": "http://chicory-trumpet-x4zy.squarespace.com",
+    "error": "HTTP 404"
+  },
+  "1517": {
+    "website": "https://momentumbjj.com",
+    "error": "fetch failed"
+  },
+  "1569": {
+    "website": "https://www.honeybadgertrainingfacility.com",
+    "error": "HTTP 404"
+  },
+  "1634": {
+    "website": "https://www.efjja.net",
+    "error": "fetch failed"
+  },
+  "1792": {
+    "website": "http://westbaymartialarts.com",
+    "error": "fetch failed"
+  },
+  "1834": {
+    "website": "https://www.badcompanybjj.com",
+    "error": "fetch failed"
+  },
+  "1869": {
+    "website": "https://www.agogejjct.com",
+    "error": "fetch failed"
+  },
+  "1981": {
+    "website": "http://www.heavymetalbjj.com",
+    "error": "HTTP 401"
+  },
+  "2037": {
+    "website": "http://www.claunchacademyofbjj.com",
+    "error": "timeout"
+  },
+  "2066": {
+    "website": "https://lp.abdiasjiujitsu.com/?utm_source=google&utm_medium=my-business",
+    "error": "fetch failed"
+  },
+  "2079": {
+    "website": "http://mickdowlingsportsworld.ie",
+    "error": "fetch failed"
+  },
+  "2090": {
+    "website": "http://www.ultrawhitecollarboxing.co.uk",
+    "error": "fetch failed"
+  },
+  "2092": {
+    "website": "http://waterfordmartialarts.com",
+    "error": "fetch failed"
+  },
+  "2093": {
+    "website": "https://www.fitzbox.co.uk",
+    "error": "fetch failed"
+  },
+  "2094": {
+    "website": "http://www.facebook.com/bexhillabc",
+    "error": "fetch failed"
+  },
+  "2095": {
+    "website": "https://gym-location.co.uk/gym-crawley",
+    "error": "fetch failed"
+  },
+  "2096": {
+    "website": "https://www.combatathleticsacademy.com",
+    "error": "fetch failed"
+  },
+  "2097": {
+    "website": "https://www.graciebarrascotland.com",
+    "error": "fetch failed"
+  },
+  "2098": {
+    "website": "https://warrioracademies.com",
+    "error": "fetch failed"
+  },
+  "2100": {
+    "website": "http://www.barkingabbeyishinryu.co.uk",
+    "error": "fetch failed"
+  },
+  "2101": {
+    "website": "http://www.tekiogemu.co.uk",
+    "error": "fetch failed"
+  },
+  "2102": {
+    "website": "http://www.richmondfitnessclub.co.uk",
+    "error": "fetch failed"
+  },
+  "2103": {
+    "website": "https://www.everyoneactive.com/centre/royston-leisure-centre",
+    "error": "fetch failed"
+  },
+  "2106": {
+    "website": "http://www.nottinghamproamcentre.co.uk",
+    "error": "fetch failed"
+  },
+  "2111": {
+    "website": "https://www.bu-sen.co.uk",
+    "error": "fetch failed"
+  },
+  "2113": {
+    "website": "http://dojo.tech",
+    "error": "HTTP 403"
+  },
+  "2116": {
+    "website": "http://www.dublinmma.com",
+    "error": "fetch failed"
+  },
+  "2117": {
+    "website": "http://www.leith-victoria-aac.com",
+    "error": "fetch failed"
+  },
+  "2118": {
+    "website": "http://www.longeatonmartialartscentre.co.uk",
+    "error": "fetch failed"
+  },
+  "2138": {
+    "website": "https://www.cavankenpo.com",
+    "error": "HTTP 404"
+  },
+  "2139": {
+    "website": "http://www.blackeagledojo.com",
+    "error": "fetch failed"
+  },
+  "2144": {
+    "website": "http://www.millennium-martial-arts.co.uk",
+    "error": "fetch failed"
+  },
+  "2145": {
+    "website": "http://www.kingslynn-bjj.co.uk",
+    "error": "fetch failed"
+  },
+  "2152": {
+    "website": "http://www.oxfordtaichi.com",
+    "error": "HTTP 403"
+  },
+  "2157": {
+    "website": "https://totalboxer.com",
+    "error": "fetch failed"
+  },
+  "2165": {
+    "website": "http://www.dmmayacsa.com",
+    "error": "fetch failed"
+  },
+  "2166": {
+    "website": "http://www.graciebarradublin.com",
+    "error": "fetch failed"
+  },
+  "2168": {
+    "website": "http://www.graciebarraderby.co.uk",
+    "error": "fetch failed"
+  },
+  "2172": {
+    "website": "http://www.tsunami-gym.co.uk",
+    "error": "fetch failed"
+  },
+  "2179": {
+    "website": "https://sungchuankungfu.com/kung-fu-new-cross",
+    "error": "HTTP 404"
+  },
+  "2180": {
+    "website": "https://www.sungchuankungfu.com/sung-chuan-kung-fu-west-london",
+    "error": "HTTP 404"
+  },
+  "2191": {
+    "website": "https://www.circlemartialarts.com",
+    "error": "HTTP 404"
+  },
+  "2195": {
+    "website": "https://www.fightingfit.org.uk",
+    "error": "fetch failed"
+  },
+  "2196": {
+    "website": "https://alborzfitness.com",
+    "error": "fetch failed"
+  },
+  "2208": {
+    "website": "http://www.handsofstone.org",
+    "error": "fetch failed"
+  },
+  "2214": {
+    "website": "https://nairn-boxing-club.business.site",
+    "error": "HTTP 404"
+  },
+  "2228": {
+    "website": "http://liverpoolkendo.com",
+    "error": "fetch failed"
+  },
+  "2237": {
+    "website": "https://www.thefalconclapham.co.uk/?utm_source=google&utm_medium=organic&utm_campaign=gmb-homepage",
+    "error": "HTTP 403"
+  },
+  "2239": {
+    "website": "https://equilibrium-martial-arts.business.site",
+    "error": "HTTP 404"
+  },
+  "2240": {
+    "website": "http://www.aireboroughthaiboxing.com",
+    "error": "fetch failed"
+  },
+  "2248": {
+    "website": "https://rathboneboxingclub.com",
+    "error": "fetch failed"
+  },
+  "2274": {
+    "website": "https://www.gothedistancecic.co.uk/dcbc-2",
+    "error": "HTTP 404"
+  },
+  "2290": {
+    "website": "http://www.demaa.co.uk",
+    "error": "fetch failed"
+  },
+  "2337": {
+    "website": "http://www.arenawexford.com",
+    "error": "fetch failed"
+  },
+  "2341": {
+    "website": "omgfitness.org",
+    "error": "Failed to parse URL from omgfitness.org"
+  },
+  "2344": {
+    "website": "http://morecambedistrictboxingacademy.com/?utm_source=gmb&utm_medium=referral",
+    "error": "fetch failed"
+  },
+  "2360": {
+    "website": "https://tkdsport.co.uk",
+    "error": "HTTP 503"
+  },
+  "2371": {
+    "website": "http://smithfieldboxingclub.com",
+    "error": "fetch failed"
+  },
+  "2383": {
+    "website": "http://www.rga.ie",
+    "error": "HTTP 403"
+  },
+  "2400": {
+    "website": "http://www.hardtargetselfdefence.com",
+    "error": "fetch failed"
+  },
+  "2411": {
+    "website": "koaloi.co.uk",
+    "error": "Failed to parse URL from koaloi.co.uk"
+  },
+  "2417": {
+    "website": "https://www.team-greaves.com",
+    "error": "HTTP 404"
+  },
+  "2443": {
+    "website": "https://www.thegrapplehub.com",
+    "error": "fetch failed"
+  },
+  "2456": {
+    "website": "https://www.100wardourst.com/100-wardour-st-homepage/the-den",
+    "error": "HTTP 404"
+  },
+  "2463": {
+    "website": "https://www.everyoneactive.com/centre/sevenoaks-leisure-centre",
+    "error": "HTTP 403"
+  },
+  "2472": {
+    "website": "https://www.yorkri.org.uk",
+    "error": "fetch failed"
+  },
+  "2473": {
+    "website": "http://www.didcot.gov.uk/willowbrook-leisure-centre1",
+    "error": "HTTP 401"
+  },
+  "2485": {
+    "website": "http://www.nama4kicks.co.uk",
+    "error": "fetch failed"
+  },
+  "2491": {
+    "website": "https://www.paragonacademy.co.uk",
+    "error": "fetch failed"
+  },
+  "2492": {
+    "website": "https://www.newport.gov.uk/en/Leisure-Tourism/Rivermead-Centre.aspx",
+    "error": "HTTP 403"
+  },
+  "2494": {
+    "website": "https://www.secondsout-gym.co.uk",
+    "error": "fetch failed"
+  },
+  "2495": {
+    "website": "http://www.longeatonjudoclub.co.uk",
+    "error": "fetch failed"
+  },
+  "2513": {
+    "website": "http://www.lido.hampshire.org.uk",
+    "error": "fetch failed"
+  },
+  "2524": {
+    "website": "http://www.rystonclub.com",
+    "error": "fetch failed"
+  },
+  "2533": {
+    "website": "https://better.org.uk/leisure/york-hall-leisure-centre",
+    "error": "timeout"
+  },
+  "2551": {
+    "website": "http://www.gedling.gov.uk/leisure/facilityvenuehire/communitycentres/burtonroad",
+    "error": "HTTP 404"
+  },
+  "2553": {
+    "website": "https://studiocombatacademy.co.uk",
+    "error": "fetch failed"
+  },
+  "2557": {
+    "website": "http://www.spiritdojo.co.uk",
+    "error": "fetch failed"
+  },
+  "2574": {
+    "website": "http://www.activerutland.org.uk",
+    "error": "HTTP 401"
+  },
+  "2597": {
+    "website": "https://gforcema.com/about-us/g-force-rugby",
+    "error": "HTTP 404"
+  },
+  "2601": {
+    "website": "https://www.bartonac.co.uk",
+    "error": "HTTP 500"
+  },
+  "2608": {
+    "website": "https://dun-laoghaire-martial-arts.sumupstore.com",
+    "error": "HTTP 403"
+  },
+  "2641": {
+    "website": "http://www.7jiujitsuhartlepool.co.uk",
+    "error": "fetch failed"
+  },
+  "2660": {
+    "website": "http://www.pound4poundleicester.com",
+    "error": "HTTP 403"
+  },
+  "2662": {
+    "website": "https://www.sdcppn.ie/directory/neilstown-boxing-youth-club",
+    "error": "HTTP 404"
+  },
+  "2674": {
+    "website": "https://didcotboxingacademy.co.uk",
+    "error": "fetch failed"
+  },
+  "2706": {
+    "website": "http://mickdowlingsportsworld.ie",
+    "error": "fetch failed"
+  },
+  "2709": {
+    "website": "http://waterfordmartialarts.com",
+    "error": "fetch failed"
+  },
+  "2710": {
+    "website": "www.connacht-taekwondo.com",
+    "error": "Failed to parse URL from www.connacht-taekwondo.com"
+  },
+  "2711": {
+    "website": "http://www.kenhorankickboxing.ie",
+    "error": "fetch failed"
+  },
+  "2727": {
+    "website": "http://www.dublinmma.com",
+    "error": "fetch failed"
+  },
+  "2733": {
+    "website": "https://www.cavankenpo.com",
+    "error": "HTTP 404"
+  },
+  "2734": {
+    "website": "http://www.blackeagledojo.com",
+    "error": "fetch failed"
+  },
+  "2738": {
+    "website": "http://www.graciebarradublin.com",
+    "error": "fetch failed"
+  },
+  "2751": {
+    "website": "www.kinsaletkd.ie",
+    "error": "Failed to parse URL from www.kinsaletkd.ie"
+  },
+  "2764": {
+    "website": "http://www.arenawexford.com",
+    "error": "fetch failed"
+  },
+  "2776": {
+    "website": "http://smithfieldboxingclub.com",
+    "error": "fetch failed"
+  },
+  "2795": {
+    "website": "http://www.rga.ie",
+    "error": "HTTP 403"
+  },
+  "2824": {
+    "website": "http://www.hardtargetselfdefence.com",
+    "error": "fetch failed"
+  },
+  "2842": {
+    "website": "http://www.rystonclub.com",
+    "error": "fetch failed"
+  },
+  "2862": {
+    "website": "http://www.ksck.de",
+    "error": "HTTP 403"
+  },
+  "2864": {
+    "website": "https://www.milkhoneycologne.de",
+    "error": "fetch failed"
+  },
+  "2865": {
+    "website": "http://www.yingmen-schule.de",
+    "error": "HTTP 403"
+  },
+  "2878": {
+    "website": "https://www.alpha-sports.nl",
+    "error": "fetch failed"
+  },
+  "2880": {
+    "website": "http://www.blackboxleuven.be",
+    "error": "fetch failed"
+  },
+  "2881": {
+    "website": "https://willpower-gym.business.site",
+    "error": "HTTP 404"
+  },
+  "2899": {
+    "website": "https://nauwelaerts.nl",
+    "error": "fetch failed"
+  },
+  "2953": {
+    "website": "http://bjj-sv.de",
+    "error": "HTTP 404"
+  },
+  "2961": {
+    "website": "http://www.judoboom.be",
+    "error": "fetch failed"
+  },
+  "2972": {
+    "website": "http://www.sivagym.nl",
+    "error": "timeout"
+  },
+  "2974": {
+    "website": "https://www.undergroundcrew.nl",
+    "error": "fetch failed"
+  },
+  "2978": {
+    "website": "https://www.selbstverteidigung-duesseldorf.com",
+    "error": "HTTP 404"
+  },
+  "3004": {
+    "website": "https://www.rocky-gym.be",
+    "error": "fetch failed"
+  },
+  "3005": {
+    "website": "http://www.bert3s.be",
+    "error": "fetch failed"
+  },
+  "3012": {
+    "website": "http://peja-sport-gym.com",
+    "error": "fetch failed"
+  },
+  "3020": {
+    "website": "http://abc-rheinkamp.de",
+    "error": "fetch failed"
+  },
+  "3062": {
+    "website": "https://aebconcept.wixsite.com/academytigerclub",
+    "error": "HTTP 404"
+  },
+  "3080": {
+    "website": "https://www.judoinkaarst.de",
+    "error": "fetch failed"
+  },
+  "3091": {
+    "website": "https://www.budokai-vanzanten.nl",
+    "error": "fetch failed"
+  },
+  "3134": {
+    "website": "https://www.imaf.co/trainingsort",
+    "error": "HTTP 404"
+  },
+  "3143": {
+    "website": "https://www.fightingteamhawks.be",
+    "error": "HTTP 410"
+  },
+  "3169": {
+    "website": "http://karatedo-oyama.nl/index.html",
+    "error": "fetch failed"
+  },
+  "3181": {
+    "website": "https://www.antwerpen.be/nl/info/52d5052039d8a6ec798b4869/buurtsporthal-kiel-antwerpen",
+    "error": "terminated"
+  },
+  "3186": {
+    "website": "http://users.telenet.be/pierresan",
+    "error": "fetch failed"
+  },
+  "3193": {
+    "website": "https://www.sport.jodoigne.be",
+    "error": "fetch failed"
+  },
+  "3203": {
+    "website": "http://www.selbstverteidigung-verl.de",
+    "error": "HTTP 500"
+  },
+  "3207": {
+    "website": "www.capoeira-hd.com;www.tanzzone.de",
+    "error": "Failed to parse URL from www.capoeira-hd.com;www.tanzzone.de"
+  },
+  "3216": {
+    "website": "http://wt-karlsruhe.info",
+    "error": "fetch failed"
+  },
+  "3227": {
+    "website": "https://www.samurai-lichtenau.de",
+    "error": "HTTP 403"
+  },
+  "3235": {
+    "website": "https://www.budo-akademie-kelheim.de",
+    "error": "fetch failed"
+  },
+  "3237": {
+    "website": "https://www.milkhoneycologne.de",
+    "error": "fetch failed"
+  },
+  "3240": {
+    "website": "https://www.wingtsung-allgaeu.de",
+    "error": "fetch failed"
+  },
+  "3253": {
+    "website": "http://www.yingmen-schule.de",
+    "error": "HTTP 403"
+  },
+  "3257": {
+    "website": "https://ewto-sonntag.de",
+    "error": "fetch failed"
+  },
+  "3262": {
+    "website": "http://www.taichiverein-linz.at",
+    "error": "fetch failed"
+  },
+  "3268": {
+    "website": "www.wt-kampfschule.de",
+    "error": "Failed to parse URL from www.wt-kampfschule.de"
+  },
+  "3270": {
+    "website": "https://judo.vfl-zehlendorf.de",
+    "error": "fetch failed"
+  },
+  "3284": {
+    "website": "http://www.kimura-karate-online.de",
+    "error": "fetch failed"
+  },
+  "3294": {
+    "website": "http://www.berlinsan.de",
+    "error": "fetch failed"
+  },
+  "3295": {
+    "website": "http://www.sportstudio-choi.de",
+    "error": "fetch failed"
+  },
+  "3296": {
+    "website": "http://www.zentrum-am-park.de",
+    "error": "fetch failed"
+  },
+  "3298": {
+    "website": "http://www.vingtsun-berlin.de",
+    "error": "fetch failed"
+  },
+  "3303": {
+    "website": "https://www.taichi-chuan-berlin.de",
+    "error": "fetch failed"
+  },
+  "3304": {
+    "website": "http://www.gekko-taichi-berlin.de",
+    "error": "fetch failed"
+  },
+  "3318": {
+    "website": "http://www.taiji-berlin.de/de",
+    "error": "HTTP 404"
+  },
+  "3319": {
+    "website": "http://www.taichi-berlin.de.vu",
+    "error": "fetch failed"
+  },
+  "3325": {
+    "website": "http://www.kampfsportlehrer-berlin.de",
+    "error": "fetch failed"
+  },
+  "3328": {
+    "website": "https://www.thaiboxen-mma-berlin.de",
+    "error": "HTTP 403"
+  },
+  "3335": {
+    "website": "http://www.kimura-karate-online.de",
+    "error": "fetch failed"
+  },
+  "3343": {
+    "website": "http://www.sportcenter-arashi.de",
+    "error": "fetch failed"
+  },
+  "3345": {
+    "website": "http://www.taiyo-berlin.net",
+    "error": "fetch failed"
+  },
+  "3346": {
+    "website": "http://www.wt-koepenick.de/default.html",
+    "error": "fetch failed"
+  },
+  "3347": {
+    "website": "http://www.samurai-ryu-berlin.de",
+    "error": "fetch failed"
+  },
+  "3349": {
+    "website": "http://www.kampfsport-in-pankow.de",
+    "error": "fetch failed"
+  },
+  "3352": {
+    "website": "http://blackbears-berlin.de/blackbears-berlin/Home.html",
+    "error": "HTTP 404"
+  },
+  "3359": {
+    "website": "http://www.cma-y.ch",
+    "error": "fetch failed"
+  },
+  "3360": {
+    "website": "http://www.garagebuy.de",
+    "error": "fetch failed"
+  },
+  "3365": {
+    "website": "https://taekwon-do-bonn.de",
+    "error": "HTTP 404"
+  },
+  "3386": {
+    "website": "http://www.taekwondo-akademie-dresden.de",
+    "error": "fetch failed"
+  },
+  "3393": {
+    "website": "https://www.martialarts-steinhagen.de",
+    "error": "HTTP 403"
+  },
+  "3420": {
+    "website": "http://www.sport-akademie.eu",
+    "error": "fetch failed"
+  },
+  "3430": {
+    "website": "http://www.tkd-rastatt.de",
+    "error": "fetch failed"
+  },
+  "3443": {
+    "website": "https://wt-neuenstein.de",
+    "error": "fetch failed"
+  },
+  "3444": {
+    "website": "http://aikidomannheim.de",
+    "error": "fetch failed"
+  },
+  "3445": {
+    "website": "http://bjj-sv.de",
+    "error": "HTTP 404"
+  },
+  "3450": {
+    "website": "http://cpsv.info/index.php/sektionen/allg-kampfsport/willkommen.html",
+    "error": "fetch failed"
+  },
+  "3460": {
+    "website": "http://www.mannheim-wt.de",
+    "error": "fetch failed"
+  },
+  "3464": {
+    "website": "http://www.e2w-maa.de",
+    "error": "fetch failed"
+  },
+  "3469": {
+    "website": "http://kungfu.qi-dao.de",
+    "error": "fetch failed"
+  },
+  "3505": {
+    "website": "http://www.budokan-donautal.de",
+    "error": "fetch failed"
+  },
+  "3506": {
+    "website": "https://www.aikidounlimited.ch",
+    "error": "fetch failed"
+  },
+  "3507": {
+    "website": "http://www.iwamaaikido.ch",
+    "error": "HTTP 401"
+  },
+  "3510": {
+    "website": "http://suhsport.yolasite.com",
+    "error": "HTTP 404"
+  },
+  "3538": {
+    "website": "https://kungfu-company.de",
+    "error": "fetch failed"
+  },
+  "3540": {
+    "website": "https://schulen.ewto.at/5110-oberndorf-bei-salzburg",
+    "error": "HTTP 404"
+  },
+  "3555": {
+    "website": "http://www.shihan.ch",
+    "error": "fetch failed"
+  },
+  "3559": {
+    "website": "https://ksc-zwiesel.jimdo.com",
+    "error": "fetch failed"
+  },
+  "3571": {
+    "website": "https://www.selbstverteidigung-duesseldorf.com",
+    "error": "HTTP 404"
+  },
+  "3574": {
+    "website": "http://www.muenster.org/aikikai/index.html",
+    "error": "HTTP 404"
+  },
+  "3579": {
+    "website": "https://www.wonnigLife.de",
+    "error": "fetch failed"
+  },
+  "3580": {
+    "website": "https://www.kampfsport-buxtehude.com",
+    "error": "fetch failed"
+  },
+  "3594": {
+    "website": "http://arena-dortmund.de/kampfsport",
+    "error": "fetch failed"
+  },
+  "3606": {
+    "website": "https://www.wingtsun-schule-mainz.de",
+    "error": "fetch failed"
+  },
+  "3625": {
+    "website": "http://www.bsvmagdeburg.com/index.html",
+    "error": "fetch failed"
+  },
+  "3629": {
+    "website": "https://www.cc-siegen.de/dienste/boneyard-skatehalle",
+    "error": "HTTP 404"
+  },
+  "3641": {
+    "website": "https://roter-drache-leipzig.de",
+    "error": "fetch failed"
+  },
+  "3652": {
+    "website": "http://www.shinzatodojo.cz",
+    "error": "fetch failed"
+  },
+  "3653": {
+    "website": "https://www.esgfrankonia.de/abteilungen/kampfsport",
+    "error": "fetch failed"
+  },
+  "3656": {
+    "website": "https://frankfurt.de/themen/soziales-und-gesellschaft/kinder-und-jugendliche/freizeitangebote/wegweiser-einrichtungen-der-okja/jugendhaeuser/box--und-tischtenniscamp-gallus",
+    "error": "HTTP 403"
+  },
+  "3662": {
+    "website": "https://wtrifo.de",
+    "error": "fetch failed"
+  },
+  "3679": {
+    "website": "http://www.yoga-harmony.com",
+    "error": "HTTP 403"
+  },
+  "3682": {
+    "website": "https://www.i-pensa.de/de/standorte/wuerzburg",
+    "error": "fetch failed"
+  },
+  "3683": {
+    "website": "https://lionsgym-lorch.de",
+    "error": "fetch failed"
+  },
+  "3687": {
+    "website": "https://kampfkunstsmac.jimdo.com",
+    "error": "fetch failed"
+  },
+  "3698": {
+    "website": "https://ffbreisgau.de.tl",
+    "error": "HTTP 410"
+  },
+  "3702": {
+    "website": "www.lions-gym.com",
+    "error": "Failed to parse URL from www.lions-gym.com"
+  },
+  "3711": {
+    "website": "http://www.wing-tsung-school.de",
+    "error": "fetch failed"
+  },
+  "3721": {
+    "website": "https://www.lma.ac/unsere-schulen",
+    "error": "HTTP 404"
+  },
+  "3723": {
+    "website": "https://www.sportschule-eberle.de",
+    "error": "fetch failed"
+  },
+  "3727": {
+    "website": "http://www.budocenter-karamitsos.de",
+    "error": "HTTP 403"
+  },
+  "3728": {
+    "website": "http://www.modern-school-of-wingchun.de",
+    "error": "fetch failed"
+  },
+  "3735": {
+    "website": "http://peja-sport-gym.com",
+    "error": "fetch failed"
+  },
+  "3739": {
+    "website": "https://www.tsv-grafing.de",
+    "error": "HTTP 500"
+  },
+  "3749": {
+    "website": "http://www.tjf-berlin.de/kontakt.php5",
+    "error": "HTTP 404"
+  },
+  "3755": {
+    "website": "http://tao-taekwondo.de",
+    "error": "HTTP 503"
+  },
+  "3762": {
+    "website": "www.yuukikai.de",
+    "error": "Failed to parse URL from www.yuukikai.de"
+  },
+  "3766": {
+    "website": "http://www.ksv-bernburg.de",
+    "error": "fetch failed"
+  },
+  "3771": {
+    "website": "http://www.hcbox.de",
+    "error": "fetch failed"
+  },
+  "3776": {
+    "website": "http://abc-rheinkamp.de",
+    "error": "fetch failed"
+  },
+  "3782": {
+    "website": "https://www.chandao.de",
+    "error": "fetch failed"
+  },
+  "3791": {
+    "website": "https://kampfsport-frammersbach.de",
+    "error": "fetch failed"
+  },
+  "3803": {
+    "website": "http://teamstapel.com",
+    "error": "HTTP 404"
+  },
+  "3806": {
+    "website": "http://ewto-akademie-aslan.de/index.php/2012-11-20-02-38-33/korbach",
+    "error": "HTTP 503"
+  },
+  "3815": {
+    "website": "https://www.taekwondo-st-valentin.at",
+    "error": "HTTP 403"
+  },
+  "3826": {
+    "website": "http://www.taekabo.de",
+    "error": "fetch failed"
+  },
+  "3841": {
+    "website": "https://www.kodokan-berlin.de",
+    "error": "fetch failed"
+  },
+  "3848": {
+    "website": "https://www.x-step.de",
+    "error": "fetch failed"
+  },
+  "3858": {
+    "website": "http://www.kta-kollers-taekwondo-akademie.de",
+    "error": "fetch failed"
+  },
+  "3865": {
+    "website": "http://nofeargym.com/gnx-world-gym",
+    "error": "HTTP 404"
+  },
+  "3890": {
+    "website": "https://casino-kywia.business.site/?utm_source=gmb&utm_medium=referral",
+    "error": "HTTP 404"
+  },
+  "3911": {
+    "website": "https://bunbu-ichi.ch/?page_id=111",
+    "error": "fetch failed"
+  },
+  "3920": {
+    "website": "http://sportzentrum-walsrode.com",
+    "error": "fetch failed"
+  },
+  "3926": {
+    "website": "https://www.fc-staetzling.de/html/web",
+    "error": "HTTP 404"
+  },
+  "3930": {
+    "website": "https://www.yomeikan.de/home",
+    "error": "fetch failed"
+  },
+  "3938": {
+    "website": "https://neusaess-kampfsport.de",
+    "error": "fetch failed"
+  },
+  "3942": {
+    "website": "https://samjutsu.com",
+    "error": "fetch failed"
+  },
+  "3945": {
+    "website": "https://www.3dragons.com",
+    "error": "fetch failed"
+  },
+  "3948": {
+    "website": "https://www.boxclub-landau.de",
+    "error": "fetch failed"
+  },
+  "3975": {
+    "website": "www.kampfsport-muensterland-song.de/taekwondo-schulen/telgte.php",
+    "error": "Failed to parse URL from www.kampfsport-muensterland-song.de/taekwondo-schulen/telgte.php"
+  },
+  "4001": {
+    "website": "http://www.kampfsportschule-ansbach.de",
+    "error": "fetch failed"
+  },
+  "4006": {
+    "website": "shingitai-stuttgart.de",
+    "error": "Failed to parse URL from shingitai-stuttgart.de"
+  },
+  "4007": {
+    "website": "www.bramato.de",
+    "error": "Failed to parse URL from www.bramato.de"
+  },
+  "4026": {
+    "website": "http://fffitness.cz/kontakty",
+    "error": "HTTP 500"
+  },
+  "4027": {
+    "website": "https://new-body-goleniow.business.site",
+    "error": "HTTP 404"
+  },
+  "4057": {
+    "website": "https://www.judoinkaarst.de",
+    "error": "fetch failed"
+  },
+  "4058": {
+    "website": "https://kampfkunstschuleneukoelln.de",
+    "error": "fetch failed"
+  },
+  "4084": {
+    "website": "https://www.djk-augsburg-hochzoll.de",
+    "error": "fetch failed"
+  },
+  "4104": {
+    "website": "www.taekwondo-kiel.de",
+    "error": "Failed to parse URL from www.taekwondo-kiel.de"
+  },
+  "4185": {
+    "website": "https://www.champion-gym.de",
+    "error": "fetch failed"
+  },
+  "4186": {
+    "website": "https://kampfsportzentrum-oehringen.de",
+    "error": "fetch failed"
+  },
+  "4212": {
+    "website": "https://www.bushido-siegen.de",
+    "error": "fetch failed"
+  },
+  "4226": {
+    "website": "http://www.kampfkunstschule-allgaeu.de",
+    "error": "HTTP 403"
+  },
+  "4249": {
+    "website": "https://www.imaf.co/trainingsort",
+    "error": "HTTP 404"
+  },
+  "4252": {
+    "website": "https://wingrevolution-germering.de",
+    "error": "fetch failed"
+  },
+  "4262": {
+    "website": "https://de-gym.paraharita.com/bushido-dragons",
+    "error": "timeout"
+  },
+  "4299": {
+    "website": "https://www.ctfrluxembourg.lu",
+    "error": "fetch failed"
+  },
+  "4306": {
+    "website": "https://skf-kickboxen.com",
+    "error": "fetch failed"
+  },
+  "4329": {
+    "website": "https://www.sokol-p7.wz.cz",
+    "error": "fetch failed"
+  },
+  "4330": {
+    "website": "https://german-top-team.one",
+    "error": "fetch failed"
+  },
+  "4332": {
+    "website": "https://www.karatestudiodan.de",
+    "error": "fetch failed"
+  },
+  "4345": {
+    "website": "http://www.yoo-sin.de",
+    "error": "fetch failed"
+  },
+  "4385": {
+    "website": "http://www.taekwondo-neuss.de",
+    "error": "HTTP 500"
+  },
+  "4415": {
+    "website": "https://www.tusporosstal.com",
+    "error": "fetch failed"
+  },
+  "4435": {
+    "website": "http://blackdragon-worms.de",
+    "error": "fetch failed"
+  },
+  "4474": {
+    "website": "www.taekwondo-sonner.de",
+    "error": "Failed to parse URL from www.taekwondo-sonner.de"
+  },
+  "4482": {
+    "website": "http://www.k4-leipzig.de",
+    "error": "fetch failed"
+  },
+  "4515": {
+    "website": "http://www.volam-regensburg.de",
+    "error": "fetch failed"
+  },
+  "4525": {
+    "website": "http://www.dbs2050.de",
+    "error": "HTTP 404"
+  },
+  "4534": {
+    "website": "https://sin-zen.de",
+    "error": "fetch failed"
+  },
+  "4543": {
+    "website": "https://www.hohnstaedtersv.org/fußball",
+    "error": "HTTP 404"
+  },
+  "4557": {
+    "website": "http://www.schaies.ch",
+    "error": "HTTP 400"
+  },
+  "4571": {
+    "website": "https://cervantesclub365.com",
+    "error": "timeout"
+  },
+  "4573": {
+    "website": "http://www.dojodentoryu.com",
+    "error": "HTTP 429"
+  },
+  "4575": {
+    "website": "http://www.dojoriveraryu.com",
+    "error": "timeout"
+  },
+  "4578": {
+    "website": "http://www.lacademie.org",
+    "error": "fetch failed"
+  },
+  "4579": {
+    "website": "https://centrodeentrenamientoaof.com",
+    "error": "fetch failed"
+  },
+  "4581": {
+    "website": "http://www.escuelakidokan.com",
+    "error": "fetch failed"
+  },
+  "4592": {
+    "website": "http://dojomurakami.no.sapo.pt",
+    "error": "fetch failed"
+  },
+  "4596": {
+    "website": "https://www.hathadojo.es",
+    "error": "fetch failed"
+  },
+  "4602": {
+    "website": "http://www.escuelajudosamurai.com",
+    "error": "fetch failed"
+  },
+  "4603": {
+    "website": "https://www.intersport.fr",
+    "error": "HTTP 403"
+  },
+  "4617": {
+    "website": "https://www.clandeldojo.com",
+    "error": "fetch failed"
+  },
+  "4632": {
+    "website": "http://www.cai-club.com",
+    "error": "fetch failed"
+  },
+  "4660": {
+    "website": "http://www.shaolin.org.cn",
+    "error": "fetch failed"
+  },
+  "4669": {
+    "website": "https://www.shaolindragon.es",
+    "error": "fetch failed"
+  },
+  "4674": {
+    "website": "https://www.listigerclub.pt",
+    "error": "fetch failed"
+  },
+  "4683": {
+    "website": "https://edac-burgos.es",
+    "error": "fetch failed"
+  },
+  "4701": {
+    "website": "https://www.dynamiclife.pt",
+    "error": "fetch failed"
+  },
+  "4702": {
+    "website": "https://tusartesmarciales.es/gimnasio-wu-tao-cuenca",
+    "error": "fetch failed"
+  },
+  "4706": {
+    "website": "https://www.gimnasioraulcalvo.com",
+    "error": "HTTP 429"
+  },
+  "4711": {
+    "website": "https://www.kungfuburgos.es",
+    "error": "fetch failed"
+  },
+  "4720": {
+    "website": "https://www.fightnationfn.com",
+    "error": "fetch failed"
+  },
+  "4722": {
+    "website": "http://kanojudoclub.com",
+    "error": "HTTP 429"
+  },
+  "4733": {
+    "website": "https://gimnasio-laroca.com",
+    "error": "fetch failed"
+  },
+  "4773": {
+    "website": "http://www.taichiporto.com",
+    "error": "fetch failed"
+  },
+  "4775": {
+    "website": "http://www.reusdeportiu.com",
+    "error": "fetch failed"
+  },
+  "4780": {
+    "website": "https://www.planetlifekids.es",
+    "error": "HTTP 404"
+  },
+  "4785": {
+    "website": "https://www.escuelakaesport.es",
+    "error": "fetch failed"
+  },
+  "4794": {
+    "website": "https://cetam-judo.fr",
+    "error": "fetch failed"
+  },
+  "4795": {
+    "website": "http://www.dojobambu.es",
+    "error": "HTTP 403"
+  },
+  "4796": {
+    "website": "http://www.judo-tao.com",
+    "error": "fetch failed"
+  },
+  "4804": {
+    "website": "https://www.geadealbarracin.org/deporte",
+    "error": "HTTP 403"
+  },
+  "4806": {
+    "website": "http://www.chvng.cat",
+    "error": "HTTP 404"
+  },
+  "4811": {
+    "website": "https://www.aamcat.com",
+    "error": "fetch failed"
+  },
+  "4841": {
+    "website": "https://balma-boxing-club.fr",
+    "error": "fetch failed"
+  },
+  "4856": {
+    "website": "https://www.danjeongdojang.com",
+    "error": "fetch failed"
+  },
+  "4875": {
+    "website": "http://www.martialartssanantonio.com",
+    "error": "HTTP 530"
+  },
+  "4897": {
+    "website": "http://lessadojocafe.pt",
+    "error": "fetch failed"
+  },
+  "4910": {
+    "website": "https://kungfudragonrojo.com",
+    "error": "fetch failed"
+  },
+  "4974": {
+    "website": "http://www.pau.fr/annuaire/190/11-gymnase-clermont-annuaire.htm",
+    "error": "HTTP 404"
+  },
+  "4980": {
+    "website": "https://baixas.fr",
+    "error": "fetch failed"
+  },
+  "5008": {
+    "website": "https://www.submissionlabs.com",
+    "error": "fetch failed"
+  },
+  "5011": {
+    "website": "http://www.rozasdeportes.org/instalacion.php?idc=8",
+    "error": "fetch failed"
+  },
+  "5015": {
+    "website": "https://www.pamplona.es/verPagina.asp?idPag=12303EN",
+    "error": "HTTP 404"
+  },
+  "5021": {
+    "website": "http://www.deportesourense.com",
+    "error": "fetch failed"
+  },
+  "5039": {
+    "website": "http://cskl.pt",
+    "error": "fetch failed"
+  },
+  "5041": {
+    "website": "https://www.ville-cabestany.fr/fr/sport-et-balades/complexe-nelson-mandela",
+    "error": "HTTP 404"
+  },
+  "5070": {
+    "website": "http://www.ksck.de",
+    "error": "HTTP 403"
+  },
+  "5077": {
+    "website": "http://locheskaratedo.fr",
+    "error": "fetch failed"
+  },
+  "5083": {
+    "website": "https://orlienasboxinggym.com",
+    "error": "HTTP 403"
+  },
+  "5086": {
+    "website": "https://www.milkhoneycologne.de",
+    "error": "fetch failed"
+  },
+  "5098": {
+    "website": "www.wt-kampfschule.de",
+    "error": "Failed to parse URL from www.wt-kampfschule.de"
+  },
+  "5118": {
+    "website": "http://www.lacademie.org",
+    "error": "fetch failed"
+  },
+  "5123": {
+    "website": "http://dojobordeaux.fr",
+    "error": "HTTP 500"
+  },
+  "5124": {
+    "website": "https://centrodeentrenamientoaof.com",
+    "error": "fetch failed"
+  },
+  "5128": {
+    "website": "https://www.paris.fr/lieux/gymnase-bretonneau-3168",
+    "error": "HTTP 404"
+  },
+  "5130": {
+    "website": "http://www.blackboxleuven.be",
+    "error": "fetch failed"
+  },
+  "5162": {
+    "website": "http://www.leoneacademy.ch",
+    "error": "fetch failed"
+  },
+  "5164": {
+    "website": "http://www.akido-larochelle.fr",
+    "error": "fetch failed"
+  },
+  "5171": {
+    "website": "https://us-bouscat.com",
+    "error": "fetch failed"
+  },
+  "5174": {
+    "website": "http://www.dojo-ecole.fr",
+    "error": "fetch failed"
+  },
+  "5193": {
+    "website": "http://www.kccobra.ch",
+    "error": "HTTP 403"
+  },
+  "5198": {
+    "website": "http://vietvudaovelaux.fr/web",
+    "error": "fetch failed"
+  },
+  "5202": {
+    "website": "https://www.intersport.fr",
+    "error": "HTTP 403"
+  },
+  "5260": {
+    "website": "http://www.shihan.ch",
+    "error": "fetch failed"
+  },
+  "5278": {
+    "website": "https://www.kks-tangun.de",
+    "error": "HTTP 403"
+  },
+  "5293": {
+    "website": "http://www.budofight-shop.com",
+    "error": "HTTP 404"
+  },
+  "5318": {
+    "website": "http://ville-oissel.fr/La-mairie/Les-services/Le-service-des-Sports",
+    "error": "HTTP 404"
+  },
+  "5334": {
+    "website": "https://www.cc-siegen.de/dienste/boneyard-skatehalle",
+    "error": "HTTP 404"
+  },
+  "5338": {
+    "website": "http://www.dojo-iroise.fr",
+    "error": "HTTP 429"
+  },
+  "5342": {
+    "website": "https://www.centre-kumano.ch",
+    "error": "HTTP 500"
+  },
+  "5358": {
+    "website": "http://judoclubbourgoinjallieu.fr",
+    "error": "HTTP 404"
+  },
+  "5367": {
+    "website": "https://www.camo-judo-oullins.fr",
+    "error": "fetch failed"
+  },
+  "5371": {
+    "website": "https://www.shaolindragon.es",
+    "error": "fetch failed"
+  },
+  "5388": {
+    "website": "https://www.aikigeneve.ch/index.html",
+    "error": "HTTP 400"
+  },
+  "5392": {
+    "website": "https://ffbreisgau.de.tl",
+    "error": "HTTP 410"
+  },
+  "5400": {
+    "website": "https://edac-burgos.es",
+    "error": "fetch failed"
+  },
+  "5414": {
+    "website": "https://www.sportsdepot.fr",
+    "error": "HTTP 503"
+  },
+  "5418": {
+    "website": "www.karatequimperle.wordpress.com",
+    "error": "Failed to parse URL from www.karatequimperle.wordpress.com"
+  },
+  "5421": {
+    "website": "http://peja-sport-gym.com",
+    "error": "fetch failed"
+  },
+  "5445": {
+    "website": "https://www.kungfuburgos.es",
+    "error": "fetch failed"
+  },
+  "5451": {
+    "website": "http://www.hcbox.de",
+    "error": "fetch failed"
+  },
+  "5457": {
+    "website": "http://www.clubsds.ch",
+    "error": "fetch failed"
+  },
+  "5458": {
+    "website": "https://www.vo-vietnam.ch",
+    "error": "fetch failed"
+  },
+  "5557": {
+    "website": "https://www.ten-no-mon.fr",
+    "error": "fetch failed"
+  },
+  "5580": {
+    "website": "https://bunbu-ichi.ch/?page_id=111",
+    "error": "fetch failed"
+  },
+  "5593": {
+    "website": "https://www.blackbullfightclub.it",
+    "error": "fetch failed"
+  },
+  "5611": {
+    "website": "https://www.lecubefightclub.fr",
+    "error": "HTTP 429"
+  },
+  "5614": {
+    "website": "https://www.3dragons.com",
+    "error": "fetch failed"
+  },
+  "5621": {
+    "website": "https://gingadobaiano92.business.site",
+    "error": "HTTP 404"
+  },
+  "5627": {
+    "website": "https://cetam-judo.fr",
+    "error": "fetch failed"
+  },
+  "5648": {
+    "website": "http://parabellum.club/nantes",
+    "error": "HTTP 404"
+  },
+  "5652": {
+    "website": "https://aebconcept.wixsite.com/academytigerclub",
+    "error": "HTTP 404"
+  },
+  "5706": {
+    "website": "https://www.sakuralakeway.com",
+    "error": "HTTP 403"
+  },
+  "5722": {
+    "website": "https://balma-boxing-club.fr",
+    "error": "fetch failed"
+  },
+  "5737": {
+    "website": "http://mugendosantpau.cat",
+    "error": "HTTP 429"
+  },
+  "5788": {
+    "website": "http://schoolofchamps.com",
+    "error": "timeout"
+  },
+  "5800": {
+    "website": "https://www.bushido-siegen.de",
+    "error": "fetch failed"
+  },
+  "5828": {
+    "website": "https://www.judosene.com",
+    "error": "fetch failed"
+  },
+  "5830": {
+    "website": "http://www.lyon.fr/lieu/services-publics/salle-des-fetes-de-la-garenne-.html",
+    "error": "HTTP 404"
+  },
+  "5834": {
+    "website": "https://dojobordeauxmetropole",
+    "error": "fetch failed"
+  },
+  "5853": {
+    "website": "https://www.fightingteamhawks.be",
+    "error": "HTTP 410"
+  },
+  "5854": {
+    "website": "http://www.judo-club-fleurance.fr",
+    "error": "fetch failed"
+  },
+  "5904": {
+    "website": "http://www.aizenay.eu",
+    "error": "fetch failed"
+  },
+  "5916": {
+    "website": "http://www.pau.fr/annuaire/190/11-gymnase-clermont-annuaire.htm",
+    "error": "HTTP 404"
+  },
+  "5943": {
+    "website": "http://judohenrichemont.free.fr",
+    "error": "HTTP 403"
+  },
+  "5965": {
+    "website": "https://baixas.fr",
+    "error": "fetch failed"
+  },
+  "5984": {
+    "website": "http://www.ville-dunkerque.fr",
+    "error": "HTTP 403"
+  },
+  "5993": {
+    "website": "https://www.sceaux.fr/annuaire-des-services-et-des-equipements/gymnase-du-centre",
+    "error": "HTTP 418"
+  },
+  "6013": {
+    "website": "http://www.saint-leu-la-foret.fr/le-complexe-jean-moulin.htm",
+    "error": "HTTP 404"
+  },
+  "6020": {
+    "website": "http://www.pflugervillekarate.com",
+    "error": "HTTP 404"
+  },
+  "6037": {
+    "website": "http://www.omsdouai.fr/fiche_infrastructure.php?id_equipement=24",
+    "error": "HTTP 404"
+  },
+  "6048": {
+    "website": "http://amicalelaiquepontduchateau.jimdo.com",
+    "error": "fetch failed"
+  },
+  "6054": {
+    "website": "https://www.gralon.net/mairies-france/bouches-du-rhone/equipement-sportif-dojo-alain-mimoun-dojo-a-mimoun-la-fare-les-oliviers-225149.htm",
+    "error": "HTTP 403"
+  },
+  "6076": {
+    "website": "https://www.brysurmarne.fr/ma-vie-a-bry/sport/equipements-sportifs",
+    "error": "HTTP 418"
+  },
+  "6083": {
+    "website": "http://www.dojo190.ffjudo.com",
+    "error": "fetch failed"
+  },
+  "6115": {
+    "website": "https://www.lacroiseedesarts.net",
+    "error": "HTTP 403"
+  },
+  "6127": {
+    "website": "http://www.vic-fight.com",
+    "error": "fetch failed"
+  },
+  "6128": {
+    "website": "http://grigny91.fr/decouvrir-et-sortir/service-des-sports/service-des-sports-equipements",
+    "error": "HTTP 404"
+  },
+  "6134": {
+    "website": "https://www.aikido-marseille-makoto.info",
+    "error": "fetch failed"
+  },
+  "6138": {
+    "website": "https://www.meudon.fr/annuaire/complexe-georges-millandy",
+    "error": "HTTP 418"
+  },
+  "6175": {
+    "website": "http://www.ville-saintgratien.fr/les_equipements_sportifs.html#hidalgo",
+    "error": "HTTP 404"
+  },
+  "6215": {
+    "website": "http://www.lido.hampshire.org.uk",
+    "error": "fetch failed"
+  },
+  "6219": {
+    "website": "http://www.judoclubsaintdenis.net",
+    "error": "fetch failed"
+  },
+  "6278": {
+    "website": "https://cuumonstpourcain.wixsite.com/vietvodaostpourcain/accueil",
+    "error": "HTTP 404"
+  },
+  "6288": {
+    "website": "https://www.libellulavolley.it",
+    "error": "fetch failed"
+  },
+  "6295": {
+    "website": "https://www.pamplona.es/verPagina.asp?idPag=12303EN",
+    "error": "HTTP 404"
+  },
+  "6296": {
+    "website": "https://wing-chun-kuen.fr/fr",
+    "error": "timeout"
+  },
+  "6298": {
+    "website": "http://www.aikido-dojoshinai.it",
+    "error": "fetch failed"
+  },
+  "6314": {
+    "website": "https://www.active.je/venues/fort-regent",
+    "error": "HTTP 404"
+  },
+  "6316": {
+    "website": "https://www.judo-gallardon.fr",
+    "error": "HTTP 503"
+  },
+  "6325": {
+    "website": "https://warriorofgodma.wix.com/makoto",
+    "error": "HTTP 404"
+  },
+  "6333": {
+    "website": "http://roc14.org/la-salle",
+    "error": "HTTP 404"
+  },
+  "6341": {
+    "website": "http://users.telenet.be/pierresan",
+    "error": "fetch failed"
+  },
+  "6343": {
+    "website": "https://www.ccbresseetsaone.fr",
+    "error": "HTTP 403"
+  },
+  "6372": {
+    "website": "https://www.ville-cabestany.fr/fr/sport-et-balades/complexe-nelson-mandela",
+    "error": "HTTP 404"
+  },
+  "6408": {
+    "website": "https://www.judoclubcotebasque.com",
+    "error": "fetch failed"
+  },
+  "6409": {
+    "website": "https://auterive-rugby.ffr.fr",
+    "error": "fetch failed"
+  },
+  "6418": {
+    "website": "https://sin-zen.de",
+    "error": "fetch failed"
+  },
+  "6430": {
+    "website": "https://www.paris.fr/equipements/gymnase-des-lilas-3157",
+    "error": "HTTP 404"
+  },
+  "6433": {
+    "website": "https://www.sport.jodoigne.be",
+    "error": "fetch failed"
+  },
+  "6453": {
+    "website": "http://www.wakai-team.com",
+    "error": "fetch failed"
+  },
+  "6473": {
+    "website": "https://www.kumgang-tkd.fi",
+    "error": "fetch failed"
+  },
+  "6476": {
+    "website": "http://www.malmobudokwai.se",
+    "error": "fetch failed"
+  },
+  "6483": {
+    "website": "https://www.chokeacademy.com",
+    "error": "fetch failed"
+  },
+  "6497": {
+    "website": "https://aik.se/boxning",
+    "error": "HTTP 404"
+  },
+  "6499": {
+    "website": "https://idrottonline.se/NorrkopingsJK-Judo",
+    "error": "fetch failed"
+  },
+  "6502": {
+    "website": "http://www.tkd.se",
+    "error": "HTTP 410"
+  },
+  "6523": {
+    "website": "https://www.combatjuju.com",
+    "error": "HTTP 404"
+  },
+  "6532": {
+    "website": "https://vipklubs.lv",
+    "error": "HTTP 520"
+  },
+  "6560": {
+    "website": "https://www.gotha-kendo.com",
+    "error": "fetch failed"
+  },
+  "6585": {
+    "website": "https://idrottonline.se/GoteborgsAK-Brottning",
+    "error": "fetch failed"
+  },
+  "6587": {
+    "website": "http://www.solvesborg.se/1813",
+    "error": "HTTP 404"
+  },
+  "6592": {
+    "website": "https://idrottonline.se/ForeningenAlebrottarna-Brottning",
+    "error": "fetch failed"
+  },
+  "6593": {
+    "website": "http://www.mhgym.info/START",
+    "error": "HTTP 404"
+  },
+  "6600": {
+    "website": "https://sportnetit.com/it_IT/storelocator-pescara",
+    "error": "HTTP 403"
+  },
+  "6606": {
+    "website": "https://www.houseofboxing.it",
+    "error": "fetch failed"
+  },
+  "6612": {
+    "website": "http://www.boksklubmarjan.hr",
+    "error": "fetch failed"
+  },
+  "6614": {
+    "website": "http://palestrasandonato.it",
+    "error": "HTTP 403"
+  },
+  "6615": {
+    "website": "http://www.taekwondo-graz.at",
+    "error": "HTTP 403"
+  },
+  "6618": {
+    "website": "http://www.eishoclub.it",
+    "error": "fetch failed"
+  },
+  "6636": {
+    "website": "http://www.leoneacademy.ch",
+    "error": "fetch failed"
+  },
+  "6639": {
+    "website": "https://www.dykchiasso.ch",
+    "error": "HTTP 406"
+  },
+  "6643": {
+    "website": "http://www.kccobra.ch",
+    "error": "HTTP 403"
+  },
+  "6672": {
+    "website": "kenshinkaigenova.it",
+    "error": "Failed to parse URL from kenshinkaigenova.it"
+  },
+  "6732": {
+    "website": "https://www.bushidotivoli.it",
+    "error": "fetch failed"
+  },
+  "6735": {
+    "website": "https://lombardia.achillemarozzo.it",
+    "error": "fetch failed"
+  },
+  "6737": {
+    "website": "http://www.stabileteam.com",
+    "error": "fetch failed"
+  },
+  "6747": {
+    "website": "https://hornetboxing.hr",
+    "error": "fetch failed"
+  },
+  "6760": {
+    "website": "https://boxeclubcatania.business.site",
+    "error": "HTTP 404"
+  },
+  "6767": {
+    "website": "judolika.com",
+    "error": "Failed to parse URL from judolika.com"
+  },
+  "6768": {
+    "website": "www.yogaimtaeglichenleben.at",
+    "error": "Failed to parse URL from www.yogaimtaeglichenleben.at"
+  },
+  "6769": {
+    "website": "http://www.kungfumaster.it",
+    "error": "fetch failed"
+  },
+  "6772": {
+    "website": "https://www.blackbullfightclub.it",
+    "error": "fetch failed"
+  },
+  "6804": {
+    "website": "https://judo-ptuj.si",
+    "error": "HTTP 403"
+  },
+  "6808": {
+    "website": "https://pentathlonfitness.business.site",
+    "error": "HTTP 404"
+  },
+  "6812": {
+    "website": "https://judoattalens.ch",
+    "error": "HTTP 503"
+  },
+  "6813": {
+    "website": "https://www.garyu.it",
+    "error": "fetch failed"
+  },
+  "6832": {
+    "website": "https://strongboxinggym.com",
+    "error": "fetch failed"
+  },
+  "6856": {
+    "website": "jujitsumilano.com",
+    "error": "Failed to parse URL from jujitsumilano.com"
+  },
+  "6860": {
+    "website": "https://www.taogym.uy",
+    "error": "fetch failed"
+  },
+  "6877": {
+    "website": "https://www.indes.at/trainingsort/graz",
+    "error": "fetch failed"
+  },
+  "6881": {
+    "website": "https://asdjudokiai.wixsite.com",
+    "error": "HTTP 404"
+  },
+  "6887": {
+    "website": "http://ktb-velenje.com",
+    "error": "fetch failed"
+  },
+  "6908": {
+    "website": "http://www.sportskiobjekti.hr/default.aspx?id=111",
+    "error": "fetch failed"
+  },
+  "6944": {
+    "website": "http://www.sportingclubartimarziali.it",
+    "error": "fetch failed"
+  },
+  "6948": {
+    "website": "http://www.montifitness.com",
+    "error": "HTTP 429"
+  },
+  "6950": {
+    "website": "https://www.libellulavolley.it",
+    "error": "fetch failed"
+  },
+  "6956": {
+    "website": "http://www.aikido-dojoshinai.it",
+    "error": "fetch failed"
+  },
+  "6977": {
+    "website": "https://www.sportskiobjekti.hr/default.aspx?id=8473",
+    "error": "fetch failed"
+  },
+  "7009": {
+    "website": "http://dojomurakami.no.sapo.pt",
+    "error": "fetch failed"
+  },
+  "7022": {
+    "website": "https://www.dynamiclife.pt",
+    "error": "fetch failed"
+  },
+  "7025": {
+    "website": "https://www.fightnationfn.com",
+    "error": "fetch failed"
+  },
+  "7037": {
+    "website": "http://www.taichiporto.com",
+    "error": "fetch failed"
+  },
+  "7062": {
+    "website": "http://lessadojocafe.pt",
+    "error": "fetch failed"
+  },
+  "7081": {
+    "website": "http://cskl.pt",
+    "error": "fetch failed"
+  },
+  "7102": {
+    "website": "http://www.hwarang.no/klubber/holmen/om-hwa-rang-holmen",
+    "error": "HTTP 404"
+  },
+  "7105": {
+    "website": "https://www.kumgang-tkd.fi",
+    "error": "fetch failed"
+  },
+  "7106": {
+    "website": "https://www.action-force.net",
+    "error": "fetch failed"
+  },
+  "7114": {
+    "website": "http://admiralteisky.spb.ru/%D0%BA%D0%BB%D1%83%D0%B1%D1%8B/%D0%BF%D0%BC%D0%BA-%D1%81%D0%BB%D0%B0%D0%B2%D1%8F%D0%BD%D0%B5",
+    "error": "fetch failed"
+  },
+  "7116": {
+    "website": "www.fitnessfirst.no",
+    "error": "Failed to parse URL from www.fitnessfirst.no"
+  },
+  "7130": {
+    "website": "https://www.espoo.fi/fi-FI/Kulttuuri_ja_liikunta/Liikunta/Liikunta_ja_ulkoilupaikat/Liikuntahallit#Tuulim%C3%A4ki",
+    "error": "HTTP 404"
+  },
+  "7143": {
+    "website": "https://rangemma.ru",
+    "error": "fetch failed"
+  },
+  "7154": {
+    "website": "http://ki-aikido.spb.ru",
+    "error": "fetch failed"
+  },
+  "7159": {
+    "website": "https://idrottonline.se/NorrkopingsJK-Judo",
+    "error": "fetch failed"
+  },
+  "7162": {
+    "website": "http://www.tkd.se",
+    "error": "HTTP 410"
+  },
+  "7172": {
+    "website": "http://do-jang.ru",
+    "error": "fetch failed"
+  },
+  "7174": {
+    "website": "https://www.wasbykendo.se",
+    "error": "fetch failed"
+  },
+  "7184": {
+    "website": "https://www.combatjuju.com",
+    "error": "HTTP 404"
+  },
+  "7185": {
+    "website": "http://www.rasbudo.fi",
+    "error": "fetch failed"
+  },
+  "7199": {
+    "website": "https://budopunkt.ee/et/esinduskauplus",
+    "error": "HTTP 403"
+  },
+  "7203": {
+    "website": "https://samorodovtime.ru",
+    "error": "fetch failed"
+  },
+  "7204": {
+    "website": "https://piratasbjj.ru",
+    "error": "HTTP 403"
+  },
+  "7218": {
+    "website": "https://www.texastopteam.com/about",
+    "error": "HTTP 404"
+  },
+  "7235": {
+    "website": "https://umt.ac.id",
+    "error": "fetch failed"
+  },
+  "7258": {
+    "website": "https://www.tallinn.ee/et/tallinnakergejoustikuhall/kontakt",
+    "error": "HTTP 403"
+  },
+  "7259": {
+    "website": "http://www.maardusk.ee",
+    "error": "fetch failed"
+  },
+  "7268": {
+    "website": "https://www.fudoshin-club.com/dodzho-2",
+    "error": "fetch failed"
+  },
+  "7282": {
+    "website": "https://idrottonline.se/ForeningenAlebrottarna-Brottning",
+    "error": "fetch failed"
+  },
+  "7295": {
+    "website": "http://www.malmobudokwai.se",
+    "error": "fetch failed"
+  },
+  "7299": {
+    "website": "https://www.chokeacademy.com",
+    "error": "fetch failed"
+  },
+  "7313": {
+    "website": "https://esbjerg-jujutsuklub.dk",
+    "error": "fetch failed"
+  },
+  "7339": {
+    "website": "https://www.gotha-kendo.com",
+    "error": "fetch failed"
+  },
+  "7356": {
+    "website": "https://idrottonline.se/GoteborgsAK-Brottning",
+    "error": "fetch failed"
+  },
+  "7357": {
+    "website": "http://www.solvesborg.se/1813",
+    "error": "HTTP 404"
+  },
+  "7368": {
+    "website": "https://www.kumgang-tkd.fi",
+    "error": "fetch failed"
+  },
+  "7369": {
+    "website": "https://www.action-force.net",
+    "error": "fetch failed"
+  },
+  "7373": {
+    "website": "http://admiralteisky.spb.ru/%D0%BA%D0%BB%D1%83%D0%B1%D1%8B/%D0%BF%D0%BC%D0%BA-%D1%81%D0%BB%D0%B0%D0%B2%D1%8F%D0%BD%D0%B5",
+    "error": "fetch failed"
+  },
+  "7381": {
+    "website": "https://www.espoo.fi/fi-FI/Kulttuuri_ja_liikunta/Liikunta/Liikunta_ja_ulkoilupaikat/Liikuntahallit#Tuulim%C3%A4ki",
+    "error": "HTTP 404"
+  },
+  "7392": {
+    "website": "https://rangemma.ru",
+    "error": "fetch failed"
+  },
+  "7399": {
+    "website": "http://ki-aikido.spb.ru",
+    "error": "fetch failed"
+  },
+  "7404": {
+    "website": "http://do-jang.ru",
+    "error": "fetch failed"
+  },
+  "7411": {
+    "website": "https://www.combatjuju.com",
+    "error": "HTTP 404"
+  },
+  "7412": {
+    "website": "http://www.rasbudo.fi",
+    "error": "fetch failed"
+  },
+  "7422": {
+    "website": "https://samorodovtime.ru",
+    "error": "fetch failed"
+  },
+  "7423": {
+    "website": "https://piratasbjj.ru",
+    "error": "HTTP 403"
+  },
+  "7455": {
+    "website": "https://www.fudoshin-club.com/dodzho-2",
+    "error": "fetch failed"
+  },
+  "7472": {
+    "website": "http://www.blackboxleuven.be",
+    "error": "fetch failed"
+  },
+  "7483": {
+    "website": "http://www.judoboom.be",
+    "error": "fetch failed"
+  },
+  "7501": {
+    "website": "https://www.rocky-gym.be",
+    "error": "fetch failed"
+  },
+  "7502": {
+    "website": "http://www.bert3s.be",
+    "error": "fetch failed"
+  },
+  "7517": {
+    "website": "http://www.corespeedgym.com",
+    "error": "HTTP 404"
+  },
+  "7537": {
+    "website": "https://aebconcept.wixsite.com/academytigerclub",
+    "error": "HTTP 404"
+  },
+  "7542": {
+    "website": "http://souffleusesdechaos.e-monsite.com/agenda/evenements-organises-par-l-association/salle-andre-delvaux-ulb-bruxelles.html",
+    "error": "HTTP 500"
+  },
+  "7551": {
+    "website": "https://www.intersport.fr/Ardennes-08/VILLERS-SEMEUSE-08000/INTERSPORT-VILLERS-SEMEUSE/00260_000",
+    "error": "HTTP 403"
+  },
+  "7576": {
+    "website": "https://www.fightingteamhawks.be",
+    "error": "HTTP 410"
+  },
+  "7597": {
+    "website": "http://www.omsdouai.fr/fiche_infrastructure.php?id_equipement=24",
+    "error": "HTTP 404"
+  },
+  "7613": {
+    "website": "http://tada-ima-dojo-sombreffe.doomby.com",
+    "error": "fetch failed"
+  },
+  "7624": {
+    "website": "http://www.judoclubsaintdenis.net",
+    "error": "fetch failed"
+  },
+  "7637": {
+    "website": "https://www.antwerpen.be/nl/info/52d5052039d8a6ec798b4869/buurtsporthal-kiel-antwerpen",
+    "error": "terminated"
+  },
+  "7642": {
+    "website": "https://warriorofgodma.wix.com/makoto",
+    "error": "HTTP 404"
+  },
+  "7646": {
+    "website": "http://users.telenet.be/pierresan",
+    "error": "fetch failed"
+  },
+  "7656": {
+    "website": "https://www.sport.jodoigne.be",
+    "error": "HTTP 503"
+  },
+  "7661": {
+    "website": "http://www.wakai-team.com",
+    "error": "fetch failed"
+  },
+  "7669": {
+    "website": "https://www.wingtsung-allgaeu.de",
+    "error": "fetch failed"
+  },
+  "7671": {
+    "website": "http://www.cma-y.ch",
+    "error": "fetch failed"
+  },
+  "7692": {
+    "website": "http://www.leoneacademy.ch",
+    "error": "fetch failed"
+  },
+  "7693": {
+    "website": "https://www.houseofkars.ch",
+    "error": "HTTP 404"
+  },
+  "7697": {
+    "website": "https://www.dykchiasso.ch",
+    "error": "HTTP 406"
+  },
+  "7698": {
+    "website": "http://www.kccobra.ch",
+    "error": "HTTP 403"
+  },
+  "7704": {
+    "website": "http://www.iwamaaikido.ch",
+    "error": "HTTP 401"
+  },
+  "7713": {
+    "website": "http://www.shihan.ch",
+    "error": "fetch failed"
+  },
+  "7736": {
+    "website": "https://www.centre-kumano.ch",
+    "error": "HTTP 500"
+  },
+  "7748": {
+    "website": "https://kampfkunstsmac.jimdo.com",
+    "error": "fetch failed"
+  },
+  "7763": {
+    "website": "http://www.clubsds.ch",
+    "error": "fetch failed"
+  },
+  "7764": {
+    "website": "https://www.vo-vietnam.ch",
+    "error": "fetch failed"
+  },
+  "7779": {
+    "website": "https://bunbu-ichi.ch/?page_id=111",
+    "error": "fetch failed"
+  },
+  "7783": {
+    "website": "https://www.3dragons.com",
+    "error": "fetch failed"
+  },
+  "7869": {
+    "website": "http://www.schaies.ch",
+    "error": "HTTP 400"
+  },
+  "7879": {
+    "website": "https://www.yu-taekwondo.at/perchtoldsdorf/2380",
+    "error": "HTTP 404"
+  },
+  "7884": {
+    "website": "https://heylink.me/wca_vienna",
+    "error": "HTTP 403"
+  },
+  "7885": {
+    "website": "https://www.wingtsung-allgaeu.de",
+    "error": "fetch failed"
+  },
+  "7893": {
+    "website": "http://www.taichiverein-linz.at",
+    "error": "fetch failed"
+  },
+  "7898": {
+    "website": "http://www.taekwondo-graz.at",
+    "error": "HTTP 403"
+  },
+  "7900": {
+    "website": "http://www.sokol-ba.sk",
+    "error": "fetch failed"
+  },
+  "7912": {
+    "website": "http://iwamaaikido.hu",
+    "error": "fetch failed"
+  },
+  "7915": {
+    "website": "http://www.e2w-maa.de",
+    "error": "fetch failed"
+  },
+  "7924": {
+    "website": "https://www.taekwondo-varol.de",
+    "error": "HTTP 403"
+  },
+  "7935": {
+    "website": "https://schulen.ewto.at/5110-oberndorf-bei-salzburg",
+    "error": "HTTP 404"
+  },
+  "7944": {
+    "website": "https://www.wonnigLife.de",
+    "error": "fetch failed"
+  },
+  "7961": {
+    "website": "https://lionsgym-lorch.de",
+    "error": "fetch failed"
+  },
+  "7966": {
+    "website": "https://www.sportschule-eberle.de",
+    "error": "fetch failed"
+  },
+  "7970": {
+    "website": "https://www.tsv-grafing.de",
+    "error": "HTTP 500"
+  },
+  "7979": {
+    "website": "https://dasdojo.at",
+    "error": "fetch failed"
+  },
+  "7985": {
+    "website": "https://www.taekwondo-st-valentin.at",
+    "error": "HTTP 403"
+  },
+  "7990": {
+    "website": "https://www.do-martialarts.de",
+    "error": "HTTP 403"
+  },
+  "8001": {
+    "website": "http://www.kta-kollers-taekwondo-akademie.de",
+    "error": "fetch failed"
+  },
+  "8011": {
+    "website": "www.yogaimtaeglichenleben.at",
+    "error": "Failed to parse URL from www.yogaimtaeglichenleben.at"
+  },
+  "8020": {
+    "website": "https://www.fc-staetzling.de/html/web",
+    "error": "HTTP 404"
+  },
+  "8022": {
+    "website": "https://www.yomeikan.de/home",
+    "error": "fetch failed"
+  },
+  "8024": {
+    "website": "https://aikidoclub.at",
+    "error": "HTTP 403"
+  },
+  "8026": {
+    "website": "https://neusaess-kampfsport.de",
+    "error": "fetch failed"
+  },
+  "8028": {
+    "website": "https://www.boxclub-landau.de",
+    "error": "fetch failed"
+  },
+  "8038": {
+    "website": "https://judo-ptuj.si",
+    "error": "HTTP 403"
+  },
+  "8055": {
+    "website": "https://www.djk-augsburg-hochzoll.de",
+    "error": "fetch failed"
+  },
+  "8077": {
+    "website": "https://www.champion-gym.de",
+    "error": "fetch failed"
+  },
+  "8091": {
+    "website": "https://wingrevolution-germering.de",
+    "error": "fetch failed"
+  },
+  "8131": {
+    "website": "http://www.ternitz.gv.at/sport_freizeit/sportaktivitaeten.php",
+    "error": "HTTP 404"
+  },
+  "8135": {
+    "website": "www.taekwondo-sonner.de",
+    "error": "Failed to parse URL from www.taekwondo-sonner.de"
+  },
+  "8167": {
+    "website": "https://www.ninjagreece.com",
+    "error": "fetch failed"
+  },
+  "8200": {
+    "website": "@rebelfitnessclub",
+    "error": "Failed to parse URL from @rebelfitnessclub"
+  },
+  "8204": {
+    "website": "https://fudokan-karate.gr",
+    "error": "fetch failed"
+  },
+  "8212": {
+    "website": "https://fitnessmaxpts.com",
+    "error": "fetch failed"
+  },
+  "8221": {
+    "website": "https://www.anagennisi.club",
+    "error": "fetch failed"
+  },
+  "8261": {
+    "website": "https://aikidoranfori.gr",
+    "error": "fetch failed"
+  },
+  "8262": {
+    "website": "https://grmmaf.gr/somateia/862",
+    "error": "HTTP 404"
+  },
+  "8267": {
+    "website": "https://autoamunaperisteriou.gr",
+    "error": "fetch failed"
+  },
+  "8270": {
+    "website": "www.eosacharnon.gr",
+    "error": "Failed to parse URL from www.eosacharnon.gr"
+  },
+  "8283": {
+    "website": "https://www.basaksehir.bel.tr/sezai-karakoc-genclik-merkezi",
+    "error": "fetch failed"
+  },
+  "8285": {
+    "website": "https://spor.istanbul/?tesisler=bahcelievler-spor-kompleksi",
+    "error": "HTTP 403"
+  },
+  "8305": {
+    "website": "http://judo-meiyo.pl",
+    "error": "fetch failed"
+  },
+  "8313": {
+    "website": "karate.8host.pl",
+    "error": "Failed to parse URL from karate.8host.pl"
+  },
+  "8319": {
+    "website": "www.judocaslav.cz",
+    "error": "Failed to parse URL from www.judocaslav.cz"
+  },
+  "8324": {
+    "website": "www.karate.wloclawek.pl",
+    "error": "Failed to parse URL from www.karate.wloclawek.pl"
+  },
+  "8342": {
+    "website": "http://www.shinzatodojo.cz",
+    "error": "fetch failed"
+  },
+  "8354": {
+    "website": "http://judo-azs-uw.waw.pl",
+    "error": "fetch failed"
+  },
+  "8384": {
+    "website": "https://czerwony-smok.pl",
+    "error": "fetch failed"
+  },
+  "8398": {
+    "website": "https://silesiancageclub.pl",
+    "error": "fetch failed"
+  },
+  "8402": {
+    "website": "https://www.ksw-gym.pl",
+    "error": "fetch failed"
+  },
+  "8411": {
+    "website": "https://new-body-goleniow.business.site",
+    "error": "HTTP 404"
+  },
+  "8436": {
+    "website": "www.kravmagaseal.cz",
+    "error": "Failed to parse URL from www.kravmagaseal.cz"
+  },
+  "8449": {
+    "website": "https://kgsok.pl/osrodek-szkolenia",
+    "error": "fetch failed"
+  },
+  "8457": {
+    "website": "http://royalfightstudio.pl",
+    "error": "HTTP 502"
+  },
+  "8470": {
+    "website": "https://kendo-iaido.eu",
+    "error": "fetch failed"
+  },
+  "8489": {
+    "website": "https://www.sokol-p7.wz.cz",
+    "error": "fetch failed"
+  },
+  "8521": {
+    "website": "http://pgw.pl/grodziska-hala",
+    "error": "HTTP 404"
+  },
+  "8538": {
+    "website": "http://www.taekwondo-akademie-dresden.de",
+    "error": "fetch failed"
+  },
+  "8545": {
+    "website": "http://cpsv.info/index.php/sektionen/allg-kampfsport/willkommen.html",
+    "error": "fetch failed"
+  },
+  "8547": {
+    "website": "http://www.e2w-maa.de",
+    "error": "fetch failed"
+  },
+  "8552": {
+    "website": "www.judocaslav.cz",
+    "error": "Failed to parse URL from www.judocaslav.cz"
+  },
+  "8553": {
+    "website": "http://www.taekwondo-magosch.de",
+    "error": "HTTP 404"
+  },
+  "8556": {
+    "website": "https://ksc-zwiesel.jimdo.com",
+    "error": "fetch failed"
+  },
+  "8561": {
+    "website": "http://www.combatclub.sk",
+    "error": "fetch failed"
+  },
+  "8568": {
+    "website": "http://www.shinzatodojo.cz",
+    "error": "fetch failed"
+  },
+  "8576": {
+    "website": "https://www.chandao.de",
+    "error": "fetch failed"
+  },
+  "8582": {
+    "website": "http://www.sanibroy.cz",
+    "error": "HTTP 403"
+  },
+  "8587": {
+    "website": "https://www.boxclub-landau.de",
+    "error": "fetch failed"
+  },
+  "8590": {
+    "website": "http://www.cbsport.cz/sportoviste/sportovni-hala",
+    "error": "HTTP 404"
+  },
+  "8594": {
+    "website": "http://fffitness.cz/kontakty",
+    "error": "HTTP 500"
+  },
+  "8604": {
+    "website": "www.kravmagaseal.cz",
+    "error": "Failed to parse URL from www.kravmagaseal.cz"
+  },
+  "8615": {
+    "website": "https://kendo-iaido.eu",
+    "error": "fetch failed"
+  },
+  "8621": {
+    "website": "https://www.sokol-p7.wz.cz",
+    "error": "fetch failed"
+  },
+  "8637": {
+    "website": "http://www.volam-regensburg.de",
+    "error": "fetch failed"
+  },
+  "8645": {
+    "website": "https://www.yu-taekwondo.at/perchtoldsdorf/2380",
+    "error": "HTTP 404"
+  },
+  "8647": {
+    "website": "https://heylink.me/wca_vienna",
+    "error": "HTTP 403"
+  },
+  "8652": {
+    "website": "http://www.sokol-ba.sk",
+    "error": "fetch failed"
+  },
+  "8654": {
+    "website": "https://monarchkarate.sk",
+    "error": "fetch failed"
+  },
+  "8659": {
+    "website": "http://iwamaaikido.hu",
+    "error": "fetch failed"
+  },
+  "8674": {
+    "website": "http://www.titankickness.com",
+    "error": "fetch failed"
+  },
+  "8682": {
+    "website": "https://lalee-ksc.5mp.eu",
+    "error": "fetch failed"
+  },
+  "8685": {
+    "website": "https://www.vmm-onvedelem.hu",
+    "error": "fetch failed"
+  },
+  "8694": {
+    "website": "https://dasdojo.at",
+    "error": "fetch failed"
+  },
+  "8767": {
+    "website": "https://mjje.hu",
+    "error": "fetch failed"
+  },
+  "8784": {
+    "website": "https://www.dunakeszikarate.hu",
+    "error": "fetch failed"
+  },
+  "8809": {
+    "website": "https://www.ahilejakademija.com",
+    "error": "fetch failed"
+  },
+  "8825": {
+    "website": "https://fightcompany.stefanmrvic.com",
+    "error": "fetch failed"
+  },
+  "8835": {
+    "website": "http://www.bieaboxing.ro",
+    "error": "HTTP 522"
+  },
+  "8837": {
+    "website": "https://mjje.hu",
+    "error": "fetch failed"
+  },
+  "8838": {
+    "website": "https://starkarena.co.rs",
+    "error": "fetch failed"
+  },
+  "8872": {
+    "website": "https://dreamvarna.com",
+    "error": "fetch failed"
+  },
+  "8896": {
+    "website": "https://sportnetit.com/it_IT/storelocator-pescara",
+    "error": "HTTP 403"
+  },
+  "8899": {
+    "website": "http://www.boksklubmarjan.hr",
+    "error": "fetch failed"
+  },
+  "8909": {
+    "website": "http://judoklubdugaresa.hr",
+    "error": "fetch failed"
+  },
+  "8919": {
+    "website": "https://hornetboxing.hr",
+    "error": "fetch failed"
+  },
+  "8923": {
+    "website": "judolika.com",
+    "error": "Failed to parse URL from judolika.com"
+  },
+  "8932": {
+    "website": "https://judo-ptuj.si",
+    "error": "HTTP 403"
+  },
+  "8940": {
+    "website": "https://strongboxinggym.com",
+    "error": "fetch failed"
+  },
+  "8949": {
+    "website": "http://ktb-velenje.com",
+    "error": "fetch failed"
+  },
+  "8955": {
+    "website": "http://www.sportskiobjekti.hr/default.aspx?id=111",
+    "error": "fetch failed"
+  },
+  "8972": {
+    "website": "https://www.sportskiobjekti.hr/default.aspx?id=8473",
+    "error": "fetch failed"
+  },
+  "8992": {
+    "website": "https://hornetboxing.hr",
+    "error": "fetch failed"
+  },
+  "8996": {
+    "website": "judolika.com",
+    "error": "Failed to parse URL from judolika.com"
+  },
+  "8997": {
+    "website": "www.yogaimtaeglichenleben.at",
+    "error": "Failed to parse URL from www.yogaimtaeglichenleben.at"
+  },
+  "9002": {
+    "website": "https://judo-ptuj.si",
+    "error": "HTTP 403"
+  },
+  "9008": {
+    "website": "https://strongboxinggym.com",
+    "error": "fetch failed"
+  },
+  "9016": {
+    "website": "http://ktb-velenje.com",
+    "error": "fetch failed"
+  },
+  "9025": {
+    "website": "https://www.sportskiobjekti.hr/default.aspx?id=8473",
+    "error": "fetch failed"
+  },
+  "9031": {
+    "website": "http://www.sokol-ba.sk",
+    "error": "fetch failed"
+  },
+  "9036": {
+    "website": "http://www.combatclub.sk",
+    "error": "fetch failed"
+  },
+  "9042": {
+    "website": "http://www.gebaektelocvicna.sk/;http://www.gebaek.sk",
+    "error": "HTTP 404"
+  },
+  "9053": {
+    "website": "www.kravmagaseal.cz",
+    "error": "Failed to parse URL from www.kravmagaseal.cz"
+  },
+  "9068": {
+    "website": "https://mjje.hu",
+    "error": "fetch failed"
+  },
+  "9078": {
+    "website": "http://www.aikidodunav.rs",
+    "error": "fetch failed"
+  },
+  "9084": {
+    "website": "https://www.ahilejakademija.com",
+    "error": "fetch failed"
+  },
+  "9090": {
+    "website": "https://fightcompany.stefanmrvic.com",
+    "error": "fetch failed"
+  },
+  "9098": {
+    "website": "https://starkarena.co.rs",
+    "error": "fetch failed"
+  },
+  "9108": {
+    "website": "http://www.boksklubmarjan.hr",
+    "error": "fetch failed"
+  },
+  "9154": {
+    "website": "https://vipklubs.lv",
+    "error": "HTTP 520"
+  },
+  "9164": {
+    "website": "https://budopunkt.ee/et/esinduskauplus",
+    "error": "HTTP 403"
+  },
+  "9169": {
+    "website": "https://www.tallinn.ee/et/tallinnakergejoustikuhall/kontakt",
+    "error": "HTTP 403"
+  },
+  "9170": {
+    "website": "http://www.maardusk.ee",
+    "error": "fetch failed"
+  },
+  "9191": {
+    "website": "https://www.ucy.ac.cy/athletics",
+    "error": "HTTP 403"
+  },
+  "9206": {
+    "website": "https://sdusshor4.allvrn.ru",
+    "error": "fetch failed"
+  },
+  "9208": {
+    "website": "https://sdusshor23.allvrn.ru",
+    "error": "fetch failed"
+  },
+  "9231": {
+    "website": "https://www.zhaba-cf.com.ua",
+    "error": "fetch failed"
+  },
+  "9233": {
+    "website": "http://www.pflugervillekarate.com",
+    "error": "HTTP 404"
+  },
+  "9234": {
+    "website": "http://arena-berdyansk.com.ua",
+    "error": "fetch failed"
+  },
+  "9239": {
+    "website": "www.poison-fight.com.ua",
+    "error": "Failed to parse URL from www.poison-fight.com.ua"
+  },
+  "9256": {
+    "website": "http://kilob.tk",
+    "error": "fetch failed"
+  },
+  "9258": {
+    "website": "rushfight.ru",
+    "error": "Failed to parse URL from rushfight.ru"
+  },
+  "9262": {
+    "website": "http://centreforma.kiev.ua",
+    "error": "fetch failed"
+  },
+  "9282": {
+    "website": "https://city-adm.lviv.ua/lmr/utilities/dyussh/lvivska-dytiacho-iunatska-sportyvna-shkola-olimpiia",
+    "error": "HTTP 403"
+  },
+  "9283": {
+    "website": "http://www.solor.gov.ua/learn/117",
+    "error": "fetch failed"
+  },
+  "9288": {
+    "website": "http://mix-fight.com",
+    "error": "fetch failed"
+  },
+  "9298": {
+    "website": "nikko.ua",
+    "error": "Failed to parse URL from nikko.ua"
+  },
+  "9309": {
+    "website": "https://kgsok.pl/osrodek-szkolenia",
+    "error": "fetch failed"
+  },
+  "9310": {
+    "website": "https://royalteamshipping.com",
+    "error": "fetch failed"
+  },
+  "9314": {
+    "website": "https://allstarsboxing.com.ua",
+    "error": "fetch failed"
+  },
+  "9318": {
+    "website": "zolotye-perchatki.dn.ua",
+    "error": "Failed to parse URL from zolotye-perchatki.dn.ua"
+  },
+  "9319": {
+    "website": "http://kilob.tk",
+    "error": "fetch failed"
+  },
+  "9327": {
+    "website": "https://dussh26.allvrn.ru",
+    "error": "fetch failed"
+  },
+  "9370": {
+    "website": "https://sanker.by",
+    "error": "fetch failed"
+  },
+  "9372": {
+    "website": "blackbeltclub.by",
+    "error": "Failed to parse URL from blackbeltclub.by"
+  },
+  "9374": {
+    "website": "http://volatclub.by",
+    "error": "fetch failed"
+  },
+  "9376": {
+    "website": "http://gymfight.olympic-minsk.by",
+    "error": "fetch failed"
+  },
+  "9401": {
+    "website": "http://foc.bykhov.edu.by/ru/main.aspx",
+    "error": "fetch failed"
+  },
+  "9407": {
+    "website": "http://sport-kostukovka.by",
+    "error": "fetch failed"
+  },
+  "9414": {
+    "website": "http://wrestling.ge",
+    "error": "fetch failed"
+  },
+  "9445": {
+    "website": "https://www.independentvillarica.com",
+    "error": "fetch failed"
+  },
+  "9453": {
+    "website": "https://www.pellcitytkd.com/index.html",
+    "error": "fetch failed"
+  },
+  "9462": {
+    "website": "http://www.birminghamcrossplex.com",
+    "error": "fetch failed"
+  },
+  "9516": {
+    "website": "https://ImmortalKungFu.com",
+    "error": "fetch failed"
+  },
+  "9531": {
+    "website": "http://www.rodriguezboxingclub.com",
+    "error": "fetch failed"
+  },
+  "9570": {
+    "website": "https://memphismartialartstn.com",
+    "error": "fetch failed"
+  },
+  "9597": {
+    "website": "http://www.westcoastsunnyvale.com",
+    "error": "fetch failed"
+  },
+  "9602": {
+    "website": "http://www.karatebouldercreek.com",
+    "error": "HTTP 403"
+  },
+  "9603": {
+    "website": "https://www.leclubtoucheacademy.com",
+    "error": "fetch failed"
+  },
+  "9606": {
+    "website": "http://newbury-park.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "9611": {
+    "website": "http://www.graciehollywood.com",
+    "error": "fetch failed"
+  },
+  "9613": {
+    "website": "http://www.shengchikungfu.com",
+    "error": "fetch failed"
+  },
+  "9634": {
+    "website": "http://www.sfgoju.com",
+    "error": "timeout"
+  },
+  "9636": {
+    "website": "https://www.alisohillstkd.com",
+    "error": "fetch failed"
+  },
+  "9647": {
+    "website": "http://ralphgraciedublin.com",
+    "error": "fetch failed"
+  },
+  "9648": {
+    "website": "http://www.reydiogojiujitsu.com",
+    "error": "HTTP 500"
+  },
+  "9656": {
+    "website": "http://www.oyamakarate-sf.com",
+    "error": "HTTP 403"
+  },
+  "9660": {
+    "website": "http://www.imsacademy.com",
+    "error": "fetch failed"
+  },
+  "9671": {
+    "website": "risingsunsma.com",
+    "error": "Failed to parse URL from risingsunsma.com"
+  },
+  "9701": {
+    "website": "http://www.culvercitykarate.com",
+    "error": "fetch failed"
+  },
+  "9705": {
+    "website": "http://www.sjboxing.com",
+    "error": "fetch failed"
+  },
+  "9710": {
+    "website": "www.hiddendragontaekwando.com",
+    "error": "Failed to parse URL from www.hiddendragontaekwando.com"
+  },
+  "9712": {
+    "website": "https://omeiacademy.com",
+    "error": "fetch failed"
+  },
+  "9738": {
+    "website": "https://www.kingharborfitness.com",
+    "error": "fetch failed"
+  },
+  "9749": {
+    "website": "http://www.amalgamgrappling.com",
+    "error": "fetch failed"
+  },
+  "9755": {
+    "website": "http://www.studiocityjiujitsu.com",
+    "error": "HTTP 403"
+  },
+  "9762": {
+    "website": "https://unitedtaekwondocenter.com",
+    "error": "fetch failed"
+  },
+  "9763": {
+    "website": "https://checkmateboxing.com",
+    "error": "fetch failed"
+  },
+  "9765": {
+    "website": "https://www.gloveworx.com/locations/santa-monica",
+    "error": "HTTP 525"
+  },
+  "9771": {
+    "website": "https://ca.greendot.org/odlh",
+    "error": "HTTP 403"
+  },
+  "9778": {
+    "website": "https://gracielamesajiujitsu.com",
+    "error": "fetch failed"
+  },
+  "9804": {
+    "website": "https://modernsenseilv.com",
+    "error": "fetch failed"
+  },
+  "9805": {
+    "website": "https://www.thebxngclub.com",
+    "error": "HTTP 526"
+  },
+  "9818": {
+    "website": "https://mykickstd.com",
+    "error": "fetch failed"
+  },
+  "9856": {
+    "website": "LB4LBBoxing.com",
+    "error": "Failed to parse URL from LB4LBBoxing.com"
+  },
+  "9887": {
+    "website": "https://p1ec.com",
+    "error": "HTTP 404"
+  },
+  "9908": {
+    "website": "www.besttkacademy.com",
+    "error": "Failed to parse URL from www.besttkacademy.com"
+  },
+  "9916": {
+    "website": "https://www.atosjiujitsulv.com",
+    "error": "HTTP 403"
+  },
+  "9941": {
+    "website": "pinnaclema.net",
+    "error": "Failed to parse URL from pinnaclema.net"
+  },
+  "9968": {
+    "website": "http://svaschool.org",
+    "error": "HTTP 403"
+  },
+  "9972": {
+    "website": "https://www.coachellavalleyboxingclub.org/pages/home.html",
+    "error": "fetch failed"
+  },
+  "9976": {
+    "website": "http://www.jobushinkan.net",
+    "error": "fetch failed"
+  },
+  "10035": {
+    "website": "freekarate.com",
+    "error": "Failed to parse URL from freekarate.com"
+  },
+  "10046": {
+    "website": "http://www.ufcgym.com/parker",
+    "error": "HTTP 404"
+  },
+  "10048": {
+    "website": "https://www.bendellkarate.com",
+    "error": "HTTP 404"
+  },
+  "10050": {
+    "website": "https://authenticbjjzenith.com",
+    "error": "fetch failed"
+  },
+  "10067": {
+    "website": "https://geminifitnessandcombat.com",
+    "error": "fetch failed"
+  },
+  "10074": {
+    "website": "https://5280karate.org",
+    "error": "HTTP 404"
+  },
+  "10089": {
+    "website": "http://www.ataima.com",
+    "error": "fetch failed"
+  },
+  "10093": {
+    "website": "https://fiveanimalfistkungfu.com",
+    "error": "fetch failed"
+  },
+  "10101": {
+    "website": "http://www.pflugervillekarate.com",
+    "error": "HTTP 404"
+  },
+  "10102": {
+    "website": "https://www.thehqtraining.com",
+    "error": "fetch failed"
+  },
+  "10117": {
+    "website": "https://www.seibu-kan.com",
+    "error": "fetch failed"
+  },
+  "10126": {
+    "website": "http://www.connecticutmartialarts.com",
+    "error": "fetch failed"
+  },
+  "10175": {
+    "website": "https://www.ccsu.edu/recentral/facilities.html",
+    "error": "HTTP 404"
+  },
+  "10190": {
+    "website": "https://www.dcaikido.com",
+    "error": "HTTP 500"
+  },
+  "10211": {
+    "website": "http://dragonsystemtkd.wix.com/dragon-system",
+    "error": "HTTP 404"
+  },
+  "10212": {
+    "website": "http://gradysmma.com",
+    "error": "fetch failed"
+  },
+  "10214": {
+    "website": "http://americantopteamtc.com",
+    "error": "fetch failed"
+  },
+  "10228": {
+    "website": "http://www.ohstaekwondo.com",
+    "error": "fetch failed"
+  },
+  "10230": {
+    "website": "https://www.wweperformancecenter.com",
+    "error": "fetch failed"
+  },
+  "10232": {
+    "website": "https://www.chungcollege.com",
+    "error": "HTTP 404"
+  },
+  "10233": {
+    "website": "https://strongtowerelec.com",
+    "error": "fetch failed"
+  },
+  "10252": {
+    "website": "http://www.southlakelandbjj.com",
+    "error": "fetch failed"
+  },
+  "10257": {
+    "website": "https://suncoasttaekwondo.com",
+    "error": "HTTP 404"
+  },
+  "10279": {
+    "website": "https://sibaimuaythai.com",
+    "error": "HTTP 307"
+  },
+  "10289": {
+    "website": "https://renesdynamicsportscenter.com",
+    "error": "fetch failed"
+  },
+  "10306": {
+    "website": "http://www.greenvilleacademy.com",
+    "error": "fetch failed"
+  },
+  "10309": {
+    "website": "http://www.empowermmawarriors.com",
+    "error": "fetch failed"
+  },
+  "10311": {
+    "website": "http://www.upstatekarate.com",
+    "error": "HTTP 429"
+  },
+  "10316": {
+    "website": "https://www.atavaldosta.com",
+    "error": "fetch failed"
+  },
+  "10318": {
+    "website": "http://www.ushapki.com",
+    "error": "fetch failed"
+  },
+  "10325": {
+    "website": "http://www.masterwhitetkd.com",
+    "error": "fetch failed"
+  },
+  "10326": {
+    "website": "http://www.gbcolumbus.com",
+    "error": "HTTP 404"
+  },
+  "10328": {
+    "website": "http://www.thebrickbwk.com",
+    "error": "fetch failed"
+  },
+  "10335": {
+    "website": "https://carolinacombatives.com",
+    "error": "HTTP 403"
+  },
+  "10338": {
+    "website": "http://www.shorinryukensankai.com/contact.html",
+    "error": "HTTP 404"
+  },
+  "10344": {
+    "website": "https://www.atatifton.com",
+    "error": "fetch failed"
+  },
+  "10347": {
+    "website": "https://www.premiermartialartsdecatureast.com",
+    "error": "fetch failed"
+  },
+  "10359": {
+    "website": "Http://www.richmondhill-karate.com",
+    "error": "fetch failed"
+  },
+  "10402": {
+    "website": "https://titleboxingclub.com/sandhill-sc",
+    "error": "HTTP 404"
+  },
+  "10455": {
+    "website": "https://www.hardknockskalispell.com",
+    "error": "fetch failed"
+  },
+  "10481": {
+    "website": "https://eastpeoria-riverrd.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "10487": {
+    "website": "http://www.shotokan.us/contactus.aspx",
+    "error": "HTTP 404"
+  },
+  "10492": {
+    "website": "https://maccjudotkd.com",
+    "error": "fetch failed"
+  },
+  "10493": {
+    "website": "https://www.blackbeltstl.com",
+    "error": "fetch failed"
+  },
+  "10494": {
+    "website": "https://kenshochicago.com",
+    "error": "fetch failed"
+  },
+  "10499": {
+    "website": "http://parksma.net",
+    "error": "fetch failed"
+  },
+  "10501": {
+    "website": "https://www.openhandselfdefenses.com",
+    "error": "fetch failed"
+  },
+  "10504": {
+    "website": "https://renzograciechicago.com",
+    "error": "fetch failed"
+  },
+  "10507": {
+    "website": "https://www.ykmatkd.com",
+    "error": "fetch failed"
+  },
+  "10509": {
+    "website": "https://www.hiddenpatharts.com",
+    "error": "fetch failed"
+  },
+  "10512": {
+    "website": "http://www.illinoismartialartsacademy.com",
+    "error": "fetch failed"
+  },
+  "10514": {
+    "website": "https://fulllifemartialarts.com",
+    "error": "fetch failed"
+  },
+  "10515": {
+    "website": "http://www.traditionalkaratecenter.com",
+    "error": "fetch failed"
+  },
+  "10516": {
+    "website": "https://pkkstudio.com",
+    "error": "fetch failed"
+  },
+  "10517": {
+    "website": "https://inoahtraining.com",
+    "error": "fetch failed"
+  },
+  "10563": {
+    "website": "fmafa.com",
+    "error": "Failed to parse URL from fmafa.com"
+  },
+  "10582": {
+    "website": "http://www.gmltkd.com/web",
+    "error": "HTTP 404"
+  },
+  "10616": {
+    "website": "https://www.btkda.com",
+    "error": "fetch failed"
+  },
+  "10632": {
+    "website": "http://www.reddragon-saukprairie.com",
+    "error": "fetch failed"
+  },
+  "10655": {
+    "website": "ttps://elitecombatsportscenter.com",
+    "error": "fetch failed"
+  },
+  "10658": {
+    "website": "https://www.chamberofcommerce.com/united-states/kansas/hays/school-martial-arts/2411589-karate-fitness-school",
+    "error": "HTTP 403"
+  },
+  "10668": {
+    "website": "http://jko-bristol.com",
+    "error": "fetch failed"
+  },
+  "10669": {
+    "website": "http://lexington-lowry.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "10718": {
+    "website": "https://www.fortkentbjj.com",
+    "error": "fetch failed"
+  },
+  "10724": {
+    "website": "jukadousa.com",
+    "error": "Failed to parse URL from jukadousa.com"
+  },
+  "10726": {
+    "website": "http://www.selfdefenseaugustame.com",
+    "error": "fetch failed"
+  },
+  "10737": {
+    "website": "https://www.sun-taekwondo.com",
+    "error": "fetch failed"
+  },
+  "10741": {
+    "website": "http://www.gomaw.com",
+    "error": "HTTP 403"
+  },
+  "10781": {
+    "website": "http://www.belairtkd.com",
+    "error": "fetch failed"
+  },
+  "10788": {
+    "website": "https://victoryma.com/school/leesburg-va",
+    "error": "HTTP 404"
+  },
+  "10797": {
+    "website": "https://aikimartialarts.com",
+    "error": "HTTP 404"
+  },
+  "10802": {
+    "website": "https://www.bbadunkrik.com",
+    "error": "HTTP 404"
+  },
+  "10807": {
+    "website": "https://chungsmartialarts.net/locations.php",
+    "error": "HTTP 404"
+  },
+  "10819": {
+    "website": "https://www.tigerdenus.com/locations/leesburg",
+    "error": "HTTP 404"
+  },
+  "10825": {
+    "website": "http://www.worldchamptkd.com",
+    "error": "fetch failed"
+  },
+  "10828": {
+    "website": "http://bbafairfax.com",
+    "error": "fetch failed"
+  },
+  "10833": {
+    "website": "https://www.winchesterboxingandfitness.com",
+    "error": "fetch failed"
+  },
+  "10846": {
+    "website": "https://www.thehotboxboxingannapolis.com",
+    "error": "fetch failed"
+  },
+  "10857": {
+    "website": "https://newwavema.com",
+    "error": "fetch failed"
+  },
+  "10868": {
+    "website": "https://www.jasperscornerboxing.com",
+    "error": "fetch failed"
+  },
+  "10877": {
+    "website": "https://www.usmamd.com",
+    "error": "fetch failed"
+  },
+  "10878": {
+    "website": "https://ajkarate.perfectmind.com",
+    "error": "HTTP 404"
+  },
+  "10909": {
+    "website": "https://www.bbmac.com",
+    "error": "fetch failed"
+  },
+  "10914": {
+    "website": "https://dragonyong-in.com/contacts/ashburn",
+    "error": "HTTP 404"
+  },
+  "10927": {
+    "website": "AthleticBalance.com",
+    "error": "Failed to parse URL from AthleticBalance.com"
+  },
+  "10946": {
+    "website": "https://www.NewAgeTaekwondo.com",
+    "error": "fetch failed"
+  },
+  "10988": {
+    "website": "http://thrivebma.com",
+    "error": "fetch failed"
+  },
+  "10991": {
+    "website": "http://www.martialartsderry.com",
+    "error": "fetch failed"
+  },
+  "10993": {
+    "website": "http://www.koryukan.us",
+    "error": "fetch failed"
+  },
+  "10997": {
+    "website": "NewEnglandKungFu.com",
+    "error": "Failed to parse URL from NewEnglandKungFu.com"
+  },
+  "11004": {
+    "website": "http://www.aldobatistabjj.com",
+    "error": "fetch failed"
+  },
+  "11006": {
+    "website": "http://prevailmartialarts.com",
+    "error": "fetch failed"
+  },
+  "11008": {
+    "website": "https://www.stmarksschool.org/athletics/athletic-fields",
+    "error": "HTTP 404"
+  },
+  "11037": {
+    "website": "http://anytimefitnesslakeorion.com",
+    "error": "fetch failed"
+  },
+  "11056": {
+    "website": "https://thefineartsacademywl.com",
+    "error": "fetch failed"
+  },
+  "11103": {
+    "website": "https://www.kangstaekwondo.net",
+    "error": "fetch failed"
+  },
+  "11143": {
+    "website": "https://www.ataleadershipmartialarts.com",
+    "error": "fetch failed"
+  },
+  "11144": {
+    "website": "https://www.wmacenter.com",
+    "error": "fetch failed"
+  },
+  "11146": {
+    "website": "https://www.sfpptc.com",
+    "error": "fetch failed"
+  },
+  "11149": {
+    "website": "https://odyssey-martialarts.com",
+    "error": "fetch failed"
+  },
+  "11178": {
+    "website": "http://legacywingchun.com",
+    "error": "fetch failed"
+  },
+  "11194": {
+    "website": "https://pridekarategladstone.com",
+    "error": "fetch failed"
+  },
+  "11216": {
+    "website": "https://www.vermilliontaekwondo.com",
+    "error": "fetch failed"
+  },
+  "11225": {
+    "website": "http://www.rthwellness.com",
+    "error": "fetch failed"
+  },
+  "11241": {
+    "website": "http://www.masteranstkd.com",
+    "error": "fetch failed"
+  },
+  "11256": {
+    "website": "https://urbandojo.com",
+    "error": "fetch failed"
+  },
+  "11266": {
+    "website": "http://rivervale-westwood-ave.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "11277": {
+    "website": "http://www.phillyurbandefense.com",
+    "error": "fetch failed"
+  },
+  "11278": {
+    "website": "http://highperformancemartialarts.com",
+    "error": "fetch failed"
+  },
+  "11286": {
+    "website": "http://ilovekickboxingbricknj.com",
+    "error": "fetch failed"
+  },
+  "11293": {
+    "website": "https://titleboxingclub.com/wayne-nj",
+    "error": "HTTP 404"
+  },
+  "11294": {
+    "website": "http://www.centerpointma-ny.com",
+    "error": "fetch failed"
+  },
+  "11315": {
+    "website": "http://kankudaidojo.org",
+    "error": "HTTP 404"
+  },
+  "11323": {
+    "website": "https://zerogbrazilianjiujitsu.com",
+    "error": "fetch failed"
+  },
+  "11364": {
+    "website": "https://myamaa.com",
+    "error": "fetch failed"
+  },
+  "11365": {
+    "website": "https://www.doyourumble.com",
+    "error": "fetch failed"
+  },
+  "11397": {
+    "website": "https://legionmuaythai.com",
+    "error": "HTTP 429"
+  },
+  "11431": {
+    "website": "https://championstkd.com/stores/sheepshead-bay",
+    "error": "HTTP 404"
+  },
+  "11435": {
+    "website": "https://powertrainingcenter.com",
+    "error": "fetch failed"
+  },
+  "11460": {
+    "website": "http://www.ruskinkarate.com",
+    "error": "HTTP 451"
+  },
+  "11543": {
+    "website": "http://www.asbk.org",
+    "error": "fetch failed"
+  },
+  "11564": {
+    "website": "http://www.excelmatc.com",
+    "error": "fetch failed"
+  },
+  "11569": {
+    "website": "https://championstkd.com/little-tigers",
+    "error": "HTTP 404"
+  },
+  "11579": {
+    "website": "http://www.etobicokedojo.ca/tablet/index.html",
+    "error": "HTTP 404"
+  },
+  "11587": {
+    "website": "http://aikidoofcny.com",
+    "error": "fetch failed"
+  },
+  "11588": {
+    "website": "https://www.kodomartialarts.com",
+    "error": "HTTP 404"
+  },
+  "11590": {
+    "website": "https://www.kaishinmartialarts.com",
+    "error": "fetch failed"
+  },
+  "11591": {
+    "website": "http://www.ambitionma.ca",
+    "error": "fetch failed"
+  },
+  "11595": {
+    "website": "https://www.teamchos.com",
+    "error": "HTTP 403"
+  },
+  "11602": {
+    "website": "https://kaizenacademyny.com",
+    "error": "fetch failed"
+  },
+  "11610": {
+    "website": "https://order.toasttab.com/online/iron_fish",
+    "error": "HTTP 403"
+  },
+  "11616": {
+    "website": "http://martialarts-scarborough.com",
+    "error": "fetch failed"
+  },
+  "11630": {
+    "website": "http//www.elitemmafit.com",
+    "error": "Failed to parse URL from http//www.elitemmafit.com"
+  },
+  "11634": {
+    "website": "http://www.modernsamurai.com",
+    "error": "fetch failed"
+  },
+  "11635": {
+    "website": "http://peeltaekwondo.org",
+    "error": "fetch failed"
+  },
+  "11656": {
+    "website": "https://www.thevikingacademy.com",
+    "error": "fetch failed"
+  },
+  "11669": {
+    "website": "www.taekwondocentre.com",
+    "error": "Failed to parse URL from www.taekwondocentre.com"
+  },
+  "11670": {
+    "website": "http://shintaikijinycgojuryu.com",
+    "error": "fetch failed"
+  },
+  "11689": {
+    "website": "https://thaiboxingniagara.com",
+    "error": "fetch failed"
+  },
+  "11697": {
+    "website": "https://rhmuaythai.com",
+    "error": "fetch failed"
+  },
+  "11702": {
+    "website": "https://tkmtacademy.com",
+    "error": "fetch failed"
+  },
+  "11706": {
+    "website": "http://www.flushingtkd.com",
+    "error": "fetch failed"
+  },
+  "11728": {
+    "website": "https://SouthMissBJJ.com",
+    "error": "fetch failed"
+  },
+  "11736": {
+    "website": "http://www.foresthillstkd.com",
+    "error": "HTTP 404"
+  },
+  "11824": {
+    "website": "https://rmapf.com",
+    "error": "fetch failed"
+  },
+  "11837": {
+    "website": "https://www.hobbsmma.com",
+    "error": "fetch failed"
+  },
+  "11842": {
+    "website": "https://titleboxingclub.com/cary-nc",
+    "error": "HTTP 404"
+  },
+  "11848": {
+    "website": "https://titleboxingclub.com/nc-clemmons",
+    "error": "HTTP 404"
+  },
+  "11850": {
+    "website": "www.jltaekwondo.com",
+    "error": "Failed to parse URL from www.jltaekwondo.com"
+  },
+  "11856": {
+    "website": "https://www.cloudforestmartialathletics.com",
+    "error": "HTTP 404"
+  },
+  "11860": {
+    "website": "https://www.greensboro-nc.gov/departments/parks-recreation/recreation-centers/lindley-center/coach-al-lowe-boxing-club",
+    "error": "HTTP 403"
+  },
+  "11871": {
+    "website": "https://titleboxingclub.com/loveland-oh",
+    "error": "HTTP 404"
+  },
+  "11881": {
+    "website": "http://www.totalcontrol.us",
+    "error": "fetch failed"
+  },
+  "11882": {
+    "website": "http://www.parktkd.com",
+    "error": "HTTP 403"
+  },
+  "11908": {
+    "website": "https://shaolininstitute.com/institute/index.shtml",
+    "error": "HTTP 404"
+  },
+  "11927": {
+    "website": "https://www.delta1academy.com",
+    "error": "fetch failed"
+  },
+  "11930": {
+    "website": "https://synergymartialartsohio.com",
+    "error": "fetch failed"
+  },
+  "11940": {
+    "website": "http://www.ireignboxinggym.com",
+    "error": "HTTP 500"
+  },
+  "11965": {
+    "website": "https://titleboxingclub.com/tulsa-south-ok",
+    "error": "HTTP 404"
+  },
+  "11985": {
+    "website": "https://edmond-broadway.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "11992": {
+    "website": "https://martialartshillsboro.com",
+    "error": "HTTP 503"
+  },
+  "12000": {
+    "website": "http://www.bestblackbelts.com",
+    "error": "fetch failed"
+  },
+  "12015": {
+    "website": "https://forestgrovebjj.com/contact-us",
+    "error": "fetch failed"
+  },
+  "12029": {
+    "website": "https://fiercefitness.com",
+    "error": "HTTP 404"
+  },
+  "12033": {
+    "website": "https://www.martialartspdx.com",
+    "error": "fetch failed"
+  },
+  "12036": {
+    "website": "http://www.tigardkungfu.com",
+    "error": "fetch failed"
+  },
+  "12042": {
+    "website": "http://www.academyofkungfu.org",
+    "error": "fetch failed"
+  },
+  "12043": {
+    "website": "https://lakeshoreac.com",
+    "error": "HTTP 403"
+  },
+  "12050": {
+    "website": "http://martialartssherwood.com",
+    "error": "fetch failed"
+  },
+  "12051": {
+    "website": "https://www.echofitacademy.com",
+    "error": "fetch failed"
+  },
+  "12053": {
+    "website": "http://connectionrioacademy.com",
+    "error": "HTTP 404"
+  },
+  "12136": {
+    "website": "https://nextstep-martial-arts.ueniweb.com/?utm_campaign=gmb",
+    "error": "HTTP 402"
+  },
+  "12164": {
+    "website": "http://houston-westheimer.titleboxingclub.com",
+    "error": "fetch failed"
+  },
+  "12172": {
+    "website": "uma-usa.com",
+    "error": "Failed to parse URL from uma-usa.com"
+  },
+  "12182": {
+    "website": "https://brazilianfightfactory.com",
+    "error": "fetch failed"
+  },
+  "12208": {
+    "website": "https://tukongkerrville.com",
+    "error": "fetch failed"
+  },
+  "12214": {
+    "website": "http://tfkfitness.com/denton",
+    "error": "fetch failed"
+  },
+  "12215": {
+    "website": "https://www.incekarate.com",
+    "error": "timeout"
+  },
+  "12222": {
+    "website": "http://www.garlandata.com",
+    "error": "fetch failed"
+  },
+  "12229": {
+    "website": "https://mineoladojo.com",
+    "error": "fetch failed"
+  },
+  "12235": {
+    "website": "https://american-tigers-world-taekwondo.business.site",
+    "error": "HTTP 404"
+  },
+  "12243": {
+    "website": "https://lionskravmaga.com",
+    "error": "fetch failed"
+  },
+  "12278": {
+    "website": "https://houseofcouragekarate.com",
+    "error": "fetch failed"
+  },
+  "12298": {
+    "website": "http://www.sixgunmartialarts.com",
+    "error": "fetch failed"
+  },
+  "12300": {
+    "website": "http://www.shadowbjj.com",
+    "error": "HTTP 403"
+  },
+  "12317": {
+    "website": "https://kenpokarate.com",
+    "error": "fetch failed"
+  },
+  "12329": {
+    "website": "https://houstonkarate.com",
+    "error": "fetch failed"
+  },
+  "12334": {
+    "website": "https://sillumkungfu.com",
+    "error": "HTTP 500"
+  },
+  "12364": {
+    "website": "https://www.utahtorajutsu.com",
+    "error": "fetch failed"
+  },
+  "12368": {
+    "website": "koakingdom.com",
+    "error": "Failed to parse URL from koakingdom.com"
+  },
+  "12372": {
+    "website": "https://www.oremkungfu.com",
+    "error": "fetch failed"
+  },
+  "12405": {
+    "website": "https://www.brianhobsonkarate.com",
+    "error": "HTTP 526"
+  },
+  "12434": {
+    "website": "parkstkd.org",
+    "error": "Failed to parse URL from parkstkd.org"
+  },
+  "12463": {
+    "website": "http://federalwaymartialarts.net",
+    "error": "fetch failed"
+  },
+  "12475": {
+    "website": "http://www.masterchos-ata.com/lynnwood.html",
+    "error": "fetch failed"
+  },
+  "12497": {
+    "website": "https://northshoremma.com",
+    "error": "fetch failed"
+  },
+  "12587": {
+    "website": "https://www.jeongtkd.com",
+    "error": "fetch failed"
+  },
+  "12599": {
+    "website": "https://www.houseofkenpokarate.com",
+    "error": "fetch failed"
+  },
+  "12604": {
+    "website": "https://www.doyourjang.com",
+    "error": "HTTP 404"
+  },
+  "12622": {
+    "website": "https://www.taoist.org/locations/burnaby",
+    "error": "HTTP 404"
+  },
+  "12627": {
+    "website": "https://kungfuyes.com",
+    "error": "fetch failed"
+  },
+  "12670": {
+    "website": "https://temataekwondo.online",
+    "error": "fetch failed"
+  },
+  "12679": {
+    "website": "https://www.mhktkd.com",
+    "error": "fetch failed"
+  },
+  "12701": {
+    "website": "axevancouver.com",
+    "error": "Failed to parse URL from axevancouver.com"
+  },
+  "12720": {
+    "website": "http://www.gojustvital.com",
+    "error": "fetch failed"
+  },
+  "12740": {
+    "website": "http://whitepinesdojo.com",
+    "error": "fetch failed"
+  },
+  "12747": {
+    "website": "https://berjayatkd.com",
+    "error": "fetch failed"
+  },
+  "12748": {
+    "website": "https://www.dualdragonstkd.com",
+    "error": "fetch failed"
+  },
+  "12749": {
+    "website": "https://swiftcurrentkarateclub.com/about-us",
+    "error": "fetch failed"
+  },
+  "12757": {
+    "website": "http://abbotsfordmartialarts.com",
+    "error": "fetch failed"
+  },
+  "12781": {
+    "website": "http://kenpo.qc.ca",
+    "error": "fetch failed"
+  },
+  "12784": {
+    "website": "http://www.etobicokedojo.ca/tablet/index.html",
+    "error": "HTTP 404"
+  },
+  "12785": {
+    "website": "http://firehorsedojo.com",
+    "error": "fetch failed"
+  },
+  "12789": {
+    "website": "http://www.miorimartialarts.com/classes/dewitt",
+    "error": "HTTP 404"
+  },
+  "12790": {
+    "website": "http://aikidoofcny.com",
+    "error": "fetch failed"
+  },
+  "12801": {
+    "website": "http://www.mstartkd.com/oakridge/index.htm",
+    "error": "HTTP 404"
+  },
+  "12804": {
+    "website": "http://martialarts-scarborough.com",
+    "error": "fetch failed"
+  },
+  "12817": {
+    "website": "http://montrealkenjutsu.ca",
+    "error": "HTTP 403"
+  },
+  "12904": {
+    "website": "www.taekwondocentre.com",
+    "error": "Failed to parse URL from www.taekwondocentre.com"
+  },
+  "12919": {
+    "website": "https://octabjj.ca",
+    "error": "fetch failed"
+  },
+  "12926": {
+    "website": "https://www.ykmatkd.com",
+    "error": "HTTP 401"
+  },
+  "12927": {
+    "website": "http://karateguelph.com",
+    "error": "fetch failed"
+  },
+  "12929": {
+    "website": "https://thaiboxingniagara.com",
+    "error": "fetch failed"
+  },
+  "12948": {
+    "website": "www.3fires.ca",
+    "error": "Failed to parse URL from www.3fires.ca"
+  },
+  "12953": {
+    "website": "https://tkmtacademy.com",
+    "error": "fetch failed"
+  },
+  "12966": {
+    "website": "www.karate514.com",
+    "error": "Failed to parse URL from www.karate514.com"
+  },
+  "12991": {
+    "website": "https://SouthMissBJJ.com",
+    "error": "fetch failed"
+  },
+  "13045": {
+    "website": "https://www.dalhousie.ca/portfolio-item/recreaplex",
+    "error": "fetch failed"
+  },
+  "13063": {
+    "website": "https://barrhaven.douvris.com",
+    "error": "HTTP 404"
+  },
+  "13102": {
+    "website": "https://pma-leander.com",
+    "error": "fetch failed"
+  },
+  "13106": {
+    "website": "www.ovboxing.com",
+    "error": "Failed to parse URL from www.ovboxing.com"
+  },
+  "13109": {
+    "website": "https://ImmortalKungFu.com",
+    "error": "fetch failed"
+  },
+  "13125": {
+    "website": "https://www.tentokai.com",
+    "error": "fetch failed"
+  },
+  "13139": {
+    "website": "https://hapkidocolima.com",
+    "error": "fetch failed"
+  },
+  "13196": {
+    "website": "www.tigrenegrooaxaca.com.mx",
+    "error": "Failed to parse URL from www.tigrenegrooaxaca.com.mx"
+  },
+  "13303": {
+    "website": "https://mercaditovecino.udg.mx/publicacion/detalles?comercio=5:00%20AM%20Fit%20Wellness&id=16984",
+    "error": "fetch failed"
+  },
+  "13339": {
+    "website": "https://kineticjustmove.com",
+    "error": "fetch failed"
+  },
+  "13340": {
+    "website": "http://fightclubgymsjds.com",
+    "error": "fetch failed"
+  },
+  "13344": {
+    "website": "https://www.escazufitnesscenter.com",
+    "error": "fetch failed"
+  },
+  "13349": {
+    "website": "https://www.chonkyong.nl",
+    "error": "HTTP 503"
+  },
+  "13363": {
+    "website": "https://www.bushidojj.com",
+    "error": "fetch failed"
+  },
+  "13365": {
+    "website": "http://renshinkanpanama.com",
+    "error": "fetch failed"
+  },
+  "13415": {
+    "website": "https://teamkalista.com",
+    "error": "fetch failed"
+  },
+  "13436": {
+    "website": "http://www.purple-dragon.com",
+    "error": "fetch failed"
+  },
+  "13452": {
+    "website": "http://www.cicerocostha.com.br",
+    "error": "HTTP 404"
+  },
+  "13497": {
+    "website": "https://alcateia.albertocunha.com",
+    "error": "fetch failed"
+  },
+  "13500": {
+    "website": "http://cgkdojo.online",
+    "error": "fetch failed"
+  },
+  "13549": {
+    "website": "http://popofightclub.com.br",
+    "error": "fetch failed"
+  },
+  "13551": {
+    "website": "http://riliongraciebrasilia.com.br/site",
+    "error": "HTTP 404"
+  },
+  "13556": {
+    "website": "https://www.academiagrasfitness.com.br",
+    "error": "fetch failed"
+  },
+  "13560": {
+    "website": "http://academiaforcaativa.com.br",
+    "error": "fetch failed"
+  },
+  "13580": {
+    "website": "http://www.wadoryu.com.br",
+    "error": "HTTP 403"
+  },
+  "13588": {
+    "website": "http://www.baraojiujitsu.com.br",
+    "error": "HTTP 404"
+  },
+  "13591": {
+    "website": "http://topform.com.br",
+    "error": "HTTP 404"
+  },
+  "13607": {
+    "website": "http://www.workoutacademiaap.com",
+    "error": "HTTP 404"
+  },
+  "13645": {
+    "website": "http://zanshin.xpg.uol.com.br",
+    "error": "fetch failed"
+  },
+  "13646": {
+    "website": "http://juniorvidalteam.com.br",
+    "error": "fetch failed"
+  },
+  "13654": {
+    "website": "http://www.teamnogueirasbc.com.br",
+    "error": "fetch failed"
+  },
+  "13656": {
+    "website": "https://letsfit.com.br",
+    "error": "fetch failed"
+  },
+  "13661": {
+    "website": "http://www.mgpersonalsp.com.br",
+    "error": "fetch failed"
+  },
+  "13667": {
+    "website": "https://academia.sescmt.com.br",
+    "error": "fetch failed"
+  },
+  "13679": {
+    "website": "https://www.okinawagojuryu.com.br/home",
+    "error": "HTTP 404"
+  },
+  "13691": {
+    "website": "https://www.teamnaef.com.br",
+    "error": "fetch failed"
+  },
+  "13692": {
+    "website": "http://www.eliteforma.com.br",
+    "error": "fetch failed"
+  },
+  "13716": {
+    "website": "http://www.academiafmtrainer.com.br",
+    "error": "fetch failed"
+  },
+  "13741": {
+    "website": "https://triade-estudio-martial-arts-school.business.site",
+    "error": "HTTP 404"
+  },
+  "13748": {
+    "website": "https://www.uniquejiujitsu.com",
+    "error": "fetch failed"
+  },
+  "13752": {
+    "website": "https://www.arguscrossfit.com.br",
+    "error": "fetch failed"
+  },
+  "13800": {
+    "website": "http://www.montejj.com.br",
+    "error": "fetch failed"
+  },
+  "13846": {
+    "website": "www.karatesul.com.br",
+    "error": "Failed to parse URL from www.karatesul.com.br"
+  },
+  "13858": {
+    "website": "http://unicam.org",
+    "error": "timeout"
+  },
+  "13865": {
+    "website": "https://www.gamefightsjc.com.br",
+    "error": "fetch failed"
+  },
+  "13900": {
+    "website": "http://clubpinocho.com.ar",
+    "error": "fetch failed"
+  },
+  "13901": {
+    "website": "http://central.sukata.com.ar",
+    "error": "fetch failed"
+  },
+  "13902": {
+    "website": "http://www.dojoclub.com.ar",
+    "error": "fetch failed"
+  },
+  "13907": {
+    "website": "http://www.karatesamurai.com.ar",
+    "error": "fetch failed"
+  },
+  "13912": {
+    "website": "https://adsgimnasio.com.ar",
+    "error": "fetch failed"
+  },
+  "13942": {
+    "website": "miyazatodojo.com",
+    "error": "Failed to parse URL from miyazatodojo.com"
+  },
+  "13952": {
+    "website": "http://www.perubeach.com.ar",
+    "error": "fetch failed"
+  },
+  "13973": {
+    "website": "https://www.seiryu.cl",
+    "error": "fetch failed"
+  },
+  "14006": {
+    "website": "http://coloniarowing.club",
+    "error": "fetch failed"
+  },
+  "14013": {
+    "website": "http://www.psicokarate.cl",
+    "error": "fetch failed"
+  },
+  "14071": {
+    "website": "http://www.karatevaldivia.cl",
+    "error": "fetch failed"
+  },
+  "14121": {
+    "website": "https://clubseul.com",
+    "error": "fetch failed"
+  },
+  "14138": {
+    "website": "hinomaruclub.wordpress.comn",
+    "error": "Failed to parse URL from hinomaruclub.wordpress.comn"
+  },
+  "14151": {
+    "website": "https://balboagymbox.com.co",
+    "error": "fetch failed"
+  },
+  "14154": {
+    "website": "https://www.yabokiva.net/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=3314233485835922301",
+    "error": "fetch failed"
+  },
+  "14160": {
+    "website": "https://clubkanazawavelez.site",
+    "error": "fetch failed"
+  },
+  "14218": {
+    "website": "https://hinomaruclub.wordpress.com",
+    "error": "HTTP 410"
+  },
+  "14232": {
+    "website": "https://bit.ly/3Znw82C",
+    "error": "fetch failed"
+  },
+  "14248": {
+    "website": "https://www.ipd.gob.pe/c-d-chacarilla-de-otero",
+    "error": "fetch failed"
+  },
+  "14249": {
+    "website": "https://www.ipd.gob.pe/c-d-puente-del-ejercito",
+    "error": "fetch failed"
+  },
+  "14262": {
+    "website": "https://www.ipd.gob.pe/c-d-carabayllo",
+    "error": "fetch failed"
+  },
+  "14273": {
+    "website": "www.venplay.com",
+    "error": "Failed to parse URL from www.venplay.com"
+  },
+  "14284": {
+    "website": "http://academiadeportivalala.org.ve",
+    "error": "fetch failed"
+  },
+  "14314": {
+    "website": "http://wkkcp.com",
+    "error": "fetch failed"
+  },
+  "14324": {
+    "website": "http://www.teamcomptom.com",
+    "error": "fetch failed"
+  },
+  "14325": {
+    "website": "www.livingwell.com.au",
+    "error": "Failed to parse URL from www.livingwell.com.au"
+  },
+  "14329": {
+    "website": "https://sjjamaroubra.com.au",
+    "error": "fetch failed"
+  },
+  "14331": {
+    "website": "https://www.legacybjjgoldcoast.com.au",
+    "error": "fetch failed"
+  },
+  "14332": {
+    "website": "https://www.tanscurrumbin.com.au",
+    "error": "fetch failed"
+  },
+  "14342": {
+    "website": "https://www.bondishaolinkungfu.com",
+    "error": "HTTP 404"
+  },
+  "14370": {
+    "website": "https://www.rmatotalfitness.com.au",
+    "error": "fetch failed"
+  },
+  "14376": {
+    "website": "https://www.traiiningday.com",
+    "error": "fetch failed"
+  },
+  "14389": {
+    "website": "https://anytimefitness.com.au",
+    "error": "fetch failed"
+  },
+  "14390": {
+    "website": "http://ww25.braveheartsboxing.com.au/?subid1=20230805-1650-336e-8217-56e3ba9acd97",
+    "error": "fetch failed"
+  },
+  "14397": {
+    "website": "https://survivorfitness.com.au",
+    "error": "fetch failed"
+  },
+  "14402": {
+    "website": "https://www.southsideboxinggym.com.au",
+    "error": "fetch failed"
+  },
+  "14409": {
+    "website": "http://www.vt1mma.com.au",
+    "error": "fetch failed"
+  },
+  "14416": {
+    "website": "http://www.karateshotokan.com.au",
+    "error": "fetch failed"
+  },
+  "14423": {
+    "website": "https://www.mjsma.com.au",
+    "error": "fetch failed"
+  },
+  "14431": {
+    "website": "http://www.renseikarate.com",
+    "error": "HTTP 403"
+  },
+  "14438": {
+    "website": "https://dcjiujitsu.com.au",
+    "error": "fetch failed"
+  },
+  "14443": {
+    "website": "https://www.sutherlandshire.nsw.gov.au/Outdoors/Leisure-Centres/Centres/Menai-Indoor-Sports-Centre",
+    "error": "HTTP 403"
+  },
+  "14455": {
+    "website": "http://garrabjj.com.au/sunshine-coast-nambour",
+    "error": "HTTP 404"
+  },
+  "14463": {
+    "website": "https://www.geelongmartialarts.com",
+    "error": "fetch failed"
+  },
+  "14467": {
+    "website": "Kumiai Ryu Port Macquarie",
+    "error": "Failed to parse URL from Kumiai Ryu Port Macquarie"
+  },
+  "14473": {
+    "website": "http://www.capoeirafdb.com",
+    "error": "HTTP 503"
+  },
+  "14476": {
+    "website": "http://www.kanojudoschools.com",
+    "error": "fetch failed"
+  },
+  "14483": {
+    "website": "https://www.wapcyc.com.au/content/page/gosnells-pcyc.html",
+    "error": "HTTP 404"
+  },
+  "14494": {
+    "website": "https://www.jiujitsu.org.nz",
+    "error": "fetch failed"
+  },
+  "14509": {
+    "website": "http://www.anytimefitnessonehunga.co.nz",
+    "error": "fetch failed"
+  },
+  "14510": {
+    "website": "http://dojos.nz/HamiltonWadoKaiKarateClub",
+    "error": "fetch failed"
+  },
+  "14512": {
+    "website": "https://seido.co.nz",
+    "error": "fetch failed"
+  },
+  "14635": {
+    "website": "https://naganobudokan.com",
+    "error": "HTTP 403"
+  },
+  "14650": {
+    "website": "http://bjjaoyama.net",
+    "error": "fetch failed"
+  },
+  "14880": {
+    "website": "https://shinbukan.tokyo",
+    "error": "fetch failed"
+  },
+  "14944": {
+    "website": "https://www.nissin-sc.jp/index.html",
+    "error": "HTTP 404"
+  },
+  "14984": {
+    "website": "http://budokan.jp",
+    "error": "fetch failed"
+  },
+  "15056": {
+    "website": "https://www.city.sanuki.kagawa.jp/institution/sports/sports_20",
+    "error": "HTTP 503"
+  },
+  "15057": {
+    "website": "https://www.city.sanuki.kagawa.jp/institution/sports/sports_19",
+    "error": "HTTP 503"
+  },
+  "15089": {
+    "website": "cukum.com",
+    "error": "Failed to parse URL from cukum.com"
+  },
+  "15184": {
+    "website": "https://www.oxygen.pk",
+    "error": "fetch failed"
+  },
+  "15185": {
+    "website": "https://kyrgyzstantopteam.com/en/kant",
+    "error": "fetch failed"
+  },
+  "15188": {
+    "website": "https://worldnomadgames.com/en/places/Sport-and-Recreation-Center",
+    "error": "fetch failed"
+  },
+  "15203": {
+    "website": "https://www.tmma.com.tw",
+    "error": "HTTP 404"
+  },
+  "15271": {
+    "website": "http://www.kyokushinbd.wordpress.com",
+    "error": "HTTP 410"
+  },
+  "15300": {
+    "website": "www.safaagym.com",
+    "error": "Failed to parse URL from www.safaagym.com"
+  },
+  "15301": {
+    "website": "http://SityodtongMuayThaiGym.com",
+    "error": "fetch failed"
+  },
+  "15347": {
+    "website": "http://maxmuaythai.tv",
+    "error": "fetch failed"
+  },
+  "15348": {
+    "website": "www.khaosaigalaxymuaythaigym.com",
+    "error": "Failed to parse URL from www.khaosaigalaxymuaythaigym.com"
+  },
+  "15349": {
+    "website": "http://thapaestadium.com",
+    "error": "fetch failed"
+  },
+  "15354": {
+    "website": "https://mrly.business.site",
+    "error": "HTTP 404"
+  },
+  "15356": {
+    "website": "http://www.samart-samui.com",
+    "error": "fetch failed"
+  },
+  "15357": {
+    "website": "https://www.balancephuket.com",
+    "error": "fetch failed"
+  },
+  "15363": {
+    "website": "https://absolutemmathailand.com",
+    "error": "fetch failed"
+  },
+  "15374": {
+    "website": "https://cobramuaythaiphuket.com",
+    "error": "fetch failed"
+  },
+  "15380": {
+    "website": "http://gymcuongnguyen.com",
+    "error": "fetch failed"
+  },
+  "15424": {
+    "website": "http://www.bmamartialarts.com",
+    "error": "fetch failed"
+  },
+  "15434": {
+    "website": "https://www.punch-mma.com",
+    "error": "fetch failed"
+  },
+  "15455": {
+    "website": "https://psht.my.id",
+    "error": "fetch failed"
+  },
+  "15462": {
+    "website": "https://www.akiraxtkd.com",
+    "error": "fetch failed"
+  },
+  "15508": {
+    "website": "www.spartansboxing.com/buona-vista",
+    "error": "Failed to parse URL from www.spartansboxing.com/buona-vista"
+  },
+  "15525": {
+    "website": "www.prakritikyodha.com",
+    "error": "Failed to parse URL from www.prakritikyodha.com"
+  },
+  "15579": {
+    "website": "https://www.metrocityhealthclub.com",
+    "error": "fetch failed"
+  },
+  "15619": {
+    "website": "https://instagram.com/tavanaclub",
+    "error": "fetch failed"
+  },
+  "15620": {
+    "website": "https://www.qatarmma.com",
+    "error": "fetch failed"
+  },
+  "15634": {
+    "website": "https://almokatil.com",
+    "error": "fetch failed"
+  },
+  "15638": {
+    "website": "http://www.boffitness.com",
+    "error": "fetch failed"
+  },
+  "15640": {
+    "website": "https://fitnessmaxpts.com",
+    "error": "fetch failed"
+  },
+  "15648": {
+    "website": "https://kickboksetiler.com",
+    "error": "fetch failed"
+  },
+  "15658": {
+    "website": "https://www.basaksehir.bel.tr/sezai-karakoc-genclik-merkezi",
+    "error": "fetch failed"
+  },
+  "15659": {
+    "website": "https://spor.istanbul/?tesisler=bahcelievler-spor-kompleksi",
+    "error": "HTTP 403"
+  },
+  "15687": {
+    "website": "https://www.fitco.club",
+    "error": "fetch failed"
+  },
+  "15695": {
+    "website": "https://vahidreyhani.com",
+    "error": "fetch failed"
+  },
+  "15704": {
+    "website": "https://sifo.ir",
+    "error": "fetch failed"
+  },
+  "15705": {
+    "website": "https://www.asavarzesh.ir",
+    "error": "fetch failed"
+  },
+  "15714": {
+    "website": "m8fitclub.ir",
+    "error": "Failed to parse URL from m8fitclub.ir"
+  },
+  "15722": {
+    "website": "http://www.ashgabat2017.gov.tm/en/page/Oyunlar-Olimpiya-shaherchesi-Turgenleshik-zallary",
+    "error": "fetch failed"
+  },
+  "15731": {
+    "website": "http://www.ansehsports.com",
+    "error": "fetch failed"
+  },
+  "15746": {
+    "website": "https://taekwondotehran.ir",
+    "error": "fetch failed"
+  },
+  "15762": {
+    "website": "https://www.montlasallesport.com/palais-des-sports",
+    "error": "fetch failed"
+  },
+  "15767": {
+    "website": "http://www.reddragon.co.za",
+    "error": "fetch failed"
+  },
+  "15768": {
+    "website": "http://www.worldofmartialarts.co.za",
+    "error": "fetch failed"
+  },
+  "15769": {
+    "website": "https://www.aiki.co.za",
+    "error": "fetch failed"
+  },
+  "15771": {
+    "website": "https://www.leadingedgegym.co.za",
+    "error": "fetch failed"
+  },
+  "15772": {
+    "website": "https://armouryboxing.com",
+    "error": "fetch failed"
+  },
+  "15774": {
+    "website": "https://www.facebook.com/profile.php?id=61553003015655&locale=lv_LV",
+    "error": "fetch failed"
+  },
+  "15777": {
+    "website": "http://irontiger.co.za",
+    "error": "fetch failed"
+  },
+  "15778": {
+    "website": "https://kingsboxinggym.org",
+    "error": "fetch failed"
+  },
+  "15779": {
+    "website": "https://kung-fu.co.za",
+    "error": "fetch failed"
+  },
+  "15780": {
+    "website": "https://olympians.co.za/olympians-wrestling-club",
+    "error": "fetch failed"
+  },
+  "15787": {
+    "website": "https://www.facebook.com/Club-Strong-Fighter-487616751724824",
+    "error": "fetch failed"
+  },
+  "15795": {
+    "website": "https://www.clubdejudocostateguise.com",
+    "error": "fetch failed"
+  },
+  "15800": {
+    "website": "https://level24.life",
+    "error": "fetch failed"
+  },
+  "15805": {
+    "website": "https://www.facebook.com/My-Story-Gym-Center-116404148029826",
+    "error": "fetch failed"
+  },
+  "15828": {
+    "website": "https://gubsk.ru/gto/raspisanie-sdachi-gto",
+    "error": "fetch failed"
+  },
+  "15831": {
+    "website": "http://clinch96.ru",
+    "error": "HTTP 403"
+  },
+  "15832": {
+    "website": "https://kerugi.com",
+    "error": "fetch failed"
+  },
+  "15834": {
+    "website": "https://школамошкина.рф",
+    "error": "fetch failed"
+  },
+  "15835": {
+    "website": "https://karate42rus.2gis.biz",
+    "error": "HTTP 404"
+  },
+  "15836": {
+    "website": "https://tikara-karate.ru",
+    "error": "fetch failed"
+  },
+  "15837": {
+    "website": "http://alkor-wtf.narod.ru",
+    "error": "fetch failed"
+  },
+  "15842": {
+    "website": "https://koryoclub.ru",
+    "error": "fetch failed"
+  },
+  "15843": {
+    "website": "https://sambo-tmn.ru",
+    "error": "fetch failed"
+  },
+  "15850": {
+    "website": "http://www.sport.dynamex.ru",
+    "error": "fetch failed"
+  },
+  "15851": {
+    "website": "http://zapring-vorkuta.ru",
+    "error": "HTTP 403"
+  },
+  "15852": {
+    "website": "https://dush-nov.ru",
+    "error": "fetch failed"
+  },
+  "15864": {
+    "website": "http://yunost26.ru",
+    "error": "HTTP 403"
+  },
+  "15865": {
+    "website": "www.aikikokoro.ru",
+    "error": "Failed to parse URL from www.aikikokoro.ru"
+  },
+  "15866": {
+    "website": "https://akwrest.ru",
+    "error": "fetch failed"
+  },
+  "15873": {
+    "website": "http://sport-26.ru/athletic-facilities/1",
+    "error": "fetch failed"
+  },
+  "15884": {
+    "website": "https://dussh-5.kamch.sportsng.ru",
+    "error": "HTTP 403"
+  }
+}

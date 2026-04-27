@@ -1,0 +1,47 @@
+[--ids filter] kept 660/660 requested gyms
+─── Stage 2: Find relevant schedule pages ───
+Sites with website (Stage 1):  660
+Confidence threshold:          high, medium
+Will process:                  660
+Concurrency:                   12
+
+  12/660 — pages found 11, failed 1    24/660 — pages found 21, failed 3    36/660 — pages found 31, failed 5    48/660 — pages found 43, failed 5    60/660 — pages found 53, failed 7    72/660 — pages found 64, failed 8    84/660 — pages found 76, failed 8    96/660 — pages found 87, failed 9    108/660 — pages found 96, failed 12    120/660 — pages found 104, failed 16    132/660 — pages found 113, failed 19    144/660 — pages found 124, failed 20    156/660 — pages found 132, failed 24    168/660 — pages found 142, failed 26    180/660 — pages found 152, failed 28    192/660 — pages found 164, failed 28    204/660 — pages found 175, failed 29    216/660 — pages found 186, failed 30    228/660 — pages found 195, failed 33    240/660 — pages found 205, failed 35    252/660 — pages found 214, failed 38    264/660 — pages found 224, failed 40    276/660 — pages found 236, failed 40    288/660 — pages found 243, failed 45    300/660 — pages found 251, failed 49    312/660 — pages found 259, failed 53    324/660 — pages found 268, failed 56    336/660 — pages found 278, failed 58    348/660 — pages found 286, failed 62    360/660 — pages found 298, failed 62    372/660 — pages found 307, failed 65    384/660 — pages found 311, failed 73    396/660 — pages found 319, failed 77    408/660 — pages found 329, failed 79    420/660 — pages found 339, failed 81    432/660 — pages found 347, failed 85    444/660 — pages found 356, failed 88    456/660 — pages found 364, failed 92    468/660 — pages found 373, failed 95    480/660 — pages found 382, failed 98    492/660 — pages found 392, failed 100    504/660 — pages found 403, failed 101    516/660 — pages found 413, failed 103    528/660 — pages found 421, failed 107    540/660 — pages found 431, failed 109    552/660 — pages found 440, failed 112    564/660 — pages found 452, failed 112    576/660 — pages found 458, failed 118    588/660 — pages found 467, failed 121    600/660 — pages found 478, failed 122    612/660 — pages found 487, failed 125    624/660 — pages found 488, failed 136    636/660 — pages found 488, failed 148    648/660 — pages found 488, failed 160    660/660 — pages found 488, failed 172  
+
+Wrote 2524 entries to scripts/pipeline/data/02-relevant-pages.json
+Wrote 244 entries to scripts/pipeline/data/02-failures.json
+
+Summary:
+  Processed:       660
+  Pages found:     488
+  Failed:          172
+
+Discovery method:
+  sitemap            241
+  homepage_crawl     247
+
+Failure reasons:
+  fetch failed       130
+  HTTP 404           13
+  HTTP 403           4
+  HTTP 503           3
+  HTTP 410           2
+  Failed to parse URL from axevancouver.com 1
+  Failed to parse URL from www.taekwondocentre.com 1
+  HTTP 401           1
+  Failed to parse URL from www.3fires.ca 1
+  Failed to parse URL from www.karate514.com 1
+  Failed to parse URL from www.ovboxing.com 1
+  Failed to parse URL from www.tigrenegrooaxaca.com.mx 1
+  Failed to parse URL from www.karatesul.com.br 1
+  Failed to parse URL from miyazatodojo.com 1
+  Failed to parse URL from hinomaruclub.wordpress.comn 1
+  Failed to parse URL from www.venplay.com 1
+  Failed to parse URL from www.livingwell.com.au 1
+  Failed to parse URL from Kumiai Ryu Port Macquarie 1
+  Failed to parse URL from cukum.com 1
+  Failed to parse URL from www.safaagym.com 1
+  Failed to parse URL from www.khaosaigalaxymuaythaigym.com 1
+  Failed to parse URL from www.spartansboxing.com/buona-vista 1
+  Failed to parse URL from www.prakritikyodha.com 1
+  Failed to parse URL from m8fitclub.ir 1
+  Failed to parse URL from www.aikikokoro.ru 1

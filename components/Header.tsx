@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useAuth } from './AuthProvider';
 
 export default function Header() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const { user, signOut, requireAuth } = useAuth();
 
   useEffect(() => {
     const saved = localStorage.getItem('theme') as 'light' | 'dark' | null;
@@ -36,43 +38,18 @@ export default function Header() {
       position: 'relative',
     }}>
       {/* Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div style={{
-          width: 30,
-          height: 30,
-          background: 'var(--accent)',
-          borderRadius: 'var(--radius-md)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 16,
-          flexShrink: 0,
-        }}>
-          🥋
-        </div>
-        <div>
-          <span style={{
-            fontFamily: "'Archivo Black', sans-serif",
-            fontSize: 18,
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.01em',
-          }}>
-            MatFinder
-          </span>
-          <span style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontStyle: 'italic',
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            marginLeft: 6,
-          }}>
-            open mats, everywhere.
-          </span>
-        </div>
-      </div>
+      <Link href="/" style={{
+        fontFamily: "'Archivo Black', sans-serif",
+        fontSize: 18,
+        color: 'var(--text-primary)',
+        letterSpacing: '-0.01em',
+        textDecoration: 'none',
+      }}>
+        MatFinder
+      </Link>
 
       {/* Right side */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <Link
           href="/add-gym"
           style={{
@@ -87,8 +64,68 @@ export default function Header() {
             transition: 'all 0.15s',
           }}
         >
-          Add your gym →
+          Add Gym
         </Link>
+        <Link
+          href="/privacy"
+          style={{
+            fontFamily: "'Inter Tight', sans-serif",
+            fontSize: 12,
+            color: 'var(--text-muted)',
+            textDecoration: 'none',
+            padding: '5px 8px',
+          }}
+        >
+          Privacy
+        </Link>
+        <Link
+          href="/terms"
+          style={{
+            fontFamily: "'Inter Tight', sans-serif",
+            fontSize: 12,
+            color: 'var(--text-muted)',
+            textDecoration: 'none',
+            padding: '5px 8px',
+          }}
+        >
+          Terms
+        </Link>
+        {user ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Link
+              href="/account"
+              style={{
+                width: 30, height: 30, borderRadius: '50%',
+                background: 'var(--accent)', color: '#000',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 13, fontWeight: 700, textDecoration: 'none',
+                flexShrink: 0,
+              }}
+            >
+              {(user.email?.[0] ?? '?').toUpperCase()}
+            </Link>
+            <button
+              onClick={signOut}
+              style={{
+                fontFamily: "'Inter Tight', sans-serif",
+                fontSize: 12, color: 'var(--text-muted)',
+                background: 'none', border: 'none', cursor: 'pointer', padding: '5px 6px',
+              }}
+            >Sign out</button>
+          </div>
+        ) : (
+          <button
+            onClick={() => requireAuth(() => {})}
+            style={{
+              fontFamily: "'Inter Tight', sans-serif",
+              fontSize: 13, fontWeight: 600,
+              color: 'var(--text-primary)',
+              background: 'var(--accent)',
+              border: 'none', borderRadius: 'var(--radius-md)',
+              padding: '5px 12px', cursor: 'pointer',
+            }}
+          >Sign in</button>
+        )}
         <button
           onClick={toggleTheme}
           aria-label="Toggle theme"

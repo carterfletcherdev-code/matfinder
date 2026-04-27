@@ -29,6 +29,7 @@ interface Session {
 
 export default function AddGymPage() {
   const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [country, setCountry] = useState('US');
@@ -69,6 +70,7 @@ export default function AddGymPage() {
 
     const body = [
       `Gym Name: ${name}`,
+      address ? `Address: ${address}` : '',
       `City: ${city}`,
       `State/Province: ${state}`,
       `Country: ${country}`,
@@ -108,7 +110,7 @@ export default function AddGymPage() {
   const labelStyle: React.CSSProperties = {
     fontSize: 12,
     fontWeight: 700,
-    color: 'var(--text-secondary)',
+    color: 'var(--text-primary)',
     fontFamily: "'Inter Tight', sans-serif",
     textTransform: 'uppercase',
     letterSpacing: '0.05em',
@@ -159,7 +161,7 @@ export default function AddGymPage() {
             color: 'var(--text-primary)',
             margin: '0 0 4px',
           }}>
-            Add your gym
+            Add Gym
           </h1>
           <p style={{
             fontFamily: "'Inter Tight', sans-serif",
@@ -185,6 +187,11 @@ export default function AddGymPage() {
             <div>
               <label style={labelStyle}>Gym name *</label>
               <input required value={name} onChange={e => setName(e.target.value)} style={inputStyle} placeholder="e.g. 10th Planet Austin" />
+            </div>
+
+            <div>
+              <label style={labelStyle}>Street address</label>
+              <input value={address} onChange={e => setAddress(e.target.value)} style={inputStyle} placeholder="e.g. 123 Main St" />
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -253,8 +260,8 @@ export default function AddGymPage() {
                     <select value={s.day} onChange={e => updateSession(i, 'day', e.target.value)} style={{ ...inputStyle, padding: '7px 10px' }}>
                       {DAYS.map(d => <option key={d}>{d}</option>)}
                     </select>
-                    <input type="time" value={s.start} onChange={e => updateSession(i, 'start', e.target.value)} style={{ ...inputStyle, padding: '7px 10px' }} />
-                    <input type="time" value={s.end} onChange={e => updateSession(i, 'end', e.target.value)} style={{ ...inputStyle, padding: '7px 10px' }} />
+                    <input type="time" value={s.start} onChange={e => updateSession(i, 'start', e.target.value)} style={{ ...inputStyle, padding: '7px 10px', colorScheme: 'light dark' }} />
+                    <input type="time" value={s.end} onChange={e => updateSession(i, 'end', e.target.value)} style={{ ...inputStyle, padding: '7px 10px', colorScheme: 'light dark' }} />
                     <label style={{ ...checkStyle, whiteSpace: 'nowrap', fontSize: 12 }}>
                       <input type="checkbox" checked={s.isFree} onChange={e => updateSession(i, 'isFree', e.target.checked)} />
                       Free

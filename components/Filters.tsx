@@ -1,237 +1,462 @@
 'use client';
 
-import { Discipline, DayOfWeek, DISCIPLINE_LABELS, DISCIPLINE_COLORS, DAY_LABELS } from '@/lib/types';
+import { useState } from 'react';
+import { Discipline, DayOfWeek, Region, DISCIPLINE_LABELS, DISCIPLINE_COLORS, DAY_LABELS, REGION_LABELS } from '@/lib/types';
+
+const REGIONS: Region[] = ['all', 'north_america', 'south_america', 'europe', 'asia', 'africa', 'oceania'];
 
 const DISCIPLINES: Discipline[] = ['bjj', 'nogi_bjj', 'gi_bjj', 'wrestling', 'judo', 'muay_thai', 'mma', 'kickboxing', 'boxing', 'karate', 'taekwondo'];
 const DAYS: DayOfWeek[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+// Discipline category groupings — used for the vertical accordion in the floating dropdown.
+// MMA appears in BOTH grappling and striking (it's both); no standalone MMA category.
+const CATEGORIES: { key: 'grappling' | 'striking'; label: string; disciplines: Discipline[] }[] = [
+  { key: 'grappling', label: 'Grappling', disciplines: ['bjj', 'nogi_bjj', 'gi_bjj', 'wrestling', 'judo', 'mma'] },
+  { key: 'striking',  label: 'Striking',  disciplines: ['muay_thai', 'kickboxing', 'boxing', 'karate', 'taekwondo', 'mma'] },
+];
 
 interface FiltersProps {
   selectedDisciplines: Discipline[];
   selectedDays: DayOfWeek[];
   freeOnly: boolean;
-  openNowOnly: boolean;
-  dropInOnly: boolean;
-  loanerGiOnly: boolean;
-  region: 'all' | 'us' | 'europe';
+  startingSoonOnly: boolean;
+  region: Region;
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
-  onOpenNowToggle: () => void;
-  onDropInToggle: () => void;
-  onLoanerGiToggle: () => void;
-  onRegionChange: (r: 'all' | 'us' | 'europe') => void;
+  onStartingSoonToggle: () => void;
+  onRegionChange: (r: Region) => void;
+  onReset?: () => void;
   resultCount: number;
+  isMobile?: boolean;
+  noBackground?: boolean;
+  floatingFilters?: boolean;
 }
 
+const scrollRow: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 5,
+  overflowX: 'auto',
+  flexWrap: 'nowrap',
+  WebkitOverflowScrolling: 'touch',
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
+};
+
 export default function Filters({
-  selectedDisciplines,
-  selectedDays,
-  freeOnly,
-  openNowOnly,
-  dropInOnly,
-  loanerGiOnly,
-  region,
-  onDisciplineToggle,
-  onDayToggle,
-  onFreeOnlyToggle,
-  onOpenNowToggle,
-  onDropInToggle,
-  onLoanerGiToggle,
-  onRegionChange,
-  resultCount,
+  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  onRegionChange, onReset, resultCount, isMobile, noBackground, floatingFilters,
 }: FiltersProps) {
+  const hasActiveFilters = selectedDisciplines.length > 0 || selectedDays.length > 0 || freeOnly || startingSoonOnly;
+  const [flashRegion, setFlashRegion] = useState<string | null>(null);
+  function handleRegionClick(r: Region) {
+    setFlashRegion(r);
+    setTimeout(() => setFlashRegion(null), 500);
+    // Click an active non-"all" region again to toggle back to "all".
+    onRegionChange(r !== 'all' && region === r ? 'all' : r);
+  }
+
+  // ── Vertical category-accordion variant — only used in the floating dropdown ──
+  if (floatingFilters) {
+    return (
+      <VerticalFilters
+        selectedDisciplines={selectedDisciplines}
+        selectedDays={selectedDays}
+        freeOnly={freeOnly}
+        startingSoonOnly={startingSoonOnly}
+        region={region}
+        onDisciplineToggle={onDisciplineToggle}
+        onDayToggle={onDayToggle}
+        onFreeOnlyToggle={onFreeOnlyToggle}
+        onStartingSoonToggle={onStartingSoonToggle}
+        onRegionChange={onRegionChange}
+        onReset={onReset}
+        resultCount={resultCount}
+        hasActiveFilters={hasActiveFilters}
+        flashRegion={flashRegion}
+        handleRegionClick={handleRegionClick}
+      />
+    );
+  }
+
+  // ── Horizontal scroll-row variant — mobile + expanded list overlay ──
+  const rowPad = isMobile ? '6px 10px' : '7px 16px';
+  const inactiveBg = 'transparent';
+  const inactiveText = 'var(--text-secondary)';
+  const inactiveBorder = 'var(--border)';
+  const rowBorder = noBackground ? 'none' : '1px solid var(--border)';
+
   return (
     <div style={{
-      background: 'var(--surface-raised)',
-      borderBottom: '1px solid var(--border)',
-      padding: '10px 16px',
+      background: noBackground ? 'transparent' : 'var(--surface-raised)',
+      borderBottom: noBackground ? 'none' : '1px solid var(--border)',
       flexShrink: 0,
     }}>
-      {/* Row 1: region + day chips + toggles + count */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
-        {(['all', 'us', 'europe'] as const).map((r) => (
-          <button
-            key={r}
-            onClick={() => onRegionChange(r)}
-            style={{
-              padding: '4px 12px',
+
+      {/* Row 1: Disciplines */}
+      <div className="filter-scroll" style={{ ...scrollRow, padding: rowPad, borderBottom: rowBorder }}>
+        {DISCIPLINES.map((d) => {
+          const active = selectedDisciplines.includes(d);
+          const c = DISCIPLINE_COLORS[d];
+          return (
+            <button key={d} onClick={() => onDisciplineToggle(d)} style={{
+              display: 'flex', alignItems: 'center', gap: 5,
+              padding: '3px 10px 3px 7px',
               borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${region === r ? 'var(--accent)' : 'var(--border)'}`,
-              background: region === r ? 'var(--accent)' : 'transparent',
-              color: region === r ? 'var(--bone)' : 'var(--text-secondary)',
-              fontSize: 12,
-              fontWeight: 600,
-              fontFamily: "'Inter Tight', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.15s',
-            }}
-          >
-            {r === 'all' ? 'All' : r === 'us' ? '🇺🇸 US' : '🌍 Europe'}
-          </button>
-        ))}
+              border: `1.5px solid ${active ? c.text : inactiveBorder}`,
+              background: active ? c.bg : inactiveBg,
+              color: active ? c.text : inactiveText,
+              fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+              cursor: 'pointer', transition: 'all 0.12s',
+              whiteSpace: 'nowrap', flexShrink: 0,
+            }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.marker, flexShrink: 0, display: 'inline-block' }} />
+              {DISCIPLINE_LABELS[d]}
+            </button>
+          );
+        })}
+      </div>
 
-        <div style={{ width: 1, height: 16, background: 'var(--border)', margin: '0 2px' }} />
-
-        {/* Day chips */}
+      {/* Row 2: Days + Starting Soon + Free Only + Count */}
+      <div className="filter-scroll" style={{ ...scrollRow, padding: rowPad, borderBottom: rowBorder }}>
         {DAYS.map((d) => {
           const active = selectedDays.includes(d);
           return (
-            <button
-              key={d}
-              onClick={() => onDayToggle(d)}
-              style={{
-                padding: '3px 9px',
-                borderRadius: 'var(--radius-full)',
-                border: `1.5px solid ${active ? 'var(--accent)' : 'var(--border)'}`,
-                background: active ? 'var(--accent)' : 'transparent',
-                color: active ? 'var(--bone)' : 'var(--text-secondary)',
-                fontSize: 11,
-                fontWeight: 600,
-                fontFamily: "'JetBrains Mono', monospace",
-                cursor: 'pointer',
-                transition: 'all 0.12s',
-              }}
-            >
+            <button key={d} onClick={() => onDayToggle(d)} style={{
+              padding: '3px 9px',
+              borderRadius: 'var(--radius-full)',
+              border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
+              background: active ? 'var(--accent)' : inactiveBg,
+              color: active ? 'var(--bone)' : inactiveText,
+              fontSize: 11, fontWeight: 600, fontFamily: "'JetBrains Mono', monospace",
+              cursor: 'pointer', transition: 'all 0.12s',
+              whiteSpace: 'nowrap', flexShrink: 0,
+            }}>
               {DAY_LABELS[d]}
             </button>
           );
         })}
 
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
-          {/* Open Now */}
-          <button
-            onClick={onOpenNowToggle}
-            style={{
-              padding: '4px 12px',
-              borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${openNowOnly ? '#16A34A' : 'var(--border)'}`,
-              background: openNowOnly ? '#DCFCE7' : 'transparent',
-              color: openNowOnly ? '#166534' : 'var(--text-secondary)',
-              fontSize: 12,
-              fontWeight: 600,
-              fontFamily: "'Inter Tight', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.15s',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 5,
-            }}
-          >
-            <span style={{
-              width: 7, height: 7, borderRadius: '50%',
-              background: openNowOnly ? '#16A34A' : 'var(--text-muted)',
-              display: 'inline-block',
-              boxShadow: openNowOnly ? '0 0 0 2px rgba(22,163,74,0.3)' : 'none',
-            }} />
-            Open Now
-          </button>
+        <div style={{ width: 1, height: 16, background: 'var(--border)', flexShrink: 0, margin: '0 2px' }} />
 
-          {/* Free only */}
-          <button
-            onClick={onFreeOnlyToggle}
-            style={{
-              padding: '4px 12px',
-              borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${freeOnly ? '#5E8B5E' : 'var(--border)'}`,
-              background: freeOnly ? '#D4DDD3' : 'transparent',
-              color: freeOnly ? '#27402A' : 'var(--text-secondary)',
-              fontSize: 12,
-              fontWeight: 600,
-              fontFamily: "'Inter Tight', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.15s',
-            }}
-          >
-            Free only
-          </button>
+        <button onClick={onStartingSoonToggle} style={{
+          padding: '3px 10px',
+          borderRadius: 'var(--radius-full)',
+          border: `1.5px solid ${startingSoonOnly ? '#D97706' : inactiveBorder}`,
+          background: startingSoonOnly ? 'var(--bone)' : inactiveBg,
+          color: startingSoonOnly ? '#5C4430' : inactiveText,
+          fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+          cursor: 'pointer', transition: 'all 0.15s',
+          whiteSpace: 'nowrap', flexShrink: 0,
+        }}>
+          Starting Soon
+        </button>
 
-          {/* Drop-in */}
-          <button
-            onClick={onDropInToggle}
-            style={{
-              padding: '4px 12px',
-              borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${dropInOnly ? 'var(--accent)' : 'var(--border)'}`,
-              background: dropInOnly ? 'var(--accent-muted)' : 'transparent',
-              color: dropInOnly ? 'var(--accent)' : 'var(--text-secondary)',
-              fontSize: 12,
-              fontWeight: 600,
-              fontFamily: "'Inter Tight', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.15s',
-            }}
-          >
-            Drop-in
-          </button>
+        <button onClick={onFreeOnlyToggle} style={{
+          padding: '3px 10px',
+          borderRadius: 'var(--radius-full)',
+          border: `1.5px solid ${freeOnly ? '#5E8B5E' : inactiveBorder}`,
+          background: freeOnly ? '#D4DDD3' : inactiveBg,
+          color: freeOnly ? '#27402A' : inactiveText,
+          fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+          cursor: 'pointer', transition: 'all 0.15s',
+          whiteSpace: 'nowrap', flexShrink: 0,
+        }}>
+          Free only
+        </button>
 
-          {/* Loaner Gi */}
-          <button
-            onClick={onLoanerGiToggle}
-            style={{
-              padding: '4px 12px',
-              borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${loanerGiOnly ? '#1E3A5F' : 'var(--border)'}`,
-              background: loanerGiOnly ? '#DBEAFE' : 'transparent',
-              color: loanerGiOnly ? '#1E3A5F' : 'var(--text-secondary)',
-              fontSize: 12,
-              fontWeight: 600,
-              fontFamily: "'Inter Tight', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.15s',
-            }}
-          >
-            Loaner Gi
-          </button>
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+          color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 4,
+        }}>
+          {resultCount} gym{resultCount !== 1 ? 's' : ''}
+        </span>
 
-          <span style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 11,
-            color: 'var(--text-muted)',
-            whiteSpace: 'nowrap',
-            marginLeft: 2,
+        {hasActiveFilters && onReset && (
+          <button onClick={onReset} style={{
+            padding: '3px 10px',
+            borderRadius: 'var(--radius-full)',
+            border: `1.5px solid ${inactiveBorder}`,
+            background: inactiveBg,
+            color: inactiveText,
+            fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', transition: 'all 0.12s',
+            whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 4,
+            opacity: 0.7,
           }}>
-            {resultCount} gym{resultCount !== 1 ? 's' : ''}
-          </span>
+            Reset ✕
+          </button>
+        )}
+      </div>
+
+      {/* Row 3: Regions */}
+      <div className="filter-scroll" style={{ ...scrollRow, padding: rowPad }}>
+        {REGIONS.map((r) => (
+          <button key={r} onClick={() => handleRegionClick(r)} style={{
+            padding: '3px 12px',
+            borderRadius: 'var(--radius-full)',
+            border: `1.5px solid ${flashRegion === r ? 'var(--accent)' : inactiveBorder}`,
+            background: flashRegion === r ? 'var(--accent)' : inactiveBg,
+            color: flashRegion === r ? 'var(--bone)' : inactiveText,
+            fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', transition: 'all 0.15s',
+            whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            {REGION_LABELS[r]}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Vertical category-accordion variant for the floating dropdown
+// ────────────────────────────────────────────────────────────────────────────
+
+interface VerticalFiltersProps {
+  selectedDisciplines: Discipline[];
+  selectedDays: DayOfWeek[];
+  freeOnly: boolean;
+  startingSoonOnly: boolean;
+  region: Region;
+  onDisciplineToggle: (d: Discipline) => void;
+  onDayToggle: (d: DayOfWeek) => void;
+  onFreeOnlyToggle: () => void;
+  onStartingSoonToggle: () => void;
+  onRegionChange: (r: Region) => void;
+  onReset?: () => void;
+  resultCount: number;
+  hasActiveFilters: boolean;
+  flashRegion: string | null;
+  handleRegionClick: (r: Region) => void;
+}
+
+function VerticalFilters({
+  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
+}: VerticalFiltersProps) {
+  const [regionOpen, setRegionOpen] = useState<boolean>(region !== 'all');
+  // Auto-expand a category if any of its disciplines are selected
+  const initiallyOpen = (catKey: 'grappling' | 'striking') => {
+    const cat = CATEGORIES.find(c => c.key === catKey)!;
+    return cat.disciplines.some(d => selectedDisciplines.includes(d));
+  };
+  const [openCats, setOpenCats] = useState<Record<string, boolean>>({
+    grappling: initiallyOpen('grappling'),
+    striking:  initiallyOpen('striking'),
+  });
+
+  const sectionLabel: React.CSSProperties = {
+    fontSize: 9, fontWeight: 700, letterSpacing: '0.08em',
+    fontFamily: "'JetBrains Mono', monospace",
+    color: 'rgba(245,241,232,0.55)', textTransform: 'uppercase',
+    padding: '0 2px 4px',
+  };
+
+  const inactiveBorder = 'rgba(245,241,232,0.30)';
+  const inactiveText = 'rgba(245,241,232,0.85)';
+
+  function CategoryButton({
+    cat, isOpen,
+  }: { cat: typeof CATEGORIES[number]; isOpen: boolean }) {
+    const selectedInCat = cat.disciplines.filter(d => selectedDisciplines.includes(d)).length;
+
+    return (
+      <button onClick={() => setOpenCats(s => ({ ...s, [cat.key]: !isOpen }))} style={{
+        width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '8px 10px', borderRadius: 'var(--radius-md)',
+        border: `1.5px solid ${isOpen ? 'var(--bone)' : inactiveBorder}`,
+        background: 'transparent',
+        color: 'var(--bone)',
+        fontSize: 13, fontWeight: 700, fontFamily: "'Inter Tight', sans-serif",
+        cursor: 'pointer', transition: 'all 0.15s',
+        textAlign: 'left',
+      }}>
+        <span>{cat.label}</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, opacity: 0.8 }}>
+          {selectedInCat > 0 && (
+            <span style={{ background: 'var(--accent)', color: 'var(--bone)', borderRadius: 'var(--radius-full)', padding: '0 6px', fontSize: 10 }}>
+              {selectedInCat}
+            </span>
+          )}
+          <span style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.15s', display: 'inline-block', width: 10, lineHeight: '10px' }}>›</span>
+        </span>
+      </button>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', padding: 10, gap: 10, color: 'var(--bone)' }}>
+
+      {/* ── Disciplines (categorized accordion) ─────────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Disciplines</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {CATEGORIES.map((cat) => {
+            const isOpen = !!openCats[cat.key];
+            return (
+              <div key={cat.key}>
+                <CategoryButton cat={cat} isOpen={isOpen} />
+                {isOpen && (
+                  <div style={{
+                    display: 'flex', flexDirection: 'column', gap: 4,
+                    padding: '6px 0 2px 8px',
+                  }}>
+                    {cat.disciplines.map((d) => {
+                      const active = selectedDisciplines.includes(d);
+                      const c = DISCIPLINE_COLORS[d];
+                      return (
+                        <button key={d} onClick={() => onDisciplineToggle(d)} style={{
+                          display: 'flex', alignItems: 'center', gap: 7,
+                          padding: '4px 9px 4px 7px',
+                          borderRadius: 'var(--radius-full)',
+                          border: `1.5px solid ${active ? c.text : inactiveBorder}`,
+                          background: active ? c.bg : 'transparent',
+                          color: active ? c.text : inactiveText,
+                          fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+                          cursor: 'pointer', transition: 'all 0.12s',
+                          textAlign: 'left',
+                        }}>
+                          <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.marker, flexShrink: 0, display: 'inline-block' }} />
+                          {DISCIPLINE_LABELS[d]}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Row 2: discipline chips */}
-      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5 }}>
-        {DISCIPLINES.map((d) => {
-          const active = selectedDisciplines.includes(d);
-          const c = DISCIPLINE_COLORS[d];
-          return (
-            <button
-              key={d}
-              onClick={() => onDisciplineToggle(d)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5,
-                padding: '3px 10px 3px 7px',
+      {/* ── Days ────────────────────────────────────────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Days</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+          {DAYS.map((d) => {
+            const active = selectedDays.includes(d);
+            return (
+              <button key={d} onClick={() => onDayToggle(d)} style={{
+                padding: '3px 8px',
                 borderRadius: 'var(--radius-full)',
-                border: `1.5px solid ${active ? c.text : 'var(--border)'}`,
-                background: active ? c.bg : 'transparent',
-                color: active ? c.text : 'var(--text-muted)',
-                fontSize: 12,
-                fontWeight: 600,
-                fontFamily: "'Inter Tight', sans-serif",
-                cursor: 'pointer',
-                transition: 'all 0.12s',
-              }}
-            >
-              <span style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: c.marker,
-                flexShrink: 0,
-                display: 'inline-block',
-              }} />
-              {DISCIPLINE_LABELS[d]}
-            </button>
-          );
-        })}
+                border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
+                background: active ? 'var(--accent)' : 'transparent',
+                color: active ? 'var(--bone)' : inactiveText,
+                fontSize: 10, fontWeight: 600, fontFamily: "'JetBrains Mono', monospace",
+                cursor: 'pointer', transition: 'all 0.12s',
+                whiteSpace: 'nowrap',
+              }}>
+                {DAY_LABELS[d]}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Toggles ─────────────────────────────────────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Filters</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <button onClick={onStartingSoonToggle} style={{
+            padding: '4px 10px',
+            borderRadius: 'var(--radius-full)',
+            border: `1.5px solid ${startingSoonOnly ? '#D97706' : inactiveBorder}`,
+            background: startingSoonOnly ? 'var(--bone)' : 'transparent',
+            color: startingSoonOnly ? '#5C4430' : inactiveText,
+            fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', transition: 'all 0.15s', textAlign: 'left',
+          }}>
+            Starting Soon
+          </button>
+          <button onClick={onFreeOnlyToggle} style={{
+            padding: '4px 10px',
+            borderRadius: 'var(--radius-full)',
+            border: `1.5px solid ${freeOnly ? '#5E8B5E' : inactiveBorder}`,
+            background: freeOnly ? '#D4DDD3' : 'transparent',
+            color: freeOnly ? '#27402A' : inactiveText,
+            fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', transition: 'all 0.15s', textAlign: 'left',
+          }}>
+            Free only
+          </button>
+        </div>
+      </div>
+
+      {/* ── Region (accordion) ──────────────────────────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Region</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <button
+            onClick={() => setRegionOpen(o => !o)}
+            style={{
+              width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '8px 10px', borderRadius: 'var(--radius-md)',
+              border: `1.5px solid ${regionOpen ? 'var(--bone)' : inactiveBorder}`,
+              background: 'transparent',
+              color: 'var(--bone)',
+              fontSize: 13, fontWeight: 700, fontFamily: "'Inter Tight', sans-serif",
+              cursor: 'pointer', transition: 'all 0.15s', textAlign: 'left',
+            }}
+          >
+            <span>{region === 'all' ? 'Region' : REGION_LABELS[region]}</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, opacity: 0.8 }}>
+              <span style={{ transform: regionOpen ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.15s', display: 'inline-block', width: 10, lineHeight: '10px' }}>›</span>
+            </span>
+          </button>
+          {regionOpen && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: '2px 0 2px 8px' }}>
+              {REGIONS.map((r) => {
+                const active = region === r;
+                return (
+                  <button key={r} onClick={() => handleRegionClick(r)} style={{
+                    padding: '4px 10px',
+                    borderRadius: 'var(--radius-full)',
+                    border: `1.5px solid ${active || flashRegion === r ? 'var(--bone)' : inactiveBorder}`,
+                    background: active ? 'rgba(245,241,232,0.12)' : 'transparent',
+                    color: active ? 'var(--bone)' : inactiveText,
+                    fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+                    cursor: 'pointer', transition: 'all 0.15s',
+                    textAlign: 'left', whiteSpace: 'nowrap',
+                  }}>
+                    {REGION_LABELS[r]}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── Footer: count + reset ───────────────────────────────────────── */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '8px 2px 0', borderTop: '1px solid rgba(245,241,232,0.15)',
+        marginTop: 2,
+      }}>
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
+          color: 'rgba(245,241,232,0.65)',
+        }}>
+          {resultCount} gym{resultCount !== 1 ? 's' : ''}
+        </span>
+        {hasActiveFilters && onReset && (
+          <button onClick={onReset} style={{
+            padding: '2px 8px',
+            borderRadius: 'var(--radius-full)',
+            border: `1px solid ${inactiveBorder}`,
+            background: 'transparent',
+            color: inactiveText,
+            fontSize: 10, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', whiteSpace: 'nowrap',
+          }}>
+            Reset ✕
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,359 @@
+Querying OSM for CA (Canada-W)...
+  Got 242 elements
+Querying OSM for CA (Canada-E)...
+  Got 1023 elements
+Querying OSM for MX (Mexico-N)...
+  Got 143 elements
+Querying OSM for MX (Mexico-S)...
+  Got 286 elements
+Querying OSM for GT...
+  Got 18 elements
+Querying OSM for BZ...
+  Got 4 elements
+Querying OSM for HN...
+  Got 10 elements
+Querying OSM for SV...
+  Got 5 elements
+Querying OSM for NI...
+  Got 14 elements
+Querying OSM for CR...
+  Got 29 elements
+Querying OSM for PA...
+  Got 15 elements
+Querying OSM for CU...
+  Got 44 elements
+Querying OSM for DO...
+  Got 15 elements
+Querying OSM for PR...
+  Got 13 elements
+Querying OSM for JM...
+  Got 0 elements
+Querying OSM for TT...
+  Got 2 elements
+Querying OSM for BR (Brazil-N)...
+  Got 33 elements
+Querying OSM for BR (Brazil-NE)...
+  Got 110 elements
+Querying OSM for BR (Brazil-CW)...
+  Got 228 elements
+Querying OSM for BR (Brazil-SE)...
+  Got 410 elements
+Querying OSM for AR (Argentina-N)...
+  Got 236 elements
+Querying OSM for AR (Argentina-S)...
+  Got 45 elements
+Querying OSM for CL...
+  Got 87 elements
+Querying OSM for CO...
+  Got 121 elements
+Querying OSM for PE...
+  Got 148 elements
+Querying OSM for EC...
+    Rate limited, waiting 20s...
+  Got 74 elements
+Querying OSM for VE...
+  Got 55 elements
+Querying OSM for UY...
+  Got 34 elements
+Querying OSM for PY...
+  Got 32 elements
+Querying OSM for BO...
+  Got 23 elements
+Querying OSM for GY...
+  Got 4 elements
+Querying OSM for SR...
+  Got 2 elements
+Querying OSM for AU (Australia-E)...
+  Got 203 elements
+Querying OSM for AU (Australia-W)...
+  Got 16 elements
+Querying OSM for NZ...
+  Got 48 elements
+Querying OSM for PG...
+  Got 0 elements
+Querying OSM for FJ...
+  Got 1 elements
+Querying OSM for JP (Japan-N)...
+  Got 173 elements
+Querying OSM for JP (Japan-S)...
+  Got 693 elements
+Querying OSM for KR...
+  Got 253 elements
+Querying OSM for CN (China-NE)...
+  Got 403 elements
+Querying OSM for CN (China-NW)...
+  Got 18 elements
+Querying OSM for CN (China-SE)...
+  Got 52 elements
+Querying OSM for CN (China-SW)...
+  Got 57 elements
+Querying OSM for TW...
+  Got 22 elements
+Querying OSM for HK...
+  Got 2 elements
+Querying OSM for MN...
+  Got 3 elements
+Querying OSM for TH...
+  Got 108 elements
+Querying OSM for VN...
+  Got 25 elements
+Querying OSM for PH...
+  Got 46 elements
+Querying OSM for ID (Indonesia-W)...
+  Got 79 elements
+Querying OSM for ID (Indonesia-E)...
+  Got 3 elements
+Querying OSM for MY...
+  Got 76 elements
+Querying OSM for SG...
+  Got 41 elements
+Querying OSM for KH...
+  Got 9 elements
+Querying OSM for LA...
+  Got 19 elements
+Querying OSM for MM...
+  Got 66 elements
+Querying OSM for IN (India-N)...
+  Got 46 elements
+Querying OSM for IN (India-S)...
+  Got 84 elements
+Querying OSM for PK...
+  Got 19 elements
+Querying OSM for BD...
+  Got 13 elements
+Querying OSM for LK...
+  Got 4 elements
+Querying OSM for NP...
+  Got 6 elements
+Querying OSM for IL...
+  Got 9 elements
+Querying OSM for AE...
+  Got 21 elements
+Querying OSM for SA (Saudi-N)...
+  Got 48 elements
+Querying OSM for SA (Saudi-S)...
+  Got 2 elements
+Querying OSM for TR (Turkey-W)...
+  Got 45 elements
+Querying OSM for TR (Turkey-E)...
+  Got 40 elements
+Querying OSM for IR (Iran-N)...
+  Got 133 elements
+Querying OSM for IR (Iran-S)...
+  Got 34 elements
+Querying OSM for JO...
+  Got 4 elements
+Querying OSM for LB...
+  Got 2 elements
+Querying OSM for KW...
+  Got 1 elements
+Querying OSM for QA...
+  Got 2 elements
+Querying OSM for BH...
+  Got 1 elements
+Querying OSM for OM...
+  Got 23 elements
+Querying OSM for ZA (SA-N)...
+  Got 6 elements
+Querying OSM for ZA (SA-S)...
+  Got 12 elements
+Querying OSM for EG...
+  Got 5 elements
+Querying OSM for MA...
+  Got 22 elements
+Querying OSM for KE...
+  Got 1 elements
+Querying OSM for NG...
+  Got 3 elements
+Querying OSM for GH...
+  Got 3 elements
+Querying OSM for TN...
+  Got 6 elements
+Querying OSM for DZ (Algeria-N)...
+    Rate limited, waiting 20s...
+  Got 61 elements
+Querying OSM for ET...
+  Got 1 elements
+Querying OSM for RU (Russia-Sib-W)...
+  Got 68 elements
+Querying OSM for RU (Russia-Sib-E)...
+  Got 21 elements
+Querying OSM for RU (Russia-FE)...
+  Got 28 elements
+
+Total: 5942, after dedup: 5766
+By country: {
+  "CA": 1200,
+  "MX": 364,
+  "GT": 17,
+  "BZ": 4,
+  "HN": 8,
+  "SV": 5,
+  "NI": 13,
+  "CR": 25,
+  "PA": 14,
+  "CU": 36,
+  "DO": 14,
+  "PR": 12,
+  "TT": 2,
+  "BR": 508,
+  "AR": 261,
+  "CL": 78,
+  "CO": 103,
+  "PE": 130,
+  "EC": 66,
+  "VE": 48,
+  "UY": 30,
+  "PY": 29,
+  "BO": 19,
+  "GY": 4,
+  "SR": 2,
+  "AU": 211,
+  "NZ": 44,
+  "FJ": 1,
+  "JP": 695,
+  "KR": 234,
+  "CN": 452,
+  "TW": 21,
+  "HK": 2,
+  "MN": 2,
+  "TH": 98,
+  "VN": 24,
+  "PH": 46,
+  "ID": 73,
+  "MY": 70,
+  "SG": 37,
+  "KH": 9,
+  "LA": 17,
+  "MM": 54,
+  "IN": 119,
+  "PK": 16,
+  "BD": 13,
+  "LK": 3,
+  "NP": 6,
+  "IL": 8,
+  "AE": 20,
+  "SA": 46,
+  "TR": 60,
+  "IR": 158,
+  "JO": 4,
+  "LB": 1,
+  "KW": 1,
+  "QA": 2,
+  "BH": 1,
+  "OM": 22,
+  "ZA": 16,
+  "EG": 3,
+  "MA": 18,
+  "KE": 1,
+  "NG": 1,
+  "GH": 1,
+  "TN": 4,
+  "DZ": 56,
+  "RU": 104
+}
+By discipline: {
+  "gi_bjj": 2804,
+  "taekwondo": 687,
+  "karate": 681,
+  "muay_thai": 130,
+  "boxing": 951,
+  "judo": 317,
+  "nogi_bjj": 7,
+  "mma": 45,
+  "wrestling": 140,
+  "kickboxing": 4
+}
+Per-bbox tally: {
+  "CA (Canada-W)": 242,
+  "CA (Canada-E)": 1023,
+  "MX (Mexico-N)": 143,
+  "MX (Mexico-S)": 286,
+  "GT": 18,
+  "BZ": 4,
+  "HN": 10,
+  "SV": 5,
+  "NI": 14,
+  "CR": 29,
+  "PA": 15,
+  "CU": 44,
+  "DO": 15,
+  "PR": 13,
+  "JM": 0,
+  "TT": 2,
+  "BR (Brazil-N)": 33,
+  "BR (Brazil-NE)": 110,
+  "BR (Brazil-CW)": 228,
+  "BR (Brazil-SE)": 410,
+  "AR (Argentina-N)": 236,
+  "AR (Argentina-S)": 45,
+  "CL": 87,
+  "CO": 121,
+  "PE": 148,
+  "EC": 74,
+  "VE": 55,
+  "UY": 34,
+  "PY": 32,
+  "BO": 23,
+  "GY": 4,
+  "SR": 2,
+  "AU (Australia-E)": 203,
+  "AU (Australia-W)": 16,
+  "NZ": 48,
+  "PG": 0,
+  "FJ": 1,
+  "JP (Japan-N)": 173,
+  "JP (Japan-S)": 693,
+  "KR": 253,
+  "CN (China-NE)": 403,
+  "CN (China-NW)": 18,
+  "CN (China-SE)": 52,
+  "CN (China-SW)": 57,
+  "TW": 22,
+  "HK": 2,
+  "MN": 3,
+  "TH": 108,
+  "VN": 25,
+  "PH": 46,
+  "ID (Indonesia-W)": 79,
+  "ID (Indonesia-E)": 3,
+  "MY": 76,
+  "SG": 41,
+  "KH": 9,
+  "LA": 19,
+  "MM": 66,
+  "IN (India-N)": 46,
+  "IN (India-S)": 84,
+  "PK": 19,
+  "BD": 13,
+  "LK": 4,
+  "NP": 6,
+  "IL": 9,
+  "AE": 21,
+  "SA (Saudi-N)": 48,
+  "SA (Saudi-S)": 2,
+  "TR (Turkey-W)": 45,
+  "TR (Turkey-E)": 40,
+  "IR (Iran-N)": 133,
+  "IR (Iran-S)": 34,
+  "JO": 4,
+  "LB": 2,
+  "KW": 1,
+  "QA": 2,
+  "BH": 1,
+  "OM": 23,
+  "ZA (SA-N)": 6,
+  "ZA (SA-S)": 12,
+  "EG": 5,
+  "MA": 22,
+  "KE": 1,
+  "NG": 3,
+  "GH": 3,
+  "TN": 6,
+  "DZ (Algeria-N)": 61,
+  "ET": 1,
+  "RU (Russia-Sib-W)": 68,
+  "RU (Russia-Sib-E)": 21,
+  "RU (Russia-FE)": 28
+}
+Saved 5766 gyms to scripts/global-gyms.json
