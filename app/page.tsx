@@ -398,6 +398,12 @@ export default function Home() {
     setExpandedGym(id);
     setPinnedFirst(id);
     if (isMobile) setMobileSheetOpen(true);
+    // Set sort location to this gym so the list re-sorts nearest from here
+    const gym = allGyms.find(g => g.id === id);
+    if (gym) {
+      setSortLocation({ lat: gym.lat, lng: gym.lng, label: gym.name });
+      setSortMode('nearest');
+    }
   }
 
   const activeFilterCount =
