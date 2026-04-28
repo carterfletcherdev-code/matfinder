@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Gym, DISCIPLINE_LABELS, DISCIPLINE_COLORS, DAY_LABELS, Discipline } from '@/lib/types';
+import { Gym, DISCIPLINE_LABELS, DISCIPLINE_COLORS, DAY_LABELS, Discipline, BJJ_DISCIPLINES, BJJ_SUB_LABEL } from '@/lib/types';
 import { formatTime } from '@/lib/utils';
 import StarRating from './StarRating';
 import HeartButton from './HeartButton';
@@ -71,10 +71,19 @@ interface GymCardProps {
 }
 
 export default function GymCard({ gym, isSelected, isMobile, mapOverlay, onClick, distanceKm, useKm = true, isStartingSoon, ratingAvg, ratingCount, onRated, onCityClick }: GymCardProps) {
-  const disciplines = [...new Set(gym.open_mats.map((o) => o.discipline))];
-  const hasFree = gym.open_mats.some((o) => o.is_free);
-  // A gym is "confirmed" only if every open_mat entry is confirmed
-  const fullyConfirmed = gym.open_mats.every((o) => o.confirmed === true);
+  // Deduplicate: all BJJ variants (bjj/nogi_bjj/gi_bjj) show as one chip
+  const rawDisciplines = [...new Set(gym.open_mats.map((o) => o.discipline))];
+  const disciplines: Discipline[] = rawDisciplines.reduce<Discipline[]>((acc, d) => {
+    const key = BJJ_DISCIPLINES.has(d) ? 'bjj' : d;
+    if (!acc.includes(key)) acc.push(key);
+    return acc;
+  }, []);
+  // Only open mats with verified=true have real, sourced times
+  const verifiedMats = gym.open_mats.filter(o => o.verified === true);
+  const hasVerifiedMats = verifiedMats.length > 0;
+  const hasFree = hasVerifiedMats
+    ? verifiedMats.some(o => o.is_free)
+    : gym.open_mats.some(o => o.is_free && o.confirmed === true);
   const lastVerifiedAt = (() => {
     const ts: number[] = [];
     for (const o of gym.open_mats) if (o.verified && o.verified_at) ts.push(Date.parse(o.verified_at));
@@ -200,12 +209,12 @@ export default function GymCard({ gym, isSelected, isMobile, mapOverlay, onClick
               letterSpacing: '0.05em', textTransform: 'uppercase',
             }}>FREE</span>
           )}
-          {fullyConfirmed && (
-            <span title="Discipline verified" style={{
+          {hasVerifiedMats && (
+            <span title="Schedule verified from gym website" style={{
               background: '#D4DDD3', color: '#27402A',
               fontSize: 10, fontWeight: 700, padding: '2px 7px',
               borderRadius: 'var(--radius-full)',
-            }}>✓</span>
+            }}>✓ Verified</span>
           )}
         </div>
       </div>
@@ -318,174 +327,307 @@ export default function GymCard({ gym, isSelected, isMobile, mapOverlay, onClick
         </a>
       )}
 
-      {/* Open mats only — default schedule view, with explicit OPEN MAT badge */}
-      {gym.open_mats.length === 0 && (
+      {/* Open mat schedule — only show verified times; unverified shows website fallback */}
+      {!hasVerifiedMats ? (
         <div style={{
-          display: 'flex', alignItems: 'center', gap: 6,
+          display: 'flex', alignItems: 'center', gap: 8,
           padding: '7px 10px', borderRadius: 'var(--radius-md)',
           background: 'rgba(245,241,232,0.05)',
           border: '1px dashed rgba(245,241,232,0.18)',
+          marginBottom: 2,
         }}>
-          <span style={{ fontSize: 13 }}>🕐</span>
-          <span style={{ fontSize: 12, color: muted, fontStyle: 'italic' }}>
-            Schedule not verified yet
+          <span style={{ fontSize: 12, color: muted, fontStyle: 'italic', flex: 1, lineHeight: 1.4 }}>
+            {gym.website ? 'Open mat times unconfirmed' : 'Community-driven · help confirm'}
           </span>
-          {gym.website && (
+          {gym.website ? (
             <a
-              href={gym.website}
+              href={gym.website.startsWith('http') ? gym.website : `https://${gym.website}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}
+              style={{ fontSize: 11, color: 'rgba(245,241,232,0.70)', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
             >
               Visit website →
             </a>
+          ) : (
+            <span style={{ fontSize: 10, color: 'rgba(245,241,232,0.55)', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, fontFamily: "'JetBrains Mono', monospace" }}>
+              No website
+            </span>
+          )}
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          {verifiedMats.slice(0, 2).map((o) => (
+            <div key={o.id} style={{
+              display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, flexWrap: 'wrap',
+            }}>
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontWeight: 600, color: muted,
+                width: 28, flexShrink: 0, fontSize: 11,
+              }}>
+                {DAY_LABELS[o.day]}
+              </span>
+              <span style={{ color: scheduleText, fontWeight: 500 }}>
+                {formatTime(o.start_time)}–{formatTime(o.end_time)}
+              </span>
+              <span style={{
+                background: '#D4DDD3', color: '#27402A',
+                fontSize: 9, fontWeight: 700, padding: '1px 5px', borderRadius: 999,
+                letterSpacing: '0.04em',
+              }}>OPEN MAT</span>
+              {BJJ_SUB_LABEL[o.discipline] && (
+                <span style={{
+                  background: '#FBF0D4', color: '#5C4515',
+                  fontSize: 9, fontWeight: 700, padding: '1px 5px', borderRadius: 999,
+                  letterSpacing: '0.04em',
+                }}>{BJJ_SUB_LABEL[o.discipline]}</span>
+              )}
+              {isSelected && o.verified && o.source_quote && (
+                <VerifiedBadge sourceUrl={o.source_url} sourceQuote={o.source_quote} verifiedAt={o.verified_at} />
+              )}
+              <span style={{ fontSize: 11, marginLeft: 'auto' }}>
+                {o.is_free ? (
+                  <span style={{ color: isSelected ? '#5E8B5E' : '#A8C2A8', fontWeight: 600 }}>Free</span>
+                ) : (
+                  <span style={{ color: muted }}>${o.cost}</span>
+                )}
+              </span>
+            </div>
+          ))}
+          {verifiedMats.length > 2 && (
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); setShowFullSchedule(true); }}
+              style={{
+                marginTop: 4, background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: 11, color: 'var(--accent)', fontFamily: "'Inter Tight', sans-serif",
+                padding: '2px 0', textAlign: 'left',
+              }}
+            >
+              +{verifiedMats.length - 2} more open mats ▾
+            </button>
           )}
         </div>
       )}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        {(showFullSchedule || gym.open_mats.length <= 2 ? gym.open_mats : gym.open_mats.slice(0, 2)).map((o) => (
-          <div key={o.id} style={{
-            display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, flexWrap: 'wrap',
-          }}>
-            <span style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontWeight: 600, color: muted,
-              width: 28, flexShrink: 0, fontSize: 11,
-            }}>
-              {DAY_LABELS[o.day]}
-            </span>
-            <span style={{ color: scheduleText, fontWeight: 500 }}>
-              {formatTime(o.start_time)}–{formatTime(o.end_time)}
-            </span>
-            <span style={{
-              background: '#D4DDD3', color: '#27402A',
-              fontSize: 9, fontWeight: 700, padding: '1px 5px', borderRadius: 999,
-              letterSpacing: '0.04em',
-            }}>OPEN MAT</span>
-            {isSelected && o.verified && o.source_quote && (
-              <VerifiedBadge sourceUrl={o.source_url} sourceQuote={o.source_quote} verifiedAt={o.verified_at} />
-            )}
-            <span style={{ fontSize: 11, marginLeft: 'auto' }}>
-              {o.is_free ? (
-                <span style={{ color: isSelected ? '#5E8B5E' : '#A8C2A8', fontWeight: 600 }}>Free</span>
-              ) : (
-                <span style={{ color: muted }}>${o.cost}</span>
-              )}
-            </span>
-          </div>
-        ))}
-        {gym.open_mats.length > 2 && !showFullSchedule && (
-          <button
-            type="button"
-            onClick={(e) => { e.stopPropagation(); setShowFullSchedule(true); }}
-            style={{
-              marginTop: 4, background: 'none', border: 'none', cursor: 'pointer',
-              fontSize: 11, color: 'var(--accent)', fontFamily: "'Inter Tight', sans-serif",
-              padding: '2px 0', textAlign: 'left',
-            }}
-          >
-            +{gym.open_mats.length - 2} more open mats ▾
-          </button>
-        )}
-      </div>
 
-      {/* "View full schedule" button — opens centered modal */}
-      {isSelected && gym.schedule && gym.schedule.length > gym.open_mats.length && (
+      {/* "View full schedule" button — opens week-grid modal */}
+      {isSelected && gym.schedule && gym.schedule.length > 0 && (
         <div style={{ marginTop: 10 }}>
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); setShowFullSchedule(true); }}
             style={{
-              padding: '4px 10px', borderRadius: 'var(--radius-md)',
+              padding: '5px 12px', borderRadius: 'var(--radius-md)',
               border: '1.5px solid rgba(245,241,232,0.30)',
               background: 'transparent', color: 'rgba(245,241,232,0.85)',
               fontSize: 12, fontWeight: 600,
               cursor: 'pointer', fontFamily: "'Inter Tight', sans-serif",
+              display: 'inline-flex', alignItems: 'center', gap: 6,
             }}
           >
-            View full schedule ({gym.schedule.length} classes) →
+            <span style={{ fontSize: 13 }}>📅</span>
+            Full schedule — {gym.schedule.length} class{gym.schedule.length !== 1 ? 'es' : ''}
           </button>
         </div>
       )}
 
-      {/* Full-schedule modal — centered, 50% black backdrop */}
+      {/* Full-schedule modal — week grid, ~60% of screen */}
       {showFullSchedule && gym.schedule && (
         <div
           onClick={(e) => { e.stopPropagation(); setShowFullSchedule(false); }}
           style={{
             position: 'fixed', inset: 0, zIndex: 1100,
-            background: 'rgba(0,0,0,0.5)',
+            background: isMobile ? 'rgba(0,0,0,0.90)' : 'rgba(0,0,0,0.65)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: 16,
+            padding: isMobile ? 0 : '20px',
           }}
         >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: 'rgba(40,28,20,0.98)', backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(245,241,232,0.20)',
-              borderRadius: 'var(--radius-lg)',
-              width: '100%', maxWidth: 480, maxHeight: '85vh',
+              background: 'rgba(20,13,9,0.99)',
+              border: '1px solid rgba(245,241,232,0.18)',
+              borderRadius: isMobile ? 0 : 14,
+              width: isMobile ? '100vw' : '100%',
+              maxWidth: isMobile ? '100vw' : 860,
+              height: isMobile ? '100dvh' : 'auto',
+              maxHeight: isMobile ? '100dvh' : '90dvh',
               display: 'flex', flexDirection: 'column',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              boxShadow: '0 28px 72px rgba(0,0,0,0.75)',
               color: 'var(--bone)',
+              fontFamily: "'Inter Tight', sans-serif",
+              overflow: 'hidden',
             }}
           >
+            {/* Modal header */}
             <div style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '14px 16px', borderBottom: '1px solid rgba(245,241,232,0.15)',
+              display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+              padding: '16px 18px 12px',
+              borderBottom: '1px solid rgba(245,241,232,0.12)',
+              flexShrink: 0, gap: 12,
             }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 700, fontFamily: "'Inter Tight', sans-serif" }}>{gym.name}</div>
-                <div style={{ fontSize: 11, color: muted, marginTop: 2 }}>Full weekly schedule · {gym.schedule.length} classes</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 15, fontWeight: 800, lineHeight: 1.2, marginBottom: 3 }}>
+                  {gym.name}
+                </div>
+                <div style={{
+                  fontSize: 11, color: 'rgba(245,241,232,0.50)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}>
+                  {gym.city}{gym.state ? `, ${gym.state}` : ''} · {gym.schedule.length} classes/week
+                </div>
               </div>
               <button
-                onClick={() => setShowFullSchedule(false)}
+                onClick={(e) => { e.stopPropagation(); setShowFullSchedule(false); }}
                 style={{
-                  background: 'transparent', border: 'none', color: 'var(--bone)',
-                  fontSize: 22, lineHeight: 1, cursor: 'pointer', padding: '0 4px',
+                  background: 'rgba(245,241,232,0.10)',
+                  border: '1px solid rgba(245,241,232,0.18)',
+                  color: 'rgba(245,241,232,0.80)',
+                  borderRadius: '50%',
+                  width: 30, height: 30, flexShrink: 0,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 16, lineHeight: 1, cursor: 'pointer', padding: 0,
                 }}
+                aria-label="Close schedule"
               >×</button>
             </div>
-            <div style={{ overflowY: 'auto', padding: '12px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {gym.schedule.map((s, i) => {
-                const c = DISCIPLINE_COLORS[s.discipline];
+
+            {/* Week grid — scrollable */}
+            <div
+              className="no-scrollbar"
+              style={{ overflowY: 'auto', flex: 1, padding: '14px 18px 18px' }}
+            >
+              {(['monday','tuesday','wednesday','thursday','friday','saturday','sunday'] as const).map((day) => {
+                const dayEntries = gym.schedule!
+                  .filter(s => s.day === day)
+                  .sort((a, b) => a.start_time.localeCompare(b.start_time));
+                if (dayEntries.length === 0) return null;
+
+                const FULL_DAY: Record<string, string> = {
+                  monday: 'Monday', tuesday: 'Tuesday', wednesday: 'Wednesday',
+                  thursday: 'Thursday', friday: 'Friday', saturday: 'Saturday', sunday: 'Sunday',
+                };
+
                 return (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, flexWrap: 'wrap',
-                    padding: '4px 0', borderBottom: i < gym.schedule!.length - 1 ? '1px dashed rgba(245,241,232,0.10)' : 'none',
-                  }}>
-                    <span style={{
+                  <div key={day} style={{ marginBottom: 16 }}>
+                    {/* Day header */}
+                    <div style={{
+                      fontSize: 10, fontWeight: 800, letterSpacing: '0.10em',
+                      color: 'rgba(245,241,232,0.45)',
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontWeight: 600, color: muted, width: 32, flexShrink: 0, fontSize: 11,
-                    }}>{DAY_LABELS[s.day]}</span>
-                    <span style={{ color: scheduleText, fontWeight: 500, fontSize: 12 }}>
-                      {formatTime(s.start_time)}{s.end_time ? `–${formatTime(s.end_time)}` : ''}
-                    </span>
-                    <span style={{
-                      background: c.bg, color: c.text,
-                      fontSize: 10, fontWeight: 600,
-                      padding: '1px 7px', borderRadius: 999,
-                    }}>{s.class_name || DISCIPLINE_LABELS[s.discipline]}</span>
-                    {s.is_open_mat && (
-                      <span style={{
-                        background: '#D4DDD3', color: '#27402A',
-                        fontSize: 9, fontWeight: 700, padding: '1px 5px', borderRadius: 999,
-                      }}>OPEN MAT</span>
-                    )}
-                    {s.is_kids && (
-                      <span style={{
-                        background: 'rgba(245,241,232,0.12)', color: muted,
-                        fontSize: 9, fontWeight: 600, padding: '1px 5px', borderRadius: 999,
-                      }}>kids</span>
-                    )}
-                    {s.verified && s.source_quote && (
-                      <VerifiedBadge sourceUrl={s.source_url} sourceQuote={s.source_quote} verifiedAt={s.verified_at} />
-                    )}
+                      textTransform: 'uppercase',
+                      paddingBottom: 7,
+                      borderBottom: '1px solid rgba(245,241,232,0.10)',
+                      marginBottom: 7,
+                    }}>
+                      {FULL_DAY[day]}
+                    </div>
+
+                    {/* Class rows */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                      {dayEntries.map((s, i) => {
+                        const c = DISCIPLINE_COLORS[s.discipline];
+                        return (
+                          <div key={i} style={{
+                            display: 'flex', alignItems: 'center', gap: 10,
+                            padding: '7px 10px',
+                            borderRadius: 8,
+                            background: s.is_open_mat
+                              ? 'rgba(168,194,168,0.09)'
+                              : 'rgba(245,241,232,0.04)',
+                            border: `1px solid ${s.is_open_mat
+                              ? 'rgba(168,194,168,0.22)'
+                              : 'rgba(245,241,232,0.07)'}`,
+                          }}>
+                            {/* Time */}
+                            <span style={{
+                              fontFamily: "'JetBrains Mono', monospace",
+                              fontSize: 11, fontWeight: 600,
+                              color: 'rgba(245,241,232,0.75)',
+                              flexShrink: 0, minWidth: 96,
+                            }}>
+                              {formatTime(s.start_time)}
+                              {s.end_time ? `–${formatTime(s.end_time)}` : ''}
+                            </span>
+
+                            {/* Class name */}
+                            <span style={{
+                              fontSize: 12, fontWeight: 600,
+                              color: 'var(--bone)', flex: 1, minWidth: 0,
+                              overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                            }}>
+                              {s.class_name || DISCIPLINE_LABELS[s.discipline]}
+                            </span>
+
+                            {/* Right-side badges */}
+                            <div style={{
+                              display: 'flex', gap: 4, flexShrink: 0,
+                              alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end',
+                            }}>
+                              {/* Discipline glyph */}
+                              <span style={{
+                                background: c.bg, color: c.text,
+                                fontSize: 9, fontWeight: 800,
+                                padding: '2px 6px', borderRadius: 999,
+                                letterSpacing: '0.04em',
+                              }}>
+                                {c.glyph}
+                              </span>
+                              {s.is_open_mat && (
+                                <span style={{
+                                  background: '#D4DDD3', color: '#27402A',
+                                  fontSize: 9, fontWeight: 700,
+                                  padding: '2px 6px', borderRadius: 999,
+                                  letterSpacing: '0.04em',
+                                }}>OPEN MAT</span>
+                              )}
+                              {s.is_kids && (
+                                <span style={{
+                                  background: 'rgba(245,241,232,0.12)', color: muted,
+                                  fontSize: 9, fontWeight: 600,
+                                  padding: '2px 6px', borderRadius: 999,
+                                }}>KIDS</span>
+                              )}
+                              {s.level && (
+                                <span style={{
+                                  background: 'rgba(245,241,232,0.08)', color: 'rgba(245,241,232,0.55)',
+                                  fontSize: 9, fontWeight: 600,
+                                  padding: '2px 6px', borderRadius: 999,
+                                  textTransform: 'capitalize',
+                                }}>{s.level}</span>
+                              )}
+                              {s.verified && s.source_quote && (
+                                <VerifiedBadge sourceUrl={s.source_url} sourceQuote={s.source_quote} verifiedAt={s.verified_at} />
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}
+
+              {/* Footer — website link */}
+              {gym.website && (
+                <div style={{ marginTop: 6, paddingTop: 12, borderTop: '1px solid rgba(245,241,232,0.08)' }}>
+                  <a
+                    href={gym.website.startsWith('http') ? gym.website : `https://${gym.website}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      fontSize: 11, fontWeight: 600,
+                      color: 'rgba(245,241,232,0.55)',
+                      textDecoration: 'none',
+                      fontFamily: "'Inter Tight', sans-serif",
+                    }}
+                  >
+                    View on gym website →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

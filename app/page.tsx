@@ -8,6 +8,7 @@ import { MAP_STYLES, type MapController } from '@/components/Map';
 import GymCard from '@/components/GymCard';
 import Filters from '@/components/Filters';
 import ProfileDropdown from '@/components/ProfileDropdown';
+import DisciplineOnboarding from '@/components/DisciplineOnboarding';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -58,13 +59,34 @@ const REGION_FLYTO: Record<Region, { lat: number; lng: number; zoom: number }> =
 
 const LIST_W = 300;
 
+// Countries where unverified gyms are shown in the default view.
+// US + Canada + Australia + major Western European countries have established
+// enough BJJ scenes that community-submitted listings are considered reliable
+// without requiring a verified schedule or website.
+const TRUSTED_COUNTRIES = new Set([
+  'US', 'CA', 'AU', 'NZ',               // Anglosphere
+  'UK', 'DE', 'FR', 'ES', 'IT',         // Major Western Europe
+  'NL', 'BE', 'AT', 'CH', 'SE',         // More Western Europe
+  'NO', 'DK', 'FI', 'PT', 'IE',         // More Western Europe
+]);
+
 export default function Home() {
   const [allGyms, setAllGyms] = useState<Gym[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedDisciplines, setSelectedDisciplines] = useState<Discipline[]>([]);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [selectedDisciplines, setSelectedDisciplines] = useState<Discipline[]>(() => {
+    if (typeof window === 'undefined') return [];
+    try {
+      const saved = localStorage.getItem('matfinder_disciplines');
+      if (saved) return JSON.parse(saved) as Discipline[];
+    } catch { /* ignore */ }
+    return [];
+  });
   const [selectedDays, setSelectedDays] = useState<DayOfWeek[]>([]);
   const [freeOnly, setFreeOnly] = useState(false);
   const [startingSoonOnly, setStartingSoonOnly] = useState(false);
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
+  const [showUnverifiedGyms, setShowUnverifiedGyms] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<Region[]>([]);
   // Derived "primary" region for places that still expect a single value (last-clicked or 'all').
   const region: Region = selectedRegions.length > 0 ? selectedRegions[selectedRegions.length - 1] : 'all';
@@ -128,7 +150,12 @@ export default function Home() {
   const [mapZoom, setMapZoom] = useState(4);
 
   const [isMobile, setIsMobile] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+  // Mobile redesign: tab view + pin-tap peek + full-screen detail
+  const [mobileView, setMobileView] = useState<'map' | 'list'>('map');
+  const [peekGymId, setPeekGymId] = useState<string | null>(null);
+  const [fullCardGymId, setFullCardGymId] = useState<string | null>(null);
 
   // Full-screen-only UI states
   const [listVisible, setListVisible] = useState(true);
@@ -136,16 +163,33 @@ export default function Home() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [mapStyleKey, setMapStyleKey] = useState('outdoors');
   const mapControllerRef = useRef<MapController | null>(null);
+  const [openFavoritesRequest, setOpenFavoritesRequest] = useState(0);
 
   const isGpsActive = sortLocation?.label === 'Your location';
   const isPinActive = sortLocation?.label === 'Dropped pin';
   const usingMapCenter = !sortLocation && mapZoom >= 9 && !!mapCenter;
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 640);
+    const check = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      // Landscape phones: wider than 640 but short (< 500px tall) and not a tablet/desktop
+      const landscapeMobile = h < 500 && w < 1024;
+      setIsMobile(w < 640 || landscapeMobile);
+      setIsLandscape(h < 500);
+    };
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
+  }, []);
+
+  useEffect(() => {
+    const skip = localStorage.getItem('matfinder_skip_onboarding');
+    const shownThisSession = sessionStorage.getItem('matfinder_onboarding_shown');
+    if (!skip && !shownThisSession) {
+      setShowOnboarding(true);
+      sessionStorage.setItem('matfinder_onboarding_shown', '1');
+    }
   }, []);
 
   useEffect(() => {
@@ -344,6 +388,19 @@ export default function Home() {
         if (gym.lat < mapBounds.s || gym.lat > mapBounds.n ||
             gym.lng < mapBounds.w || gym.lng > mapBounds.e) return false;
       }
+
+      // Verified-only filter: gym must have at least one verified open mat.
+      const hasVerified = gym.open_mats.some(m => m.verified === true);
+      if (verifiedOnly && !hasVerified) return false;
+
+      // Default view hides gyms where every open mat is unverified AND there's
+      // no website — UNLESS the gym is in a trusted country (US + major Western
+      // Europe) where the BJJ scene is established enough that community listings
+      // are reliably accurate without requiring a verified schedule.
+      if (!showUnverifiedGyms && !hasVerified && !gym.website) {
+        if (!TRUSTED_COUNTRIES.has(gym.country)) return false;
+      }
+
       const matchingMats = gym.open_mats.filter((mat) => {
         if (!matchesDisciplineFilter(mat.discipline, selectedDisciplines)) return false;
         if (selectedDays.length > 0 && !selectedDays.includes(mat.day)) return false;
@@ -393,7 +450,7 @@ export default function Home() {
         haversine(sortOrigin.lat, sortOrigin.lng, b.lat, b.lng));
     }
     return arr;
-  }, [allGyms, selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, sortOrigin, sortReference, mapBounds, searchRegions, sortMode, ratingsAgg]);
+  }, [allGyms, selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, verifiedOnly, showUnverifiedGyms, sortOrigin, sortReference, mapBounds, searchRegions, sortMode, ratingsAgg]);
 
   const featuredGyms = useMemo(
     () => filteredGyms.filter((g) => g.featured),
@@ -406,7 +463,11 @@ export default function Home() {
   );
 
   const toggleDiscipline = (d: Discipline) =>
-    setSelectedDisciplines(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
+    setSelectedDisciplines(prev => {
+      const next = prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d];
+      localStorage.setItem('matfinder_disciplines', JSON.stringify(next));
+      return next;
+    });
 
   const toggleDay = (d: DayOfWeek) =>
     setSelectedDays(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
@@ -416,6 +477,8 @@ export default function Home() {
     setSelectedDays([]);
     setFreeOnly(false);
     setStartingSoonOnly(false);
+    setVerifiedOnly(false);
+    setShowUnverifiedGyms(false);
     setSelectedRegions([]);
   }
 
@@ -429,7 +492,8 @@ export default function Home() {
     setSelectedGym(id);
     setExpandedGym(id);
     setPinnedFirst(id);
-    if (isMobile) setMobileSheetOpen(true);
+    // Portrait mobile: pin tap → peek card (tap peek to open full-screen)
+    if (isMobile && !isLandscape) setPeekGymId(id);
     // Set sort location to this gym so the list re-sorts nearest from here
     const gym = allGyms.find(g => g.id === id);
     if (gym) {
@@ -439,7 +503,8 @@ export default function Home() {
   }
 
   const activeFilterCount =
-    selectedDisciplines.length + selectedDays.length + (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0);
+    selectedDisciplines.length + selectedDays.length + (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0)
+    + (verifiedOnly ? 1 : 0) + (showUnverifiedGyms ? 1 : 0);
 
   // Featured-gym pills — small chips at the top of the list. Same height as nav buttons.
   const featuredPills = featuredGyms.length === 0 ? null : (
@@ -507,7 +572,8 @@ export default function Home() {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         onKeyDown={(e) => { if (e.key === 'Enter') commitSearch(); }}
-        placeholder={searchRegions.length > 0 ? 'Add another…' : 'City, state, or country'}
+        onBlur={() => { if (searchInput.trim()) commitSearch(); }}
+        placeholder={searchRegions.length > 0 ? 'Add another…' : 'City, State, or Country'}
         disabled={searching}
         style={{
           flex: 1, minWidth: 180,
@@ -565,9 +631,9 @@ export default function Home() {
                 title={disabled ? 'Set your location, drop a pin, or search a city first' : undefined}
                 style={{
                   padding: '3px 9px', borderRadius: 'var(--radius-full)',
-                  border: `1.5px solid ${active ? 'var(--accent)' : 'transparent'}`,
-                  background: active ? 'var(--accent)' : 'transparent',
-                  color: disabled ? 'rgba(245,241,232,0.35)' : 'var(--bone)',
+                  border: `1.5px solid ${active ? 'var(--bone)' : 'transparent'}`,
+                  background: active ? 'var(--bone)' : 'transparent',
+                  color: disabled ? 'rgba(245,241,232,0.35)' : active ? '#1A1310' : 'var(--bone)',
                   fontSize: 10, fontWeight: 700, fontFamily: "'Inter Tight', sans-serif",
                   cursor: disabled ? 'not-allowed' : 'pointer',
                   whiteSpace: 'nowrap', flexShrink: 0,
@@ -667,9 +733,9 @@ export default function Home() {
       title={isPinActive ? 'Remove pin' : 'Click the map to drop a sort pin'}
       style={{
         padding: '3px 10px', borderRadius: 'var(--radius-full)', flexShrink: 0,
-        border: `1.5px solid ${isPinActive || pinDropMode ? 'var(--accent)' : 'var(--bone)'}`,
-        background: isPinActive || pinDropMode ? 'var(--accent)' : 'transparent',
-        color: 'var(--bone)',
+        border: '1.5px solid var(--bone)',
+        background: isPinActive || pinDropMode ? 'var(--bone)' : 'transparent',
+        color: isPinActive || pinDropMode ? '#1A1310' : 'var(--bone)',
         fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
         cursor: 'pointer', whiteSpace: 'nowrap',
       }}
@@ -687,7 +753,12 @@ export default function Home() {
     onPinDrop: handlePinDrop,
     onZoomChange: handleZoomChange,
     onBoundsChange: handleBoundsChange,
-    pinLocation: sortLocation ? { lat: sortLocation.lat, lng: sortLocation.lng } : null,
+    // Only show the pin marker for GPS or manually-dropped pins.
+    // When the sort location came from clicking a gym card we still sort by
+    // distance, but we don't clutter the map with a tan dot on top of the gym pin.
+    pinLocation: (isGpsActive || isPinActive) && sortLocation
+      ? { lat: sortLocation.lat, lng: sortLocation.lng }
+      : null,
     isGpsLocation: isGpsActive,
     onMapClick: clearSelectedGym,
   };
@@ -697,155 +768,445 @@ export default function Home() {
     ? filteredGyms.find(g => g.id === expandedGym) ?? null
     : null;
 
+  function handleOnboardingConfirm(disciplines: Discipline[]) {
+    setSelectedDisciplines(disciplines);
+    localStorage.setItem('matfinder_disciplines', JSON.stringify(disciplines));
+    setShowOnboarding(false);
+  }
+
+  function handleDontShowAgain(disciplines: Discipline[]) {
+    setSelectedDisciplines(disciplines);
+    localStorage.setItem('matfinder_disciplines', JSON.stringify(disciplines));
+    localStorage.setItem('matfinder_skip_onboarding', '1');
+    setShowOnboarding(false);
+  }
+
   // ── MOBILE ──────────────────────────────────────────────────────────────────
   if (isMobile) {
-    const tapBtn: React.CSSProperties = {
-      minHeight: 38, minWidth: 38,
-      padding: '6px 12px', borderRadius: 'var(--radius-full)',
-      border: '1.5px solid var(--bone)', background: 'transparent',
-      color: 'var(--bone)', fontSize: 13, fontWeight: 700,
-      fontFamily: "'Inter Tight', sans-serif",
-      cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0,
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-    };
+    const LS = isLandscape;
     const filterCount = selectedDisciplines.length + selectedDays.length + selectedRegions.length
-      + (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0);
+      + (freeOnly ? 1 : 0) + (startingSoonOnly ? 1 : 0)
+      + (verifiedOnly ? 1 : 0) + (showUnverifiedGyms ? 1 : 0);
 
+    // Reusable: top-row pill button base — brown 30% bg so they're visible against the map
+    const topPillBase: React.CSSProperties = {
+      padding: LS ? '3px 8px' : '5px 12px',
+      borderRadius: 'var(--radius-full)',
+      border: '1.5px solid var(--bone)',
+      color: 'var(--bone)',
+      fontSize: LS ? 10 : 12,
+      fontWeight: 700,
+      fontFamily: "'Inter Tight', sans-serif",
+      cursor: 'pointer',
+      whiteSpace: 'nowrap',
+      flexShrink: 0,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      background: 'rgba(62, 46, 32, 0.30)',
+      backdropFilter: 'blur(8px)',
+      WebkitBackdropFilter: 'blur(8px)',
+      textDecoration: 'none',
+    };
+
+    // ── Action pills (My Location, Pin, Favorites) — shared portrait + landscape ──
+    const actionPills = (
+      <>
+        <button
+          onClick={() => {
+            setGpsFlashing(true);
+            setTimeout(() => setGpsFlashing(false), 500);
+            if (!navigator.geolocation) { setGeoError('GPS unavailable'); return; }
+            setGeocoding(true);
+            navigator.geolocation.getCurrentPosition((pos) => {
+              const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+              homeLocationRef.current = loc;
+              setSortLocation({ ...loc, label: 'Your location' });
+              setMapFlyTarget({ ...loc, zoom: 12 });
+              setSortMode('nearest');
+              setGeocoding(false);
+            }, () => { setGeoError('GPS denied'); setGeocoding(false); });
+          }}
+          style={{
+            ...topPillBase,
+            ...(gpsFlashing || isGpsActive ? { background: 'var(--bone)', color: '#1A1310' } : {}),
+          }}
+        >My Location</button>
+        <button
+          onClick={() => {
+            if (isPinActive) { setSortLocation(null); setPinDropMode(false); }
+            else setPinDropMode(v => !v);
+          }}
+          style={{
+            ...topPillBase,
+            ...(pinDropMode || isPinActive ? { background: 'var(--bone)', color: '#1A1310' } : {}),
+          }}
+        >{isPinActive ? 'Clear Pin' : pinDropMode ? 'Tap Map' : 'Pin'}</button>
+        <button
+          onClick={() => setOpenFavoritesRequest(n => n + 1)}
+          style={topPillBase}
+        >Favorites</button>
+        <Link href="/add-gym" style={topPillBase}>Add Gym</Link>
+      </>
+    );
+
+    // ── Search input — used in both portrait + landscape top row ──
+    const searchInputEl = (
+      <div style={{ flex: 1, minWidth: 0, position: 'relative', display: 'flex', alignItems: 'center', gap: 6 }}>
+        {searchRegions.map(sr => (
+          <span key={sr.id} style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            background: 'rgba(245,241,232,0.15)', borderRadius: 'var(--radius-full)',
+            padding: '1px 6px 1px 8px', fontSize: 10, fontWeight: 600,
+            color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif",
+            whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            {sr.label}
+            <button onClick={() => removeSearchRegion(sr.id)} style={{
+              background: 'none', border: 'none', color: 'var(--bone)',
+              cursor: 'pointer', padding: '0 2px', fontSize: 10, opacity: 0.6,
+            }}>✕</button>
+          </span>
+        ))}
+        <input
+          type="text"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyDown={(e) => { if (e.key === 'Enter') commitSearch(); }}
+          onBlur={() => { if (searchInput.trim()) commitSearch(); }}
+          placeholder={searchRegions.length > 0 ? 'Add another…' : 'City, state, country…'}
+          disabled={searching}
+          style={{
+            flex: 1, minWidth: 0, height: LS ? 22 : 28,
+            padding: '0 8px', borderRadius: 'var(--radius-full)',
+            border: '1.5px solid rgba(245,241,232,0.35)',
+            background: 'rgba(26,19,16,0.40)',
+            color: 'var(--bone)', fontSize: LS ? 11 : 14, fontWeight: 500,
+            fontFamily: "'Inter Tight', sans-serif", outline: 'none',
+          }}
+        />
+        {(searchInput || searchRegions.length > 0) && !searching && (
+          <button
+            onClick={() => { setSearchInput(''); setSearchRegions([]); setSearchError(null); }}
+            style={{
+              background: 'transparent', border: 'none', color: 'var(--bone)',
+              cursor: 'pointer', fontSize: 12, padding: '0 2px', flexShrink: 0, opacity: 0.6,
+            }}
+          >✕</button>
+        )}
+      </div>
+    );
+
+    // ── Filter panel content (shared) ──
+    const filterPanel = filterOpen ? (
+      <div className="map-toolbar-float no-scrollbar" style={{
+        borderRadius: 'var(--radius-lg)', overflow: 'auto', maxHeight: '70vh',
+      }}>
+        <Filters
+          selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
+          freeOnly={freeOnly} startingSoonOnly={startingSoonOnly}
+          verifiedOnly={verifiedOnly} showUnverifiedGyms={showUnverifiedGyms}
+          onVerifiedOnlyToggle={() => setVerifiedOnly(v => !v)}
+          onShowUnverifiedToggle={() => setShowUnverifiedGyms(v => !v)}
+          region={region}
+          selectedRegions={selectedRegions}
+          useKm={useKm} onToggleUnits={toggleUnits}
+          onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
+          onFreeOnlyToggle={() => setFreeOnly(v => !v)}
+          onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
+          onRegionChange={handleRegionChange}
+          onReset={resetFilters}
+          resultCount={loading ? 0 : filteredGyms.length}
+          noBackground
+          allOpen
+        />
+      </div>
+    ) : null;
+
+    // ── Full-screen gym detail overlay (used by both orientations) ──
+    const fullCardGym = fullCardGymId ? filteredGyms.find(g => g.id === fullCardGymId) : null;
+    const fullCardOverlay = fullCardGym ? (
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 1500,
+        background: 'var(--surface-base)', overflowY: 'auto',
+        display: 'flex', flexDirection: 'column',
+      }}>
+        <div style={{
+          position: 'sticky', top: 0, zIndex: 10,
+          background: 'var(--surface-raised)', borderBottom: '1px solid var(--border)',
+          padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 10,
+        }}>
+          <button
+            onClick={() => setFullCardGymId(null)}
+            style={{
+              background: 'transparent', border: 'none', cursor: 'pointer',
+              fontSize: 16, color: 'var(--text-primary)', fontWeight: 700,
+              fontFamily: "'Inter Tight', sans-serif", padding: '4px 8px',
+            }}
+          >← Back</button>
+          <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)', fontFamily: "'Inter Tight', sans-serif", flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {fullCardGym.name}
+          </span>
+        </div>
+        <div style={{ padding: '12px', flex: 1 }}>
+          <GymCard
+            gym={fullCardGym} isSelected={true} isMobile={true}
+            onClick={() => {}}
+            distanceKm={sortOrigin ? haversine(sortOrigin.lat, sortOrigin.lng, fullCardGym.lat, fullCardGym.lng) : undefined}
+            useKm={useKm}
+            isStartingSoon={isStartingSoon(fullCardGym)}
+            ratingAvg={ratingsAgg[fullCardGym.id]?.avg ?? null}
+            ratingCount={ratingsAgg[fullCardGym.id]?.count ?? 0}
+            onRated={reloadAggregates}
+            onCityClick={handleCityClick}
+          />
+        </div>
+      </div>
+    ) : null;
+
+    // ════════════════════════════════════════════════════════════════════
+    // LANDSCAPE: split view — list (280px left) + map (right)
+    // ════════════════════════════════════════════════════════════════════
+    if (LS) {
+      return (
+        <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
+          {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
+
+          {/* Map fills entire viewport (list overlays left side) */}
+          <div style={{ position: 'absolute', inset: 0 }}>
+            <Map {...mapProps} hideStyleSwitcher hideNavigationControl controllerRef={mapControllerRef} onStyleChange={key => setMapStyleKey(key)} />
+          </div>
+
+          {/* Top bar: search + actions + profile + filters */}
+          <div style={{
+            position: 'fixed', top: 8, left: 8, right: 8, zIndex: 700,
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '4px 8px', borderRadius: 'var(--radius-lg)',
+            background: 'rgba(26,19,16,0.30)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(245,241,232,0.15)',
+          }}>
+            {searchInputEl}
+            <div style={{ width: 1, height: 14, background: 'rgba(245,241,232,0.22)', flexShrink: 0 }} />
+            {actionPills}
+            <button onClick={() => setFilterOpen(v => !v)} style={{
+              ...topPillBase,
+              background: filterOpen ? 'var(--bone)' : 'transparent',
+              color: filterOpen ? '#1A1310' : 'var(--bone)',
+              gap: 4,
+            }}>
+              Filters{filterCount > 0 && (
+                <span style={{
+                  background: filterOpen ? 'var(--brown-700)' : 'var(--bone)',
+                  color: filterOpen ? 'var(--bone)' : 'var(--brown-800)',
+                  borderRadius: 'var(--radius-full)', padding: '0 5px',
+                  fontSize: 9, fontWeight: 800, lineHeight: '13px', minWidth: 13, textAlign: 'center',
+                }}>{filterCount}</span>
+              )}
+            </button>
+            <ProfileDropdown
+              gymNameById={gymNameById}
+              onGymClick={(gymId) => handleMapGymSelect(gymId)}
+              mobile
+              openFavoritesRequest={openFavoritesRequest}
+            />
+          </div>
+
+          {/* Filter dropdown — anchored top-right under the bar */}
+          {filterOpen && (
+            <div style={{
+              position: 'fixed', top: 50, right: 8, zIndex: 690,
+              width: 'min(90vw, 520px)',
+            }}>
+              {filterPanel}
+            </div>
+          )}
+
+          {/* List panel — fixed left, full-height */}
+          <div
+            className="no-scrollbar"
+            style={{
+              position: 'fixed', top: 50, bottom: 8, left: 8, zIndex: 620, width: 280,
+              overflowY: 'auto', borderRadius: 'var(--radius-lg)',
+              background: 'rgba(26,19,16,0.30)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(245,241,232,0.15)',
+              padding: '6px 8px 10px',
+              display: 'flex', flexDirection: 'column', gap: 6,
+            }}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
+            {sortPills}
+            {featuredPills}
+            {gymCards}
+          </div>
+
+          {fullCardOverlay}
+        </div>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    // PORTRAIT: tab-based — Map view + List view, with bottom nav
+    // ════════════════════════════════════════════════════════════════════
     return (
       <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
-        {/* Map fills the screen */}
+        {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
+
+        {/* Map (always rendered, behind list when list active) */}
         <div style={{ position: 'absolute', inset: 0 }}>
           <Map {...mapProps} hideStyleSwitcher hideNavigationControl controllerRef={mapControllerRef} onStyleChange={key => setMapStyleKey(key)} />
         </div>
 
-        {/* Top toolbar: logo + filters + GYMS count */}
-        <div className="map-toolbar-float" style={{
-          position: 'absolute', top: 10, left: 10, right: 10, zIndex: 600,
-          display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px',
-          borderRadius: 'var(--radius-lg)',
-        }}>
-          <Link href="/" style={{
-            fontFamily: "'Archivo Black', sans-serif", fontSize: 14,
-            color: 'var(--bone)', textDecoration: 'none', flexShrink: 0,
-          }}>MF</Link>
-          <div style={{ width: 1, height: 18, background: 'var(--border)', flexShrink: 0 }} />
-          <button onClick={() => setFilterOpen(v => !v)} style={{
-            ...tapBtn,
-            border: `1.5px solid ${filterOpen || filterCount > 0 ? 'var(--accent)' : 'var(--bone)'}`,
-            background: filterOpen ? 'var(--accent)' : 'transparent',
-          }}>
-            Filters
-            {filterCount > 0 && (
-              <span style={{
-                background: 'var(--accent)', color: 'var(--bone)',
-                borderRadius: 'var(--radius-full)', padding: '0 6px',
-                fontSize: 10, fontWeight: 800, lineHeight: '14px', minWidth: 14, textAlign: 'center',
-              }}>{filterCount}</span>
-            )}
-          </button>
-          <span style={{ flex: 1 }} />
-          <span title={`${allGyms.length.toLocaleString()} gyms`} style={{
-            position: 'relative',
-            display: 'inline-flex', alignItems: 'baseline', gap: 4,
-            padding: '4px 9px', borderRadius: 'var(--radius-full)',
-            border: '1.5px solid var(--border)',
-            color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif",
-            whiteSpace: 'nowrap', flexShrink: 0,
-          }}>
-            <span style={{ position: 'absolute', top: -4, right: -3, fontSize: 9, color: '#C9A24A', lineHeight: 1, pointerEvents: 'none' }}>★</span>
-            <span style={{ fontSize: 12, fontWeight: 800 }}>{allGyms.length.toLocaleString()}</span>
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', opacity: 0.7 }}>GYMS</span>
-          </span>
-        </div>
-
-        {/* Filter bar — same horizontal-expand as desktop, drops below toolbar */}
-        {filterOpen && (
-          <div className="map-toolbar-float no-scrollbar" style={{
-            position: 'absolute', top: 60, left: 10, right: 10, zIndex: 700,
-            overflowX: 'auto', borderRadius: 'var(--radius-lg)', maxHeight: '60vh', overflowY: 'auto',
-          }}>
-            <Filters
-              selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
-              freeOnly={freeOnly} startingSoonOnly={startingSoonOnly} region={region}
-              selectedRegions={selectedRegions}
-              onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
-              onFreeOnlyToggle={() => setFreeOnly(v => !v)}
-              onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
-              onRegionChange={handleRegionChange}
-              onReset={resetFilters}
-              resultCount={loading ? 0 : filteredGyms.length}
-              noBackground
-              horizontalExpand
-            />
-          </div>
-        )}
-
-        {/* GPS + add gym — right side stack */}
+        {/* TOP ROW: search + Profile — z-index 1100 so dropdown menu shows above action row */}
         <div style={{
-          position: 'absolute', top: filterOpen ? 116 : 60, right: 10, zIndex: 600,
-          display: 'flex', flexDirection: 'column', gap: 8,
-          transition: 'top 0.15s ease',
+          position: 'absolute', top: 8, left: 8, right: 8, zIndex: 1100,
+          display: 'flex', alignItems: 'center', gap: 6,
+          padding: '6px 10px', borderRadius: 'var(--radius-lg)',
+          background: 'rgba(26,19,16,0.30)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(245,241,232,0.15)',
         }}>
-          <button
-            onClick={() => {
-              setGpsFlashing(true);
-              setTimeout(() => setGpsFlashing(false), 500);
-              if (!navigator.geolocation) { setGeoError('GPS unavailable'); return; }
-              setGeocoding(true);
-              navigator.geolocation.getCurrentPosition((pos) => {
-                const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-                homeLocationRef.current = loc;
-                setSortLocation({ ...loc, label: 'Your location' });
-                setMapFlyTarget({ ...loc, zoom: 12 });
-                setSortMode('nearest');
-                setGeocoding(false);
-              }, () => { setGeoError('GPS denied'); setGeocoding(false); });
-            }}
-            title="My location"
-            style={{
-              width: 42, height: 42, borderRadius: '50%',
-              border: `2px solid ${isGpsActive ? 'var(--accent)' : 'var(--bone)'}`,
-              background: gpsFlashing || isGpsActive ? 'var(--accent)' : 'rgba(26,19,16,0.7)',
-              backdropFilter: 'blur(8px)',
-              color: 'var(--bone)', fontSize: 18, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: 'var(--shadow-md)',
-            }}
-          >📍</button>
-          <Link href="/add-gym" title="Add Gym" style={{
-            width: 42, height: 42, borderRadius: '50%',
-            border: '2px solid var(--bone)',
-            background: 'rgba(26,19,16,0.7)',
-            backdropFilter: 'blur(8px)',
-            color: 'var(--bone)', fontSize: 22, fontWeight: 700,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: 'var(--shadow-md)', textDecoration: 'none', lineHeight: 1,
-          }}>+</Link>
+          {searchInputEl}
           <ProfileDropdown
             gymNameById={gymNameById}
             onGymClick={(gymId) => handleMapGymSelect(gymId)}
+            mobile
+            openFavoritesRequest={openFavoritesRequest}
           />
         </div>
 
-        {/* Bottom sheet — half height, 65% opacity */}
-        <div className="bottom-sheet" style={{ height: mobileSheetOpen ? '50%' : 56 }}>
-          <div
-            style={{ padding: '10px 0 6px', cursor: 'pointer', flexShrink: 0 }}
-            onClick={() => setMobileSheetOpen(v => !v)}
-          >
-            <div className="bottom-sheet-handle" />
-            <div style={{ textAlign: 'center', marginTop: 6, fontSize: 12, fontWeight: 700, color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif" }}>
-              {loading ? 'Loading…' : `${filteredGyms.length.toLocaleString()} gym${filteredGyms.length !== 1 ? 's' : ''}${mobileSheetOpen ? '' : ' — tap to browse'}`}
-            </div>
-          </div>
-          {mobileSheetOpen && (
-            <div className="no-scrollbar" style={{ overflowY: 'auto', flex: 1, padding: '0 10px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {sortPills}
-              {featuredPills}
-              {gymCards}
-            </div>
-          )}
+        {/* SECOND ROW: action pills (My Location, Pin, Favorites, Add Gym) — overflow-scroll on tiny screens */}
+        <div className="no-scrollbar" style={{
+          position: 'absolute', top: 56, left: 8, right: 8, zIndex: 700,
+          display: 'flex', alignItems: 'center', gap: 6,
+          overflowX: 'auto', whiteSpace: 'nowrap',
+          padding: '4px 0',
+        }}>
+          {actionPills}
         </div>
+
+        {/* LIST VIEW — full-screen overlay when active */}
+        {mobileView === 'list' && (
+          <div
+            className="no-scrollbar"
+            style={{
+              position: 'absolute', top: 96, left: 0, right: 0, bottom: 64,
+              overflowY: 'auto', zIndex: 650,
+              background: 'var(--surface-base)',
+              padding: '10px 10px 16px',
+              display: 'flex', flexDirection: 'column', gap: 8,
+            }}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
+            {sortPills}
+            {featuredPills}
+            {gymCards}
+          </div>
+        )}
+
+        {/* PIN PEEK CARD — bottom-anchored above bottom nav, only on Map view */}
+        {mobileView === 'map' && peekGymId && (() => {
+          const gym = filteredGyms.find(g => g.id === peekGymId);
+          if (!gym) return null;
+          return (
+            <div
+              onClick={(e) => { e.stopPropagation(); setFullCardGymId(peekGymId); }}
+              style={{
+                position: 'absolute', bottom: 72, left: 8, right: 8, zIndex: 800,
+                background: 'var(--surface-raised)',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--radius-lg)',
+                boxShadow: 'var(--shadow-xl)',
+                padding: '10px 12px',
+                cursor: 'pointer',
+                display: 'flex', alignItems: 'center', gap: 10,
+              }}
+            >
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{
+                  fontFamily: "'Inter Tight', sans-serif", fontWeight: 700,
+                  fontSize: 14, color: 'var(--text-primary)',
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>{gym.name}</div>
+                <div style={{
+                  fontFamily: "'Inter Tight', sans-serif", fontSize: 11,
+                  color: 'var(--text-secondary)', marginTop: 2,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
+                  {[gym.city, gym.state].filter(Boolean).join(', ')}
+                  {sortOrigin && (() => {
+                    const km = haversine(sortOrigin.lat, sortOrigin.lng, gym.lat, gym.lng);
+                    const v = useKm ? km : km * 0.621371;
+                    return ` · ${v.toFixed(1)} ${useKm ? 'km' : 'mi'}`;
+                  })()}
+                </div>
+                <div style={{
+                  fontFamily: "'Inter Tight', sans-serif", fontSize: 10,
+                  color: 'var(--text-muted)', marginTop: 4, fontWeight: 600,
+                }}>Tap for full details →</div>
+              </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); setPeekGymId(null); clearSelectedGym(); }}
+                style={{
+                  background: 'transparent', border: 'none', color: 'var(--text-muted)',
+                  cursor: 'pointer', fontSize: 16, padding: '4px 8px', flexShrink: 0,
+                }}
+              >✕</button>
+            </div>
+          );
+        })()}
+
+        {/* FILTER DROPDOWN — left edge, drops below action row */}
+        {filterOpen && (
+          <div style={{
+            position: 'absolute', top: 96, left: 8, right: 8, zIndex: 690,
+          }}>
+            {filterPanel}
+          </div>
+        )}
+
+        {/* BOTTOM NAV — Map | List | Filters as 3 toggle-style buttons (rounded fills) */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 700,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8,
+          padding: '10px 12px calc(10px + env(safe-area-inset-bottom, 0px))',
+          background: 'rgba(26,19,16,0.85)',
+          backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+          borderTop: '1px solid rgba(245,241,232,0.15)',
+        }}>
+          {[
+            { key: 'map', label: 'Map', active: mobileView === 'map', onClick: () => { setMobileView('map'); setFilterOpen(false); } },
+            { key: 'list', label: 'List', active: mobileView === 'list', onClick: () => { setMobileView('list'); setFilterOpen(false); setPeekGymId(null); } },
+            { key: 'filters', label: 'Filters', active: filterOpen, badge: filterCount, onClick: () => setFilterOpen(v => !v) },
+          ].map((it) => (
+            <button
+              key={it.key}
+              onClick={it.onClick}
+              style={{
+                flex: 1, height: 44,
+                borderRadius: 'var(--radius-full)',
+                border: '1.5px solid var(--bone)',
+                background: it.active ? 'var(--bone)' : 'transparent',
+                color: it.active ? '#1A1310' : 'var(--bone)',
+                fontFamily: "'Inter Tight', sans-serif",
+                fontSize: 14, fontWeight: 700,
+                cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                transition: 'all 0.12s',
+              }}
+            >
+              {it.label}
+              {('badge' in it) && it.badge ? (
+                <span style={{
+                  background: it.active ? 'var(--brown-700)' : 'var(--bone)',
+                  color: it.active ? 'var(--bone)' : 'var(--brown-800)',
+                  borderRadius: 'var(--radius-full)', padding: '0 6px',
+                  fontSize: 10, fontWeight: 800, lineHeight: '15px', minWidth: 15, textAlign: 'center',
+                }}>{it.badge}</span>
+              ) : null}
+            </button>
+          ))}
+        </div>
+
+        {fullCardOverlay}
       </div>
     );
   }
@@ -853,6 +1214,7 @@ export default function Home() {
   // ── DESKTOP (always full-screen) ─────────────────────────────────────────────
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
 
         {/* Map — fills everything */}
@@ -907,9 +1269,9 @@ export default function Home() {
             onClick={() => setListVisible(v => !v)}
             style={{
               padding: '3px 10px', borderRadius: 'var(--radius-full)', flexShrink: 0,
-              border: `1.5px solid ${listVisible ? 'var(--accent)' : 'var(--border)'}`,
-              background: listVisible ? 'var(--accent)' : 'transparent',
-              color: 'var(--bone)',
+              border: `1.5px solid ${listVisible ? 'var(--bone)' : 'var(--border)'}`,
+              background: listVisible ? 'var(--bone)' : 'transparent',
+              color: listVisible ? '#1A1310' : 'var(--bone)',
               fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
               cursor: 'pointer', whiteSpace: 'nowrap',
             }}
@@ -939,9 +1301,9 @@ export default function Home() {
               onClick={() => handleStyleChange(key)}
               style={{
                 padding: '3px 9px', borderRadius: 'var(--radius-full)', flexShrink: 0,
-                border: `1.5px solid ${mapStyleKey === key ? 'var(--accent)' : 'var(--border)'}`,
-                background: mapStyleKey === key ? 'var(--accent)' : 'transparent',
-                color: 'var(--bone)',
+                border: `1.5px solid ${mapStyleKey === key ? 'var(--bone)' : 'var(--border)'}`,
+                background: mapStyleKey === key ? 'var(--bone)' : 'transparent',
+                color: mapStyleKey === key ? '#1A1310' : 'var(--bone)',
                 fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
                 cursor: 'pointer', whiteSpace: 'nowrap',
               }}
@@ -955,8 +1317,8 @@ export default function Home() {
             onClick={() => setFilterOpen(v => !v)}
             style={{
               padding: '3px 10px', borderRadius: 'var(--radius-full)', flexShrink: 0,
-              border: `1.5px solid ${filterOpen || activeFilterCount > 0 ? 'var(--accent)' : 'var(--border)'}`,
-              background: filterOpen ? 'var(--accent)' : 'transparent',
+              border: '1.5px solid var(--bone)',
+              background: 'transparent',
               color: 'var(--bone)',
               fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
               cursor: 'pointer', whiteSpace: 'nowrap',
@@ -966,8 +1328,8 @@ export default function Home() {
             Filters
             {activeFilterCount > 0 && (
               <span style={{
-                background: filterOpen ? 'rgba(255,255,255,0.3)' : 'var(--accent)', color: 'var(--bone)',
-                borderRadius: 'var(--radius-full)', padding: '0 5px', fontSize: 10, fontWeight: 700,
+                background: 'var(--bone)', color: 'var(--brown-800)',
+                borderRadius: 'var(--radius-full)', padding: '0 5px', fontSize: 10, fontWeight: 800,
               }}>{activeFilterCount}</span>
             )}
           </button>
@@ -1020,21 +1382,15 @@ export default function Home() {
           <span
             title={`${allGyms.length.toLocaleString()} gyms in MatFinder`}
             style={{
-              position: 'relative',
               display: 'inline-flex', alignItems: 'baseline', gap: 4,
               padding: '3px 10px', borderRadius: 'var(--radius-full)',
-              background: 'transparent',
-              border: '1.5px solid var(--border)',
+              background: 'rgba(26,19,16,0.85)',
+              border: '1.5px solid var(--bone)',
               color: 'var(--bone)',
               fontFamily: "'Inter Tight', sans-serif",
               whiteSpace: 'nowrap', flexShrink: 0,
             }}
           >
-            <span style={{
-              position: 'absolute', top: -4, right: -3,
-              fontSize: 9, color: '#C9A24A', lineHeight: 1,
-              pointerEvents: 'none',
-            }}>★</span>
             <span style={{ fontSize: 12, fontWeight: 800 }}>
               {allGyms.length.toLocaleString()}
             </span>
@@ -1058,7 +1414,11 @@ export default function Home() {
           >
             <Filters
               selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
-              freeOnly={freeOnly} startingSoonOnly={startingSoonOnly} region={region}
+              freeOnly={freeOnly} startingSoonOnly={startingSoonOnly}
+              verifiedOnly={verifiedOnly} showUnverifiedGyms={showUnverifiedGyms}
+              onVerifiedOnlyToggle={() => setVerifiedOnly(v => !v)}
+              onShowUnverifiedToggle={() => setShowUnverifiedGyms(v => !v)}
+              region={region}
               onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
               onFreeOnlyToggle={() => setFreeOnly(v => !v)}
               onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}
@@ -1201,7 +1561,11 @@ export default function Home() {
               </div>
               <Filters
                 selectedDisciplines={selectedDisciplines} selectedDays={selectedDays}
-                freeOnly={freeOnly} startingSoonOnly={startingSoonOnly} region={region}
+                freeOnly={freeOnly} startingSoonOnly={startingSoonOnly}
+              verifiedOnly={verifiedOnly} showUnverifiedGyms={showUnverifiedGyms}
+              onVerifiedOnlyToggle={() => setVerifiedOnly(v => !v)}
+              onShowUnverifiedToggle={() => setShowUnverifiedGyms(v => !v)}
+              region={region}
                 onDisciplineToggle={toggleDiscipline} onDayToggle={toggleDay}
                 onFreeOnlyToggle={() => setFreeOnly(v => !v)}
                 onStartingSoonToggle={() => setStartingSoonOnly(v => !v)}

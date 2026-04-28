@@ -5,14 +5,13 @@ import { Discipline, DayOfWeek, Region, DISCIPLINE_LABELS, DISCIPLINE_COLORS, DA
 
 const REGIONS: Region[] = ['all', 'north_america', 'south_america', 'europe', 'asia', 'africa', 'oceania'];
 
-const DISCIPLINES: Discipline[] = ['bjj', 'nogi_bjj', 'gi_bjj', 'wrestling', 'judo', 'muay_thai', 'mma', 'kickboxing', 'boxing', 'karate', 'taekwondo'];
+// bjj represents the whole BJJ group (bjj + nogi_bjj + gi_bjj) in filters
+const DISCIPLINES: Discipline[] = ['bjj', 'wrestling', 'judo', 'muay_thai', 'mma', 'kickboxing', 'boxing', 'karate', 'taekwondo'];
 const DAYS: DayOfWeek[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-// Discipline category groupings — used for the vertical accordion in the floating dropdown.
-// MMA appears in BOTH grappling and striking (it's both); no standalone MMA category.
 const CATEGORIES: { key: 'grappling' | 'striking'; label: string; disciplines: Discipline[] }[] = [
-  { key: 'grappling', label: 'Grappling', disciplines: ['bjj', 'nogi_bjj', 'gi_bjj', 'wrestling', 'judo', 'mma'] },
-  { key: 'striking',  label: 'Striking',  disciplines: ['muay_thai', 'kickboxing', 'boxing', 'karate', 'taekwondo', 'mma'] },
+  { key: 'grappling', label: 'Grappling', disciplines: ['bjj', 'wrestling', 'judo', 'mma'] },
+  { key: 'striking',  label: 'Striking',  disciplines: ['muay_thai', 'kickboxing', 'boxing', 'mma', 'karate', 'taekwondo'] },
 ];
 
 interface FiltersProps {
@@ -20,12 +19,18 @@ interface FiltersProps {
   selectedDays: DayOfWeek[];
   freeOnly: boolean;
   startingSoonOnly: boolean;
+  verifiedOnly?: boolean;
+  showUnverifiedGyms?: boolean;
   region: Region;
   selectedRegions?: Region[];
+  useKm?: boolean;
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
+  onVerifiedOnlyToggle?: () => void;
+  onShowUnverifiedToggle?: () => void;
+  onToggleUnits?: () => void;
   onRegionChange: (r: Region) => void;
   onReset?: () => void;
   resultCount: number;
@@ -33,6 +38,8 @@ interface FiltersProps {
   noBackground?: boolean;
   floatingFilters?: boolean;
   horizontalExpand?: boolean;
+  /** Mobile flat layout — all sections visible from open, disciplines first, no Days. */
+  allOpen?: boolean;
 }
 
 const scrollRow: React.CSSProperties = {
@@ -47,11 +54,15 @@ const scrollRow: React.CSSProperties = {
 };
 
 export default function Filters({
-  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  selectedDisciplines, selectedDays, freeOnly, startingSoonOnly,
+  verifiedOnly = false, showUnverifiedGyms = false,
+  region,
   selectedRegions = [],
+  useKm = true, onToggleUnits,
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  onVerifiedOnlyToggle, onShowUnverifiedToggle,
   onRegionChange, onReset, resultCount, isMobile, noBackground, floatingFilters,
-  horizontalExpand,
+  horizontalExpand, allOpen,
 }: FiltersProps) {
   const hasActiveFilters = selectedDisciplines.length > 0 || selectedDays.length > 0 || freeOnly || startingSoonOnly;
   const [flashRegion, setFlashRegion] = useState<string | null>(null);
@@ -62,6 +73,33 @@ export default function Filters({
     onRegionChange(r);
   }
 
+  // ── Mobile flat layout — all filters visible at once, disciplines first, no Days ──
+  if (allOpen) {
+    return (
+      <AllOpenFilters
+        selectedDisciplines={selectedDisciplines}
+        freeOnly={freeOnly}
+        startingSoonOnly={startingSoonOnly}
+        verifiedOnly={verifiedOnly}
+        showUnverifiedGyms={showUnverifiedGyms}
+        onVerifiedOnlyToggle={onVerifiedOnlyToggle}
+        onShowUnverifiedToggle={onShowUnverifiedToggle}
+        selectedRegions={selectedRegions}
+        useKm={useKm}
+        onToggleUnits={onToggleUnits}
+        onDisciplineToggle={onDisciplineToggle}
+        onFreeOnlyToggle={onFreeOnlyToggle}
+        onStartingSoonToggle={onStartingSoonToggle}
+        onRegionChange={onRegionChange}
+        onReset={onReset}
+        resultCount={resultCount}
+        hasActiveFilters={hasActiveFilters}
+        flashRegion={flashRegion}
+        handleRegionClick={handleRegionClick}
+      />
+    );
+  }
+
   // ── Horizontal category-pill variant — boxes that expand sideways ──
   if (horizontalExpand) {
     return (
@@ -70,8 +108,14 @@ export default function Filters({
         selectedDays={selectedDays}
         freeOnly={freeOnly}
         startingSoonOnly={startingSoonOnly}
+        verifiedOnly={verifiedOnly}
+        showUnverifiedGyms={showUnverifiedGyms}
+        onVerifiedOnlyToggle={onVerifiedOnlyToggle}
+        onShowUnverifiedToggle={onShowUnverifiedToggle}
         region={region}
         selectedRegions={selectedRegions}
+        useKm={useKm}
+        onToggleUnits={onToggleUnits}
         onDisciplineToggle={onDisciplineToggle}
         onDayToggle={onDayToggle}
         onFreeOnlyToggle={onFreeOnlyToggle}
@@ -95,6 +139,8 @@ export default function Filters({
         freeOnly={freeOnly}
         startingSoonOnly={startingSoonOnly}
         region={region}
+        useKm={useKm}
+        onToggleUnits={onToggleUnits}
         onDisciplineToggle={onDisciplineToggle}
         onDayToggle={onDayToggle}
         onFreeOnlyToggle={onFreeOnlyToggle}
@@ -155,9 +201,9 @@ export default function Filters({
             <button key={d} onClick={() => onDayToggle(d)} style={{
               padding: '3px 9px',
               borderRadius: 'var(--radius-full)',
-              border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
-              background: active ? 'var(--accent)' : inactiveBg,
-              color: active ? 'var(--bone)' : inactiveText,
+              border: `1.5px solid ${active ? 'var(--bone)' : inactiveBorder}`,
+              background: active ? 'var(--bone)' : inactiveBg,
+              color: active ? '#1A1310' : inactiveText,
               fontSize: 11, fontWeight: 600, fontFamily: "'JetBrains Mono', monospace",
               cursor: 'pointer', transition: 'all 0.12s',
               whiteSpace: 'nowrap', flexShrink: 0,
@@ -195,6 +241,21 @@ export default function Filters({
           Free only
         </button>
 
+        {onToggleUnits && (
+          <button onClick={onToggleUnits} style={{
+            padding: '3px 10px',
+            borderRadius: 'var(--radius-full)',
+            border: `1.5px solid ${inactiveBorder}`,
+            background: inactiveBg,
+            color: inactiveText,
+            fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+            cursor: 'pointer', transition: 'all 0.15s',
+            whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            {useKm ? 'km' : 'mi'}
+          </button>
+        )}
+
         <span style={{
           fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
           color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 4,
@@ -225,9 +286,9 @@ export default function Filters({
           <button key={r} onClick={() => handleRegionClick(r)} style={{
             padding: '3px 12px',
             borderRadius: 'var(--radius-full)',
-            border: `1.5px solid ${flashRegion === r ? 'var(--accent)' : inactiveBorder}`,
-            background: flashRegion === r ? 'var(--accent)' : inactiveBg,
-            color: flashRegion === r ? 'var(--bone)' : inactiveText,
+            border: `1.5px solid ${flashRegion === r ? 'var(--bone)' : inactiveBorder}`,
+            background: flashRegion === r ? 'var(--bone)' : inactiveBg,
+            color: flashRegion === r ? '#1A1310' : inactiveText,
             fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
             cursor: 'pointer', transition: 'all 0.15s',
             whiteSpace: 'nowrap', flexShrink: 0,
@@ -250,6 +311,8 @@ interface VerticalFiltersProps {
   freeOnly: boolean;
   startingSoonOnly: boolean;
   region: Region;
+  useKm?: boolean;
+  onToggleUnits?: () => void;
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
@@ -264,6 +327,7 @@ interface VerticalFiltersProps {
 
 function VerticalFilters({
   selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, region,
+  useKm = true, onToggleUnits,
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
   handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
 }: VerticalFiltersProps) {
@@ -307,7 +371,7 @@ function VerticalFilters({
         <span>{cat.label}</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, opacity: 0.8 }}>
           {selectedInCat > 0 && (
-            <span style={{ background: 'var(--accent)', color: 'var(--bone)', borderRadius: 'var(--radius-full)', padding: '0 6px', fontSize: 10 }}>
+            <span style={{ background: 'var(--bone)', color: '#1A1310', borderRadius: 'var(--radius-full)', padding: '0 6px', fontSize: 10, fontWeight: 800 }}>
               {selectedInCat}
             </span>
           )}
@@ -372,9 +436,9 @@ function VerticalFilters({
               <button key={d} onClick={() => onDayToggle(d)} style={{
                 padding: '3px 8px',
                 borderRadius: 'var(--radius-full)',
-                border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
-                background: active ? 'var(--accent)' : 'transparent',
-                color: active ? 'var(--bone)' : inactiveText,
+                border: `1.5px solid ${active ? 'var(--bone)' : inactiveBorder}`,
+                background: active ? 'var(--bone)' : 'transparent',
+                color: active ? '#1A1310' : inactiveText,
                 fontSize: 10, fontWeight: 600, fontFamily: "'JetBrains Mono', monospace",
                 cursor: 'pointer', transition: 'all 0.12s',
                 whiteSpace: 'nowrap',
@@ -412,6 +476,19 @@ function VerticalFilters({
           }}>
             Free only
           </button>
+          {onToggleUnits && (
+            <button onClick={onToggleUnits} style={{
+              padding: '4px 10px',
+              borderRadius: 'var(--radius-full)',
+              border: `1.5px solid ${inactiveBorder}`,
+              background: 'transparent',
+              color: inactiveText,
+              fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+              cursor: 'pointer', transition: 'all 0.15s', textAlign: 'left',
+            }}>
+              Distance: {useKm ? 'km' : 'mi'} — tap to switch
+            </button>
+          )}
         </div>
       </div>
 
@@ -499,12 +576,18 @@ interface HorizontalExpandProps {
   selectedDays: DayOfWeek[];
   freeOnly: boolean;
   startingSoonOnly: boolean;
+  verifiedOnly?: boolean;
+  showUnverifiedGyms?: boolean;
   region: Region;
   selectedRegions: Region[];
+  useKm?: boolean;
+  onToggleUnits?: () => void;
   onDisciplineToggle: (d: Discipline) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
+  onVerifiedOnlyToggle?: () => void;
+  onShowUnverifiedToggle?: () => void;
   onRegionChange: (r: Region) => void;
   onReset?: () => void;
   resultCount: number;
@@ -517,7 +600,10 @@ type GroupKey = 'disciplines' | 'days' | 'toggles' | 'region' | null;
 
 function HorizontalExpandFilters({
   selectedDisciplines, selectedDays, freeOnly, startingSoonOnly, selectedRegions,
+  verifiedOnly = false, showUnverifiedGyms = false,
+  useKm = true, onToggleUnits,
   onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  onVerifiedOnlyToggle, onShowUnverifiedToggle,
   handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
 }: HorizontalExpandProps) {
   const [openGroup, setOpenGroup] = useState<GroupKey>(null);
@@ -555,9 +641,9 @@ function HorizontalExpandFilters({
         {label}
         {count > 0 && (
           <span style={{
-            background: 'var(--accent)', color: 'var(--bone)',
+            background: 'var(--bone)', color: '#1A1310',
             borderRadius: 'var(--radius-full)', padding: '0 6px',
-            fontSize: 10, fontWeight: 700, lineHeight: '14px', minWidth: 14, textAlign: 'center',
+            fontSize: 10, fontWeight: 800, lineHeight: '14px', minWidth: 14, textAlign: 'center',
           }}>
             {count}
           </span>
@@ -584,6 +670,19 @@ function HorizontalExpandFilters({
       display: 'flex', alignItems: 'center', flexWrap: 'wrap',
       gap: 6, padding: '8px 10px', color: 'var(--bone)',
     }}>
+      {onVerifiedOnlyToggle && (
+        <button onClick={onVerifiedOnlyToggle} style={{
+          ...optionPill,
+          padding: '5px 12px',
+          fontSize: 12, fontWeight: 700,
+          border: `1.5px solid ${verifiedOnly ? '#5E8B5E' : inactiveBorder}`,
+          background: verifiedOnly ? '#D4DDD3' : 'transparent',
+          color: verifiedOnly ? '#27402A' : 'var(--bone)',
+        }}>
+          ✓ Verified only
+        </button>
+      )}
+
       <CategoryPill k="disciplines" label="Disciplines" />
       {openGroup === 'disciplines' && (
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
@@ -621,9 +720,9 @@ function HorizontalExpandFilters({
               <button key={d} onClick={() => onDayToggle(d)} style={{
                 ...optionPill,
                 fontFamily: "'JetBrains Mono', monospace",
-                border: `1.5px solid ${active ? 'var(--accent)' : inactiveBorder}`,
-                background: active ? 'var(--accent)' : 'transparent',
-                color: active ? 'var(--bone)' : inactiveText,
+                border: `1.5px solid ${active ? 'var(--bone)' : inactiveBorder}`,
+                background: active ? 'var(--bone)' : 'transparent',
+                color: active ? '#1A1310' : inactiveText,
               }}>
                 {DAY_LABELS[d]}
               </button>
@@ -651,6 +750,16 @@ function HorizontalExpandFilters({
           }}>
             Free only
           </button>
+          {onToggleUnits && (
+            <button onClick={onToggleUnits} style={{
+              ...optionPill,
+              border: `1.5px solid ${inactiveBorder}`,
+              background: 'transparent',
+              color: inactiveText,
+            }}>
+              {useKm ? 'km' : 'mi'}
+            </button>
+          )}
         </div>
       )}
 
@@ -682,6 +791,17 @@ function HorizontalExpandFilters({
         {resultCount.toLocaleString()} gym{resultCount !== 1 ? 's' : ''}
       </span>
 
+      {onShowUnverifiedToggle && (
+        <button onClick={onShowUnverifiedToggle} title="Include gyms with no website and no verified open mat times" style={{
+          ...optionPill,
+          border: `1.5px solid ${showUnverifiedGyms ? 'var(--bone)' : inactiveBorder}`,
+          background: showUnverifiedGyms ? 'rgba(245,241,232,0.15)' : 'transparent',
+          color: showUnverifiedGyms ? 'var(--bone)' : inactiveText,
+        }}>
+          {showUnverifiedGyms ? '✓ ' : ''}Show unverified
+        </button>
+      )}
+
       {hasActiveFilters && onReset && (
         <button onClick={onReset} style={{
           ...optionPill,
@@ -693,6 +813,193 @@ function HorizontalExpandFilters({
           Reset ✕
         </button>
       )}
+    </div>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// All-Open variant for mobile — flat layout, everything visible at once.
+// Order by decision priority: Disciplines → Toggles → Region.
+// Days filter intentionally dropped (see Baymard / Pencil & Paper research).
+// ────────────────────────────────────────────────────────────────────────────
+
+interface AllOpenProps {
+  selectedDisciplines: Discipline[];
+  freeOnly: boolean;
+  startingSoonOnly: boolean;
+  verifiedOnly?: boolean;
+  showUnverifiedGyms?: boolean;
+  selectedRegions: Region[];
+  useKm?: boolean;
+  onToggleUnits?: () => void;
+  onDisciplineToggle: (d: Discipline) => void;
+  onFreeOnlyToggle: () => void;
+  onStartingSoonToggle: () => void;
+  onVerifiedOnlyToggle?: () => void;
+  onShowUnverifiedToggle?: () => void;
+  onRegionChange: (r: Region) => void;
+  onReset?: () => void;
+  resultCount: number;
+  hasActiveFilters: boolean;
+  flashRegion: string | null;
+  handleRegionClick: (r: Region) => void;
+}
+
+function AllOpenFilters({
+  selectedDisciplines, freeOnly, startingSoonOnly, selectedRegions,
+  verifiedOnly = false, showUnverifiedGyms = false,
+  useKm = true, onToggleUnits,
+  onDisciplineToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  onVerifiedOnlyToggle, onShowUnverifiedToggle,
+  handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
+}: AllOpenProps) {
+  const inactiveBorder = 'rgba(245,241,232,0.30)';
+  const inactiveText = 'rgba(245,241,232,0.85)';
+
+  const sectionLabel: React.CSSProperties = {
+    fontSize: 9, fontWeight: 700, letterSpacing: '0.08em',
+    fontFamily: "'JetBrains Mono', monospace",
+    color: 'rgba(245,241,232,0.55)', textTransform: 'uppercase',
+    padding: '0 2px 6px',
+  };
+
+  const optionPill: React.CSSProperties = {
+    padding: '5px 11px',
+    borderRadius: 'var(--radius-full)',
+    fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+    cursor: 'pointer', transition: 'all 0.12s',
+    whiteSpace: 'nowrap', flexShrink: 0,
+  };
+
+  return (
+    <div style={{
+      display: 'flex', flexDirection: 'column', gap: 14,
+      padding: 12, color: 'var(--bone)',
+    }}>
+      {/* ── Disciplines (FIRST — decision priority) ─────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Disciplines</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {DISCIPLINES.map((d) => {
+            const active = selectedDisciplines.includes(d);
+            const c = DISCIPLINE_COLORS[d];
+            return (
+              <button key={d} onClick={() => onDisciplineToggle(d)} style={{
+                ...optionPill,
+                display: 'inline-flex', alignItems: 'center', gap: 6, paddingLeft: 7,
+                border: `1.5px solid ${active ? c.text : inactiveBorder}`,
+                background: active ? c.bg : 'transparent',
+                color: active ? c.text : inactiveText,
+              }}>
+                <span style={{
+                  width: 16, height: 16, borderRadius: '50%', background: c.marker,
+                  flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#FFFFFF', fontSize: 9, fontWeight: 800,
+                  fontFamily: "'Inter Tight', sans-serif", lineHeight: 1,
+                }}>{c.glyph}</span>
+                {DISCIPLINE_LABELS[d]}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Toggles (Verified, Starting Soon, Free, Units, Show Unverified) ── */}
+      <div>
+        <div style={sectionLabel}>Filters</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {onVerifiedOnlyToggle && (
+            <button onClick={onVerifiedOnlyToggle} style={{
+              ...optionPill,
+              border: `1.5px solid ${verifiedOnly ? '#5E8B5E' : inactiveBorder}`,
+              background: verifiedOnly ? '#D4DDD3' : 'transparent',
+              color: verifiedOnly ? '#27402A' : inactiveText,
+            }}>
+              {verifiedOnly ? '✓ ' : ''}Verified only
+            </button>
+          )}
+          <button onClick={onStartingSoonToggle} style={{
+            ...optionPill,
+            border: `1.5px solid ${startingSoonOnly ? '#D97706' : inactiveBorder}`,
+            background: startingSoonOnly ? 'var(--bone)' : 'transparent',
+            color: startingSoonOnly ? '#5C4430' : inactiveText,
+          }}>
+            Starting Soon
+          </button>
+          <button onClick={onFreeOnlyToggle} style={{
+            ...optionPill,
+            border: `1.5px solid ${freeOnly ? '#5E8B5E' : inactiveBorder}`,
+            background: freeOnly ? '#D4DDD3' : 'transparent',
+            color: freeOnly ? '#27402A' : inactiveText,
+          }}>
+            Free only
+          </button>
+          {onToggleUnits && (
+            <button onClick={onToggleUnits} style={{
+              ...optionPill,
+              border: `1.5px solid ${inactiveBorder}`,
+              background: 'transparent',
+              color: inactiveText,
+            }}>
+              {useKm ? 'km' : 'mi'}
+            </button>
+          )}
+          {onShowUnverifiedToggle && (
+            <button onClick={onShowUnverifiedToggle} style={{
+              ...optionPill,
+              border: `1.5px solid ${showUnverifiedGyms ? 'var(--bone)' : inactiveBorder}`,
+              background: showUnverifiedGyms ? 'rgba(245,241,232,0.15)' : 'transparent',
+              color: showUnverifiedGyms ? 'var(--bone)' : inactiveText,
+            }}>
+              {showUnverifiedGyms ? '✓ ' : ''}Show unverified
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* ── Region ──────────────────────────────────────────────────────── */}
+      <div>
+        <div style={sectionLabel}>Region</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {REGIONS.map((r) => {
+            const active = r === 'all' ? selectedRegions.length === 0 : selectedRegions.includes(r);
+            return (
+              <button key={r} onClick={() => handleRegionClick(r)} style={{
+                ...optionPill,
+                border: `1.5px solid ${active || flashRegion === r ? 'var(--bone)' : inactiveBorder}`,
+                background: active ? 'rgba(245,241,232,0.15)' : 'transparent',
+                color: active ? 'var(--bone)' : inactiveText,
+              }}>
+                {REGION_LABELS[r]}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Footer: count + reset ───────────────────────────────────────── */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '8px 2px 0', borderTop: '1px solid rgba(245,241,232,0.15)',
+      }}>
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+          color: 'rgba(245,241,232,0.65)',
+        }}>
+          {resultCount.toLocaleString()} gym{resultCount !== 1 ? 's' : ''}
+        </span>
+        {hasActiveFilters && onReset && (
+          <button onClick={onReset} style={{
+            ...optionPill,
+            border: `1.5px solid ${inactiveBorder}`,
+            background: 'transparent',
+            color: inactiveText,
+            opacity: 0.85,
+          }}>
+            Reset ✕
+          </button>
+        )}
+      </div>
     </div>
   );
 }

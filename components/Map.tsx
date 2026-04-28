@@ -17,18 +17,18 @@ export const MAP_STYLES: Record<string, { label: string; url: string }> = {
 // Tuned for max contrast across all map styles. No two share a hue family.
 const DISCIPLINE_COLOR_EXPR = [
   'match', ['get', 'discipline'],
-  'bjj',        '#C9A24A', // gold
-  'nogi_bjj',   '#F97316', // orange
-  'gi_bjj',     '#1E40AF', // deep blue (darker than water)
-  'wrestling',  '#854D0E', // dark amber (avoids terrain green)
+  'bjj',        '#7C3AED', // purple
+  'nogi_bjj',   '#7C3AED', // purple
+  'gi_bjj',     '#7C3AED', // purple
+  'wrestling',  '#854D0E', // dark amber
   'judo',       '#DC2626', // red
   'muay_thai',  '#DB2777', // hot pink
-  'mma',        '#7C3AED', // purple
+  'mma',        '#EA580C', // orange
   'kickboxing', '#0D9488', // teal
-  'boxing',     '#1F2937', // charcoal
-  'karate',     '#84CC16', // lime
-  'taekwondo',  '#6366F1', // indigo
-  '#C9A24A', // default
+  'boxing',     '#2563EB', // cobalt blue
+  'karate',     '#65A30D', // lime green
+  'taekwondo',  '#4338CA', // indigo
+  '#7C3AED', // default
 ];
 
 // Single-letter glyph per discipline — recognizable without color.
@@ -210,7 +210,8 @@ export default function Map({
       el.className = 'gps-pin';
       el.style.cssText = 'width:16px;height:16px;background:#2563EB;border:3px solid white;border-radius:50%;';
     } else {
-      el.style.cssText = 'width:18px;height:18px;background:var(--accent,#5C4430);border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.45);cursor:pointer;';
+      el.className = 'drop-pin';
+      el.style.cssText = 'width:16px;height:16px;background:#DC2626;border:3px solid white;border-radius:50%;cursor:pointer;';
     }
 
     pinMarkerRef.current = new mapboxgl.Marker({ element: el, anchor: 'center' })
@@ -414,41 +415,56 @@ export default function Map({
       hoveredIdRef.current = null;
     });
 
-    // ── Click: select gym ────────────────────────────────────────────────────
-    map.on('click', 'unclustered-point', (e: any) => {
-      const id = e.features[0].properties.id;
-      onSelectRef.current(id);
-      e.originalEvent.stopPropagation();
-    });
+    // ── Cluster hover cursor ─────────────────────────────────────────────────
+    map.on('mouseenter', 'clusters', () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', 'clusters', () => { map.getCanvas().style.cursor = ''; });
 
-    // ── Cluster hover: show gym list ─────────────────────────────────────────
-    map.on('mouseenter', 'clusters', (e: any) => {
-      map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'clusters', () => {
-      map.getCanvas().style.cursor = '';
-    });
+    // ── Unified click: fat-finger tolerant gym select + cluster zoom + dismiss ─
+    // Use a padded bounding box so small pins are tappable on mobile.
+    const isTouchDevice = typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const HIT_PAD = isTouchDevice ? 22 : 6;
 
-    // ── Cluster click: zoom in ───────────────────────────────────────────────
-    map.on('click', 'clusters', (e: any) => {
-      const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-      const clusterId = features[0].properties.cluster_id;
-      map.getSource('gyms').getClusterExpansionZoom(clusterId, (err: any, zoom: number) => {
-        if (err) return;
-        map.flyTo({ center: features[0].geometry.coordinates, zoom: zoom + 0.5, duration: 500 });
-      });
-    });
-
-    // ── Map background click: dismiss overlay ────────────────────────────────
     map.on('click', (e: any) => {
-      const features = map.queryRenderedFeatures(e.point, { layers: ['unclustered-point', 'clusters'] });
-      if (features.length === 0) {
-        if (pinDropModeRef.current && onPinDropRef.current) {
-          onPinDropRef.current(e.lngLat.lat, e.lngLat.lng);
-        } else {
-          onMapClickRef.current?.();
-        }
+      if (pinDropModeRef.current && onPinDropRef.current) {
+        onPinDropRef.current(e.lngLat.lat, e.lngLat.lng);
+        return;
       }
+
+      const bbox: [any, any] = [
+        [e.point.x - HIT_PAD, e.point.y - HIT_PAD],
+        [e.point.x + HIT_PAD, e.point.y + HIT_PAD],
+      ];
+
+      // Gym pins — pick closest to tap point when multiple overlap
+      const gymFeatures = map.queryRenderedFeatures(bbox, { layers: ['unclustered-point'] });
+      if (gymFeatures.length > 0) {
+        let best = gymFeatures[0];
+        let bestDist = Infinity;
+        for (const f of gymFeatures) {
+          const pt = map.project(f.geometry.coordinates as any);
+          const dx = pt.x - e.point.x;
+          const dy = pt.y - e.point.y;
+          const d = dx * dx + dy * dy;
+          if (d < bestDist) { bestDist = d; best = f; }
+        }
+        onSelectRef.current(best.properties.id);
+        return;
+      }
+
+      // Clusters — zoom in
+      const clusterFeatures = map.queryRenderedFeatures(bbox, { layers: ['clusters'] });
+      if (clusterFeatures.length > 0) {
+        const clusterId = clusterFeatures[0].properties.cluster_id;
+        map.getSource('gyms').getClusterExpansionZoom(clusterId, (err: any, zoom: number) => {
+          if (err) return;
+          map.flyTo({ center: clusterFeatures[0].geometry.coordinates, zoom: zoom + 0.5, duration: 500 });
+        });
+        return;
+      }
+
+      // Background — dismiss overlay
+      onMapClickRef.current?.();
     });
   }
 
