@@ -286,11 +286,27 @@ When the task involves any of these, slow down and explain step-by-step:
 
 ## 8. Pricing & monetization
 
+### Strategic frame (read this before changing any tier)
+
+**The athlete tier is a customer-acquisition channel for the B2B (gym) tier — not the primary revenue line.** Volume of athlete users → visibility of the directory → gyms see traffic → gyms claim → claimed gyms upgrade to Pro/Featured/Spotlight. The B2B side is where the real money lives.
+
+This frame drives every consumer-tier decision:
+- Free tier is **generous** by design — it's the funnel
+- Athlete Pro pricing is **aggressive** ($3.99/mo) — captures dedicated users without gating acquisition
+- Adding ads is **off-limits** — degrades the acquisition channel
+- Locking features deeper into Pro is a **retention/conversion question, not a revenue question** — does it hurt daily use? if yes, no
+- Promos (e.g., free Pro for 6 months in launch markets) are encouraged — pure CAC
+
 ### Athlete tiers
 | SKU | Price | What it unlocks |
 |---|---|---|
-| Athlete Free | $0 | Map, search, schedules, favorites (limited) |
-| **Athlete Pro** | **$6.99/mo · $59.99/yr** | Unlimited favorites · training log / passport · streak tracker · schedule alerts · priority support |
+| **Athlete Free** | $0 | Map · search · all gym pages · **10 favorites** · **90-day check-in history** · **training log** (manual session logging) · **streak tracker** |
+| **Athlete Pro** | **$3.99/mo · $29.99/yr** *(~$2.49/mo)* | Free + unlimited favorites · unlimited history · push notifications when favorited gyms post new open mats · calendar sync (Apple/Google/Outlook subscribe URL) · visited-pins map customization · early access to new features · priority support |
+
+Annual is ~37% off monthly = a real perceived discount, encouraging the lower-churn annual SKU.
+
+### Migration from existing prices
+Existing subscribers at $6.99/mo / $59.99/yr should be **auto-migrated down** to the new prices ($3.99 / $29.99) at their next renewal — never ask anyone to pay more for less. Cheap goodwill move.
 
 ### Gym owner tiers (free claim, paid amplification)
 Free claim is intentional — it maximizes adoption, which is what's good for the directory. Paywalls live on amplification + analytics, not on basic listing control.
