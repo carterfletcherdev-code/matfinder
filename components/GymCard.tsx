@@ -311,11 +311,12 @@ export default function GymCard({
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
             />
           ) : (
+            // Card-size placeholder — just the gym name, no extra tag
+            // (the bottom hover overlay would clip a tag here).
             <div className="gym-placeholder gym-photo-fallback">
               <div className="gym-placeholder-name" style={{ fontSize: 22, maxWidth: 380 }}>
                 {gym.name}
               </div>
-              <div className="gym-placeholder-tag">No photo yet</div>
             </div>
           )}
 
@@ -684,7 +685,6 @@ export default function GymCard({
             <div className="gym-placeholder-name" style={{ fontSize: 22, maxWidth: 320 }}>
               {gym.name}
             </div>
-            <div className="gym-placeholder-tag">No photo yet</div>
           </div>
         )}
 
