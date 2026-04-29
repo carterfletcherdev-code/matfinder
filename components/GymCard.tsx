@@ -284,15 +284,15 @@ export default function GymCard({
           maxWidth: 720,
         }}
       >
-        {/* ── Top: hero photo strip (21:7 ratio) ── */}
-        <div
+        {/* ── Top: hero photo strip (21:7 ratio). Click → /gym/[id]. ── */}
+        <Link
+          href={`/gym/${encodeURIComponent(gym.id)}`}
+          onClick={stop}
+          className="gym-photo-link"
+          aria-label={`View full page for ${gym.name}`}
           style={{
-            position: 'relative',
             aspectRatio: '21 / 7',
-            background: gym.photo_url
-              ? 'var(--brown-700)'
-              : 'linear-gradient(135deg, var(--brown-700), var(--brown-500))',
-            overflow: 'hidden',
+            background: 'var(--brown-700)',
             flexShrink: 0,
           }}
         >
@@ -302,25 +302,27 @@ export default function GymCard({
               src={gym.photo_url}
               alt={gym.name}
               loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              className="gym-photo-img"
+              style={{
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'center',
+                display: 'block',
+              }}
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
             />
           ) : (
-            <div
-              aria-hidden
-              style={{
-                position: 'absolute', inset: 0,
-                display: 'grid', placeItems: 'center',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 56, fontWeight: 800,
-                color: 'rgba(245,241,232,0.18)',
-                letterSpacing: '0.06em',
-                userSelect: 'none',
-              }}
-            >
-              {gymMonogram(gym.name)}
+            <div className="gym-placeholder gym-photo-fallback">
+              <div className="gym-placeholder-name" style={{ fontSize: 22, maxWidth: 380 }}>
+                {gym.name}
+              </div>
+              <div className="gym-placeholder-tag">No photo yet</div>
             </div>
           )}
+
+          {/* Hover overlay — fades in to make the click affordance clear */}
+          <div className="gym-photo-overlay">
+            <span className="gym-photo-overlay-pill">View full page</span>
+          </div>
 
           {/* Heart top-left of photo — Mapbox close X owns top-right. */}
           <div
@@ -358,7 +360,7 @@ export default function GymCard({
               verified
             </span>
           )}
-        </div>
+        </Link>
 
         {/* ── Bottom: info body ── */}
         <div style={{ padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', minWidth: 0, gap: 10 }}>
@@ -649,15 +651,15 @@ export default function GymCard({
         }
       }}
     >
-      {/* ─── PHOTO BLOCK ─── */}
-      <div
+      {/* ─── PHOTO BLOCK — clicks navigate to /gym/[id] ─── */}
+      <Link
+        href={`/gym/${encodeURIComponent(gym.id)}`}
+        onClick={stop}
+        className="gym-photo-link"
+        aria-label={`View full page for ${gym.name}`}
         style={{
           aspectRatio: '16 / 9',
-          background: gym.photo_url
-            ? 'var(--brown-700)'
-            : 'linear-gradient(135deg, var(--brown-700), var(--brown-500))',
-          position: 'relative',
-          overflow: 'hidden',
+          background: 'var(--brown-700)',
         }}
       >
         {gym.photo_url ? (
@@ -666,34 +668,30 @@ export default function GymCard({
             src={gym.photo_url}
             alt={gym.name}
             loading="lazy"
+            className="gym-photo-img"
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: '100%', height: '100%',
+              objectFit: 'cover', objectPosition: 'center',
               display: 'block',
             }}
             onError={(e) => {
-              // Hide on load failure — the gradient bg + monogram show through
+              // Hide on load failure — placeholder shows through
               (e.currentTarget as HTMLImageElement).style.display = 'none';
             }}
           />
         ) : (
-          <div
-            aria-hidden
-            style={{
-              position: 'absolute', inset: 0,
-              display: 'grid', placeItems: 'center',
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 56,
-              fontWeight: 800,
-              color: 'rgba(245,241,232,0.18)',
-              letterSpacing: '0.06em',
-              userSelect: 'none',
-            }}
-          >
-            {gymMonogram(gym.name)}
+          <div className="gym-placeholder gym-photo-fallback">
+            <div className="gym-placeholder-name" style={{ fontSize: 22, maxWidth: 320 }}>
+              {gym.name}
+            </div>
+            <div className="gym-placeholder-tag">No photo yet</div>
           </div>
         )}
+
+        {/* Hover overlay — fades in to make the click affordance clear */}
+        <div className="gym-photo-overlay">
+          <span className="gym-photo-overlay-pill">View full page</span>
+        </div>
 
         {/* Heart overlay (favorites) */}
         <div
@@ -732,7 +730,7 @@ export default function GymCard({
             verified
           </span>
         )}
-      </div>
+      </Link>
 
       {/* ─── BODY ─── */}
       <div style={{ padding: '16px 18px' }}>

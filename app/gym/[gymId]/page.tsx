@@ -358,19 +358,50 @@ export default function GymPage({ params }: PageProps) {
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
             />
           ) : (
-            <div
-              aria-hidden
-              style={{
-                position: 'absolute', inset: 0,
-                display: 'grid', placeItems: 'center',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 84, fontWeight: 800,
-                color: 'rgba(245,241,232,0.18)',
-                letterSpacing: '0.08em',
-              }}
-            >
-              {gymMonogram(gym.name)}
-            </div>
+            <>
+              {/* Rich placeholder — gym name in serif italic over the
+                  diagonal-line pattern. Far better than an abbreviated
+                  monogram once the screen is this big. */}
+              <div className="gym-placeholder">
+                <div className="gym-placeholder-name" style={{ fontSize: 44, maxWidth: 720 }}>
+                  {gym.name}
+                </div>
+                <div className="gym-placeholder-tag">No photo on file</div>
+              </div>
+
+              {/* Add-a-photo CTA. Routes to the claim flow where gym
+                  owners can upload their own photos. Bottom-right so
+                  it doesn't compete with the gym name. */}
+              <Link
+                href={`/claim/${encodeURIComponent(gym.id)}`}
+                style={{
+                  position: 'absolute', bottom: 16, right: 16, zIndex: 2,
+                  background: 'rgba(0,0,0,0.65)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  color: 'var(--bone)',
+                  fontSize: 12, fontWeight: 700,
+                  padding: '8px 14px',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid rgba(245,241,232,0.25)',
+                  textDecoration: 'none',
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  transition: 'background 150ms',
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.85)'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.65)'; }}
+              >
+                <svg
+                  width="13" height="13" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Are you the gym? Add a photo
+              </Link>
+            </>
           )}
 
           {/* Browse photos — opens the lightbox modal. We currently only
