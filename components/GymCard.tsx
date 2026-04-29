@@ -318,12 +318,11 @@ export default function GymCard({
             </div>
           )}
 
-          {/* Heart bottom-right of photo — kept clear of the Mapbox
-              popup close X (which always sits at top-right). */}
+          {/* Heart top-left of photo — Mapbox close X owns top-right. */}
           <div
             onClick={stop}
             style={{
-              position: 'absolute', bottom: 10, right: 10,
+              position: 'absolute', top: 10, left: 10,
               width: 34, height: 34, borderRadius: '50%',
               background: 'rgba(0,0,0,0.55)',
               backdropFilter: 'blur(10px)',
@@ -335,11 +334,11 @@ export default function GymCard({
             <HeartButton gymId={gym.id} />
           </div>
 
-          {/* Verified badge top-left */}
+          {/* Verified badge bottom-left (off the heart's spot) */}
           {hasVerifiedMats && (
             <span
               style={{
-                position: 'absolute', top: 10, left: 10,
+                position: 'absolute', bottom: 10, left: 10,
                 background: 'rgba(94,139,94,0.92)',
                 color: 'var(--bone)',
                 fontSize: 10, fontWeight: 700,
