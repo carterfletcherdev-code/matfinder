@@ -38,6 +38,7 @@ import CheckInButton from '@/components/CheckInButton';
 import PhotoLightbox from '@/components/PhotoLightbox';
 import CorrectionForm from '@/components/CorrectionForm';
 import { titleCase, formatTime } from '@/lib/utils';
+import { PhotoSize } from '@/lib/photoUrl';
 import { trackEvent } from '@/lib/track';
 
 // ───────────────────────────────────────────────────────────────────
@@ -346,9 +347,12 @@ export default function GymPage({ params }: PageProps) {
           }}
         >
           {gym.photo_url ? (
+            /* Hi-res hero — 1920px from Google Places so it stays crisp
+               at full desktop width and on retina screens. The card and
+               popover keep the default 800px. */
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
-              src={gym.photo_url}
+              src={PhotoSize.hero(gym.photo_url)}
               alt={gym.name}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
@@ -949,10 +953,11 @@ export default function GymPage({ params }: PageProps) {
         }
       `}</style>
 
-      {/* Photo lightbox — escapes via portal to document.body */}
+      {/* Photo lightbox — escapes via portal to document.body. Uses the
+          highest-res variant since the modal can fill the viewport. */}
       {showLightbox && gym.photo_url && (
         <PhotoLightbox
-          photos={[gym.photo_url]}
+          photos={[PhotoSize.lightbox(gym.photo_url)!]}
           onClose={() => setShowLightbox(false)}
         />
       )}

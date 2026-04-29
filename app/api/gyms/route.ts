@@ -182,26 +182,122 @@ function applyDbOverride(gym: Gym, ov: DbOverride | undefined): Gym {
   return next;
 }
 
+/** Normalize a gym name for fuzzy matching. Lowercase, strip
+ *  punctuation, drop common BJJ/MMA suffix tokens that vary across
+ *  listings ("bjj" vs "brazilian jiu jitsu" vs "jiu-jitsu academy"). */
+function normalizeGymName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[’']/g, '')                         // smart quotes / apostrophes
+    .replace(/[^a-z0-9\s]/g, ' ')                      // strip punctuation
+    .replace(/\b(bjj|brazilian jiu jitsu|jiu jitsu|jujitsu|jiujitsu|jj|gym|academy|martial arts|self defense|the)\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Approx great-circle distance in meters. Used to keep dedup matches
+ *  honest — same name but 50 km apart isn't actually the same gym. */
+function haversineMeters(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371000;
+  const toRad = (d: number) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2
+    + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/** Build a map keyed by `normalized-name|city` of seed gyms, so we can
+ *  detect when a places_* row is just a duplicate of a seed gym we
+ *  already have. */
+function indexSeedGymsByName(seedGyms: Gym[]): Map<string, Gym[]> {
+  const idx = new Map<string, Gym[]>();
+  for (const g of seedGyms) {
+    const key = `${normalizeGymName(g.name)}|${(g.city || '').toLowerCase()}`;
+    if (!idx.has(key)) idx.set(key, []);
+    idx.get(key)!.push(g);
+  }
+  return idx;
+}
+
+/** Find a seed gym that matches a places_* override by normalized
+ *  name + city, within 25 km (cities have multiple branches but a true
+ *  duplicate is always nearby). Returns the seed gym or null. */
+function findDuplicateSeedGym(
+  ov: DbOverride,
+  seedByName: Map<string, Gym[]>,
+): Gym | null {
+  if (!ov.name || ov.lat == null || ov.lng == null) return null;
+  const key = `${normalizeGymName(ov.name)}|${(ov.city || '').toLowerCase()}`;
+  const candidates = seedByName.get(key);
+  if (!candidates || candidates.length === 0) return null;
+  let best: { gym: Gym; dist: number } | null = null;
+  for (const cand of candidates) {
+    const d = haversineMeters(Number(ov.lat), Number(ov.lng), cand.lat, cand.lng);
+    if (d <= 25_000 && (!best || d < best.dist)) best = { gym: cand, dist: d };
+  }
+  return best?.gym ?? null;
+}
+
 export async function GET() {
   const seedGyms = [...GYMS, ...EXTRA_US_GYMS, ...EU_GYMS, ...US_OSM_GYMS, ...GLOBAL_GYMS];
   const seedIds = new Set(seedGyms.map(g => g.id));
+  const seedByName = indexSeedGymsByName(seedGyms);
 
   // Pull DB overrides once per request — paged scan, ~7 round-trips.
   const dbOverrides = await fetchDbOverrides();
 
-  // 1) Merge overrides into seed gyms (existing behavior)
+  // ── Pre-pass: dedup ──
+  // Some places_* gyms are duplicates of seed gyms (the pipeline
+  // re-discovered them under a Google Place ID). When we detect this,
+  // we route the places_* enrichment (photo/rating/schedule) onto the
+  // matching SEED gym so the result is one rich pin instead of two
+  // (one bare seed pin + one rich places_* pin).
+  //
+  // Routing key: id-keyed override (when seed and places share id),
+  // otherwise the matched seed gym's id.
+  const routedOverrides: Record<string, DbOverride> = { ...dbOverrides };
+  const consumedPlacesIds = new Set<string>();
+  for (const [gymId, ov] of Object.entries(dbOverrides)) {
+    if (!gymId.startsWith('places_')) continue; // only re-route places_* rows
+    if (seedIds.has(gymId)) continue;            // already aligned with a seed
+    const dup = findDuplicateSeedGym(ov, seedByName);
+    if (!dup) continue;
+
+    // Merge this places_* override into the seed gym's slot. If the
+    // seed gym already had an override, prefer the existing one but
+    // backfill any missing fields (photo, rating, schedule) from the
+    // places_* row.
+    const existing = routedOverrides[dup.id] ?? {};
+    routedOverrides[dup.id] = {
+      ...ov,
+      ...existing,
+      // Existing wins for these specific fields if it has them; ov
+      // fills in the gaps. ?? preserves nullability.
+      photo_url:    existing.photo_url    ?? ov.photo_url    ?? null,
+      rating:       existing.rating       ?? ov.rating       ?? null,
+      review_count: existing.review_count ?? ov.review_count ?? null,
+      schedule: (existing.schedule && existing.schedule.length > 0)
+        ? existing.schedule
+        : (ov.schedule ?? null),
+    };
+    consumedPlacesIds.add(gymId);
+  }
+
+  // 1) Merge overrides into seed gyms — including any places_* data
+  //    that was rerouted to a seed gym above.
   const merged = seedGyms.map(g => {
     const withJson = applyJsonOverride(g);
-    return applyDbOverride(withJson, dbOverrides[g.id]);
+    return applyDbOverride(withJson, routedOverrides[g.id]);
   });
 
-  // 2) Path B: synthesize gyms for override-only rows whose id doesn't
-  //    match any seed gym. These are the ~6,200 places_* gyms the
-  //    Phase 1/2/1B pipelines discovered + enriched. Without this loop
-  //    they never reach the UI.
+  // 2) Synthesize gyms for override-only rows that DIDN'T match a seed
+  //    gym. These are net-new gyms the pipeline discovered (places_*
+  //    ids that have no equivalent seed gym).
   const synthesized: Gym[] = [];
   for (const [gymId, ov] of Object.entries(dbOverrides)) {
-    if (seedIds.has(gymId)) continue; // already merged above
+    if (seedIds.has(gymId)) continue;            // already merged above
+    if (consumedPlacesIds.has(gymId)) continue;  // collapsed into a seed
     const gym = gymFromOverride(gymId, ov);
     if (gym) synthesized.push(gym);
   }
@@ -218,6 +314,7 @@ export async function GET() {
       'X-Gym-Count': String(all.length),
       'X-Gym-Seed-Count': String(merged.length),
       'X-Gym-Synthesized-Count': String(synthesized.length),
+      'X-Gym-Deduped-Count': String(consumedPlacesIds.size),
     },
   });
 }
