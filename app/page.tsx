@@ -408,18 +408,28 @@ export default function Home() {
   // from sessionStorage so distance sort, dropped pins, etc. survive
   // navigation. Also restores the previous fly target so the map opens
   // wherever the user left off.
-  // ── Restore-on-return helper. Handles two cases:
-  //   1. User clicked 'View full page' on a card and is now coming back
+  // ── Restore-on-return helper. Handles three cases:
+  //   1. User clicked 'View full page' on a card and is coming back
   //      from /gym/[id] — restore them to that gym's pin.
   //   2. User round-tripped through /favorites or /account — restore
   //      previously-saved map state.
-  //   3. First-time visitor — auto-locate via GPS.
-  // Returns true if a return-target / saved-state was applied (caller
-  // skips auto-locate). Pulled out as a function so we can call it both
-  // on mount AND on `pageshow` (which fires on bfcache restore that
-  // App Router triggers when navigating back).
+  //   3. First-time visitor — caller falls back to GPS auto-locate.
+  //
+  // Returns true if a restoration was applied (caller skips auto-locate).
+  //
+  // Idempotent within a single mount: once applied, subsequent calls
+  // are no-ops. Critical for two reasons:
+  //   - React StrictMode (default in Next.js dev) double-fires useEffect
+  //     so a non-idempotent restore would run twice — first call eats
+  //     the one-shot return_to_gym key, second call falls through to
+  //     stale matfinder_map_state and clobbers the priority-1 restore.
+  //   - Mount + pageshow paths can both call this; the second caller
+  //     should not redo work.
+  // The ref resets per mount, so back-nav remounts re-restore freshly.
+  const restoreAppliedRef = useRef(false);
   const tryRestoreFromSession = (): boolean => {
     if (typeof window === 'undefined') return true;
+    if (restoreAppliedRef.current) return true; // StrictMode / pageshow guard
     // Priority 1: "back to map" from a /gym/[id] page. One-shot key.
     try {
       const ret = sessionStorage.getItem('matfinder.return_to_gym');
@@ -427,11 +437,12 @@ export default function Home() {
         const r = JSON.parse(ret) as {
           gymId?: string; lat?: number; lng?: number; zoom?: number;
         };
-        sessionStorage.removeItem('matfinder.return_to_gym');
         if (r.gymId && r.lat != null && r.lng != null) {
           setSelectedGym(r.gymId);
           setExpandedGym(r.gymId);
           setMapFlyTarget({ lat: r.lat, lng: r.lng, zoom: r.zoom ?? 14 });
+          sessionStorage.removeItem('matfinder.return_to_gym');
+          restoreAppliedRef.current = true;
           return true;
         }
       }
@@ -448,7 +459,10 @@ export default function Home() {
         if (s.sortLocation) setSortLocation(s.sortLocation);
         if (s.sortMode) setSortMode(s.sortMode);
         if (s.center) setMapFlyTarget(s.center);
-        if (s.sortLocation || s.center) return true;
+        if (s.sortLocation || s.center) {
+          restoreAppliedRef.current = true;
+          return true;
+        }
       }
     } catch { /* ignore */ }
     return false;
@@ -465,6 +479,9 @@ export default function Home() {
     if (typeof window === 'undefined') return;
     const onPageShow = (e: PageTransitionEvent) => {
       if (!e.persisted) return; // initial load is handled by the mount effect
+      // bfcache restore: reset the guard so we restore from the
+      // (possibly new) sessionStorage state.
+      restoreAppliedRef.current = false;
       tryRestoreFromSession();
     };
     window.addEventListener('pageshow', onPageShow);
