@@ -40,15 +40,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  // Load subscription tier when session changes.
+  // Load subscription tier when session changes — and re-fetch on tab
+  // focus / visibility change so users who upgrade via Stripe see their
+  // tier reflected as soon as they return to the app.
   useEffect(() => {
     if (!session?.user) { setTier('free'); return; }
     let cancelled = false;
-    (async () => {
+    const userId = session.user.id;
+
+    async function refresh() {
       const { data } = await supabase
         .from('subscriptions')
         .select('tier, status')
-        .eq('user_id', session.user.id)
+        .eq('user_id', userId)
         .maybeSingle();
       if (cancelled) return;
       if (data?.status === 'active' && (data.tier === 'standard' || data.tier === 'pro')) {
@@ -56,8 +60,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setTier('free');
       }
-    })();
-    return () => { cancelled = true; };
+    }
+
+    refresh();
+
+    const onFocus = () => { refresh(); };
+    const onVisibility = () => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'visible') refresh();
+    };
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, [session?.user?.id]);
 
   const signInWithGoogle = useCallback(async () => {

@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import Header from '@/components/Header';
+import BackButton from '@/components/BackButton';
+import { Button } from '@/components/ui';
 
 type Billing = { id: string; label: string; price: string; sublabel?: string; savings?: string };
 
 const PLANS: {
-  id: 'pro' | 'standard';
+  id: 'pro';
   name: string;
   price: string;
   color: string;
@@ -19,37 +20,21 @@ const PLANS: {
   {
     id: 'pro',
     name: 'Pro',
-    price: '$9.99',
+    price: '$6.99',
     color: '#C9A24A',
     badge: 'BEST VALUE',
     features: [
       'Unlimited saved gyms',
-      'Session logs with notes',
-      'Check-in history & stats',
-      'Custom training lists',
-      'Schedule alerts (coming soon)',
+      'Live calendar subscription — sync every favorited gym\'s open mats to Apple, Google, or Outlook Calendar',
+      'Visited-pin training history on the map',
+      'Unlimited check-in history (Free is limited to the last 30 days)',
       'Priority support',
       'Early access to new features',
-      'Gym analytics for claimed listings',
     ],
     billings: [
-      { id: 'pro',        label: 'Monthly',  price: '$9.99/mo' },
-      { id: 'pro_annual', label: 'Annually', price: '$79.99/yr', sublabel: '$6.67/mo', savings: 'Save $40 — 4 months free' },
-    ],
-  },
-  {
-    id: 'standard',
-    name: 'Standard',
-    price: '$4.99',
-    color: '#7EC8A4',
-    badge: null,
-    features: [
-      'Up to 30 saved gyms',
-      'Session logs with notes',
-      'Check-in history',
-    ],
-    billings: [
-      { id: 'standard', label: 'Monthly', price: '$4.99/mo' },
+      // Annual first — leads with the savings framing.
+      { id: 'pro_annual', label: 'Annually', price: '$59.99/yr', sublabel: 'Works out to $5.00/mo', savings: 'Save 28% vs monthly' },
+      { id: 'pro',        label: 'Monthly',  price: '$6.99/mo' },
     ],
   },
 ];
@@ -90,12 +75,12 @@ export default function UpgradePage() {
           box-shadow: 0 12px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(245,241,232,0.4);
         }
       `}</style>
-      <Header />
+      <Header hideAddGym hideSignOut />
       <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 48px' }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <h1 style={{ margin: 0, fontSize: 22, fontFamily: "'Inter Tight', sans-serif", fontWeight: 800 }}>Upgrade</h1>
-            <Link href="/account" style={{ fontSize: 13, color: 'var(--text-muted)', textDecoration: 'none', fontFamily: "'Inter Tight', sans-serif" }}>← Back</Link>
+            <BackButton fallbackHref="/account">Back</BackButton>
           </div>
           <p style={{ margin: '0 0 24px', fontSize: 13, color: 'var(--text-muted)', fontFamily: "'Inter Tight', sans-serif" }}>
             Support MatFinder and unlock more features.
@@ -154,7 +139,7 @@ export default function UpgradePage() {
                       </div>
                       {plan.billings.length > 1 && (
                         <div style={{ fontSize: 11, fontWeight: 600, color: plan.color, letterSpacing: '0.01em' }}>
-                          or $79.99/year
+                          or $59.99/year · save 28%
                         </div>
                       )}
                     </div>
@@ -172,22 +157,20 @@ export default function UpgradePage() {
                       {plan.billings.map(b => {
                         const isLoading = loading === b.id;
                         return (
-                          <button
+                          <Button
                             key={b.id}
                             onClick={() => subscribe(b.id)}
                             disabled={!!loading}
+                            loading={isLoading}
+                            variant="primary"
+                            size="lg"
+                            fullWidth
                             style={{
-                              width: '100%', padding: '11px 14px',
-                              display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8,
-                              fontSize: 14, fontWeight: 700,
                               background: plan.color,
-                              color: '#1A1310', border: 'none',
-                              borderRadius: 8,
+                              color: '#1A1310',
+                              borderColor: plan.color,
+                              justifyContent: 'space-between',
                               cursor: isLoading ? 'wait' : loading ? 'not-allowed' : 'pointer',
-                              opacity: isLoading ? 0.7 : 1,
-                              fontFamily: "'Inter Tight', sans-serif",
-                              transition: 'opacity 0.15s',
-                              textAlign: 'left',
                             }}
                           >
                             <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1 }}>
@@ -204,7 +187,7 @@ export default function UpgradePage() {
                                 <span style={{ fontSize: 10, fontWeight: 600, opacity: 0.7 }}>{b.sublabel}</span>
                               )}
                             </span>
-                          </button>
+                          </Button>
                         );
                       })}
                     </div>

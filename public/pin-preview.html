@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Pin preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --brown-900: #1A1310;
+      --bone: #F5F1E8;
+      --gold: #D4AF37;            /* favorite pin (metallic gold) */
+      --bjj: #7C3AED;             /* example discipline color */
+      --muay: #DB2777;
+      --boxing: #2563EB;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 28px;
+      margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px;
+      margin: 0 0 32px;
+      max-width: 640px;
+      line-height: 1.5;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 24px 20px 20px;
+    }
+    .card h3 {
+      margin: 0 0 4px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    .card .price {
+      font-size: 12px;
+      color: rgba(245,241,232,0.70);
+      margin: 0 0 16px;
+    }
+    .price b { color: #D4AF37; }
+    .stage {
+      position: relative;
+      height: 220px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.015) 0 1px,
+          transparent 1px 14px
+        );
+    }
+    .stage.satellite {
+      background:
+        radial-gradient(ellipse at 50% 40%, #3a4a2e 0%, #1d2a18 70%);
+    }
+    .stage.light {
+      background: #E8E2D5;
+    }
+    /* ── Standard pin ──────────────────────────────────────────── */
+    .pin-standard {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bjj);
+      border: 2px solid #1A1310;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    /* ── Featured pin (paid $29.99/mo listing) ────────────────── */
+    .pin-featured-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pin-featured {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--bjj);
+      border: 3px solid #F5F1E8;
+      box-shadow:
+        0 0 0 2px #1A1310,
+        0 4px 12px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 2;
+    }
+    .pin-featured-tag {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #D4AF37;
+      color: #1A1310;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .pin-featured-tag::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 6px;
+      height: 6px;
+      background: #D4AF37;
+    }
+    /* ── Favorite pin (gold + bone star + bone pulse) ────────── */
+    .pin-favorite-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pin-favorite-pulse {
+      position: absolute;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid #F5F1E8;
+      animation: gps-pulse 1.8s ease-out infinite;
+    }
+    @keyframes gps-pulse {
+      0%   { box-shadow: 0 0 0 0    rgba(245,241,232,0.6), 0 2px 8px rgba(0,0,0,0.35); transform: scale(0.6); opacity: 0.7; }
+      70%  { box-shadow: 0 0 0 14px rgba(245,241,232,0),   0 2px 8px rgba(0,0,0,0.35); transform: scale(1.5); opacity: 0; }
+      100% { box-shadow: 0 0 0 0    rgba(245,241,232,0),   0 2px 8px rgba(0,0,0,0.35); transform: scale(0.6); opacity: 0; }
+    }
+    .pin-favorite {
+      position: relative; z-index: 2;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--brown-700);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bone);
+      font-size: 14px;
+      font-weight: 800;
+      text-shadow: 0 1px 0 rgba(62,46,32,0.65);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Side-by-side layout */
+    .row {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .row .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .row .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+    }
+
+    /* Notes panel */
+    .notes {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+    }
+    .notes h2 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bone);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    .notes ul { margin: 0; padding-left: 18px; }
+    .notes li { margin-bottom: 6px; }
+    .notes b { color: var(--bone); }
+    .swatch {
+      display: inline-block;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.4);
+      vertical-align: -1px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MatFinder — pin preview</h1>
+    <p class="lead">
+      Side-by-side rendering of every pin variant, including the paid
+      <b>Featured</b> listing pin (<b>$29.99/mo</b>) — so you can see what a gym owner gets
+      before anyone has bought it. Hover and pulse animations match the live site.
+    </p>
+
+    <!-- Comparison row on the dark map style -->
+    <div class="card">
+      <h3>Side-by-side · dark map style</h3>
+      <p class="price">All three pin types at the same zoom level.</p>
+      <div class="stage">
+        <div class="row">
+          <div class="item">
+            <div class="pin-standard"></div>
+            <div class="label">Standard</div>
+          </div>
+          <div class="item">
+            <div class="pin-featured-wrap">
+              <div class="pin-featured-tag">★ FEATURED</div>
+              <div class="pin-featured"></div>
+            </div>
+            <div class="label">Featured · $29.99/mo</div>
+          </div>
+          <div class="item">
+            <div class="pin-favorite-wrap">
+              <div class="pin-favorite-pulse"></div>
+              <div class="pin-favorite">★</div>
+            </div>
+            <div class="label">Favorite</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Same row on a light map style for contrast check -->
+    <div class="card">
+      <h3>Side-by-side · light map style</h3>
+      <p class="price">Confirms that the pins still pop on a light basemap.</p>
+      <div class="stage light">
+        <div class="row">
+          <div class="item">
+            <div class="pin-standard"></div>
+            <div class="label" style="color:#3E2E20;">Standard</div>
+          </div>
+          <div class="item">
+            <div class="pin-featured-wrap">
+              <div class="pin-featured-tag">★ FEATURED</div>
+              <div class="pin-featured"></div>
+            </div>
+            <div class="label" style="color:#3E2E20;">Featured · $29.99/mo</div>
+          </div>
+          <div class="item">
+            <div class="pin-favorite-wrap">
+              <div class="pin-favorite-pulse"></div>
+              <div class="pin-favorite">★</div>
+            </div>
+            <div class="label" style="color:#3E2E20;">Favorite</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured pin spotlight -->
+    <div class="card">
+      <h3>Featured pin · what owners get</h3>
+      <p class="price">
+        <b>$29.99/mo</b> · larger pin head, bone-white outline, dark halo, hovering
+        gold "FEATURED" tag. Always sorted to the top of the list and map view.
+      </p>
+      <div class="stage">
+        <div class="pin-featured-wrap" style="transform: scale(2.5);">
+          <div class="pin-featured-tag">★ FEATURED</div>
+          <div class="pin-featured"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes panel -->
+    <div class="notes">
+      <h2>Color tokens</h2>
+      <ul>
+        <li>
+          <span class="swatch" style="background:#D4AF37;"></span>
+          <b>Gold (favorite + featured tag)</b> — <code>#D4AF37</code> — true metallic gold,
+          distinct from any discipline color or the brand bone-white.
+        </li>
+        <li>
+          <span class="swatch" style="background:#7C3AED;"></span>
+          <b>Discipline marker</b> — varies per discipline. Featured pins keep the
+          discipline color so the gym is still identifiable at a glance.
+        </li>
+        <li>
+          <span class="swatch" style="background:#F5F1E8;"></span>
+          <b>Bone</b> — <code>#F5F1E8</code> — outline ring on featured pins, star glyph
+          on favorite pins, pulse halo color.
+        </li>
+        <li>
+          <span class="swatch" style="background:#3E2E20;"></span>
+          <b>Brown-700</b> — <code>#3E2E20</code> — outline ring on favorite pins.
+        </li>
+      </ul>
+      <h2 style="margin-top: 18px;">Sizing</h2>
+      <ul>
+        <li><b>Standard pin</b> — 12–20px diameter (zoom-aware).</li>
+        <li><b>Featured pin</b> — ~30% larger than standard at every zoom + bone outline + hovering tag.</li>
+        <li><b>Favorite pin</b> — fixed 22–26px diameter, never clusters, always visible at every zoom level.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

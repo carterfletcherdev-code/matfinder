@@ -21,15 +21,18 @@ interface FiltersProps {
   startingSoonOnly: boolean;
   verifiedOnly?: boolean;
   showUnverifiedGyms?: boolean;
+  favoritedOnly?: boolean;
   region: Region;
   selectedRegions?: Region[];
   useKm?: boolean;
   onDisciplineToggle: (d: Discipline) => void;
+  onSetDisciplines?: (next: Discipline[]) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
   onVerifiedOnlyToggle?: () => void;
   onShowUnverifiedToggle?: () => void;
+  onFavoritedOnlyToggle?: () => void;
   onToggleUnits?: () => void;
   onRegionChange: (r: Region) => void;
   onReset?: () => void;
@@ -40,6 +43,10 @@ interface FiltersProps {
   horizontalExpand?: boolean;
   /** Mobile flat layout — all sections visible from open, disciplines first, no Days. */
   allOpen?: boolean;
+  /** When `allOpen`: place the discipline "Select all / Clear" actions
+   *  inline next to the section label (default true) or push them to the
+   *  far right of the row (false — landscape). */
+  inlineDisciplineActions?: boolean;
 }
 
 const scrollRow: React.CSSProperties = {
@@ -55,14 +62,14 @@ const scrollRow: React.CSSProperties = {
 
 export default function Filters({
   selectedDisciplines, selectedDays, freeOnly, startingSoonOnly,
-  verifiedOnly = false, showUnverifiedGyms = false,
+  verifiedOnly = false, showUnverifiedGyms = false, favoritedOnly = false,
   region,
   selectedRegions = [],
   useKm = true, onToggleUnits,
-  onDisciplineToggle, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
-  onVerifiedOnlyToggle, onShowUnverifiedToggle,
+  onDisciplineToggle, onSetDisciplines, onDayToggle, onFreeOnlyToggle, onStartingSoonToggle,
+  onVerifiedOnlyToggle, onShowUnverifiedToggle, onFavoritedOnlyToggle,
   onRegionChange, onReset, resultCount, isMobile, noBackground, floatingFilters,
-  horizontalExpand, allOpen,
+  horizontalExpand, allOpen, inlineDisciplineActions,
 }: FiltersProps) {
   const hasActiveFilters = selectedDisciplines.length > 0 || selectedDays.length > 0 || freeOnly || startingSoonOnly;
   const [flashRegion, setFlashRegion] = useState<string | null>(null);
@@ -82,12 +89,16 @@ export default function Filters({
         startingSoonOnly={startingSoonOnly}
         verifiedOnly={verifiedOnly}
         showUnverifiedGyms={showUnverifiedGyms}
+        favoritedOnly={favoritedOnly}
         onVerifiedOnlyToggle={onVerifiedOnlyToggle}
         onShowUnverifiedToggle={onShowUnverifiedToggle}
+        onFavoritedOnlyToggle={onFavoritedOnlyToggle}
         selectedRegions={selectedRegions}
         useKm={useKm}
         onToggleUnits={onToggleUnits}
         onDisciplineToggle={onDisciplineToggle}
+        onSetDisciplines={onSetDisciplines}
+        inlineDisciplineActions={inlineDisciplineActions}
         onFreeOnlyToggle={onFreeOnlyToggle}
         onStartingSoonToggle={onStartingSoonToggle}
         onRegionChange={onRegionChange}
@@ -314,6 +325,7 @@ interface VerticalFiltersProps {
   useKm?: boolean;
   onToggleUnits?: () => void;
   onDisciplineToggle: (d: Discipline) => void;
+  onSetDisciplines?: (next: Discipline[]) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
@@ -578,16 +590,19 @@ interface HorizontalExpandProps {
   startingSoonOnly: boolean;
   verifiedOnly?: boolean;
   showUnverifiedGyms?: boolean;
+  favoritedOnly?: boolean;
   region: Region;
   selectedRegions: Region[];
   useKm?: boolean;
   onToggleUnits?: () => void;
   onDisciplineToggle: (d: Discipline) => void;
+  onSetDisciplines?: (next: Discipline[]) => void;
   onDayToggle: (d: DayOfWeek) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
   onVerifiedOnlyToggle?: () => void;
   onShowUnverifiedToggle?: () => void;
+  onFavoritedOnlyToggle?: () => void;
   onRegionChange: (r: Region) => void;
   onReset?: () => void;
   resultCount: number;
@@ -698,12 +713,11 @@ function HorizontalExpandFilters({
                 background: active ? c.bg : 'transparent',
                 color: active ? c.text : inactiveText,
               }}>
+                {/* Color dot — no letter glyph. */}
                 <span style={{
-                  width: 14, height: 14, borderRadius: '50%', background: c.marker,
-                  flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#FFFFFF', fontSize: 9, fontWeight: 800, fontFamily: "'Inter Tight', sans-serif",
-                  lineHeight: 1,
-                }}>{c.glyph}</span>
+                  width: 10, height: 10, borderRadius: '50%', background: c.marker,
+                  flexShrink: 0,
+                }} />
                 {DISCIPLINE_LABELS[d]}
               </button>
             );
@@ -829,29 +843,37 @@ interface AllOpenProps {
   startingSoonOnly: boolean;
   verifiedOnly?: boolean;
   showUnverifiedGyms?: boolean;
+  favoritedOnly?: boolean;
   selectedRegions: Region[];
   useKm?: boolean;
   onToggleUnits?: () => void;
   onDisciplineToggle: (d: Discipline) => void;
+  onSetDisciplines?: (next: Discipline[]) => void;
   onFreeOnlyToggle: () => void;
   onStartingSoonToggle: () => void;
   onVerifiedOnlyToggle?: () => void;
   onShowUnverifiedToggle?: () => void;
+  onFavoritedOnlyToggle?: () => void;
   onRegionChange: (r: Region) => void;
   onReset?: () => void;
   resultCount: number;
   hasActiveFilters: boolean;
   flashRegion: string | null;
   handleRegionClick: (r: Region) => void;
+  /** Where the discipline "Select all / Clear" actions sit:
+   *  true (default) → inline next to the section label (portrait + desktop)
+   *  false → pushed to the far right of the row (landscape) */
+  inlineDisciplineActions?: boolean;
 }
 
 function AllOpenFilters({
   selectedDisciplines, freeOnly, startingSoonOnly, selectedRegions,
-  verifiedOnly = false, showUnverifiedGyms = false,
+  verifiedOnly = false, showUnverifiedGyms = false, favoritedOnly = false,
   useKm = true, onToggleUnits,
-  onDisciplineToggle, onFreeOnlyToggle, onStartingSoonToggle,
-  onVerifiedOnlyToggle, onShowUnverifiedToggle,
+  onDisciplineToggle, onSetDisciplines, onFreeOnlyToggle, onStartingSoonToggle,
+  onVerifiedOnlyToggle, onShowUnverifiedToggle, onFavoritedOnlyToggle,
   handleRegionClick, onReset, resultCount, hasActiveFilters, flashRegion,
+  inlineDisciplineActions = true,
 }: AllOpenProps) {
   const inactiveBorder = 'rgba(245,241,232,0.30)';
   const inactiveText = 'rgba(245,241,232,0.85)';
@@ -860,43 +882,87 @@ function AllOpenFilters({
     fontSize: 9, fontWeight: 700, letterSpacing: '0.08em',
     fontFamily: "'JetBrains Mono', monospace",
     color: 'rgba(245,241,232,0.55)', textTransform: 'uppercase',
-    padding: '0 2px 6px',
+    padding: '0 2px 4px',
   };
 
   const optionPill: React.CSSProperties = {
-    padding: '5px 11px',
+    padding: '3px 9px',
     borderRadius: 'var(--radius-full)',
-    fontSize: 12, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
+    fontSize: 11, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif",
     cursor: 'pointer', transition: 'all 0.12s',
     whiteSpace: 'nowrap', flexShrink: 0,
   };
 
   return (
     <div style={{
-      display: 'flex', flexDirection: 'column', gap: 14,
-      padding: 12, color: 'var(--bone)',
+      display: 'flex', flexDirection: 'column', gap: 9,
+      padding: 10, color: 'var(--bone)',
     }}>
       {/* ── Disciplines (FIRST — decision priority) ─────────────────────── */}
       <div>
-        <div style={sectionLabel}>Disciplines</div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <div style={{
+          display: 'flex', alignItems: 'center',
+          // Portrait + desktop: actions sit immediately next to the
+          // "Disciplines" label so it's clear they apply to this section.
+          // Landscape: actions are pushed to the far right (more horizontal
+          // space available, easier to scan there).
+          justifyContent: inlineDisciplineActions ? 'flex-start' : 'space-between',
+          gap: inlineDisciplineActions ? 10 : 0,
+          paddingBottom: 4,
+        }}>
+          <div style={{ ...sectionLabel, padding: 0 }}>Disciplines</div>
+          {/* Select all / Clear — let users explicitly select every
+              discipline, then toggle off the ones they don't want. */}
+          {onSetDisciplines && (() => {
+            const allSelected = selectedDisciplines.length === DISCIPLINES.length;
+            const noneSelected = selectedDisciplines.length === 0;
+            const linkBtn: React.CSSProperties = {
+              background: 'transparent', border: 'none', padding: '2px 4px',
+              cursor: 'pointer',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 9, fontWeight: 700, letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'rgba(245,241,232,0.65)',
+            };
+            return (
+              <div style={{ display: 'inline-flex', gap: 4, alignItems: 'center' }}>
+                <button
+                  onClick={() => onSetDisciplines(DISCIPLINES)}
+                  disabled={allSelected}
+                  style={{ ...linkBtn, opacity: allSelected ? 0.35 : 1, color: allSelected ? 'rgba(245,241,232,0.45)' : 'var(--bone)' }}
+                >Select all</button>
+                <span style={{ color: 'rgba(245,241,232,0.30)' }}>·</span>
+                <button
+                  onClick={() => onSetDisciplines([])}
+                  disabled={noneSelected}
+                  style={{ ...linkBtn, opacity: noneSelected ? 0.35 : 1 }}
+                >Clear</button>
+              </div>
+            );
+          })()}
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
           {DISCIPLINES.map((d) => {
             const active = selectedDisciplines.includes(d);
             const c = DISCIPLINE_COLORS[d];
+            // Active state mirrors the map pin: the saturated marker
+            // colour fills the pill and the text goes white. Inactive
+            // pills keep the muted bone outline.
             return (
               <button key={d} onClick={() => onDisciplineToggle(d)} style={{
                 ...optionPill,
-                display: 'inline-flex', alignItems: 'center', gap: 6, paddingLeft: 7,
-                border: `1.5px solid ${active ? c.text : inactiveBorder}`,
-                background: active ? c.bg : 'transparent',
-                color: active ? c.text : inactiveText,
+                display: 'inline-flex', alignItems: 'center', gap: 6, paddingLeft: 8,
+                border: `1.5px solid ${active ? c.marker : inactiveBorder}`,
+                background: active ? c.marker : 'transparent',
+                color: active ? '#FFFFFF' : inactiveText,
               }}>
+                {/* Color dot — no letter glyph. The dot is the discipline. */}
                 <span style={{
-                  width: 16, height: 16, borderRadius: '50%', background: c.marker,
-                  flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#FFFFFF', fontSize: 9, fontWeight: 800,
-                  fontFamily: "'Inter Tight', sans-serif", lineHeight: 1,
-                }}>{c.glyph}</span>
+                  width: 10, height: 10, borderRadius: '50%',
+                  background: c.marker,
+                  flexShrink: 0,
+                  border: active ? '1.5px solid #FFFFFF' : 'none',
+                }} />
                 {DISCIPLINE_LABELS[d]}
               </button>
             );
@@ -904,18 +970,34 @@ function AllOpenFilters({
         </div>
       </div>
 
-      {/* ── Toggles (Verified, Starting Soon, Free, Units, Show Unverified) ── */}
+      {/* ── Toggles — order left→right: Favorited only · Starting Soon · Free only · Verified only · Show unverified ── */}
       <div>
         <div style={sectionLabel}>Filters</div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {onVerifiedOnlyToggle && (
-            <button onClick={onVerifiedOnlyToggle} style={{
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+          {onFavoritedOnlyToggle && (
+            <button onClick={onFavoritedOnlyToggle} style={{
               ...optionPill,
-              border: `1.5px solid ${verifiedOnly ? '#5E8B5E' : inactiveBorder}`,
-              background: verifiedOnly ? '#D4DDD3' : 'transparent',
-              color: verifiedOnly ? '#27402A' : inactiveText,
+              display: 'inline-flex', alignItems: 'center', gap: 6, paddingLeft: 6,
+              border: `1.5px solid var(--bone)`,
+              background: favoritedOnly ? 'rgba(245,241,232,0.15)' : 'transparent',
+              color: 'var(--bone)',
+              opacity: favoritedOnly ? 1 : 0.85,
             }}>
-              {verifiedOnly ? '✓ ' : ''}Verified only
+              {/* Rose-gold radial gradient disc with a bone outline and a
+                  bone-white star — mirrors the favorite pin on the map. */}
+              <span style={{
+                width: 16, height: 16, borderRadius: '50%',
+                border: '1.5px solid var(--bone)',
+                background: 'radial-gradient(circle at 30% 30%, #E8B4B8 0%, #D4AF37 80%)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <span style={{
+                  fontSize: 9, lineHeight: 1, fontWeight: 900,
+                  color: '#F5F1E8',
+                }}>★</span>
+              </span>
+              Favorited only
             </button>
           )}
           <button onClick={onStartingSoonToggle} style={{
@@ -934,14 +1016,14 @@ function AllOpenFilters({
           }}>
             Free only
           </button>
-          {onToggleUnits && (
-            <button onClick={onToggleUnits} style={{
+          {onVerifiedOnlyToggle && (
+            <button onClick={onVerifiedOnlyToggle} style={{
               ...optionPill,
-              border: `1.5px solid ${inactiveBorder}`,
-              background: 'transparent',
-              color: inactiveText,
+              border: `1.5px solid ${verifiedOnly ? '#5E8B5E' : inactiveBorder}`,
+              background: verifiedOnly ? '#D4DDD3' : 'transparent',
+              color: verifiedOnly ? '#27402A' : inactiveText,
             }}>
-              {useKm ? 'km' : 'mi'}
+              {verifiedOnly ? '✓ ' : ''}Verified only
             </button>
           )}
           {onShowUnverifiedToggle && (
@@ -954,13 +1036,14 @@ function AllOpenFilters({
               {showUnverifiedGyms ? '✓ ' : ''}Show unverified
             </button>
           )}
+          {/* km/mi pill removed — units auto-detected from user locale. */}
         </div>
       </div>
 
       {/* ── Region ──────────────────────────────────────────────────────── */}
       <div>
         <div style={sectionLabel}>Region</div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
           {REGIONS.map((r) => {
             const active = r === 'all' ? selectedRegions.length === 0 : selectedRegions.includes(r);
             return (

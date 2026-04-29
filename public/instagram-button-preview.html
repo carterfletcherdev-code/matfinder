@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Instagram button preview (4 variants)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --bone: #F5F1E8;
+      --gold: #FFD23F;
+      --insta: #E1306C;
+      --bjj: #7C3AED;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 28px; margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px; margin: 0 0 32px;
+      max-width: 720px; line-height: 1.5;
+    }
+    h2 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 18px; margin: 36px 0 6px;
+    }
+    .section-desc {
+      color: rgba(245,241,232,0.65);
+      font-size: 13px; margin: 0 0 16px; line-height: 1.5;
+    }
+    .stage {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .frame {
+      border: 1.5px dashed rgba(245,241,232,0.18);
+      border-radius: 6px;
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 14px);
+      padding: 18px;
+    }
+    .frame-label {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      margin-bottom: 10px;
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      margin-bottom: 8px;
+    }
+
+    /* ───────────── card visuals ───────────── */
+    .card {
+      background: var(--brown-700);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid var(--bone);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      padding: 14px 16px;
+      width: 100%;
+    }
+    .card.portrait { padding: 9px 11px; max-width: 343px; }
+    .card.compact  { padding: 9px 11px; max-width: 280px; }
+    /* "Sidebar list card" approximates the 280–300px desktop list column */
+    .card.sidebar-list { max-width: 300px; }
+    .card.popup-overlay { max-width: 560px; }
+
+    .row1 {
+      display: flex; align-items: flex-start; gap: 8px;
+      margin-bottom: 4px;
+    }
+    .gymname {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700; color: var(--bone);
+      flex: 1; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .gymname.lg { font-size: 14px; }
+    .gymname.sm { font-size: 12px; }
+
+    .row2 {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      color: rgba(245,241,232,0.65);
+      min-width: 0;
+    }
+    .row2.lg { font-size: 11px; }
+    .row2.sm { font-size: 10px; }
+    .row2 .loc { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .star { color: #F59E0B; font-weight: 700; }
+    .dots { display: flex; gap: 2px; flex-shrink: 0; }
+    .dots .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bjj); }
+
+    .schedule-line {
+      margin-top: 8px;
+      font-family: 'Inter Tight', sans-serif;
+      color: rgba(245,241,232,0.85);
+    }
+    .schedule-line.lg { font-size: 12px; }
+    .schedule-line.sm { font-size: 11px; }
+
+    .actions {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(245,241,232,0.20);
+    }
+    .actions.sm {
+      margin-top: 8px;
+      padding-top: 7px;
+    }
+    .action-row.lg {
+      display: flex; align-items: center;
+      gap: 6px; row-gap: 6px;
+      flex-wrap: wrap; min-width: 0;
+    }
+    .action-row.compact {
+      display: flex; align-items: center;
+      gap: 4px; row-gap: 4px;
+      flex-wrap: wrap; min-width: 0;
+    }
+
+    .pill {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      border-radius: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pill.lg { font-size: 11px; padding: 4px 10px; }
+    .pill.sm { font-size: 10px; padding: 3px 8px; }
+
+    .pill-bone   { color: var(--bone); background: transparent; border: 1.5px solid var(--bone); }
+    .pill-claim  { color: var(--gold); background: transparent; border: 1.5px solid var(--gold); }
+
+    /* Instagram glyph pill */
+    .pill-insta-lg {
+      color: var(--insta); background: transparent;
+      border: 1.5px solid var(--insta);
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; text-decoration: none;
+    }
+    .pill-insta-sm {
+      color: var(--insta); background: transparent;
+      border: 1.5px solid var(--insta);
+      border-radius: 8px;
+      padding: 3px 6px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; text-decoration: none;
+    }
+
+    .notes {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 12px; line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+      margin-top: 16px;
+    }
+    .notes b { color: var(--bone); }
+    code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; color: var(--insta);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Instagram button across all 4 card variants</h1>
+    <p class="lead">
+      Action row now uses <code>flex-wrap: wrap</code> with a small row gap, so all five
+      pills (<b>Check In · Help Confirm · Directions · Claim · IG glyph</b>) are
+      always visible. On wide containers (popup overlay) they stay on one
+      line; on narrow containers (sidebar list card, landscape compact) they
+      wrap to a second row instead of overflowing off-screen.
+    </p>
+
+    <!-- Reusable IG glyph -->
+    <svg width="0" height="0" style="position:absolute;">
+      <symbol id="ig" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 11.37a4 4 0 1 1-7.92 1.18A4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </svg>
+
+    <!-- ============================================================
+         1. DESKTOP — POPUP OVERLAY (wide, single line)
+         ============================================================ -->
+    <h2>1 · Desktop popup overlay (click-a-pin card)</h2>
+    <p class="section-desc">
+      The wide overlay card that pops up bottom-center when you click a pin.
+      All five pills fit on a single line — no wrapping needed.
+    </p>
+    <div class="stage">
+      <span class="kicker">Wide container · 560px max-width · single-line action row</span>
+      <div class="frame">
+        <span class="frame-label">Selected card · expanded</span>
+        <div class="card popup-overlay">
+          <div class="row1">
+            <div class="gymname lg">Corsair BJJ</div>
+            <div style="color: rgba(168,194,168,1); font-size: 12px;">✓</div>
+          </div>
+          <div class="row2 lg">
+            <span class="loc">
+              Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi
+              <span class="star"> ★4.8</span>
+              <span style="color:var(--bone);font-weight:700;letter-spacing:0.04em;"> · 12 TRAINED THIS WEEK</span>
+            </span>
+            <div class="dots"><div class="dot"></div></div>
+          </div>
+          <div class="schedule-line lg">
+            Saturday 11:00 AM – 12:30 PM &nbsp; <span style="opacity:0.55">· Jiu-Jitsu · Free</span>
+          </div>
+          <div class="actions">
+            <div class="action-row lg">
+              <a class="pill pill-bone lg" href="#">✓ Check In</a>
+              <a class="pill pill-bone lg" href="#">Help Confirm</a>
+              <a class="pill pill-bone lg" href="#">Directions</a>
+              <a class="pill pill-claim lg" href="#">Claim</a>
+              <a class="pill-insta-lg" href="#" title="Visit on Instagram">
+                <svg width="14" height="14"><use href="#ig"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         2. DESKTOP — SIDEBAR LIST CARD (narrow, wraps to 2 rows)
+         ============================================================ -->
+    <h2>2 · Desktop sidebar list card</h2>
+    <p class="section-desc">
+      The narrow cards in the desktop list panel. Five pills don&rsquo;t fit on one
+      line at this width, so the row wraps cleanly to two rows. Instagram still
+      visible on the second line.
+    </p>
+    <div class="stage">
+      <span class="kicker">Narrow container · ~300px column · row wraps to 2 lines</span>
+      <div class="frame" style="max-width: 340px;">
+        <span class="frame-label">Selected card · 300px column</span>
+        <div class="card sidebar-list">
+          <div class="row1">
+            <div class="gymname lg">Corsair BJJ</div>
+            <div style="color: rgba(168,194,168,1); font-size: 12px;">✓</div>
+          </div>
+          <div class="row2 lg">
+            <span class="loc">
+              Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi
+              <span class="star"> ★4.8</span>
+            </span>
+            <div class="dots"><div class="dot"></div></div>
+          </div>
+          <div class="schedule-line lg">
+            Saturday 11:00 AM – 12:30 PM
+          </div>
+          <div class="actions">
+            <div class="action-row lg">
+              <a class="pill pill-bone lg" href="#">✓ Check In</a>
+              <a class="pill pill-bone lg" href="#">Help Confirm</a>
+              <a class="pill pill-bone lg" href="#">Directions</a>
+              <a class="pill pill-claim lg" href="#">Claim</a>
+              <a class="pill-insta-lg" href="#" title="Visit on Instagram">
+                <svg width="14" height="14"><use href="#ig"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         3. PORTRAIT MOBILE
+         ============================================================ -->
+    <h2>3 · Portrait mobile</h2>
+    <p class="section-desc">
+      375px viewport, ~343px card. Most layouts fit five pills on one line
+      here; if not, the row wraps gracefully (same flex-wrap rule as desktop).
+    </p>
+    <div class="stage">
+      <span class="kicker">375 × 812 · selected card</span>
+      <div class="frame" style="max-width: 375px;">
+        <span class="frame-label">Portrait · 343px card · flex-wrap row</span>
+        <div class="card portrait">
+          <div class="row1">
+            <div class="gymname sm">Corsair BJJ</div>
+            <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+          </div>
+          <div class="row2 sm">
+            <span class="loc">
+              Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi
+              <span class="star"> ★4.8</span>
+            </span>
+            <div class="dots"><div class="dot"></div></div>
+          </div>
+          <div class="schedule-line sm">
+            Saturday 11:00 AM – 12:30 PM
+          </div>
+          <div class="actions sm">
+            <div class="action-row lg">
+              <a class="pill pill-bone lg" href="#">✓ Check In</a>
+              <a class="pill pill-bone lg" href="#">Help Confirm</a>
+              <a class="pill pill-bone lg" href="#">Directions</a>
+              <a class="pill pill-claim lg" href="#">Claim</a>
+              <a class="pill-insta-lg" href="#" title="Visit on Instagram">
+                <svg width="14" height="14"><use href="#ig"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         4. LANDSCAPE MOBILE COMPACT
+         ============================================================ -->
+    <h2>4 · Landscape mobile (compact)</h2>
+    <p class="section-desc">
+      The compact list column in landscape, ~280px wide. Smaller pills (sm
+      sizing — fontSize 10, 3-8 padding) and tighter 4px row gap. Five pills
+      wrap to two rows so nothing falls off-screen.
+    </p>
+    <div class="stage">
+      <span class="kicker">Landscape · 280px column · sm pills · wraps to 2 rows</span>
+      <div class="frame">
+        <span class="frame-label">Compact card · landscape list</span>
+        <div class="card compact">
+          <div class="row1">
+            <div class="gymname sm">Corsair BJJ</div>
+            <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+          </div>
+          <div class="row2 sm">
+            <span class="loc">
+              Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi
+            </span>
+            <div class="dots"><div class="dot"></div></div>
+          </div>
+          <div class="action-row compact" style="margin-top:6px;">
+            <a class="pill pill-bone sm" href="#">✓ Check In</a>
+            <a class="pill pill-bone sm" href="#">Help Confirm</a>
+            <a class="pill pill-bone sm" href="#">Directions</a>
+            <a class="pill pill-claim sm" href="#">Claim</a>
+            <a class="pill-insta-sm" href="#" title="Visit on Instagram">
+              <svg width="12" height="12"><use href="#ig"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <b>Notes</b>
+      <ul style="margin: 8px 0 0; padding-left: 20px;">
+        <li>The Instagram pill renders only when <code>gym.instagram</code> is set on the gym data. Most current gyms don&rsquo;t have one yet — that&rsquo;s why you may not see it on the live site even after the wrap fix.</li>
+        <li>Instagram glyph color: <code>#E1306C</code> (Instagram brand pink) with a matching pink outline. Glyph-only across every viewport for consistency.</li>
+        <li>The wrap break point depends on container width — popup overlay (560px max) stays single-line, sidebar list cards (~280–300px) wrap to two rows, portrait/landscape behave per their own widths.</li>
+        <li>If you want to confirm the Instagram pill is actually rendering in production: pick a gym that has <code>instagram</code> in its data (Corsair BJJ has <code>@corsair.bjj</code> on its Add Gym entries). Or temporarily add an Instagram via the Help Confirm form&rsquo;s new Instagram input.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Visited pin options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --bone: #F5F1E8;
+      --bjj: #7C3AED;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 28px; margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px; margin: 0 0 32px;
+      max-width: 720px; line-height: 1.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 22px 22px 18px;
+    }
+    .opt {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: rgba(245,241,232,0.55); margin-bottom: 6px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 17px; font-weight: 800;
+      color: var(--bone);
+    }
+    .desc {
+      font-size: 12px; line-height: 1.5;
+      color: rgba(245,241,232,0.70); margin: 0 0 16px;
+    }
+    .stages { display: flex; gap: 8px; }
+    .stage {
+      position: relative;
+      flex: 1; height: 150px;
+      border-radius: 6px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px;
+    }
+    .stage.dark {
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 14px);
+    }
+    .stage.light { background: #E8E2D5; }
+    .stage-label {
+      position: absolute; top: 6px; left: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      opacity: 0.55;
+    }
+    .stage.dark .stage-label { color: var(--bone); }
+    .stage.light .stage-label { color: #3E2E20; }
+    .item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .item .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(245,241,232,0.60);
+    }
+    .item .label.dark { color: rgba(62,46,32,0.65); }
+
+    /* ── Standard pin (for comparison in every card) ─────────── */
+    .pin-standard {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.92);
+    }
+
+    /* ── A: Inverted — bone fill, small colored center (stamp) */
+    .pin-A {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--bone);
+      border: 1.5px solid var(--bjj);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    }
+    .pin-A::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--bjj);
+    }
+
+    /* ── B: Concentric bone ring (offset halo) ──────────────── */
+    .pin-B-wrap {
+      position: relative;
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pin-B-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--bone);
+    }
+    .pin-B-core {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.92);
+      position: relative; z-index: 2;
+    }
+
+    /* ── C: Larger pin + thick bone outline ─────────────────── */
+    .pin-C {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--bjj);
+      border: 2px solid var(--bone);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* ── D: Bullseye — colored disc with bone center dot ────── */
+    .pin-D {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.92);
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pin-D::after {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--bone);
+    }
+
+    /* ── E: Bone half-arc (sweep) ───────────────────────────── */
+    .pin-E-wrap {
+      position: relative;
+      width: 22px; height: 22px;
+    }
+    .pin-E-core {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.92);
+      z-index: 2;
+    }
+    .pin-E-arc {
+      position: absolute; top: 0; right: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--bone);
+      border-right-color: var(--bone);
+      transform: rotate(-45deg);
+    }
+
+    /* ── F: Pulse — animated bone glow ──────────────────────── */
+    @keyframes vp-pulse {
+      0%   { box-shadow: 0 0 0 0    rgba(245,241,232,0.65); transform: scale(0.7); opacity: 0.85; }
+      70%  { box-shadow: 0 0 0 10px rgba(245,241,232,0);    transform: scale(1.4); opacity: 0; }
+      100% { box-shadow: 0 0 0 0    rgba(245,241,232,0);    transform: scale(0.7); opacity: 0; }
+    }
+    .pin-F-wrap {
+      position: relative;
+      width: 22px; height: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pin-F-pulse {
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      animation: vp-pulse 2.4s ease-out infinite;
+    }
+    .pin-F-core {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.92);
+      position: relative; z-index: 2;
+    }
+
+    /* ── G: Solid bone disc with colored ring (reverse C) ──── */
+    .pin-G {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bone);
+      border: 3px solid var(--bjj);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* ── H: Tag corner — small bone notch on top-right ──────── */
+    .pin-H-wrap {
+      position: relative;
+      width: 22px; height: 22px;
+    }
+    .pin-H-core {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.92);
+    }
+    .pin-H-notch {
+      position: absolute;
+      top: 0; right: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--bone);
+      border: 1.5px solid var(--brown-700);
+    }
+    .stage.light .pin-H-notch { border-color: rgba(62,46,32,0.55); }
+
+    .legend {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 12px; line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+      margin-top: 16px;
+    }
+    .legend b { color: var(--bone); }
+    code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; color: #D4AF37;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Visited pin — design options</h1>
+    <p class="lead">
+      Eight variants. Each card shows the standard (not-visited) pin next to
+      the new visited variant on both a dark and light map style, so you can
+      gauge contrast at a glance. All variants follow the rules: bone outlines
+      only, no emojis, no arrows, no black accents. Pick the letter you like
+      and I&rsquo;ll wire it into the live map.
+    </p>
+
+    <div class="grid">
+
+      <!-- A -->
+      <div class="card">
+        <div class="opt">Option A</div>
+        <h3>Inverted stamp · bone fill, colored core</h3>
+        <p class="desc">
+          Pin is mostly bone with a small discipline-colored dot at the center
+          and a thin colored outline. Reads like a &ldquo;completed&rdquo; stamp.
+          High contrast against any map style — easily the most distinct.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item"><div class="pin-A"></div><div class="label">Visited</div></div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item"><div class="pin-A"></div><div class="label dark">Visited</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="card">
+        <div class="opt">Option B</div>
+        <h3>Concentric ring · offset bone halo</h3>
+        <p class="desc">
+          Standard pin unchanged inside, plus a separate bone ring orbiting it
+          at a small offset. Adds prominence without changing the colored
+          core. Bigger overall footprint than the current implementation.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item">
+              <div class="pin-B-wrap">
+                <div class="pin-B-ring"></div>
+                <div class="pin-B-core"></div>
+              </div>
+              <div class="label">Visited</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item">
+              <div class="pin-B-wrap">
+                <div class="pin-B-ring"></div>
+                <div class="pin-B-core"></div>
+              </div>
+              <div class="label dark">Visited</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C -->
+      <div class="card">
+        <div class="opt">Option C</div>
+        <h3>Bigger + thick bone border</h3>
+        <p class="desc">
+          Pin grows ~30% with a 2px bone outline directly on the colored core.
+          Reads as &ldquo;more important / known&rdquo; via size — same trick
+          featured uses, just bone-only (no dark stroke).
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item"><div class="pin-C"></div><div class="label">Visited</div></div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item"><div class="pin-C"></div><div class="label dark">Visited</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D -->
+      <div class="card">
+        <div class="opt">Option D</div>
+        <h3>Bullseye · colored disc with bone center</h3>
+        <p class="desc">
+          Standard pin with a small bone-white dot punched into the center.
+          Reads as &ldquo;target hit&rdquo; or &ldquo;logged.&rdquo; Compact —
+          same footprint as the current standard pin, distinguishable by the
+          inner bone dot.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item"><div class="pin-D"></div><div class="label">Visited</div></div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item"><div class="pin-D"></div><div class="label dark">Visited</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E -->
+      <div class="card">
+        <div class="opt">Option E</div>
+        <h3>Sweep arc · bone quarter-ring</h3>
+        <p class="desc">
+          Standard pin with a bone-white arc wrapping the top-right quadrant.
+          Subtle but distinctive — the arc reads like a check-mark sweep
+          across the pin without occluding the discipline color.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item">
+              <div class="pin-E-wrap">
+                <div class="pin-E-core"></div>
+                <div class="pin-E-arc"></div>
+              </div>
+              <div class="label">Visited</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item">
+              <div class="pin-E-wrap">
+                <div class="pin-E-core"></div>
+                <div class="pin-E-arc"></div>
+              </div>
+              <div class="label dark">Visited</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F -->
+      <div class="card">
+        <div class="opt">Option F</div>
+        <h3>Soft pulse · slow bone halo</h3>
+        <p class="desc">
+          Standard pin plus a slow 2.4s bone-white pulse halo (slower /
+          softer than the favorited pulse). Movement makes it impossible to
+          miss. Note: the pulse animates only on screen — if you don&rsquo;t
+          see it, give it a second.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item">
+              <div class="pin-F-wrap">
+                <div class="pin-F-pulse"></div>
+                <div class="pin-F-core"></div>
+              </div>
+              <div class="label">Visited</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item">
+              <div class="pin-F-wrap">
+                <div class="pin-F-pulse"></div>
+                <div class="pin-F-core"></div>
+              </div>
+              <div class="label dark">Visited</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G -->
+      <div class="card">
+        <div class="opt">Option G</div>
+        <h3>Reversed · bone disc + colored ring</h3>
+        <p class="desc">
+          Like Option C but the colors are swapped — bone-white disc inside,
+          chunky discipline-colored ring outside. Reads like a sticker the
+          user has &ldquo;peeled and applied&rdquo; to the gym.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item"><div class="pin-G"></div><div class="label">Visited</div></div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item"><div class="pin-G"></div><div class="label dark">Visited</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- H -->
+      <div class="card">
+        <div class="opt">Option H</div>
+        <h3>Tag corner · bone notch top-right</h3>
+        <p class="desc">
+          Standard pin plus a small bone-white dot stuck on the top-right
+          corner — like a price tag or a saved-status sticker. Useful if you
+          want the body of the pin to stay perfectly identifiable as the
+          discipline color, with the &ldquo;visited&rdquo; signal as a
+          decoration.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="item"><div class="pin-standard"></div><div class="label">Standard</div></div>
+            <div class="item">
+              <div class="pin-H-wrap">
+                <div class="pin-H-core"></div>
+                <div class="pin-H-notch"></div>
+              </div>
+              <div class="label">Visited</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="item"><div class="pin-standard"></div><div class="label dark">Standard</div></div>
+            <div class="item">
+              <div class="pin-H-wrap">
+                <div class="pin-H-core"></div>
+                <div class="pin-H-notch"></div>
+              </div>
+              <div class="label dark">Visited</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <b>How to pick:</b> tell me a letter (A–H) and I&rsquo;ll wire it into
+      <code>components/Map.tsx</code> for the visited pin. The current
+      implementation is a thin <code>1.5px</code> bone stroke directly on the
+      pin — too close to invisible — so any of these will be a meaningful
+      upgrade. <b>My personal pick:</b> Option A (inverted stamp) — most
+      distinct at small map sizes, can&rsquo;t be confused with anything else.
+      Runner-up: Option G (reversed sticker).
+    </div>
+  </div>
+</body>
+</html>

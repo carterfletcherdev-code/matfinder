@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import BackButton from '@/components/BackButton';
 
 export const metadata: Metadata = {
   title: 'Terms of Service — MatFinder',
@@ -14,9 +14,7 @@ export default function TermsPage() {
       overflowY: 'auto',
     }}>
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '60px 24px 80px' }}>
-        <Link href="/" style={{ color: 'var(--text-secondary)', fontSize: 14, textDecoration: 'none' }}>
-          ← Back to MatFinder
-        </Link>
+        <BackButton fallbackHref="/" />
 
         <h1 style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 32, marginTop: 32, marginBottom: 8 }}>
           Terms of Service
@@ -64,7 +62,7 @@ export default function TermsPage() {
           },
           {
             title: '10. Contact',
-            body: `Questions about these Terms? Email hello@matfinder.app.`,
+            body: `Questions about these Terms? Email carterfletcherdev@gmail.com.`,
           },
         ].map(({ title, body }) => (
           <div key={title} style={{ marginBottom: 32 }}>

@@ -3,7 +3,14 @@
 import Link from 'next/link';
 import { useAuth } from './AuthProvider';
 
-export default function Header() {
+interface HeaderProps {
+  /** Hide the "Add Gym" button (used on the full account page). */
+  hideAddGym?: boolean;
+  /** Hide the inline Sign Out button (sign-out lives in the profile dropdown). */
+  hideSignOut?: boolean;
+}
+
+export default function Header({ hideAddGym, hideSignOut }: HeaderProps = {}) {
   const { user, signOut, requireAuth } = useAuth();
 
   return (
@@ -33,22 +40,24 @@ export default function Header() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <Link
-          href="/add-gym"
-          style={{
-            fontFamily: "'Inter Tight', sans-serif",
-            fontSize: 13,
-            fontWeight: 600,
-            color: 'var(--text-secondary)',
-            textDecoration: 'none',
-            padding: '5px 12px',
-            borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border)',
-            transition: 'all 0.15s',
-          }}
-        >
-          Add Gym
-        </Link>
+        {!hideAddGym && (
+          <Link
+            href="/add-gym"
+            style={{
+              fontFamily: "'Inter Tight', sans-serif",
+              fontSize: 13,
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              padding: '5px 12px',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border)',
+              transition: 'all 0.15s',
+            }}
+          >
+            Add Gym
+          </Link>
+        )}
         <Link
           href="/privacy"
           style={{
@@ -87,14 +96,16 @@ export default function Header() {
             >
               {(user.email?.[0] ?? '?').toUpperCase()}
             </Link>
-            <button
-              onClick={signOut}
-              style={{
-                fontFamily: "'Inter Tight', sans-serif",
-                fontSize: 12, color: 'var(--text-muted)',
-                background: 'none', border: 'none', cursor: 'pointer', padding: '5px 6px',
-              }}
-            >Sign out</button>
+            {!hideSignOut && (
+              <button
+                onClick={signOut}
+                style={{
+                  fontFamily: "'Inter Tight', sans-serif",
+                  fontSize: 12, color: 'var(--text-muted)',
+                  background: 'none', border: 'none', cursor: 'pointer', padding: '5px 6px',
+                }}
+              >Sign out</button>
+            )}
           </div>
         ) : (
           <button

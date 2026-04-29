@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui';
 
 const DISCIPLINES = [
   { value: 'bjj', label: 'BJJ (Gi/No-Gi – not sure)' },
@@ -135,25 +136,49 @@ export default function AddGymPage() {
       background: 'var(--surface-sunken)',
       display: 'flex',
       justifyContent: 'center',
-      padding: '32px 16px',
+      // Top padding bumped to 72px so the fixed Back-to-Map pill in the
+      // top-right never overlaps the form's heading. Side padding stays at
+      // 16px on mobile, the inner card handles its own padding.
+      padding: '72px 16px 32px',
       overflowY: 'auto',
+      // Lock horizontal scroll — without this, an overly wide schedule
+      // row could push the entire form sideways on small viewports.
+      overflowX: 'hidden',
+      width: '100%',
+      boxSizing: 'border-box',
     }}>
-      <div style={{ width: '100%', maxWidth: 600 }}>
-        {/* Back link */}
-        <Link href="/" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          fontSize: 13, fontWeight: 600, color: 'var(--text-muted)',
-          textDecoration: 'none', marginBottom: 24,
+      {/* Sticky bone-outlined Back-to-map pill — top-right of the
+          viewport. Matches the Favorites + Claim page back buttons so
+          there's one consistent way to return to the map across the app. */}
+      <Link
+        href="/"
+        style={{
+          position: 'fixed', top: 16, right: 16, zIndex: 1000,
+          display: 'inline-flex', alignItems: 'center',
+          padding: '8px 16px',
+          background: 'var(--surface-base)',
+          border: '1.5px solid var(--bone)',
+          borderRadius: 'var(--radius-md)',
+          color: 'var(--bone)',
           fontFamily: "'Inter Tight', sans-serif",
-        }}>
-          ← Back to map
-        </Link>
+          fontSize: 13, fontWeight: 700,
+          textDecoration: 'none',
+          boxShadow: 'var(--shadow-md)',
+        }}
+      >Back to Map</Link>
+
+      <div style={{ width: '100%', maxWidth: 600 }}>
 
         <div style={{
           background: 'var(--surface-raised)',
           borderRadius: 'var(--radius-lg)',
           border: '1px solid var(--border)',
-          padding: '28px 32px',
+          // Responsive horizontal padding — 16px on narrow phones, scales
+          // up to 32px on desktop. Reclaims ~32px of usable width on
+          // mobile so time-input cards never crowd the edge.
+          padding: '28px clamp(16px, 4vw, 32px)',
+          boxSizing: 'border-box',
+          width: '100%',
         }}>
           <h1 style={{
             fontFamily: "'Archivo Black', sans-serif",
@@ -248,52 +273,133 @@ export default function AddGymPage() {
               </div>
             </div>
 
-            {/* Schedule */}
+            {/* Schedule — each session is a bordered sub-card so the
+                fields stack cleanly on mobile and never overflow the
+                viewport. Layout per session:
+                  Row 1: day select (full width) + remove button
+                  Row 2: start time | end time (2 equal columns)
+                  Row 3: Free checkbox  · Cost input (when not Free)
+                Spacing between sessions = 12px so adjacent rows don't
+                visually run together. */}
             <div>
               <label style={labelStyle}>Open mat schedule *</label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {sessions.map((s, i) => (
                   <div key={i} style={{
-                    display: 'grid', gridTemplateColumns: '120px 90px 90px auto auto',
-                    gap: 8, alignItems: 'center',
+                    border: '1.5px solid var(--border)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '10px 12px',
+                    background: 'var(--surface-base)',
+                    display: 'flex', flexDirection: 'column', gap: 8,
                   }}>
-                    <select value={s.day} onChange={e => updateSession(i, 'day', e.target.value)} style={{ ...inputStyle, padding: '7px 10px' }}>
-                      {DAYS.map(d => <option key={d}>{d}</option>)}
-                    </select>
-                    <input type="time" value={s.start} onChange={e => updateSession(i, 'start', e.target.value)} style={{ ...inputStyle, padding: '7px 10px', colorScheme: 'light dark' }} />
-                    <input type="time" value={s.end} onChange={e => updateSession(i, 'end', e.target.value)} style={{ ...inputStyle, padding: '7px 10px', colorScheme: 'light dark' }} />
-                    <label style={{ ...checkStyle, whiteSpace: 'nowrap', fontSize: 12 }}>
-                      <input type="checkbox" checked={s.isFree} onChange={e => updateSession(i, 'isFree', e.target.checked)} />
-                      Free
-                    </label>
-                    {!s.isFree && (
-                      <input type="number" min={0} placeholder="$" value={s.cost} onChange={e => updateSession(i, 'cost', e.target.value)} style={{ ...inputStyle, padding: '7px 10px', width: 60 }} />
-                    )}
-                    {sessions.length > 1 && (
-                      <button type="button" onClick={() => removeSession(i)} style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        color: 'var(--text-muted)', fontSize: 16, padding: '0 4px',
-                      }}>✕</button>
-                    )}
+                    {/* Row 1 — day + remove */}
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                      <select
+                        value={s.day}
+                        onChange={e => updateSession(i, 'day', e.target.value)}
+                        style={{ ...inputStyle, padding: '7px 10px', flex: 1 }}
+                      >
+                        {DAYS.map(d => <option key={d}>{d}</option>)}
+                      </select>
+                      {sessions.length > 1 && (
+                        <Button
+                          type="button"
+                          onClick={() => removeSession(i)}
+                          variant="secondary"
+                          size="sm"
+                          style={{
+                            letterSpacing: '0.04em',
+                            textTransform: 'uppercase',
+                            fontWeight: 700,
+                          }}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </div>
+
+                    {/* Row 2 — start time, then end time. Stacked
+                        vertically so the native time picker on iOS Safari
+                        (which has extra chrome around hours/minutes/AM-PM)
+                        never crowds or clips at narrow widths. Inputs are
+                        capped at 220px so they're noticeably smaller than
+                        the surrounding card and can never touch the
+                        right edge regardless of viewport. */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div>
+                        <div style={{ ...labelStyle, fontSize: 9, marginBottom: 3 }}>Start time</div>
+                        <input
+                          type="time"
+                          value={s.start}
+                          onChange={e => updateSession(i, 'start', e.target.value)}
+                          style={{
+                            ...inputStyle,
+                            padding: '8px 12px',
+                            colorScheme: 'light dark',
+                            maxWidth: 220,
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <div style={{ ...labelStyle, fontSize: 9, marginBottom: 3 }}>End time</div>
+                        <input
+                          type="time"
+                          value={s.end}
+                          onChange={e => updateSession(i, 'end', e.target.value)}
+                          style={{
+                            ...inputStyle,
+                            padding: '8px 12px',
+                            colorScheme: 'light dark',
+                            maxWidth: 220,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 3 — free toggle + (optional) cost */}
+                    <div style={{
+                      display: 'flex', alignItems: 'center',
+                      gap: 12, flexWrap: 'wrap',
+                    }}>
+                      <label style={{ ...checkStyle, whiteSpace: 'nowrap', fontSize: 13 }}>
+                        <input
+                          type="checkbox"
+                          checked={s.isFree}
+                          onChange={e => updateSession(i, 'isFree', e.target.checked)}
+                        />
+                        Free open mat
+                      </label>
+                      {!s.isFree && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <span style={{
+                            fontSize: 12, color: 'var(--text-muted)',
+                            fontFamily: "'Inter Tight', sans-serif",
+                          }}>Drop-in cost</span>
+                          <input
+                            type="number" min={0} placeholder="$"
+                            value={s.cost}
+                            onChange={e => updateSession(i, 'cost', e.target.value)}
+                            style={{ ...inputStyle, padding: '7px 10px', width: 80 }}
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
-                <button
+                <Button
                   type="button"
                   onClick={addSession}
+                  variant="secondary"
+                  size="sm"
                   style={{
                     alignSelf: 'flex-start',
-                    padding: '6px 14px',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1.5px solid var(--border)',
-                    background: 'transparent',
-                    color: 'var(--text-secondary)',
-                    fontSize: 12, fontWeight: 600,
-                    fontFamily: "'Inter Tight', sans-serif",
-                    cursor: 'pointer',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    fontWeight: 700,
                   }}
                 >
-                  + Add another session
-                </button>
+                  Add another session
+                </Button>
               </div>
             </div>
 
@@ -309,22 +415,14 @@ export default function AddGymPage() {
               />
             </div>
 
-            <button
+            <Button
               type="submit"
-              style={{
-                padding: '12px 24px',
-                borderRadius: 'var(--radius-md)',
-                border: 'none',
-                background: 'var(--accent)',
-                color: 'var(--bone)',
-                fontSize: 14, fontWeight: 700,
-                fontFamily: "'Inter Tight', sans-serif",
-                cursor: 'pointer',
-                transition: 'all 0.15s',
-              }}
+              variant="primary"
+              size="lg"
+              style={{ alignSelf: 'flex-start', fontWeight: 700, fontSize: 14 }}
             >
-              Submit gym →
-            </button>
+              Submit gym
+            </Button>
 
             <p style={{
               fontSize: 11, color: 'var(--text-muted)',

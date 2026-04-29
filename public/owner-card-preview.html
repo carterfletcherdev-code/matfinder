@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Your Gym pill (owner-only swap)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --bone: #F5F1E8;
+      --gold: #FFD23F;
+      --insta: #E1306C;
+      --bjj: #7C3AED;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh; padding: 40px 20px 80px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { font-family: 'Archivo Black', system-ui, sans-serif; font-size: 26px; margin: 0 0 4px; }
+    .lead {
+      color: rgba(245,241,232,0.65); font-size: 14px;
+      margin: 0 0 28px; max-width: 720px; line-height: 1.55;
+    }
+    h2 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 18px; margin: 32px 0 6px;
+    }
+    .desc { color: rgba(245,241,232,0.65); font-size: 13px; margin: 0 0 14px; line-height: 1.5; }
+    .stage { background: var(--brown-800); border: 1px solid rgba(245,241,232,0.10); border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+    .frame {
+      border: 1.5px dashed rgba(245,241,232,0.18); border-radius: 6px;
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 14px);
+      padding: 18px;
+    }
+    .frame-label {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.10em;
+      text-transform: uppercase; color: rgba(245,241,232,0.55); margin-bottom: 10px;
+    }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .col { flex: 1; min-width: 320px; }
+
+    .card {
+      background: var(--brown-700);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid var(--bone);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      padding: 14px 16px;
+      width: 100%; max-width: 560px;
+    }
+    .card.portrait { padding: 9px 11px; max-width: 343px; }
+    .card.compact { padding: 9px 11px; max-width: 280px; }
+    .row1 { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+    .gymname { font-weight: 700; color: var(--bone); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .row2 {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      color: rgba(245,241,232,0.65); min-width: 0;
+    }
+    .row2 .loc { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .star { color: #F59E0B; font-weight: 700; }
+    .dots { display: flex; gap: 2px; flex-shrink: 0; }
+    .dots .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bjj); }
+
+    .actions {
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid rgba(245,241,232,0.20);
+      display: flex; align-items: center; gap: 6px; row-gap: 6px;
+      flex-wrap: wrap; min-width: 0;
+    }
+    .action-row.compact {
+      display: flex; align-items: center; gap: 4px; row-gap: 4px;
+      flex-wrap: wrap; min-width: 0; margin-top: 6px;
+    }
+
+    .pill {
+      font-family: 'Inter Tight', sans-serif; font-weight: 700;
+      border-radius: 8px; white-space: nowrap; flex-shrink: 0;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pill.lg { font-size: 11px; padding: 4px 10px; }
+    .pill.sm { font-size: 10px; padding: 3px 8px; }
+    .pill-bone  { color: var(--bone); background: transparent; border: 1.5px solid var(--bone); }
+    .pill-gold  { color: var(--gold); background: transparent; border: 1.5px solid var(--gold); }
+
+    .pill-insta-lg, .pill-insta-sm {
+      color: var(--insta); background: transparent;
+      border: 1.5px solid var(--insta);
+      border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; text-decoration: none;
+    }
+    .pill-insta-lg { padding: 4px 8px; }
+    .pill-insta-sm { padding: 3px 6px; }
+
+    .notes {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 12px; line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+      margin-top: 16px;
+    }
+    .notes b { color: var(--bone); }
+    code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Gym pill — owner-only swap</h1>
+    <p class="lead">
+      When the current user is a verified owner of a gym, the gold
+      <b>Claim</b> pill on that gym's card is replaced with a gold
+      <b>Your Gym</b> pill that links to <code>/owner/[gymId]</code>
+      instead of <code>/claim/[gymId]</code>. Same geometry, same gold
+      colour, so the row's silhouette doesn't shift. Click-throughs to
+      Manage Schedule / Listing / Analytics. All other gyms still show
+      the regular Claim pill.
+    </p>
+
+    <svg width="0" height="0" style="position:absolute;">
+      <symbol id="ig" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 11.37a4 4 0 1 1-7.92 1.18A4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </svg>
+
+    <h2>1 · Desktop / popup overlay — owned vs not owned</h2>
+    <div class="stage">
+      <div class="row">
+        <div class="col">
+          <span class="frame-label">A non-owner sees Claim →</span>
+          <div class="frame">
+            <div class="card">
+              <div class="row1">
+                <div class="gymname" style="font-size:14px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 12px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:11px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi <span class="star">★4.8</span></span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="actions">
+                <a class="pill pill-bone lg" href="#">✓ Check In</a>
+                <a class="pill pill-bone lg" href="#">Help Confirm</a>
+                <a class="pill pill-gold lg" href="#">Claim</a>
+                <a class="pill pill-bone lg" href="#">Directions</a>
+                <a class="pill-insta-lg" href="#"><svg width="14" height="14"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="frame-label">A verified owner sees Your Gym →</span>
+          <div class="frame">
+            <div class="card">
+              <div class="row1">
+                <div class="gymname" style="font-size:14px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 12px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:11px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi <span class="star">★4.8</span></span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="actions">
+                <a class="pill pill-bone lg" href="#">✓ Check In</a>
+                <a class="pill pill-bone lg" href="#">Help Confirm</a>
+                <a class="pill pill-gold lg" href="#">Your Gym</a>
+                <a class="pill pill-bone lg" href="#">Directions</a>
+                <a class="pill-insta-lg" href="#"><svg width="14" height="14"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>2 · Portrait mobile — full-size pills, row wraps if needed</h2>
+    <p class="desc">
+      Portrait card is 343px wide on a 375px viewport. Pills are full
+      size (same as desktop). The row uses <code>flex-wrap: wrap</code>,
+      so on the narrowest phones the IG glyph drops to a second line — but
+      the Your Gym / Claim swap is identical to desktop.
+    </p>
+    <div class="stage">
+      <div class="row">
+        <div class="col">
+          <span class="frame-label">Portrait · 375px viewport · non-owner</span>
+          <div class="frame" style="max-width: 375px;">
+            <div class="card portrait">
+              <div class="row1">
+                <div class="gymname" style="font-size:12px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:10px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi <span class="star">★4.8</span></span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="actions">
+                <a class="pill pill-bone lg" href="#">✓ Check In</a>
+                <a class="pill pill-bone lg" href="#">Help Confirm</a>
+                <a class="pill pill-gold lg" href="#">Claim</a>
+                <a class="pill pill-bone lg" href="#">Directions</a>
+                <a class="pill-insta-lg" href="#"><svg width="14" height="14"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="frame-label">Portrait · 375px viewport · owner</span>
+          <div class="frame" style="max-width: 375px;">
+            <div class="card portrait">
+              <div class="row1">
+                <div class="gymname" style="font-size:12px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:10px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi <span class="star">★4.8</span></span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="actions">
+                <a class="pill pill-bone lg" href="#">✓ Check In</a>
+                <a class="pill pill-bone lg" href="#">Help Confirm</a>
+                <a class="pill pill-gold lg" href="#">Your Gym</a>
+                <a class="pill pill-bone lg" href="#">Directions</a>
+                <a class="pill-insta-lg" href="#"><svg width="14" height="14"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>3 · Landscape compact — same swap, smaller pills</h2>
+    <div class="stage">
+      <div class="row">
+        <div class="col">
+          <span class="frame-label">Compact landscape · non-owner</span>
+          <div class="frame">
+            <div class="card compact">
+              <div class="row1">
+                <div class="gymname" style="font-size:12px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:10px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi</span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="action-row compact">
+                <a class="pill pill-bone sm" href="#">✓ Check In</a>
+                <a class="pill pill-bone sm" href="#">Help Confirm</a>
+                <a class="pill pill-gold sm" href="#">Claim</a>
+                <a class="pill pill-bone sm" href="#">Directions</a>
+                <a class="pill-insta-sm" href="#"><svg width="12" height="12"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="frame-label">Compact landscape · owner</span>
+          <div class="frame">
+            <div class="card compact">
+              <div class="row1">
+                <div class="gymname" style="font-size:12px;">Corsair BJJ</div>
+                <div style="color: rgba(168,194,168,1); font-size: 11px;">✓</div>
+              </div>
+              <div class="row2" style="font-size:10px;">
+                <span class="loc">Austin, TX <span style="opacity:0.4;">·</span> 2.4 mi</span>
+                <div class="dots"><div class="dot"></div></div>
+              </div>
+              <div class="action-row compact">
+                <a class="pill pill-bone sm" href="#">✓ Check In</a>
+                <a class="pill pill-bone sm" href="#">Help Confirm</a>
+                <a class="pill pill-gold sm" href="#">Your Gym</a>
+                <a class="pill pill-bone sm" href="#">Directions</a>
+                <a class="pill-insta-sm" href="#"><svg width="12" height="12"><use href="#ig"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <b>Behaviour</b>
+      <ul style="margin: 8px 0 0; padding-left: 20px;">
+        <li>Pill text changes <b>only on the cards belonging to gyms in <code>public.gym_owners</code></b> for the current user (status = <code>verified</code>). Every other gym still shows the regular Claim pill.</li>
+        <li>The <code>useOwnedGyms()</code> hook returns the array of owned gym IDs once on sign-in, then <code>GymCard</code> checks <code>ownedGymIds.includes(gym.id)</code> per render.</li>
+        <li>Same gold geometry on both pills so the action row's overall layout is identical — no shifting when ownership changes.</li>
+        <li>Click-through: <code>Claim</code> → <code>/claim/[gymId]</code> · <code>Your Gym</code> → <code>/owner/[gymId]</code>.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

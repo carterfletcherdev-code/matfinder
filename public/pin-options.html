@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Favorite pin options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --bone: #F5F1E8;
+      --gold: #D4AF37;
+      --rose: #E8B4B8;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 28px;
+      margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px;
+      margin: 0 0 32px;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 22px 22px 18px;
+    }
+    .card .opt {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      margin-bottom: 6px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--bone);
+    }
+    .card .desc {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(245,241,232,0.70);
+      margin: 0 0 16px;
+    }
+    .stages { display: flex; gap: 8px; }
+    .stage {
+      position: relative;
+      flex: 1;
+      height: 160px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage.dark {
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 14px);
+    }
+    .stage.satellite {
+      background:
+        radial-gradient(ellipse at 50% 40%, #3a4a2e 0%, #1d2a18 70%);
+    }
+    .stage.light {
+      background: #E8E2D5;
+    }
+    .stage-label {
+      position: absolute;
+      top: 6px; left: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+    .stage.dark .stage-label, .stage.satellite .stage-label { color: var(--bone); }
+    .stage.light .stage-label { color: #3E2E20; }
+
+    /* Shared GPS-style pulse keyframes */
+    @keyframes bone-pulse {
+      0%   { box-shadow: 0 0 0 0    rgba(245,241,232,0.65); transform: scale(0.7); opacity: 0.85; }
+      70%  { box-shadow: 0 0 0 14px rgba(245,241,232,0);    transform: scale(1.6); opacity: 0; }
+      100% { box-shadow: 0 0 0 0    rgba(245,241,232,0);    transform: scale(0.7); opacity: 0; }
+    }
+    @keyframes gold-pulse {
+      0%   { box-shadow: 0 0 0 0    rgba(212,175,55,0.65); transform: scale(0.7); opacity: 0.85; }
+      70%  { box-shadow: 0 0 0 14px rgba(212,175,55,0);    transform: scale(1.6); opacity: 0; }
+      100% { box-shadow: 0 0 0 0    rgba(212,175,55,0);    transform: scale(0.7); opacity: 0; }
+    }
+    .pulse-ring {
+      position: absolute;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      animation: bone-pulse 1.8s ease-out infinite;
+    }
+
+    /* ==========================================================
+       OPTION A — Outlined star (no circle, bone outline, bone pulse)
+       Pure gold star glyph with a fat bone-white text-stroke outline.
+       The outline IS the prominence — no background disc.
+       ========================================================== */
+    .opt-a {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+    }
+    .opt-a-pulse {
+      position: absolute; width: 22px; height: 22px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite;
+    }
+    .opt-a-star {
+      position: relative; z-index: 2;
+      font-size: 26px; line-height: 1;
+      color: var(--gold);
+      font-weight: 900;
+      -webkit-text-stroke: 2px var(--bone);
+      paint-order: stroke fill;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+    }
+
+    /* ==========================================================
+       OPTION B — Medallion (bone circle, gold star inside)
+       Inverted color: bone-white disc with a thick bone outer ring,
+       small gold star centered. Reads like a "saved" medallion.
+       ========================================================== */
+    .opt-b {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+    }
+    .opt-b-pulse { position: absolute; width: 26px; height: 26px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite; }
+    .opt-b-disc {
+      position: relative; z-index: 2;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--bone);
+      border: 2px solid rgba(245,241,232,0.55);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(212,175,55,0.25);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 16px; font-weight: 900; line-height: 1;
+    }
+
+    /* ==========================================================
+       OPTION C — Multicolor wheel (conic gradient, bone outline)
+       Conic gradient cycling through every discipline color, bone
+       outline, bone star centered. Distinct from every single-color pin.
+       ========================================================== */
+    .opt-c {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+    }
+    .opt-c-pulse { position: absolute; width: 26px; height: 26px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite; }
+    .opt-c-disc {
+      position: relative; z-index: 2;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #7C3AED 0deg, /* BJJ */
+        #854D0E 40deg, /* wrestling */
+        #DC2626 80deg, /* judo */
+        #DB2777 120deg, /* muay thai */
+        #EA580C 160deg, /* mma */
+        #0D9488 200deg, /* kickboxing */
+        #2563EB 240deg, /* boxing */
+        #65A30D 280deg, /* karate */
+        #4338CA 320deg, /* taekwondo */
+        #7C3AED 360deg
+      );
+      border: 2px solid var(--bone);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--bone);
+      font-size: 14px; font-weight: 900; line-height: 1;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.55);
+    }
+
+    /* ==========================================================
+       OPTION D — Rose-gold gradient (rose → gold radial)
+       Premium feel, color is unmistakably "saved/special" without
+       being yellow gold. Bone outline + bone star.
+       ========================================================== */
+    .opt-d {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+    }
+    .opt-d-pulse { position: absolute; width: 26px; height: 26px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite; }
+    .opt-d-disc {
+      position: relative; z-index: 2;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--rose) 0%, var(--gold) 80%);
+      border: 2px solid var(--bone);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--bone);
+      font-size: 14px; font-weight: 900; line-height: 1;
+      text-shadow: 0 1px 0 rgba(62,46,32,0.55);
+    }
+
+    /* ==========================================================
+       OPTION E — Glowing star (no circle, no pulse, just glow)
+       Big gold ★ with a strong, soft bone-white drop-shadow halo.
+       Stillness rather than motion — the glow itself is the prominence.
+       ========================================================== */
+    .opt-e {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+    }
+    .opt-e-star {
+      font-size: 30px; line-height: 1;
+      color: var(--gold);
+      font-weight: 900;
+      filter:
+        drop-shadow(0 0 4px rgba(245,241,232,0.95))
+        drop-shadow(0 0 10px rgba(245,241,232,0.55))
+        drop-shadow(0 0 14px rgba(212,175,55,0.45));
+    }
+
+    /* ==========================================================
+       OPTION F — Teardrop pin (classic Google-Maps shape)
+       Gold teardrop with bone outline. Star centered on the head.
+       Different silhouette from every other pin (which are circles).
+       ========================================================== */
+    .opt-f {
+      position: relative; display: inline-flex; align-items: flex-end; justify-content: center;
+      width: 32px; height: 36px;
+    }
+    .opt-f-pulse {
+      position: absolute; left: 50%; top: 6px; transform: translateX(-50%);
+      width: 22px; height: 22px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite;
+    }
+    .opt-f-pin {
+      position: relative; z-index: 2;
+      width: 24px; height: 32px;
+      background: var(--gold);
+      border: 2px solid var(--bone);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    }
+    .opt-f-pin::before {
+      content: '★';
+      transform: rotate(45deg);
+      color: var(--bone);
+      font-size: 12px; font-weight: 900;
+      text-shadow: 0 1px 0 rgba(62,46,32,0.55);
+    }
+
+    /* ==========================================================
+       OPTION G — Two-stroke star (embossed medal)
+       Gold star, bone outline (inner thin + outer thicker via two
+       text-strokes). Emboss / "stamped medal" feel. No circle.
+       ========================================================== */
+    .opt-g {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+    }
+    .opt-g-pulse {
+      position: absolute; width: 22px; height: 22px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite;
+    }
+    .opt-g-star {
+      position: relative; z-index: 2;
+      font-size: 28px; line-height: 1;
+      color: var(--gold);
+      font-weight: 900;
+      filter:
+        drop-shadow(1px 0 0 var(--bone))
+        drop-shadow(-1px 0 0 var(--bone))
+        drop-shadow(0 1px 0 var(--bone))
+        drop-shadow(0 -1px 0 var(--bone))
+        drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+    }
+
+    /* ==========================================================
+       OPTION H — Bone-rim gold star (no circle background)
+       A larger gold ★ surrounded by a chunky bone-white ring (no fill,
+       just the ring). The star floats in the middle of the ring — like
+       a stamp seal.
+       ========================================================== */
+    .opt-h {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+    }
+    .opt-h-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 2.5px solid var(--bone);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .opt-h-pulse {
+      position: absolute; width: 28px; height: 28px; border-radius: 50%;
+      animation: bone-pulse 1.8s ease-out infinite;
+    }
+    .opt-h-star {
+      position: relative; z-index: 2;
+      font-size: 18px; line-height: 1;
+      color: var(--gold);
+      font-weight: 900;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+    }
+
+    .pick {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(245,241,232,0.85);
+      margin-top: 16px;
+    }
+    .pick b { color: var(--bone); }
+    code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Favorite pin — design options</h1>
+    <p class="lead">
+      Eight different takes on the favorite pin. Every option uses
+      <b>bone-white outlines only</b> (no black). Each is shown on a dark map style
+      and a light map style so you can verify it pops on both. Pulse animations
+      mirror the GPS / "My Location" dot. Pick the letter you want and I'll wire
+      it into the live map + filter pill.
+    </p>
+
+    <div class="grid">
+
+      <!-- A -->
+      <div class="card">
+        <div class="opt">Option A</div>
+        <h3>Outlined star · no circle</h3>
+        <p class="desc">
+          Pure gold ★ with a fat bone-white outline around the glyph. No
+          background disc — just a star with a thick stroke. Bone-white pulse
+          behind. Clean and unambiguously "favorite."
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-a">
+              <div class="opt-a-pulse"></div>
+              <div class="opt-a-star">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-a">
+              <div class="opt-a-pulse"></div>
+              <div class="opt-a-star">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="card">
+        <div class="opt">Option B</div>
+        <h3>Medallion · bone disc, gold star</h3>
+        <p class="desc">
+          Inverted: a bone-white disc with a thick bone outer ring, and a small
+          gold star inside. Reads like a "saved" medallion. The bright disc
+          itself does the prominence work.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-b">
+              <div class="opt-b-pulse"></div>
+              <div class="opt-b-disc">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-b">
+              <div class="opt-b-pulse"></div>
+              <div class="opt-b-disc">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C -->
+      <div class="card">
+        <div class="opt">Option C</div>
+        <h3>Multicolor wheel · all disciplines</h3>
+        <p class="desc">
+          Conic gradient cycling through every discipline color, bone outline,
+          bone-white star centered. Distinct from any single-color discipline
+          pin and signals "multi-discipline / personal" at a glance.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-c">
+              <div class="opt-c-pulse"></div>
+              <div class="opt-c-disc">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-c">
+              <div class="opt-c-pulse"></div>
+              <div class="opt-c-disc">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D -->
+      <div class="card">
+        <div class="opt">Option D</div>
+        <h3>Rose-gold gradient</h3>
+        <p class="desc">
+          Radial gradient from rose pink (<code>#E8B4B8</code>) to metallic gold
+          (<code>#D4AF37</code>), bone outline, bone-white star. Premium "saved" feel
+          without being yellow. Distinct from every discipline color.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-d">
+              <div class="opt-d-pulse"></div>
+              <div class="opt-d-disc">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-d">
+              <div class="opt-d-pulse"></div>
+              <div class="opt-d-disc">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E -->
+      <div class="card">
+        <div class="opt">Option E</div>
+        <h3>Glowing star · no pulse</h3>
+        <p class="desc">
+          Large gold ★ with a strong, soft bone-white halo via layered
+          drop-shadows — looks lit from within. Stillness instead of motion.
+          The glow itself is the prominence.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-e">
+              <div class="opt-e-star">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-e">
+              <div class="opt-e-star">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F -->
+      <div class="card">
+        <div class="opt">Option F</div>
+        <h3>Teardrop pin · classic shape</h3>
+        <p class="desc">
+          Gold Google-Maps-style teardrop with bone outline, bone star centered
+          on the head. Different silhouette from every other pin (which are
+          circles) — instantly distinguishable by shape alone.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-f">
+              <div class="opt-f-pulse"></div>
+              <div class="opt-f-pin"></div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-f">
+              <div class="opt-f-pulse"></div>
+              <div class="opt-f-pin"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G -->
+      <div class="card">
+        <div class="opt">Option G</div>
+        <h3>Embossed star · bone stroke</h3>
+        <p class="desc">
+          Gold star outlined by a bone-white stroke on every edge via stacked
+          drop-shadows — feels like a stamped/embossed medal. No background disc.
+          Subtle bone pulse behind.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-g">
+              <div class="opt-g-pulse"></div>
+              <div class="opt-g-star">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-g">
+              <div class="opt-g-pulse"></div>
+              <div class="opt-g-star">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- H -->
+      <div class="card">
+        <div class="opt">Option H</div>
+        <h3>Stamp seal · bone ring + gold star</h3>
+        <p class="desc">
+          A chunky bone-white ring with no fill, a gold star floating inside.
+          Like a wax-seal stamp. Bone pulse behind. The ring + star combo is
+          recognizably "favorite" without competing with discipline colors.
+        </p>
+        <div class="stages">
+          <div class="stage dark">
+            <span class="stage-label">Dark</span>
+            <div class="opt-h">
+              <div class="opt-h-pulse"></div>
+              <div class="opt-h-ring"></div>
+              <div class="opt-h-star">★</div>
+            </div>
+          </div>
+          <div class="stage light">
+            <span class="stage-label">Light</span>
+            <div class="opt-h">
+              <div class="opt-h-pulse"></div>
+              <div class="opt-h-ring"></div>
+              <div class="opt-h-star">★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pick">
+      <b>How to pick:</b> tell me the letter (A–H) and I'll wire it into
+      <code>components/Map.tsx</code> for the favorite pin and
+      <code>components/Filters.tsx</code> for the "Favorited only" filter pill.
+      Open to combinations too — e.g. "B but with a gold ring instead of bone"
+      or "F but with the rose-gold gradient from D."
+    </div>
+  </div>
+</body>
+</html>

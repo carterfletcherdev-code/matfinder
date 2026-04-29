@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from './AuthProvider';
+import { Button } from './ui';
 
 export function SignInModal() {
   const { showSignInModal, setShowSignInModal, signInWithEmail, signInWithGoogle } = useAuth();
@@ -37,19 +38,28 @@ export function SignInModal() {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: 'var(--bg)', color: 'var(--fg)',
-          border: '1px solid var(--border)', borderRadius: 12,
+          background: 'rgba(20,13,9,0.98)', color: 'var(--bone)',
+          border: '1px solid rgba(245,241,232,0.15)', borderRadius: 12,
           padding: 24, width: '100%', maxWidth: 380,
-          boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.8)',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-          <h2 style={{ margin: 0, fontSize: 18 }}>Sign in</h2>
-          <button
+          <h2 style={{ margin: 0, fontSize: 18, color: 'var(--bone)', fontFamily: "'Inter Tight', sans-serif", fontWeight: 800 }}>Sign in</h2>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={close}
-            style={{ background: 'none', border: 'none', color: 'var(--fg)', fontSize: 20, cursor: 'pointer', padding: 4 }}
             aria-label="Close"
-          >×</button>
+            style={{
+              color: 'var(--bone)',
+              padding: '0 6px',
+              fontSize: 20,
+              fontWeight: 400,
+              height: 28,
+              minWidth: 28,
+            }}
+          >×</Button>
         </div>
 
         {status === 'sent' ? (
@@ -81,38 +91,35 @@ export function SignInModal() {
               <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
             </div>
 
-            <p style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--muted)' }}>
+            <p style={{ margin: '0 0 12px', fontSize: 13, color: 'rgba(245,241,232,0.55)', fontFamily: "'Inter Tight', sans-serif" }}>
               Enter your email — we&apos;ll send you a one-time sign-in link. No password needed.
             </p>
             <input
               type="email"
               required
-              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               style={{
-                width: '100%', padding: '10px 12px', fontSize: 14,
-                background: 'var(--bg-elev)', color: 'var(--fg)',
-                border: '1px solid var(--border)', borderRadius: 8,
-                marginBottom: 12, boxSizing: 'border-box',
+                width: '100%', padding: '10px 12px', fontSize: 16,
+                background: 'rgba(255,255,255,0.06)', color: 'var(--bone)',
+                border: '1px solid rgba(245,241,232,0.2)', borderRadius: 8,
+                marginBottom: 12, boxSizing: 'border-box', outline: 'none',
               }}
             />
             {status === 'error' && (
               <div style={{ color: '#ff6b6b', fontSize: 12, marginBottom: 8 }}>{errorMsg}</div>
             )}
-            <button
+            <Button
               type="submit"
+              variant="primary"
+              size="md"
+              fullWidth
+              loading={status === 'sending'}
               disabled={status === 'sending'}
-              style={{
-                width: '100%', padding: '10px 12px', fontSize: 14, fontWeight: 600,
-                background: 'var(--accent)', color: '#000', border: 'none',
-                borderRadius: 8, cursor: status === 'sending' ? 'wait' : 'pointer',
-                opacity: status === 'sending' ? 0.6 : 1,
-              }}
             >
               {status === 'sending' ? 'Sending…' : 'Send sign-in link'}
-            </button>
+            </Button>
           </form>
         )}
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import BackButton from '@/components/BackButton';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — MatFinder',
@@ -14,9 +14,7 @@ export default function PrivacyPage() {
       overflowY: 'auto',
     }}>
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '60px 24px 80px' }}>
-        <Link href="/" style={{ color: 'var(--text-secondary)', fontSize: 14, textDecoration: 'none' }}>
-          ← Back to MatFinder
-        </Link>
+        <BackButton fallbackHref="/" />
 
         <h1 style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 32, marginTop: 32, marginBottom: 8 }}>
           Privacy Policy
@@ -40,7 +38,7 @@ export default function PrivacyPage() {
           },
           {
             title: '4. Gym Data',
-            body: `Gym names, addresses, schedules, and contact details are sourced from public websites, Google Places, and OpenStreetMap. If you are a gym owner and believe any information about your gym is incorrect, use the "Report incorrect info" button on your gym's listing, or contact us at hello@matfinder.app.`,
+            body: `Gym names, addresses, schedules, and contact details are sourced from public websites, Google Places, and OpenStreetMap. If you are a gym owner and believe any information about your gym is incorrect, use the "Report incorrect info" button on your gym's listing, or contact us at carterfletcherdev@gmail.com.`,
           },
           {
             title: '5. Cookies & Storage',
@@ -52,11 +50,11 @@ export default function PrivacyPage() {
           },
           {
             title: '7. Your Rights',
-            body: `You can request a copy of your data, ask us to delete your account, or correct inaccurate information by emailing hello@matfinder.app. EU/UK residents have additional rights under GDPR.`,
+            body: `You can request a copy of your data, ask us to delete your account, or correct inaccurate information by emailing carterfletcherdev@gmail.com. EU/UK residents have additional rights under GDPR.`,
           },
           {
             title: '8. Contact',
-            body: `Questions? Email us at hello@matfinder.app.`,
+            body: `Questions? Email us at carterfletcherdev@gmail.com.`,
           },
         ].map(({ title, body }) => (
           <div key={title} style={{ marginBottom: 32 }}>

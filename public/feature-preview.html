@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Feature preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --brown-900: #1A1310;
+      --bone: #F5F1E8;
+      --gold: #D4AF37;       /* Pro tier color */
+      --mint: #7EC8A4;       /* Standard tier color */
+      --rose: #E8B4B8;
+      --bjj: #7C3AED;        /* example discipline */
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 28px;
+      margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px;
+      margin: 0 0 32px;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+    h2 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 20px;
+      margin: 40px 0 6px;
+    }
+    .section-desc {
+      color: rgba(245,241,232,0.65);
+      font-size: 13px;
+      margin: 0 0 18px;
+      line-height: 1.5;
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      margin-bottom: 4px;
+    }
+
+    /* ========================================================
+       Generic stage / cards
+       ======================================================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 22px 22px 18px;
+    }
+    .stage {
+      position: relative;
+      height: 200px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+    .stage.dark {
+      background:
+        radial-gradient(ellipse at 30% 30%, #2E2520 0%, #1A1310 70%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 14px);
+    }
+    .stage.light { background: #E8E2D5; }
+    .stage-label {
+      position: absolute;
+      top: 8px; left: 10px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+    .stage.dark .stage-label { color: var(--bone); }
+    .stage.light .stage-label { color: #3E2E20; }
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .item .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      text-align: center;
+    }
+    .item .label.dark { color: rgba(62,46,32,0.65); }
+
+    /* ========================================================
+       1. PIN VARIANTS
+       ======================================================== */
+
+    /* Standard pin (regular, not visited) — colored dot, no stroke */
+    .pin-standard {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.92);
+    }
+
+    /* Visited pin — same standard dot + bone-white stroke ring */
+    .pin-visited {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.92);
+      outline: 1.5px solid var(--bone);
+      outline-offset: -0.5px;
+    }
+
+    /* Featured pin — larger, bone-white outer ring, dark stroke */
+    .pin-featured {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--bjj);
+      box-shadow:
+        0 0 0 6px var(--bone),
+        0 0 0 7.5px #1A1310;
+    }
+
+    /* Favorited pin — rose-gold gradient + bone outline + bone star */
+    .pin-favorite {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--rose) 0%, var(--gold) 80%);
+      border: 2px solid var(--bone);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bone);
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* ========================================================
+       2. GYM CARD (faithful replica of components/GymCard.tsx)
+       ======================================================== */
+    .gymcard {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 12px 14px;
+      max-width: 560px;
+    }
+    .gymcard.selected {
+      border-color: var(--bone);
+      background: var(--brown-800);
+    }
+    .gymcard .row1 {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 4px;
+    }
+    .gymcard .gymname {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 14px; font-weight: 800;
+      color: var(--bone);
+      flex: 1; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .verified-badge {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #A8C2A8;
+      color: #1A1310;
+      font-size: 9px; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .gymcard .row2 {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: rgba(245,241,232,0.65);
+      min-width: 0;
+    }
+    .gymcard .loc {
+      flex: 1; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .gymcard .star {
+      color: #F59E0B; font-weight: 700;
+    }
+    .badge-trained {
+      color: var(--bone);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .gymcard .dots {
+      display: flex; gap: 2px; flex-shrink: 0;
+    }
+    .gymcard .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--bjj);
+    }
+
+    /* ========================================================
+       3. AVATAR / TIER BADGE (faithful replica of trigger button)
+       ======================================================== */
+    .avatar-wrap {
+      position: relative;
+      display: inline-flex;
+      width: 32px; height: 32px;
+    }
+    .avatar-trigger {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      background: var(--brown-700);
+      color: var(--bone);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 0; overflow: hidden;
+    }
+    .avatar-trigger svg { display: block; }
+    .tier-dot {
+      position: absolute;
+      right: -2px; bottom: -2px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      pointer-events: none;
+    }
+    .tier-dot.pro { background: var(--gold); }
+    .tier-dot.standard { background: var(--mint); }
+
+    /* avatar with photo */
+    .avatar-photo {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6e5c46, #3e2e20);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--bone);
+      font-size: 9px; font-weight: 800;
+      font-family: 'Inter Tight', sans-serif;
+    }
+
+    .legend {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+      margin-top: 14px;
+    }
+    .legend b { color: var(--bone); }
+    code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MatFinder — feature preview</h1>
+    <p class="lead">
+      Side-by-side previews of three new features so you can see how they look
+      on real surfaces before triggering them in the live database. Every
+      element follows the design rules: bone outlines only, no arrows, no
+      emojis, JetBrains Mono uppercase for mini-labels, squared corners.
+    </p>
+
+    <!-- ============================================================
+         1. PIN VARIANTS
+         ============================================================ -->
+    <h2>1 · Pin variants on the map</h2>
+    <p class="section-desc">
+      Standard, visited, featured, and favorited pins shown at the same zoom
+      level. The visited pin is the new one — it&rsquo;s the standard pin plus a
+      thin bone-white ring, signalling &ldquo;you&rsquo;ve checked in here.&rdquo; Subtle by
+      design so it doesn&rsquo;t compete with featured or favorited.
+    </p>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div class="kicker">Dark map style</div>
+      <div class="stage dark">
+        <span class="stage-label">Dark</span>
+        <div class="item">
+          <div class="pin-standard"></div>
+          <div class="label">Standard</div>
+        </div>
+        <div class="item">
+          <div class="pin-visited"></div>
+          <div class="label">Visited (new)</div>
+        </div>
+        <div class="item">
+          <div class="pin-featured"></div>
+          <div class="label">Featured</div>
+        </div>
+        <div class="item">
+          <div class="pin-favorite">★</div>
+          <div class="label">Favorited</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">Light map style</div>
+      <div class="stage light">
+        <span class="stage-label">Light</span>
+        <div class="item">
+          <div class="pin-standard"></div>
+          <div class="label dark">Standard</div>
+        </div>
+        <div class="item">
+          <div class="pin-visited"></div>
+          <div class="label dark">Visited (new)</div>
+        </div>
+        <div class="item">
+          <div class="pin-featured"></div>
+          <div class="label dark">Featured</div>
+        </div>
+        <div class="item">
+          <div class="pin-favorite">★</div>
+          <div class="label dark">Favorited</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <b>What changed:</b> the standard pin layer's <code>circle-stroke-width</code>
+      is now driven by a Mapbox <code>case</code> expression — <code>1.5px</code>
+      bone-white when <code>is_visited == 1</code>, <code>0</code> otherwise.
+      Featured and favorited pins are unchanged.
+    </div>
+
+    <!-- ============================================================
+         2. WEEKLY CHECK-IN BADGE
+         ============================================================ -->
+    <h2>2 · Weekly check-in badge on gym cards</h2>
+    <p class="section-desc">
+      The new <code>weeklyCheckins</code> prop renders a bone-uppercase
+      &ldquo;TRAINED THIS WEEK&rdquo; line next to the location/distance row. Below: a
+      gym card with the new badge, and the same card without it (zero
+      check-ins) for comparison. The badge silently hides when count is zero,
+      so it never adds visual noise to brand-new gyms.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="kicker">With weekly check-ins (12)</div>
+        <div class="gymcard selected" style="margin-top:10px;">
+          <div class="row1">
+            <div class="gymname">Corsair BJJ</div>
+            <div class="verified-badge" title="Verified">✓</div>
+          </div>
+          <div class="row2">
+            <div class="loc">
+              Austin, TX
+              <span style="opacity:0.7;"> · 2.4 mi</span>
+              <span class="star"> ★4.8</span>
+              <span class="badge-trained"> · 12 TRAINED THIS WEEK</span>
+            </div>
+            <div class="dots">
+              <div class="dot" style="background:#7C3AED;"></div>
+              <div class="dot" style="background:#DB2777;"></div>
+              <div class="dot" style="background:#EA580C;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">No check-ins (badge hidden)</div>
+        <div class="gymcard" style="margin-top:10px;">
+          <div class="row1">
+            <div class="gymname">Northside Grappling</div>
+            <div class="verified-badge" title="Verified">✓</div>
+          </div>
+          <div class="row2">
+            <div class="loc">
+              Austin, TX
+              <span style="opacity:0.7;"> · 5.1 mi</span>
+              <span class="star"> ★4.5</span>
+            </div>
+            <div class="dots">
+              <div class="dot" style="background:#7C3AED;"></div>
+              <div class="dot" style="background:#854D0E;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">High traffic gym (47)</div>
+        <div class="gymcard selected" style="margin-top:10px;">
+          <div class="row1">
+            <div class="gymname">10th Planet HQ</div>
+            <div class="verified-badge" title="Verified">✓</div>
+          </div>
+          <div class="row2">
+            <div class="loc">
+              Los Angeles, CA
+              <span style="opacity:0.7;"> · 1.2 mi</span>
+              <span class="star"> ★4.9</span>
+              <span class="badge-trained"> · 47 TRAINED THIS WEEK</span>
+            </div>
+            <div class="dots">
+              <div class="dot" style="background:#7C3AED;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Low traffic (1)</div>
+        <div class="gymcard" style="margin-top:10px;">
+          <div class="row1">
+            <div class="gymname">Pinnacle MMA</div>
+          </div>
+          <div class="row2">
+            <div class="loc">
+              Boise, ID
+              <span style="opacity:0.7;"> · 0.8 mi</span>
+              <span class="badge-trained"> · 1 TRAINED THIS WEEK</span>
+            </div>
+            <div class="dots">
+              <div class="dot" style="background:#EA580C;"></div>
+              <div class="dot" style="background:#DB2777;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <b>What changed:</b> <code>GymCard</code> now accepts a
+      <code>weeklyCheckins</code> prop (default 0). When <code>&gt; 0</code> it
+      renders <code>· N TRAINED THIS WEEK</code> in bone uppercase 0.04em.
+      Counts come from <code>/api/checkin-counts</code> — anonymous aggregate of
+      check-ins in the last 7 days. Same badge appears on every card variant
+      (compact portrait, compact-expanded landscape, full desktop) and on the
+      Favorites page. The Popular sort tab now ranks gyms by this same count,
+      tie-broken by Bayesian rating — so Popular ≠ Featured.
+    </div>
+
+    <!-- ============================================================
+         3. PRO / STANDARD AVATAR BADGE
+         ============================================================ -->
+    <h2>3 · Pro vs Standard avatar badge</h2>
+    <p class="section-desc">
+      Tiny tier dot in the bottom-right corner of the avatar trigger. Gold for
+      Pro, mint for Standard, hidden for Free. Bone outline matches the rest
+      of the trigger and keeps it readable on any background. Renders on every
+      page since the trigger lives in the top nav.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="kicker">Free tier (no badge)</div>
+        <div style="display:flex; gap:24px; align-items:center; padding-top:18px;">
+          <!-- Logged out / no photo -->
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4.4 3.58-8 8-8s8 3.6 8 8"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Logged in with photo -->
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+          </div>
+          <div class="label" style="text-align:left;">No badge — clean<br>silhouette / photo only</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Standard tier (mint)</div>
+        <div style="display:flex; gap:24px; align-items:center; padding-top:18px;">
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4.4 3.58-8 8-8s8 3.6 8 8"/>
+              </svg>
+            </div>
+            <div class="tier-dot standard"></div>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+            <div class="tier-dot standard"></div>
+          </div>
+          <div class="label" style="text-align:left;">
+            <span style="color:var(--mint);">#7EC8A4</span><br>
+            Standard plan
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Pro tier (gold)</div>
+        <div style="display:flex; gap:24px; align-items:center; padding-top:18px;">
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4.4 3.58-8 8-8s8 3.6 8 8"/>
+              </svg>
+            </div>
+            <div class="tier-dot pro"></div>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+            <div class="tier-dot pro"></div>
+          </div>
+          <div class="label" style="text-align:left;">
+            <span style="color:var(--gold);">#C9A24A</span><br>
+            Pro plan
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side-by-side at scale -->
+    <div class="card" style="margin-top:14px;">
+      <div class="kicker">Scale comparison · all three side by side</div>
+      <div style="display:flex; gap:60px; align-items:center; justify-content:center; padding:30px 0;">
+        <div class="item">
+          <div class="avatar-wrap" style="transform:scale(2);">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+          </div>
+          <div class="label" style="margin-top:24px;">Free</div>
+        </div>
+        <div class="item">
+          <div class="avatar-wrap" style="transform:scale(2);">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+            <div class="tier-dot standard"></div>
+          </div>
+          <div class="label" style="margin-top:24px; color:var(--mint);">Standard · mint</div>
+        </div>
+        <div class="item">
+          <div class="avatar-wrap" style="transform:scale(2);">
+            <div class="avatar-trigger">
+              <div class="avatar-photo">JM</div>
+            </div>
+            <div class="tier-dot pro"></div>
+          </div>
+          <div class="label" style="margin-top:24px; color:var(--gold);">Pro · gold</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <b>What changed:</b> a 12×12 dot with a 1.5px bone outline is rendered
+      absolutely-positioned at <code>right:-2px; bottom:-2px;</code> on the
+      profile trigger button. <code>pointerEvents: none</code> so clicks still
+      go to the avatar. The dot only renders when <code>tier !== 'free'</code>
+      and there's an active session. Tooltip reads
+      <code>&ldquo;Pro plan&rdquo;</code> / <code>&ldquo;Standard plan&rdquo;</code>.
+    </div>
+  </div>
+</body>
+</html>

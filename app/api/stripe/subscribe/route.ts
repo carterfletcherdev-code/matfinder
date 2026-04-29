@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
+// Standard tier was retired; only Pro is offered going forward. Two
+// billing cadences both map to the same product in Stripe — monthly
+// price ($6.99) and annual price ($59.99, ~$5/mo, 28% cheaper).
 const PRICE_IDS: Record<string, string | undefined> = {
-  standard: process.env.STRIPE_STANDARD_PRICE_ID,
   pro: process.env.STRIPE_PRO_PRICE_ID,
   pro_annual: process.env.STRIPE_PRO_YEARLY_PRICE_ID,
 };
@@ -45,7 +47,17 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
+    // Surface the underlying Stripe error in the response so we can
+    // diagnose mode mismatches, archived products, missing default
+    // prices, etc. without needing log-stream access. No secrets are
+    // exposed — Stripe error.message contains only the actionable
+    // description.
     console.error('Stripe subscribe error:', err);
-    return NextResponse.json({ error: 'Failed to create session' }, { status: 500 });
+    const e = err as { message?: string; code?: string; type?: string; raw?: { message?: string; code?: string } };
+    const detail = e?.raw?.message || e?.message || 'Unknown Stripe error';
+    const code = e?.raw?.code || e?.code || e?.type || 'unknown';
+    return NextResponse.json({
+      error: `Failed to create session: ${detail} (${code})`,
+    }, { status: 500 });
   }
 }

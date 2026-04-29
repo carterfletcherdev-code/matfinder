@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MatFinder — Gym owner portal preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1A1310;
+      --brown-700: #3E2E20;
+      --brown-800: #2A1F15;
+      --brown-900: #1A1310;
+      --bone: #F5F1E8;
+      --gold: #C9A24A;
+      --gold-bright: #FFD23F;
+      --insta: #E1306C;
+      --bjj: #7C3AED;
+      --mint: #A8C2A8;
+      --good: #7EC8A4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 30px; margin: 0 0 4px;
+    }
+    .lead {
+      color: rgba(245,241,232,0.65);
+      font-size: 14px; margin: 0 0 28px;
+      max-width: 740px; line-height: 1.55;
+    }
+    h2 {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: 20px; margin: 40px 0 6px;
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    h2 .step {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+      color: var(--gold-bright); text-transform: uppercase;
+    }
+    .section-desc {
+      color: rgba(245,241,232,0.65);
+      font-size: 13px; margin: 0 0 18px; line-height: 1.55;
+      max-width: 740px;
+    }
+    .stage {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .frame-label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.10em;
+      color: rgba(245,241,232,0.55); text-transform: uppercase;
+      margin-bottom: 12px; display: block;
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+      color: rgba(245,241,232,0.55); text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* ─────────── Generic UI primitives ─────────── */
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--bone);
+      background: transparent;
+      color: var(--bone);
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 12px; font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .pill.gold { color: var(--gold); border-color: var(--gold); }
+    .pill.solid {
+      background: var(--bone); color: #1A1310;
+    }
+    .pill.solid.gold {
+      background: var(--gold); color: #1A1310; border-color: var(--gold);
+    }
+
+    /* Tier-active badge — gold/mint dot in corner of avatar */
+    .avatar-wrap { position: relative; display: inline-flex; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      background: var(--brown-700); color: var(--bone);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+    }
+    .tier-dot {
+      position: absolute; right: -2px; bottom: -2px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 1.5px solid var(--bone);
+      background: var(--gold);
+      pointer-events: none;
+    }
+
+    /* ─────────── Owner header ─────────── */
+    .owner-header {
+      background: var(--brown-700);
+      border: 1.5px solid var(--bone);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .owner-header .badge {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+      color: var(--gold); border: 1.5px solid var(--gold);
+      border-radius: 4px; padding: 3px 8px; text-transform: uppercase;
+    }
+    .owner-header h3 {
+      margin: 0; font-size: 18px; font-weight: 800; color: var(--bone);
+    }
+    .owner-header .meta {
+      font-size: 12px; color: rgba(245,241,232,0.65);
+      font-family: 'Inter Tight', sans-serif; margin-top: 2px;
+    }
+    .owner-header .right { margin-left: auto; display: flex; gap: 8px; }
+
+    /* ─────────── Cards / panels ─────────── */
+    .card {
+      background: var(--brown-800);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .card-title {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.10em;
+      color: rgba(245,241,232,0.55); text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    /* Stat card */
+    .stat {
+      border: 1.5px solid var(--bone);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: rgba(245,241,232,0.02);
+    }
+    .stat .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.10em;
+      color: rgba(245,241,232,0.55); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .stat .num {
+      font-size: 28px; font-weight: 800; color: var(--bone);
+      font-family: 'Archivo Black', sans-serif;
+      line-height: 1;
+    }
+    .stat .delta {
+      font-size: 11px; margin-top: 6px;
+      font-family: 'Inter Tight', sans-serif;
+      color: var(--good); font-weight: 600;
+    }
+    .stat .delta.neg { color: #E06060; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid rgba(245,241,232,0.20);
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 18px;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: rgba(245,241,232,0.55);
+      border: none; background: transparent;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab.active {
+      color: var(--bone);
+      border-bottom-color: var(--bone);
+    }
+
+    /* Schedule editor */
+    .sched-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 1fr 1fr auto;
+      gap: 8px; align-items: center;
+      padding: 10px 12px;
+      background: rgba(245,241,232,0.04);
+      border: 1.5px solid rgba(245,241,232,0.20);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .sched-row.verified { border-color: var(--mint); }
+    .sched-row select, .sched-row input {
+      padding: 7px 10px; font-size: 12px;
+      border: 1.5px solid rgba(245,241,232,0.30);
+      background: rgba(0,0,0,0.30);
+      color: var(--bone);
+      border-radius: 6px;
+      font-family: 'Inter Tight', sans-serif;
+      outline: none;
+    }
+    .sched-day { font-weight: 700; color: var(--bone); font-size: 12px; }
+    .sched-row .ctrl {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px; color: rgba(245,241,232,0.55); text-transform: uppercase;
+    }
+    .verified-tag {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; font-weight: 800; letter-spacing: 0.10em;
+      color: var(--mint); text-transform: uppercase;
+    }
+
+    /* Bar chart */
+    .bars {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      align-items: end;
+      height: 140px;
+      margin-top: 12px;
+    }
+    .bar {
+      background: var(--bone);
+      border-radius: 4px 4px 0 0;
+      width: 100%;
+      position: relative;
+    }
+    .bar .v {
+      position: absolute; top: -18px; left: 0; right: 0; text-align: center;
+      font-size: 10px; font-weight: 800;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      color: var(--bone);
+    }
+    .bar-labels {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 8px; margin-top: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; letter-spacing: 0.08em;
+      color: rgba(245,241,232,0.55); text-align: center; text-transform: uppercase;
+    }
+
+    /* Heatmap */
+    .heatmap {
+      display: grid;
+      grid-template-columns: 64px repeat(7, 1fr);
+      gap: 4px; margin-top: 10px;
+    }
+    .heat-day-label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      align-self: center; text-align: right; padding-right: 8px;
+    }
+    .heat {
+      height: 22px; border-radius: 3px;
+      background: rgba(245,241,232,0.08);
+    }
+    .heat.l1 { background: rgba(212,175,55,0.20); }
+    .heat.l2 { background: rgba(212,175,55,0.42); }
+    .heat.l3 { background: rgba(212,175,55,0.65); }
+    .heat.l4 { background: rgba(212,175,55,0.85); }
+    .heat-col-labels {
+      display: grid;
+      grid-template-columns: 64px repeat(7, 1fr);
+      gap: 4px; margin-top: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; letter-spacing: 0.08em;
+      color: rgba(245,241,232,0.55); text-align: center; text-transform: uppercase;
+    }
+    .heat-col-labels span:first-child { /* spacer */ }
+
+    /* Legend */
+    .legend {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(245,241,232,0.55);
+      margin-top: 10px;
+    }
+    .legend .swatch { width: 14px; height: 10px; border-radius: 2px; }
+
+    /* Notes panel */
+    .notes {
+      background: var(--brown-700);
+      border: 1px solid rgba(245,241,232,0.10);
+      border-radius: 8px;
+      padding: 18px 22px;
+      font-size: 13px; line-height: 1.6;
+      color: rgba(245,241,232,0.85);
+      margin-top: 16px;
+    }
+    .notes h4 { color: var(--bone); margin: 0 0 6px; font-size: 13px; }
+    .notes ul { margin: 8px 0 0; padding-left: 20px; }
+    .notes b { color: var(--bone); }
+    code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; color: var(--gold);
+    }
+
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 280px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gym owner portal — full preview</h1>
+    <p class="lead">
+      What a gym owner sees after they pay $29.99/mo for the Featured listing
+      and verification clears. Single-page portal at <code>/owner/[gymId]</code>
+      with three tabs: <b>Overview · Schedule · Analytics</b>. They sign in
+      with the same MatFinder account — no separate auth — and the portal
+      opens automatically when they visit a gym they've claimed.
+    </p>
+
+    <!-- ============================================================
+         Owner header (visible across all tabs)
+         ============================================================ -->
+    <h2>Owner header <span class="step">always visible</span></h2>
+    <p class="section-desc">
+      Sticky at the top of every tab. Confirms which gym they're managing,
+      shows the listing's status (Live / Pending / Paused), and surfaces
+      "View public listing" so they can sanity-check changes.
+    </p>
+    <div class="stage">
+      <div class="owner-header">
+        <div class="avatar-wrap">
+          <div class="avatar">JM</div>
+          <div class="tier-dot"></div>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3>Corsair BJJ</h3>
+            <span class="badge">Featured · Live</span>
+          </div>
+          <div class="meta">Austin, TX · Owner: Jaymin C. · Member since Apr 2026</div>
+        </div>
+        <div class="right">
+          <a class="pill" href="#">View public listing</a>
+          <a class="pill" href="#">Billing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         Tabs
+         ============================================================ -->
+    <h2>Tab navigation <span class="step">3 tabs</span></h2>
+    <div class="stage">
+      <div class="tabs">
+        <button class="tab active">Overview</button>
+        <button class="tab">Edit schedule</button>
+        <button class="tab">Analytics</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         OVERVIEW TAB — at-a-glance dashboard
+         ============================================================ -->
+    <h2>Overview tab <span class="step">at-a-glance</span></h2>
+    <p class="section-desc">
+      The gym owner's home screen. Top-level numbers from the last 7 days,
+      plus quick links into the two power tools (Schedule editor + Analytics).
+      Snapshot, not a deep dive.
+    </p>
+    <div class="stage">
+      <div class="grid" style="margin-bottom: 18px;">
+        <div class="stat">
+          <div class="label">Card opens · 7d</div>
+          <div class="num">241</div>
+          <div class="delta">+34 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Pin taps · 7d</div>
+          <div class="num">182</div>
+          <div class="delta">+12 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Check-ins · 7d</div>
+          <div class="num">47</div>
+          <div class="delta">+8 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Saves (favorites)</div>
+          <div class="num">312</div>
+          <div class="delta">+19 this week</div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="stat">
+          <div class="label">Directions · 7d</div>
+          <div class="num">68</div>
+          <div class="delta">+11 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Instagram clicks · 7d</div>
+          <div class="num">29</div>
+          <div class="delta">+3 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Search appearances · 7d</div>
+          <div class="num">1,084</div>
+          <div class="delta">+87 vs last week</div>
+        </div>
+        <div class="stat">
+          <div class="label">Profile completeness</div>
+          <div class="num">100%</div>
+          <div class="delta">All fields filled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SCHEDULE TAB
+         ============================================================ -->
+    <h2>Schedule editor <span class="step">edit your open mats</span></h2>
+    <p class="section-desc">
+      Owner can add, edit, or remove open-mat rows. Verified rows are
+      highlighted in mint — those are confirmed by MatFinder's extraction
+      pipeline against the gym's website. Owner edits go into a separate
+      <code>gym_overrides</code> table that takes precedence over the
+      static data, so updates appear within ~5 minutes for everyone.
+    </p>
+    <div class="stage">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+        <div class="card-title" style="margin: 0;">Open mat schedule</div>
+        <div style="display: flex; gap: 8px;">
+          <a class="pill" href="#">Discard changes</a>
+          <a class="pill solid" href="#">Save 3 changes</a>
+        </div>
+      </div>
+
+      <div class="sched-row verified">
+        <span class="sched-day">Saturday</span>
+        <input type="time" value="11:00">
+        <input type="time" value="12:30">
+        <span class="ctrl"><span class="verified-tag">✓ Verified</span></span>
+        <a class="pill" href="#" style="font-size:10px;padding:4px 10px;">Remove</a>
+      </div>
+
+      <div class="sched-row">
+        <span class="sched-day">Sunday</span>
+        <input type="time" value="10:00">
+        <input type="time" value="11:30">
+        <span class="ctrl">Free</span>
+        <a class="pill" href="#" style="font-size:10px;padding:4px 10px;">Remove</a>
+      </div>
+
+      <div class="sched-row">
+        <span class="sched-day">Wednesday</span>
+        <input type="time" value="19:30">
+        <input type="time" value="21:00">
+        <span class="ctrl">$15 drop-in</span>
+        <a class="pill" href="#" style="font-size:10px;padding:4px 10px;">Remove</a>
+      </div>
+
+      <a class="pill" href="#" style="margin-top: 8px;">+ Add another open mat</a>
+
+      <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(245,241,232,0.15);">
+        <div class="card-title">Listing details</div>
+        <div class="row">
+          <div>
+            <div class="kicker">Website</div>
+            <input type="url" value="https://corsairbjj.com" style="width:100%;padding:8px 12px;font-size:13px;border:1.5px solid rgba(245,241,232,0.30);background:rgba(0,0,0,0.30);color:var(--bone);border-radius:6px;font-family:'Inter Tight',sans-serif;outline:none;">
+          </div>
+          <div>
+            <div class="kicker">Phone</div>
+            <input type="tel" value="(512) 555-0142" style="width:100%;padding:8px 12px;font-size:13px;border:1.5px solid rgba(245,241,232,0.30);background:rgba(0,0,0,0.30);color:var(--bone);border-radius:6px;font-family:'Inter Tight',sans-serif;outline:none;">
+          </div>
+          <div>
+            <div class="kicker">Instagram</div>
+            <input type="text" value="@corsair.bjj" style="width:100%;padding:8px 12px;font-size:13px;border:1.5px solid rgba(245,241,232,0.30);background:rgba(0,0,0,0.30);color:var(--bone);border-radius:6px;font-family:'Inter Tight',sans-serif;outline:none;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         ANALYTICS TAB
+         ============================================================ -->
+    <h2>Analytics <span class="step">deep dive</span></h2>
+    <p class="section-desc">
+      Charts pull from the <code>events</code> + <code>checkins</code> +
+      <code>favorites</code> tables. Anonymous aggregate counts only — no
+      individual user data is exposed. Filter by 7d / 30d / 90d.
+    </p>
+
+    <div class="stage">
+      <!-- Time-range pills -->
+      <div style="display: flex; gap: 8px; margin-bottom: 18px;">
+        <a class="pill solid" href="#" style="padding:5px 14px;font-size:11px;">7d</a>
+        <a class="pill" href="#" style="padding:5px 14px;font-size:11px;">30d</a>
+        <a class="pill" href="#" style="padding:5px 14px;font-size:11px;">90d</a>
+      </div>
+
+      <!-- Bar chart: card opens by day -->
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-title">Card opens · last 7 days</div>
+        <div class="bars">
+          <div class="bar" style="height:35%;"><span class="v">28</span></div>
+          <div class="bar" style="height:55%;"><span class="v">42</span></div>
+          <div class="bar" style="height:32%;"><span class="v">26</span></div>
+          <div class="bar" style="height:48%;"><span class="v">38</span></div>
+          <div class="bar" style="height:45%;"><span class="v">35</span></div>
+          <div class="bar" style="height:75%;"><span class="v">58</span></div>
+          <div class="bar" style="height:18%;"><span class="v">14</span></div>
+        </div>
+        <div class="bar-labels">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+      </div>
+
+      <!-- Heatmap: check-ins by day-of-week + time-of-day -->
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-title">Check-ins by day &amp; hour · last 30 days</div>
+        <div class="heatmap">
+          <span class="heat-day-label">6 AM</span>
+          <span class="heat"></span><span class="heat"></span><span class="heat l1"></span><span class="heat"></span><span class="heat"></span><span class="heat"></span><span class="heat"></span>
+          <span class="heat-day-label">9 AM</span>
+          <span class="heat l1"></span><span class="heat l2"></span><span class="heat l1"></span><span class="heat l1"></span><span class="heat l1"></span><span class="heat l4"></span><span class="heat l3"></span>
+          <span class="heat-day-label">12 PM</span>
+          <span class="heat l3"></span><span class="heat l2"></span><span class="heat l3"></span><span class="heat l2"></span><span class="heat l3"></span><span class="heat l4"></span><span class="heat l2"></span>
+          <span class="heat-day-label">3 PM</span>
+          <span class="heat l1"></span><span class="heat l2"></span><span class="heat l1"></span><span class="heat l2"></span><span class="heat l1"></span><span class="heat l3"></span><span class="heat l2"></span>
+          <span class="heat-day-label">6 PM</span>
+          <span class="heat l4"></span><span class="heat l3"></span><span class="heat l4"></span><span class="heat l4"></span><span class="heat l3"></span><span class="heat l2"></span><span class="heat l1"></span>
+          <span class="heat-day-label">9 PM</span>
+          <span class="heat l1"></span><span class="heat l2"></span><span class="heat l1"></span><span class="heat l2"></span><span class="heat l1"></span><span class="heat"></span><span class="heat"></span>
+        </div>
+        <div class="heat-col-labels">
+          <span></span>
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+        <div class="legend">
+          <span>Less</span>
+          <span class="swatch heat"></span>
+          <span class="swatch heat l1"></span>
+          <span class="swatch heat l2"></span>
+          <span class="swatch heat l3"></span>
+          <span class="swatch heat l4"></span>
+          <span>More</span>
+        </div>
+      </div>
+
+      <!-- Engagement breakdown -->
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-title">Engagement breakdown · last 7 days</div>
+        <div class="grid">
+          <div class="stat">
+            <div class="label">Pin tap → Card open</div>
+            <div class="num">76%</div>
+            <div class="delta">Conversion rate</div>
+          </div>
+          <div class="stat">
+            <div class="label">Card open → Check in</div>
+            <div class="num">19%</div>
+            <div class="delta">Conversion rate</div>
+          </div>
+          <div class="stat">
+            <div class="label">Card open → Directions</div>
+            <div class="num">28%</div>
+            <div class="delta">Conversion rate</div>
+          </div>
+          <div class="stat">
+            <div class="label">Card open → IG</div>
+            <div class="num">12%</div>
+            <div class="delta">Conversion rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Where viewers come from -->
+      <div class="card">
+        <div class="card-title">Where viewers come from · last 30 days</div>
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-family:'Inter Tight',sans-serif;font-size:12px;color:var(--bone);width:160px;">Map · pin tap</span>
+            <div style="flex:1;height:8px;background:rgba(245,241,232,0.10);border-radius:4px;overflow:hidden;">
+              <div style="width:62%;height:100%;background:var(--bone);"></div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone);width:42px;text-align:right;">62%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-family:'Inter Tight',sans-serif;font-size:12px;color:var(--bone);width:160px;">Search</span>
+            <div style="flex:1;height:8px;background:rgba(245,241,232,0.10);border-radius:4px;overflow:hidden;">
+              <div style="width:24%;height:100%;background:var(--bone);"></div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone);width:42px;text-align:right;">24%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-family:'Inter Tight',sans-serif;font-size:12px;color:var(--bone);width:160px;">Favorited list</span>
+            <div style="flex:1;height:8px;background:rgba(245,241,232,0.10);border-radius:4px;overflow:hidden;">
+              <div style="width:9%;height:100%;background:var(--bone);"></div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone);width:42px;text-align:right;">9%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-family:'Inter Tight',sans-serif;font-size:12px;color:var(--bone);width:160px;">Direct link</span>
+            <div style="flex:1;height:8px;background:rgba(245,241,232,0.10);border-radius:4px;overflow:hidden;">
+              <div style="width:5%;height:100%;background:var(--bone);"></div>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone);width:42px;text-align:right;">5%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         Implementation notes
+         ============================================================ -->
+    <h2>How it gets built <span class="step">infra</span></h2>
+    <div class="notes">
+      <h4>Auth + permissions</h4>
+      <ul>
+        <li>New Supabase table <code>gym_owners (user_id, gym_id, status, verified_at)</code> — single row per claimed gym.</li>
+        <li>Routes under <code>/owner/[gymId]/*</code> check that the current user has a verified row in <code>gym_owners</code> for that gym; everyone else gets a 404.</li>
+        <li>RLS on <code>gym_overrides</code>: an authenticated user can <code>UPDATE</code> only the row whose <code>gym_id</code> is in their <code>gym_owners</code> set.</li>
+        <li>Featured listing subscription is the gating signal — if their <code>subscriptions.tier</code> is <code>featured</code> AND <code>status = active</code> AND they're verified, the portal opens.</li>
+      </ul>
+
+      <h4>Schedule editing</h4>
+      <ul>
+        <li>New Supabase table <code>gym_overrides (gym_id, open_mats jsonb, website, phone, instagram, hero_image, updated_at)</code>.</li>
+        <li><code>/api/gyms</code> already merges <code>schedule-overrides.json</code>; we add one more layer that pulls from <code>gym_overrides</code> last so owner edits win.</li>
+        <li>Cache TTL on <code>/api/gyms</code> drops from 1h to ~5 min once owner edits exist, so changes propagate fast.</li>
+      </ul>
+
+      <h4>Analytics</h4>
+      <ul>
+        <li><b>Already shipping:</b> the <code>events</code> table is live and ingesting <code>card_open</code>, <code>pin_tap</code>, <code>ig_click</code>, <code>directions_click</code> from production right now.</li>
+        <li><code>/api/owner/analytics?gym_id=…&range=7d</code> aggregates counts server-side using the service-role key (RLS keeps clients out).</li>
+        <li>Bar chart + heatmap + breakdown panels are simple SQL <code>group by date_trunc('day', occurred_at)</code> queries — no external charting library, all SVG.</li>
+        <li>Check-in heatmap pulls <code>checkins.checked_in_at</code> bucketed by day-of-week × hour-of-day.</li>
+      </ul>
+
+      <h4>Pricing</h4>
+      <ul>
+        <li>The Featured Listing subscription ($29.99/mo) <b>IS</b> the gym-owner SKU. It includes Schedule Editor + Analytics + Featured pin + Priority placement.</li>
+        <li>Personal Pro ($6.99/mo or $59.99/yr) is unrelated. A gym owner can be on Free or Pro for their own use; Featured is independent.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
