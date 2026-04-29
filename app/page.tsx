@@ -410,6 +410,30 @@ export default function Home() {
   // wherever the user left off.
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    // Priority 1: "back to map" from a /gym/[id] page. The card sets
+    // a one-shot sessionStorage entry before navigating; we read +
+    // clear it here and fly to the gym they were viewing.
+    try {
+      const ret = sessionStorage.getItem('matfinder.return_to_gym');
+      if (ret) {
+        const r = JSON.parse(ret) as {
+          gymId?: string;
+          lat?: number;
+          lng?: number;
+          zoom?: number;
+        };
+        sessionStorage.removeItem('matfinder.return_to_gym');
+        if (r.gymId && r.lat != null && r.lng != null) {
+          setSelectedGym(r.gymId);
+          setExpandedGym(r.gymId);
+          setMapFlyTarget({ lat: r.lat, lng: r.lng, zoom: r.zoom ?? 14 });
+          return; // skip the normal restore + auto-locate flow
+        }
+      }
+    } catch { /* ignore */ }
+
+    // Priority 2: previously-saved map state (sort location, mode, center)
     try {
       const saved = sessionStorage.getItem('matfinder_map_state');
       if (saved) {

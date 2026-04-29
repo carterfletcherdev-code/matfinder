@@ -84,6 +84,22 @@ function findNextOpenMat(gym: Gym, now: Date = new Date()): OpenMat | null {
   return best?.mat ?? null;
 }
 
+/** Persist the gym's id + coords to sessionStorage right before
+ *  navigating to /gym/[id]. The map page reads this on mount and
+ *  restores selection + camera so "Back to map" returns the user to
+ *  the gym they were just looking at instead of their GPS location. */
+function saveReturnTarget(gym: Gym) {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem('matfinder.return_to_gym', JSON.stringify({
+      gymId: gym.id,
+      lat: gym.lat,
+      lng: gym.lng,
+      zoom: 14,
+    }));
+  } catch { /* private mode etc. — silent */ }
+}
+
 /** Convert a #RRGGBB hex string to an rgba() with the given alpha.
  *  Used by the discipline pill to render a translucent tint of the
  *  marker color (bright variant) for contrast on dark surfaces. */
@@ -287,7 +303,7 @@ export default function GymCard({
         {/* ── Top: hero photo strip (21:7 ratio). Click → /gym/[id]. ── */}
         <Link
           href={`/gym/${encodeURIComponent(gym.id)}`}
-          onClick={stop}
+          onClick={(e) => { stop(e); saveReturnTarget(gym); }}
           className="gym-photo-link"
           aria-label={`View full page for ${gym.name}`}
           style={{
@@ -597,7 +613,7 @@ export default function GymCard({
               the most noticeable text-link in the card. */}
           <Link
             href={`/gym/${encodeURIComponent(gym.id)}`}
-            onClick={stop}
+            onClick={(e) => { stop(e); saveReturnTarget(gym); }}
             style={{
               fontSize: 13, fontWeight: 700,
               color: 'var(--bone)',
@@ -655,7 +671,7 @@ export default function GymCard({
       {/* ─── PHOTO BLOCK — clicks navigate to /gym/[id] ─── */}
       <Link
         href={`/gym/${encodeURIComponent(gym.id)}`}
-        onClick={stop}
+        onClick={(e) => { stop(e); saveReturnTarget(gym); }}
         className="gym-photo-link"
         aria-label={`View full page for ${gym.name}`}
         style={{
@@ -1006,7 +1022,7 @@ export default function GymCard({
             the most noticeable text-link in the card. */}
         <Link
           href={`/gym/${encodeURIComponent(gym.id)}`}
-          onClick={stop}
+          onClick={(e) => { stop(e); saveReturnTarget(gym); }}
           style={{
             display: 'inline-block',
             fontSize: 13, fontWeight: 700,
