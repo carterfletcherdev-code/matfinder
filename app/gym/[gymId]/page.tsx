@@ -785,6 +785,62 @@ export default function GymPage({ params }: PageProps) {
               </section>
             )}
 
+            {/* WEEKLY SCHEDULE — empty state (no schedule on file) */}
+            {(!gym.schedule || gym.schedule.length === 0) && (
+              <section style={{ marginBottom: 36 }}>
+                <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  Weekly schedule
+                </h2>
+                <div
+                  style={{
+                    border: '1px dashed var(--border)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '32px 24px',
+                    textAlign: 'center',
+                    background: 'rgba(245,241,232,0.02)',
+                  }}
+                >
+                  <div style={{ display: 'inline-flex', marginBottom: 12, color: 'var(--text-muted)' }}>
+                    <svg {...stroke} width={32} height={32} viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: '0 0 6px', fontSize: 16, fontWeight: 700, color: 'var(--bone)' }}>
+                    No schedule yet
+                  </h3>
+                  <p style={{ margin: '0 auto 18px', fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.55, maxWidth: 420 }}>
+                    {websiteHref
+                      ? "We don't have a verified schedule for this gym yet. Check their website for the latest, or help build the community's data by submitting times you know about."
+                      : "We don't have a verified schedule for this gym yet. Help build the community's data — submit times you know about."}
+                  </p>
+                  <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {websiteHref && (
+                      <Button
+                        as="a"
+                        href={websiteHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="secondary"
+                        size="md"
+                      >
+                        Visit their website →
+                      </Button>
+                    )}
+                    <Button
+                      onClick={onWrongInfoClick}
+                      variant="primary"
+                      size="md"
+                    >
+                      Help fill it in
+                    </Button>
+                  </div>
+                </div>
+              </section>
+            )}
+
           </main>
 
           {/* ── RIGHT SIDEBAR ── */}

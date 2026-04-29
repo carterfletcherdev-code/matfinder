@@ -590,13 +590,14 @@ export default function GymCard({
             )}
           </div>
 
-          {/* View full page link — primary navigation to /gym/[id] */}
+          {/* View full page — primary navigation. Bone white so it's
+              the most noticeable text-link in the card. */}
           <Link
             href={`/gym/${encodeURIComponent(gym.id)}`}
             onClick={stop}
             style={{
-              fontSize: 12, fontWeight: 600,
-              color: 'var(--accent)',
+              fontSize: 13, fontWeight: 700,
+              color: 'var(--bone)',
               textAlign: 'center',
               padding: '8px 0 2px',
               textDecoration: 'none',
@@ -604,8 +605,8 @@ export default function GymCard({
               display: 'inline-block',
               alignSelf: 'center',
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
           >
             View full page →
           </Link>
@@ -1003,14 +1004,15 @@ export default function GymCard({
           )}
         </div>
 
-        {/* View full page — primary navigation into /gym/[id] */}
+        {/* View full page — primary navigation. Bone white so it's
+            the most noticeable text-link in the card. */}
         <Link
           href={`/gym/${encodeURIComponent(gym.id)}`}
           onClick={stop}
           style={{
             display: 'inline-block',
-            fontSize: 13, fontWeight: 600,
-            color: 'var(--accent)',
+            fontSize: 13, fontWeight: 700,
+            color: 'var(--bone)',
             textAlign: 'center',
             padding: '8px 0',
             textDecoration: 'none',
@@ -1018,13 +1020,14 @@ export default function GymCard({
             transition: 'color 150ms',
             alignSelf: 'flex-start',
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
         >
           View full page →
         </Link>
 
-        {/* Claim / Your gym row — small text-link only when relevant */}
+        {/* Claim / Your gym row — secondary, accent-brown so it sits
+            quieter than the primary "View full page" link above. */}
         {ownsThisGym ? (
           <div style={{ marginBottom: 10 }} onClick={stop}>
             <Button
@@ -1044,7 +1047,7 @@ export default function GymCard({
               href={`/claim/${gym.id}`}
               variant="ghost"
               size="sm"
-              style={{ color: 'var(--text-muted)' }}
+              style={{ color: 'var(--accent)' }}
             >
               Are you the gym? Claim this listing →
             </Button>

@@ -14,6 +14,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { supabase, supabaseEnabled } from '@/lib/supabase';
 import { trackEvent } from '@/lib/track';
 import { useOwnedGyms } from '@/lib/useOwnedGyms';
+import ListScrollRestore from '@/components/ListScrollRestore';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -1254,6 +1255,7 @@ export default function Home() {
     if (LS) {
       return (
         <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
+          <ListScrollRestore />
           {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
 
           {/* Map fills entire viewport (list overlays left side) */}
@@ -1545,6 +1547,7 @@ export default function Home() {
     // ════════════════════════════════════════════════════════════════════
     return (
       <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
+        <ListScrollRestore />
         {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
 
         {/* Map (always rendered, behind list when list active) */}
@@ -1853,6 +1856,7 @@ export default function Home() {
   // ── DESKTOP (always full-screen) ─────────────────────────────────────────────
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <ListScrollRestore />
       {showOnboarding && <DisciplineOnboarding initialDisciplines={selectedDisciplines} onConfirm={handleOnboardingConfirm} onDontShowAgain={handleDontShowAgain} />}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
 

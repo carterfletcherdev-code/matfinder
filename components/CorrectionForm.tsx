@@ -113,7 +113,7 @@ export default function CorrectionForm({ gym, onClose }: Props) {
       setCorrectVal('');
       setInstagram('');
       setNotes('');
-      setTimeout(() => { onClose(); }, 1400);
+      setTimeout(() => { onClose(); }, 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not submit. Try again.');
     } finally {
