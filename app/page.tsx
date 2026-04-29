@@ -806,7 +806,10 @@ export default function Home() {
             (e.target as HTMLInputElement).blur();
           }
         }}
-        onBlur={() => { if (searchInput.trim()) commitSearch(); }}
+        // Intentionally NOT auto-committing on blur — that races with
+        // card-click handlers (the input blurs as the click lands, the
+        // partial query auto-jumps to a different gym, then the card's
+        // onClick selects yet another). Search commits only on Enter.
         placeholder={searchRegions.length > 0 ? 'Add Another…' : 'Gym, City, State, or Country'}
         disabled={searching}
         style={{
@@ -1150,7 +1153,10 @@ export default function Home() {
               (e.target as HTMLInputElement).blur();
             }
           }}
-          onBlur={() => { if (searchInput.trim()) commitSearch(); }}
+          // Intentionally NOT auto-committing on blur — that races with
+        // card-click handlers (the input blurs as the click lands, the
+        // partial query auto-jumps to a different gym, then the card's
+        // onClick selects yet another). Search commits only on Enter.
           placeholder={searchRegions.length > 0 ? 'Add Another…' : 'Search Gym, City, State, or Country…'}
           disabled={searching}
           style={{
