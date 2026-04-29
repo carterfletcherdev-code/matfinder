@@ -151,6 +151,26 @@ supabase/migrations/ — SQL migrations
 - Always honor `prefers-reduced-motion`.
 - Hover lift = `translateY(-1px)` + shadow shift `--shadow-sm` → `--shadow-md`. Tap = `scale(0.98)` for 100ms.
 
+### Card vs page action grammar (locked)
+
+The list/popover card and the gym-detail page are different surfaces and serve different jobs. The actions on each follow strict rules:
+
+| Action | List card (vertical) | Popover card (`mapOverlay`, landscape) | Gym page (`/gym/[slug]`) |
+|---|---|---|---|
+| **RSVP** (in open-mat panel) | ✓ shown | ✓ shown | ✓ shown, full-size |
+| **Directions / Call / Instagram** | ✓ uniform 3-btn grid | ✓ uniform 3-btn grid | ✓ in Contact sidebar card |
+| **Check in here** | ❌ NOT on cards | ❌ NOT on cards | ✓ primary CTA in header |
+| **Save (heart)** | ✓ photo overlay | ✓ photo overlay | ✓ in header |
+| **Wrong info?** | ✓ ghost link bottom | ✓ omitted (space) | ✓ ghost link bottom of sidebar |
+
+**Why no Check-in on cards:** list cards exist for *discovery* (browsing, comparing, planning trips). Check-in is a *destination* action — only meaningful when the user is at the gym, in which case they'd open the detail page. Putting Check-in on every card adds noise and dilutes the discovery flow.
+
+### Card variant rules
+
+- **Vertical card** (default) — list views, mobile feed. Photo on top (16:9), info below.
+- **Landscape card** (`mapOverlay={true}`) — desktop map pin popover. Photo on left (220px square), info on right. Max width 640px. Fits next to the pin without scrolling.
+- **Mobile sheet** (m1) — what the card expands into on mobile when tapped. Full-bleed photo with overlay text, big thumb-friendly action grid. (Not yet built — Week 2.)
+
 ### Channel accents (per-section identity)
 Same buttons / nav / shadows everywhere. The accent shifts to mark which channel you're in.
 - **Map:** uses brand `--accent` (brown-600) — this is the default

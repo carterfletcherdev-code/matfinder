@@ -25,7 +25,6 @@ import {
 import { computeGymStatus } from '@/lib/gymStatus';
 import { Button, Pill, StatusBadge } from './ui';
 import HeartButton from './HeartButton';
-import CheckInButton from './CheckInButton';
 import { trackEvent } from '@/lib/track';
 import { useOwnedGyms } from '@/lib/useOwnedGyms';
 import { formatTime, titleCase } from '@/lib/utils';
@@ -181,6 +180,7 @@ export default function GymCard({
   isStartingSoon: isStartingSoonProp,
   weeklyCheckins = 0,
   onCityClick,
+  mapOverlay = false,
 }: GymCardProps) {
   const ownedGymIds = useOwnedGyms();
   const ownsThisGym = ownedGymIds.includes(gym.id);
@@ -239,6 +239,317 @@ export default function GymCard({
     alert('RSVP coming soon — open mats will let you confirm and see who else is going.');
   };
 
+  // ─────────────────────────────────────────────────────────────────
+  // LANDSCAPE VARIANT — desktop map popover.
+  //
+  // When a user clicks a pin on the map, the card pops out next to
+  // the pin. A vertical card forces scrolling and dominates the
+  // viewport; a landscape layout (photo left, info right) fits the
+  // popover context and shows everything above the fold.
+  // ─────────────────────────────────────────────────────────────────
+  if (mapOverlay) {
+    return (
+      <article
+        onClick={onClick}
+        data-gym-id={gym.id}
+        style={{
+          background: 'var(--surface-raised)',
+          border: `1px solid ${isSelected ? 'var(--accent)' : 'var(--border)'}`,
+          borderRadius: 'var(--radius-lg)',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          boxShadow: 'var(--shadow-lg)',
+          transition: 'border-color 150ms, box-shadow 200ms',
+          fontFamily: "'Inter Tight', sans-serif",
+          color: 'var(--text-primary)',
+          display: 'grid',
+          gridTemplateColumns: '220px 1fr',
+          width: '100%',
+          maxWidth: 640,
+          minHeight: 220,
+        }}
+      >
+        {/* ── Left: photo or monogram ── */}
+        <div
+          style={{
+            position: 'relative',
+            background: gym.photo_url
+              ? 'var(--brown-700)'
+              : 'linear-gradient(135deg, var(--brown-700), var(--brown-500))',
+            overflow: 'hidden',
+          }}
+        >
+          {gym.photo_url ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={gym.photo_url}
+              alt={gym.name}
+              loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+            />
+          ) : (
+            <div
+              aria-hidden
+              style={{
+                position: 'absolute', inset: 0,
+                display: 'grid', placeItems: 'center',
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 44, fontWeight: 800,
+                color: 'rgba(245,241,232,0.18)',
+                letterSpacing: '0.06em',
+                userSelect: 'none',
+              }}
+            >
+              {gymMonogram(gym.name)}
+            </div>
+          )}
+
+          {/* Heart top-right */}
+          <div
+            onClick={stop}
+            style={{
+              position: 'absolute', top: 10, right: 10,
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'rgba(0,0,0,0.55)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: '1px solid rgba(245,241,232,0.18)',
+              display: 'grid', placeItems: 'center',
+            }}
+          >
+            <HeartButton gymId={gym.id} />
+          </div>
+
+          {/* Verified badge bottom-left */}
+          {hasVerifiedMats && (
+            <span
+              style={{
+                position: 'absolute', bottom: 10, left: 10,
+                background: 'rgba(94,139,94,0.92)',
+                color: 'var(--bone)',
+                fontSize: 10, fontWeight: 700,
+                padding: '3px 8px',
+                borderRadius: 'var(--radius-full)',
+                backdropFilter: 'blur(8px)',
+                display: 'inline-flex', alignItems: 'center', gap: 4,
+              }}
+            >
+              <svg {...stroke} width={10} height={10} viewBox="0 0 24 24" strokeWidth={3}>
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              verified
+            </span>
+          )}
+        </div>
+
+        {/* ── Right: info body ── */}
+        <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', minWidth: 0, gap: 8 }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
+            {websiteHref ? (
+              <a
+                href={websiteHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={stop}
+                style={{
+                  fontSize: 16, fontWeight: 800,
+                  color: 'var(--bone)',
+                  lineHeight: 1.25,
+                  textDecoration: 'none',
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  flex: 1, minWidth: 0,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}
+              >
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {gym.name}
+                </span>
+                <IconExt />
+              </a>
+            ) : (
+              <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--bone)', margin: 0, lineHeight: 1.25, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {gym.name}
+              </h3>
+            )}
+            {ratingValue != null && (
+              <span
+                style={{
+                  display: 'inline-flex', alignItems: 'baseline', gap: 4,
+                  fontWeight: 700, color: 'var(--bone)', fontSize: 13,
+                  flexShrink: 0,
+                }}
+              >
+                <span style={{ color: 'var(--warning)', fontSize: 12 }}>★</span>
+                {ratingValue.toFixed(1)}
+                {ratingCount != null && (
+                  <span style={{ color: 'var(--text-muted)', fontWeight: 500, fontSize: 11 }}>({ratingCount})</span>
+                )}
+              </span>
+            )}
+          </div>
+
+          {/* Meta row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
+            <StatusBadge status={status} size="sm" />
+            {distance && (
+              <>
+                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'currentColor', opacity: 0.5 }} />
+                <span>{distance}</span>
+              </>
+            )}
+            {gym.city && (
+              <>
+                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'currentColor', opacity: 0.5 }} />
+                <span>{titleCase(gym.city)}{gym.state ? `, ${gym.state}` : ''}</span>
+              </>
+            )}
+          </div>
+
+          {/* Discipline pills */}
+          {disciplines.length > 0 && (
+            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+              {disciplines.slice(0, 4).map(d => {
+                const c = DISCIPLINE_COLORS[d];
+                return (
+                  <Pill
+                    key={d}
+                    size="sm"
+                    style={{
+                      background: `${c.text}20`,
+                      color: c.text,
+                      borderColor: `${c.text}40`,
+                      fontSize: 10,
+                      padding: '3px 8px',
+                    }}
+                  >
+                    {DISCIPLINE_LABELS[d]}
+                  </Pill>
+                );
+              })}
+              {disciplines.length > 4 && (
+                <Pill size="sm" style={{ fontSize: 10, padding: '3px 8px' }}>
+                  +{disciplines.length - 4}
+                </Pill>
+              )}
+            </div>
+          )}
+
+          {/* Open-mat panel — compact */}
+          {next && (
+            <div
+              onClick={stop}
+              style={{
+                border: '1px solid rgba(94,139,94,0.45)',
+                background: 'linear-gradient(135deg, rgba(94,139,94,0.16), rgba(94,139,94,0.06))',
+                borderRadius: 'var(--radius-md)',
+                padding: '10px 12px',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                gap: 10,
+              }}
+            >
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div
+                  style={{
+                    color: 'var(--success)',
+                    fontSize: 10, fontWeight: 700,
+                    letterSpacing: '0.04em',
+                    marginBottom: 2,
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {startingSoon ? 'Starting soon' : `${DAY_FULL[next.day]} · ${formatTime(next.start_time)}`}
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--bone)' }}>
+                  Open mat
+                  <span style={{ fontWeight: 500, color: 'var(--text-muted)', fontSize: 11, marginLeft: 6 }}>
+                    {DISCIPLINE_LABELS[next.discipline]}{next.is_free ? ' · Free for visitors' : ''}
+                  </span>
+                </div>
+              </div>
+              <Button
+                onClick={onRsvpClick}
+                size="sm"
+                variant="primary"
+                style={{
+                  background: 'var(--success)',
+                  borderColor: 'var(--success)',
+                  color: 'var(--bone)',
+                  fontWeight: 700,
+                  height: 28,
+                  borderRadius: 'var(--radius-full)',
+                  flexShrink: 0,
+                }}
+              >
+                RSVP
+              </Button>
+            </div>
+          )}
+
+          {/* Action grid — 3 uniform buttons, push to bottom */}
+          <div
+            onClick={stop}
+            style={{
+              display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 5, marginTop: 'auto', paddingTop: 4,
+            }}
+          >
+            <Button
+              as="a"
+              href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              size="sm"
+              onClick={() => trackEvent('directions_click', gym.id)}
+              style={{ fontSize: 11 }}
+            >
+              <IconNav />Directions
+            </Button>
+            {gym.phone ? (
+              <Button
+                as="a"
+                href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
+                variant="secondary"
+                size="sm"
+                onClick={() => trackEvent('phone_click', gym.id)}
+                style={{ fontSize: 11 }}
+              >
+                <IconPhone />Call
+              </Button>
+            ) : (
+              <Button variant="secondary" size="sm" disabled style={{ fontSize: 11 }}>
+                <IconPhone />Call
+              </Button>
+            )}
+            {igHref ? (
+              <Button
+                as="a"
+                href={igHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                size="sm"
+                onClick={() => trackEvent('ig_click', gym.id)}
+                style={{ fontSize: 11 }}
+              >
+                <IconIg />Instagram
+              </Button>
+            ) : (
+              <Button variant="secondary" size="sm" disabled style={{ fontSize: 11 }}>
+                <IconIg />Instagram
+              </Button>
+            )}
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // STANDARD VERTICAL VARIANT — list view
+  // ─────────────────────────────────────────────────────────────────
   return (
     <article
       onClick={onClick}
@@ -540,10 +851,10 @@ export default function GymCard({
           </div>
         )}
 
-        {/* Big primary Check-in */}
-        <div onClick={stop}>
-          <CheckInButton gymId={gym.id} gymName={gym.name} variant="primary-big" />
-        </div>
+        {/* Note: Check-in CTA intentionally lives on /gym/[slug] in the
+            header, NOT on list/popover cards. List cards are for discovery
+            (browsing, comparing, planning); check-in is a destination
+            action that only makes sense once the user is at the gym. */}
 
         {/* Secondary action grid — 3 uniform buttons */}
         <div
