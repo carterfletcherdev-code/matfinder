@@ -826,7 +826,7 @@ export default function GymPage({ params }: PageProps) {
                         variant="secondary"
                         size="md"
                       >
-                        Visit their website →
+                        Visit their website
                       </Button>
                     )}
                     <Button

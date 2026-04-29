@@ -197,7 +197,25 @@ export default function CorrectionForm({ gym, onClose }: Props) {
 
         {submitted ? (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <div style={{ fontSize: 28, marginBottom: 8 }}>👑</div>
+            <div
+              style={{
+                width: 48, height: 48, borderRadius: '50%',
+                background: 'rgba(94,139,94,0.18)',
+                border: '1.5px solid var(--success)',
+                color: 'var(--success)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: 12,
+              }}
+            >
+              <svg
+                width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+                aria-hidden
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
             <p style={{ margin: '0 0 4px', fontSize: 16, fontWeight: 700, color: 'var(--success)' }}>
               Thanks!
             </p>
