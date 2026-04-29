@@ -173,11 +173,18 @@ body {
   color: var(--popup-muted) !important;
 }
 
-/* Button flash animation */
+/* Profile-dropdown avatar edit-hint — only on hover-capable devices
+   so the overlay never gets stuck after a tap on touch screens. */
+@media (hover: hover) and (pointer: fine) {
+  button:hover > .avatar-edit-hover { opacity: 1 !important; }
+}
+
+/* Button flash animation — bone-white fill with brown lettering, fading
+   back to transparent + bone text/border. Used by the desktop GPS button. */
 @keyframes btn-flash {
-  0%   { background: var(--accent); border-color: var(--accent); color: var(--bone); }
-  60%  { background: var(--accent); border-color: var(--accent); color: var(--bone); }
-  100% { background: transparent; }
+  0%   { background: var(--bone); border-color: var(--bone); color: var(--brown-700); }
+  60%  { background: var(--bone); border-color: var(--bone); color: var(--brown-700); }
+  100% { background: transparent; border-color: var(--bone); color: var(--bone); }
 }
 .btn-flash {
   animation: btn-flash 0.55s ease-out forwards !important;
@@ -281,6 +288,14 @@ body {
   }
   /* Tighten card padding a bit further */
   ::-webkit-scrollbar { width: 4px; }
+}
+
+/* Status badge dot pulse — for live "in session" / "starting soon"
+   indicators rendered by components/ui/StatusBadge.tsx. */
+@keyframes status-pulse {
+  0%   { box-shadow: 0 0 0 0 currentColor; }
+  70%  { box-shadow: 0 0 0 6px rgba(217, 119, 6, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
 }
 
 /* GPS location pin pulse */
