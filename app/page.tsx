@@ -454,15 +454,19 @@ export default function Home() {
     return false;
   };
 
-  // Re-check return target whenever the page becomes visible again.
-  // App Router preserves the / page in the router cache, so a Link from
-  // /gym/[id] back to / does NOT re-run a [] dep useEffect. The
-  // 'pageshow' event fires both on first paint and on cache restore,
-  // so it's the most reliable hook for "restore my state every time
-  // the user returns to this page."
+  // Re-check return target on bfcache restore (browser back from a
+  // page that was kept in the back-forward cache). We DON'T fire on
+  // every pageshow because the initial page-load pageshow runs in
+  // addition to the mount useEffect — that double-fire was reading
+  // the OLD matfinder_map_state and clobbering the priority-1
+  // return_to_gym restore. event.persisted is the canonical signal
+  // for bfcache-only restores.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const onPageShow = () => { tryRestoreFromSession(); };
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (!e.persisted) return; // initial load is handled by the mount effect
+      tryRestoreFromSession();
+    };
     window.addEventListener('pageshow', onPageShow);
     return () => window.removeEventListener('pageshow', onPageShow);
   // eslint-disable-next-line react-hooks/exhaustive-deps
