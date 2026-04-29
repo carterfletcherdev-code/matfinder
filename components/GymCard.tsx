@@ -275,10 +275,10 @@ export default function GymCard({
           fontFamily: "'Inter Tight', sans-serif",
           color: 'var(--text-primary)',
           display: 'grid',
-          gridTemplateColumns: '200px 1fr',
+          gridTemplateColumns: '240px 1fr',
           width: '100%',
-          maxWidth: 720,
-          minHeight: 240,
+          maxWidth: 800,
+          minHeight: 250,
         }}
       >
         {/* ── Left: photo or monogram ── */}
@@ -449,7 +449,10 @@ export default function GymCard({
             </div>
           )}
 
-          {/* Open-mat panel — compact */}
+          {/* Open-mat panel — 2-line condensed:
+                Line 1: ● Sat 11:00 am · Open mat
+                Line 2: Jiu-Jitsu · Free for visitors
+              RSVP vertically centered on the right side. */}
           {next && (
             <div
               onClick={stop}
@@ -457,28 +460,43 @@ export default function GymCard({
                 border: '1px solid rgba(94,139,94,0.45)',
                 background: 'linear-gradient(135deg, rgba(94,139,94,0.16), rgba(94,139,94,0.06))',
                 borderRadius: 'var(--radius-md)',
-                padding: '10px 12px',
+                padding: '10px 14px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                gap: 10,
+                gap: 12,
               }}
             >
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div
                   style={{
-                    color: 'var(--success)',
-                    fontSize: 10, fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    marginBottom: 2,
-                    textTransform: 'uppercase',
+                    fontSize: 13, fontWeight: 700, color: 'var(--bone)',
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    lineHeight: 1.3,
                   }}
                 >
-                  {startingSoon ? 'Starting soon' : `${DAY_FULL[next.day]} · ${formatTime(next.start_time)}`}
-                </div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--bone)' }}>
-                  Open mat
-                  <span style={{ fontWeight: 500, color: 'var(--text-muted)', fontSize: 11, marginLeft: 6 }}>
-                    {DISCIPLINE_LABELS[next.discipline]}{next.is_free ? ' · Free for visitors' : ''}
+                  <span
+                    style={{
+                      width: 7, height: 7, borderRadius: '50%',
+                      background: 'var(--success)', flexShrink: 0,
+                    }}
+                  />
+                  <span>
+                    {startingSoon
+                      ? 'Starting soon'
+                      : `${DAY_FULL[next.day]} ${formatTime(next.start_time)}`}
+                    <span style={{ color: 'var(--text-muted)', fontWeight: 500 }}> · </span>
+                    Open mat
                   </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: 11, color: 'var(--text-secondary)',
+                    marginTop: 2, marginLeft: 13, /* indent past the dot */
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {DISCIPLINE_LABELS[next.discipline]}
+                  {next.is_free ? ' · Free for visitors' : ''}
+                  {next.cost && next.cost > 0 ? ` · $${next.cost} drop-in` : ''}
                 </div>
               </div>
               <Button
@@ -490,9 +508,10 @@ export default function GymCard({
                   borderColor: 'var(--success)',
                   color: 'var(--bone)',
                   fontWeight: 700,
-                  height: 28,
+                  height: 32,
                   borderRadius: 'var(--radius-full)',
                   flexShrink: 0,
+                  alignSelf: 'center',
                 }}
               >
                 RSVP
@@ -500,77 +519,79 @@ export default function GymCard({
             </div>
           )}
 
-          {/* Action grid — only render available actions so the visible
-              buttons always look identical (no greyed-out placeholders).
-              Grid columns auto-fit based on what's there. */}
-          {(() => {
-            const actions: Array<{ key: string; node: React.ReactElement }> = [];
-            actions.push({
-              key: 'dir',
-              node: (
-                <Button
-                  as="a"
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => trackEvent('directions_click', gym.id)}
-                  style={{ fontSize: 11 }}
-                >
-                  <IconNav />Directions
-                </Button>
-              ),
-            });
-            if (gym.phone) {
-              actions.push({
-                key: 'phone',
-                node: (
-                  <Button
-                    as="a"
-                    href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => trackEvent('phone_click', gym.id)}
-                    style={{ fontSize: 11 }}
-                  >
-                    <IconPhone />Call
-                  </Button>
-                ),
-              });
-            }
-            if (igHref) {
-              actions.push({
-                key: 'ig',
-                node: (
-                  <Button
-                    as="a"
-                    href={igHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => trackEvent('ig_click', gym.id)}
-                    style={{ fontSize: 11 }}
-                  >
-                    <IconIg />Instagram
-                  </Button>
-                ),
-              });
-            }
-            return (
-              <div
-                onClick={stop}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: `repeat(${actions.length}, 1fr)`,
-                  gap: 6, marginTop: 'auto', paddingTop: 4,
-                }}
+          {/* Action grid — always 3 buttons (Directions / Call / Instagram).
+              Buttons with missing data fade to opacity 0.4 but keep the
+              same outline, dimensions and typography so the row stays
+              visually consistent. */}
+          <div
+            onClick={stop}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 6, marginTop: 'auto', paddingTop: 4,
+            }}
+          >
+            <Button
+              as="a"
+              href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              size="sm"
+              onClick={() => trackEvent('directions_click', gym.id)}
+              style={{ fontSize: 11 }}
+            >
+              <IconNav />Directions
+            </Button>
+            {gym.phone ? (
+              <Button
+                as="a"
+                href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
+                variant="secondary"
+                size="sm"
+                onClick={() => trackEvent('phone_click', gym.id)}
+                style={{ fontSize: 11 }}
               >
-                {actions.map(a => <div key={a.key}>{a.node}</div>)}
-              </div>
-            );
-          })()}
+                <IconPhone />Call
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={(e) => e.preventDefault()}
+                aria-label="Phone unavailable"
+                title="No phone on file"
+                style={{ fontSize: 11, opacity: 0.4, cursor: 'not-allowed' }}
+              >
+                <IconPhone />Call
+              </Button>
+            )}
+            {igHref ? (
+              <Button
+                as="a"
+                href={igHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                size="sm"
+                onClick={() => trackEvent('ig_click', gym.id)}
+                style={{ fontSize: 11 }}
+              >
+                <IconIg />Instagram
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={(e) => e.preventDefault()}
+                aria-label="Instagram unavailable"
+                title="No Instagram on file"
+                style={{ fontSize: 11, opacity: 0.4, cursor: 'not-allowed' }}
+              >
+                <IconIg />Instagram
+              </Button>
+            )}
+          </div>
         </div>
       </article>
     );
@@ -886,78 +907,81 @@ export default function GymCard({
             (browsing, comparing, planning); check-in is a destination
             action that only makes sense once the user is at the gym. */}
 
-        {/* Secondary action grid — only render available actions so the
-            visible buttons always look identical (no greyed-out
-            placeholders). Columns auto-fit based on what's there. */}
-        {(() => {
-          const actions: Array<{ key: string; node: React.ReactElement }> = [];
-          actions.push({
-            key: 'dir',
-            node: (
-              <Button
-                as="a"
-                href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                size="md"
-                onClick={() => trackEvent('directions_click', gym.id)}
-              >
-                <IconNav />
-                <span>Directions</span>
-              </Button>
-            ),
-          });
-          if (gym.phone) {
-            actions.push({
-              key: 'phone',
-              node: (
-                <Button
-                  as="a"
-                  href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
-                  variant="secondary"
-                  size="md"
-                  onClick={() => trackEvent('phone_click', gym.id)}
-                  aria-label={`Call ${gym.phone}`}
-                >
-                  <IconPhone />
-                  <span>Call</span>
-                </Button>
-              ),
-            });
-          }
-          if (igHref) {
-            actions.push({
-              key: 'ig',
-              node: (
-                <Button
-                  as="a"
-                  href={igHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                  size="md"
-                  onClick={() => trackEvent('ig_click', gym.id)}
-                >
-                  <IconIg />
-                  <span>Instagram</span>
-                </Button>
-              ),
-            });
-          }
-          return (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${actions.length}, 1fr)`,
-                gap: 6, marginBottom: 12,
-              }}
-              onClick={stop}
+        {/* Secondary action grid — always 3 buttons (Directions / Call /
+            Instagram). Missing data dims to opacity 0.4 but keeps the
+            same outline + dimensions so the row stays visually identical. */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 6, marginBottom: 12,
+          }}
+          onClick={stop}
+        >
+          <Button
+            as="a"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="secondary"
+            size="md"
+            onClick={() => trackEvent('directions_click', gym.id)}
+          >
+            <IconNav />
+            <span>Directions</span>
+          </Button>
+          {gym.phone ? (
+            <Button
+              as="a"
+              href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
+              variant="secondary"
+              size="md"
+              onClick={() => trackEvent('phone_click', gym.id)}
+              aria-label={`Call ${gym.phone}`}
             >
-              {actions.map(a => <div key={a.key}>{a.node}</div>)}
-            </div>
-          );
-        })()}
+              <IconPhone />
+              <span>Call</span>
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={(e) => e.preventDefault()}
+              aria-label="Phone unavailable"
+              title="No phone on file"
+              style={{ opacity: 0.4, cursor: 'not-allowed' }}
+            >
+              <IconPhone />
+              <span>Call</span>
+            </Button>
+          )}
+          {igHref ? (
+            <Button
+              as="a"
+              href={igHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              size="md"
+              onClick={() => trackEvent('ig_click', gym.id)}
+            >
+              <IconIg />
+              <span>Instagram</span>
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={(e) => e.preventDefault()}
+              aria-label="Instagram unavailable"
+              title="No Instagram on file"
+              style={{ opacity: 0.4, cursor: 'not-allowed' }}
+            >
+              <IconIg />
+              <span>Instagram</span>
+            </Button>
+          )}
+        </div>
 
         {/* Claim / Your gym row — small text-link only when relevant */}
         {ownsThisGym ? (
