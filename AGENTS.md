@@ -286,15 +286,41 @@ When the task involves any of these, slow down and explain step-by-step:
 
 ## 8. Pricing & monetization
 
+### Athlete tiers
 | SKU | Price | What it unlocks |
 |---|---|---|
-| Athlete Free | $0 | Map, search, schedules, favorites |
-| **Athlete Pro** | **$6.99/mo or $59.99/yr** | Unlimited favorites, training log/passport, streak tracker, schedule alerts, priority support |
-| Gym Verified | $0 | Claim listing, edit info |
-| **Gym Featured** | **$30/mo** | Featured pin, photos, "verified by owner" badge, lead notifications |
-| **Gym Sponsor** | **$99/mo** *(launch w/ week 4)* | Top placement in city, analytics dashboard, lead capture form, monthly traffic report |
+| Athlete Free | $0 | Map, search, schedules, favorites (limited) |
+| **Athlete Pro** | **$6.99/mo · $59.99/yr** | Unlimited favorites · training log / passport · streak tracker · schedule alerts · priority support |
 
-Marketplace fees (drop-in booking, seminars) are **post-launch** — they require Stripe Connect setup and gym onboarding flow.
+### Gym owner tiers (free claim, paid amplification)
+Free claim is intentional — it maximizes adoption, which is what's good for the directory. Paywalls live on amplification + analytics, not on basic listing control.
+
+| SKU | Price | Cap | What |
+|---|---|---|---|
+| **Verified** | $0 | — | Claim listing · edit name/address/phone/website/Instagram · edit weekly schedule · upload up to **3 photos** · "verified by gym" badge |
+| **Pro** | **$19/mo · $179/yr** | — | Verified + unlimited photos · custom about-the-gym description · **lead capture form** (visitor email + interest) · **analytics dashboard** (clicks, taps, calls, directions, trends) · monthly traffic report · priority correction-queue review |
+| **Featured** | **$29/mo · $279/yr** | — | Pro + gold-accent featured pin on map · "Featured" header banner on `/gym/[id]` · mention in weekly city email digest |
+| **Spotlight** | **$99/mo · $949/yr** *(intro)* | **3 / city** | Featured + top-3 placement in city search & list · hero placement in email digest · sponsor mention · interview opportunity in matfinder content |
+
+#### Spotlight rules
+- Hard cap of **3 slots per city** — the value is scarcity. 3 is the canonical "top 3" that humans process as "best."
+- **Founding member pricing** — $99/mo locked for the first 12 months. Existing gyms keep their grandfathered price as long as their annual plan stays active.
+- When sold out: waitlist with email notification.
+- Quarterly re-pricing: new Spotlight signups in sold-out cities pay the prevailing rate. Cap stays at 3.
+- Mature state estimate (12+ months in): $149–$299/mo in saturated cities, $79/mo + intro promos in underserved ones. Per-city pricing managed via a simple `featured_pricing` table.
+
+### Athlete + gym revenue assumptions (mid-case Y1)
+- 300 Athlete Pro × $7 ≈ $2,100/mo
+- 200 Verified gyms (free, but they're claimed and self-edited)
+- 100 Pro × $19 ≈ $1,900/mo
+- 30 Featured × $29 ≈ $870/mo
+- 6 cities × 3 Spotlight × $99 ≈ $1,800/mo
+- **≈ $6,700/mo MRR · $80K ARR mid-case Y1**
+
+### What's NOT in pricing yet
+- Marketplace fees (drop-in booking, seminars) — post-launch, requires Stripe Connect
+- Athlete-side group plans / family bundles — post-launch
+- Promoted-event slots — once event ticketing exists
 
 ---
 
