@@ -1,0 +1,26 @@
+# Files Vercel should NOT upload to its build sandbox.
+# Vercel imposes a 15,000-file upload limit, and pipeline scraper output
+# (raw HTML / markdown per gym, JSON dumps) easily blows past that.
+# None of this content is needed at runtime — the API merges directly
+# from Supabase. Pipeline scripts run locally only.
+
+# Pipeline scraper artefacts (the big one — thousands of per-gym dirs)
+scripts/pipeline/data/
+
+# Tier-1 / staging data exports
+scripts/pipeline/*.json
+scripts/pipeline/*.txt
+scripts/pipeline/*.log
+
+# Dev databases / local-only assets
+*.sqlite
+*.sqlite3
+
+# Typescript build cache
+tsconfig.tsbuildinfo
+.next/cache/
+
+# Editor state
+.vscode/
+.idea/
+.DS_Store
