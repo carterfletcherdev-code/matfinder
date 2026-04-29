@@ -102,6 +102,13 @@ export interface Gym {
   // open_mats[] is the filtered subset (schedule.filter(s => s.is_open_mat)).
   schedule?: ScheduleEntry[];
   provenance?: GymProvenance;
+
+  // Google Places enrichment — populated for ~96% of gyms via
+  // scripts/pipeline/enrich-photos.mjs. Photo URL is a long-lived Places
+  // resource link; rating + review_count come from Place Details.
+  photo_url?: string | null;
+  rating?: number | null;
+  review_count?: number | null;
 }
 
 export const DISCIPLINE_LABELS: Record<Discipline, string> = {

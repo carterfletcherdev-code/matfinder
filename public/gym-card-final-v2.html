@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym card · final v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #F5F1E8;
+    --brown-50: #F5EFE6;
+    --brown-100: #E8DDC8;
+    --brown-200: #D4C2A0;
+    --brown-300: #B8A078;
+    --brown-400: #9C7A5C;
+    --brown-500: #7D5E3F;
+    --brown-600: #5C4430;
+    --brown-700: #3E2E20;
+    --brown-800: #2A1F15;
+    --brown-900: #1A1310;
+    --success: #5E8B5E;
+    --warning: #C8A145;
+    --processing: #D97706;
+    --danger: #C4352E;
+
+    --surface-base: var(--brown-900);
+    --surface-raised: var(--brown-800);
+    --surface-sunken: #120e0b;
+    --text-primary: var(--bone);
+    --text-secondary: var(--brown-200);
+    --text-muted: var(--brown-400);
+    --border: var(--brown-700);
+    --accent: var(--brown-300);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px 80px;
+  }
+
+  .page-header { max-width: 1280px; margin: 0 auto 36px; }
+  .page-header h1 { font-size: 28px; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .page-header p { color: var(--text-muted); font-size: 14px; margin: 0; max-width: 720px; line-height: 1.6; }
+
+  .grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+  .card-frame { display: flex; flex-direction: column; gap: 12px; }
+  .card-frame .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .card-frame .label .name { color: var(--bone); font-weight: 700; }
+  .card-frame .rationale { color: var(--text-muted); font-size: 12px; line-height: 1.55; margin-top: -4px; }
+
+  .card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 200ms cubic-bezier(0.32,0.72,0,1), box-shadow 200ms;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  .photo-block {
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.4), transparent 60%),
+      linear-gradient(45deg, var(--brown-700), var(--brown-500));
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-block::after {
+    content: '10P';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px; font-weight: 800;
+    color: rgba(245,241,232,0.18);
+    letter-spacing: 0.06em;
+  }
+
+  .heart-overlay {
+    position: absolute; top: 12px; right: 12px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: grid; place-items: center;
+    color: var(--bone);
+    cursor: pointer;
+    border: 1px solid rgba(245,241,232,0.18);
+    transition: transform 100ms;
+    border: none;
+  }
+  .heart-overlay svg { width: 18px; height: 18px; }
+  .heart-overlay:hover { transform: scale(1.05); }
+
+  .verified-overlay {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(94,139,94,0.92);
+    color: var(--bone);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .verified-overlay svg { width: 11px; height: 11px; }
+
+  .body { padding: 16px 18px; }
+
+  /* Header — name on left (now a link), rating on right */
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .name-link {
+    font-size: 18px; font-weight: 800;
+    color: var(--bone);
+    line-height: 1.25;
+    margin: 0;
+    flex: 1; min-width: 0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: color 150ms;
+  }
+  .name-link:hover { color: var(--accent); }
+  .name-link:hover .ext-icon { opacity: 1; transform: translate(1px, -1px); }
+  .name-link .ext-icon {
+    width: 13px; height: 13px;
+    opacity: 0.4;
+    transition: opacity 150ms, transform 150ms;
+    flex-shrink: 0;
+    color: currentColor;
+  }
+  .name-link.no-website {
+    cursor: default;
+  }
+  .name-link.no-website:hover { color: var(--bone); }
+  .name-link.no-website .ext-icon { display: none; }
+
+  .header-row .rating {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    font-weight: 700;
+    color: var(--bone);
+    font-size: 14px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .header-row .rating .star { color: var(--warning); font-size: 13px; }
+  .header-row .rating .count { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+
+  /* Meta row */
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .status-badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+  .status-badge.live .dot {
+    background: var(--processing);
+    animation: pulse-ring 1.6s ease-out infinite;
+  }
+  .status-badge.closed .dot { background: var(--text-muted); }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(217,119,6,0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(217,119,6,0); }
+    100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+  }
+
+  /* Pills */
+  .pills-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 600; line-height: 1;
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .pill.success { background: rgba(94,139,94,0.14); color: var(--success); }
+  .pill.warning { background: rgba(200,161,69,0.16); color: var(--warning); }
+  .pill.discipline { background: rgba(91,43,90,0.20); color: #E1A6E0; border-color: rgba(91,43,90,0.40); }
+  .pill.discipline.muay { background: rgba(155,52,52,0.18); color: #F08080; border-color: rgba(155,52,52,0.4); }
+  .pill.discipline.boxing { background: rgba(72,107,168,0.18); color: #A6C3F0; border-color: rgba(72,107,168,0.4); }
+  .pill.discipline.mma { background: rgba(132,80,30,0.20); color: #F5C28B; border-color: rgba(132,80,30,0.4); }
+
+  /* Open-mat panel */
+  .openmat-panel {
+    border: 1px solid rgba(94,139,94,0.45);
+    background: linear-gradient(135deg, rgba(94,139,94,0.16), rgba(94,139,94,0.06));
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    transition: border-color 200ms, background 200ms;
+  }
+  .openmat-panel .when {
+    color: var(--success);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+  }
+  .openmat-panel .when::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--success);
+  }
+  .openmat-panel .title { font-size: 16px; font-weight: 700; margin: 0 0 2px; color: var(--bone); }
+  .openmat-panel .sub { font-size: 12px; color: var(--text-muted); margin: 0; }
+  .openmat-panel .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(94,139,94,0.25);
+    gap: 12px;
+  }
+
+  .going-stack {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .avatar-stack { display: flex; }
+  .avatar-stack .avi {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--brown-500);
+    border: 2px solid var(--surface-raised);
+    margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 9px; font-weight: 700;
+    color: var(--bone);
+  }
+  .avatar-stack .avi:first-child { margin-left: 0; }
+  .avatar-stack .avi.a1 { background: #5E4FB7; }
+  .avatar-stack .avi.a2 { background: #5E8B5E; }
+  .avatar-stack .avi.a3 { background: #D97706; }
+  .avatar-stack .avi.a4 { background: #B83A3A; }
+  .avatar-stack .avi.more {
+    background: rgba(245,241,232,0.12);
+    color: var(--text-secondary);
+    font-size: 10px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    gap: 6px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, transform 100ms, color 150ms;
+    text-decoration: none;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .btn-primary-big {
+    width: 100%;
+    height: 48px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--accent);
+    color: var(--brown-900);
+    border-color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .btn-primary-big:hover { background: var(--brown-200); border-color: var(--brown-200); }
+
+  .btn-secondary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .btn-secondary-row .btn {
+    height: 36px;
+    padding: 0 8px;
+    font-size: 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+  }
+  .btn-secondary-row .btn:hover {
+    background: rgba(245,241,232,0.05);
+    border-color: var(--brown-500);
+    color: var(--bone);
+  }
+
+  .btn-rsvp {
+    height: 32px;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--success);
+    color: var(--bone);
+    border-color: var(--success);
+  }
+  .btn-rsvp:hover { background: #6FA06F; border-color: #6FA06F; }
+
+  /* Meta footer */
+  .meta-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .meta-footer .left {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .wrong-info {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    padding: 0;
+    transition: color 150ms;
+  }
+  .wrong-info svg { width: 11px; height: 11px; }
+  .wrong-info:hover { color: var(--processing); }
+
+  /* Day strip — interactive */
+  .day-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+  .day-strip .day {
+    text-align: center;
+    padding: 8px 0 6px;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, color 150ms;
+    border: 1px solid var(--border);
+    background: rgba(245,241,232,0.03);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .day-strip .day .marker {
+    display: block;
+    margin-top: 2px;
+    font-size: 8px;
+    color: var(--text-muted);
+  }
+  .day-strip .day.has-class {
+    background: rgba(94,139,94,0.10);
+    border-color: rgba(94,139,94,0.30);
+    color: var(--success);
+  }
+  .day-strip .day.has-class .marker { color: var(--success); }
+  .day-strip .day.active {
+    background: var(--success);
+    border-color: var(--success);
+    color: var(--bone);
+    font-weight: 800;
+  }
+  .day-strip .day.active .marker { color: rgba(245,241,232,0.85); }
+
+  /* Day-strip schedule list (shown after click) */
+  .day-classes {
+    display: flex; flex-direction: column; gap: 4px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(94,139,94,0.30);
+    border-radius: var(--radius-md);
+    background: rgba(94,139,94,0.06);
+    padding: 10px 12px;
+  }
+  .day-classes .day-classes-head {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--success);
+    margin-bottom: 4px;
+  }
+  .day-classes .row {
+    display: flex; align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 12px;
+  }
+  .day-classes .row + .row {
+    border-top: 1px solid rgba(94,139,94,0.18);
+  }
+  .day-classes .row .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    color: var(--bone);
+    width: 56px;
+    flex-shrink: 0;
+  }
+  .day-classes .row .name {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: 13px; font-weight: 500;
+    min-width: 0;
+  }
+  .day-classes .row .name.openmat {
+    color: var(--success);
+    font-weight: 600;
+  }
+  .day-classes .row .badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    background: rgba(94,139,94,0.18);
+    color: var(--success);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Mobile detail sheet */
+  .mobile-sheet {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-width: 420px;
+  }
+  .mobile-sheet .photo-block {
+    aspect-ratio: 4 / 3;
+  }
+  .mobile-sheet .photo-overlay-text {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 18px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 30%, transparent);
+  }
+  .mobile-sheet .photo-overlay-text .name-link {
+    font-size: 22px;
+    color: var(--bone);
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+  .mobile-sheet .photo-overlay-text .name-link .ext-icon {
+    width: 15px; height: 15px;
+  }
+  .mobile-sheet .photo-overlay-text .meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: rgba(245,241,232,0.85);
+  }
+  .mobile-sheet .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .mobile-sheet .icon-grid .btn {
+    flex-direction: column;
+    height: 60px;
+    gap: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .mobile-sheet .icon-grid .btn svg {
+    width: 18px; height: 18px;
+  }
+  .mobile-sheet .icon-grid .btn:hover {
+    background: rgba(245,241,232,0.05);
+    border-color: var(--brown-500);
+    color: var(--bone);
+  }
+
+  /* Address line — added to mobile */
+  .address-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 150ms;
+    text-decoration: none;
+  }
+  .address-line svg {
+    width: 16px; height: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .address-line:hover { color: var(--bone); }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .stat-row .stat {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-row .stat .num {
+    display: block;
+    font-size: 18px; font-weight: 700;
+    color: var(--bone);
+  }
+  .stat-row .stat .lbl {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  .section-title {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 24px 0 -8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .recap {
+    max-width: 1280px;
+    margin: 60px auto 0;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .recap h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+  .recap p { margin: 0 0 8px; color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .recap p strong { color: var(--bone); }
+  .recap ul { margin: 8px 0 0; padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<!-- SVG icon symbols (referenced via <use>) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17L17 7"/>
+      <polyline points="7 7 17 7 17 17"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <path d="M16 11.37a4 4 0 1 1-7.92 1.18A4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+      <line x1="4" y1="22" x2="4" y2="15"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page-header">
+  <h1>Gym card · final v2</h1>
+  <p>
+    Three changes from v1: <strong style="color: var(--bone);">name is now a website link</strong> (with subtle external-arrow icon),
+    <strong style="color: var(--bone);">all emojis replaced with SVG icons</strong>, and <strong style="color: var(--bone);">day strip is shown both with and without</strong> so you can decide. The clickable day-strip version filters the schedule to that day's classes when tapped.
+  </p>
+</div>
+
+<div class="grid">
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">Standard cards — with vs without day strip</div>
+
+  <!-- A · No day strip -->
+  <div class="card-frame">
+    <div class="label"><span class="name">A</span> · No day strip (cleaner)</div>
+    <div class="rationale">
+      The default. Skips the day strip entirely — open-mat panel always shows the next upcoming open mat. ~80px shorter card. Less scanning, more skimming.
+    </div>
+    <div class="card">
+      <div class="photo-block">
+        <button class="heart-overlay" aria-label="Save"><svg><use href="#i-heart"/></svg></button>
+        <div class="verified-overlay"><svg><use href="#i-check"/></svg> verified 2d</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name-link" onclick="event.stopPropagation()">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn"><svg><use href="#i-nav"/></svg>Directions</button>
+          <button class="btn"><svg><use href="#i-phone"/></svg>Call</button>
+          <button class="btn"><svg><use href="#i-ig"/></svg>Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info"><svg><use href="#i-flag"/></svg>Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B · Functional day strip · default state (Saturday active) -->
+  <div class="card-frame">
+    <div class="label"><span class="name">B</span> · Day strip · default (today)</div>
+    <div class="rationale">
+      Day strip is interactive: today is auto-active. Open-mat panel shows that day's class. Useful for "what's happening Tuesday?" planning.
+    </div>
+    <div class="card">
+      <div class="photo-block">
+        <button class="heart-overlay" aria-label="Save"><svg><use href="#i-heart"/></svg></button>
+        <div class="verified-overlay"><svg><use href="#i-check"/></svg> verified 2d</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name-link" onclick="event.stopPropagation()">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="day-strip">
+          <div class="day has-class">M<span class="marker">●</span></div>
+          <div class="day has-class">T<span class="marker">●</span></div>
+          <div class="day">W<span class="marker">·</span></div>
+          <div class="day has-class">T<span class="marker">●</span></div>
+          <div class="day">F<span class="marker">·</span></div>
+          <div class="day active">S<span class="marker">●</span></div>
+          <div class="day has-class">S<span class="marker">●</span></div>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn"><svg><use href="#i-nav"/></svg>Directions</button>
+          <button class="btn"><svg><use href="#i-phone"/></svg>Call</button>
+          <button class="btn"><svg><use href="#i-ig"/></svg>Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info"><svg><use href="#i-flag"/></svg>Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C · Day strip · clicked Tuesday (showing schedule list interaction) -->
+  <div class="card-frame">
+    <div class="label"><span class="name">C</span> · Day strip · Tuesday clicked</div>
+    <div class="rationale">
+      What B looks like when you tap <strong>Tuesday</strong>. The open-mat panel is replaced with a schedule list of all classes that day. Click a different day → list updates. Click again to collapse back to the next-open-mat default.
+    </div>
+    <div class="card">
+      <div class="photo-block">
+        <button class="heart-overlay" aria-label="Save"><svg><use href="#i-heart"/></svg></button>
+        <div class="verified-overlay"><svg><use href="#i-check"/></svg> verified 2d</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name-link" onclick="event.stopPropagation()">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="day-strip">
+          <div class="day has-class">M<span class="marker">●</span></div>
+          <div class="day active">T<span class="marker">●</span></div>
+          <div class="day">W<span class="marker">·</span></div>
+          <div class="day has-class">T<span class="marker">●</span></div>
+          <div class="day">F<span class="marker">·</span></div>
+          <div class="day has-class">S<span class="marker">●</span></div>
+          <div class="day has-class">S<span class="marker">●</span></div>
+        </div>
+        <div class="day-classes">
+          <div class="day-classes-head">Tuesday — 3 classes</div>
+          <div class="row">
+            <span class="time">6:30 pm</span>
+            <span class="name">Beginner fundamentals</span>
+            <span class="badge">No-Gi</span>
+          </div>
+          <div class="row">
+            <span class="time">7:30 pm</span>
+            <span class="name openmat">Open mat — all levels</span>
+            <span class="badge">No-Gi</span>
+          </div>
+          <div class="row">
+            <span class="time">8:30 pm</span>
+            <span class="name">Advanced rolling</span>
+            <span class="badge">No-Gi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn"><svg><use href="#i-nav"/></svg>Directions</button>
+          <button class="btn"><svg><use href="#i-phone"/></svg>Call</button>
+          <button class="btn"><svg><use href="#i-ig"/></svg>Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info"><svg><use href="#i-flag"/></svg>Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">Refined mobile detail sheet</div>
+
+  <div class="card-frame" style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto;">
+    <div class="label"><span class="name">m1</span> · mobile detail sheet (refined)</div>
+    <div class="rationale">
+      Same DNA as desktop, plus the missing pieces: <strong>name overlaid is now a website link</strong>, <strong>full street address line</strong> (tap to open in Maps), <strong>quick stat row</strong> (classes/week · open mats · matfinders trained here), and <strong>SVG icons</strong> for action grid. No emojis.
+    </div>
+    <div class="card mobile-sheet">
+      <div class="photo-block">
+        <button class="heart-overlay" aria-label="Save"><svg><use href="#i-heart"/></svg></button>
+        <div class="verified-overlay"><svg><use href="#i-check"/></svg> verified 2d</div>
+        <div class="photo-overlay-text">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name-link" onclick="event.stopPropagation()" style="color: var(--bone);">
+            10th Planet Austin
+            <svg class="ext-icon" style="opacity: 0.7;"><use href="#i-ext"/></svg>
+          </a>
+          <div class="meta">
+            <span class="rating" style="color: rgba(245,241,232,0.95)"><span class="star" style="color: var(--warning)">★</span> 4.9 <span style="color: rgba(245,241,232,0.7); font-weight: 500">(87)</span></span>
+            <span class="sep" style="background: rgba(245,241,232,0.5); width:3px; height:3px; border-radius:50%;"></span>
+            <span>2.1 mi · Austin, TX</span>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+
+        <!-- Quick stat row — answers "should I come here?" at a glance -->
+        <div class="stat-row">
+          <div class="stat">
+            <span class="num">12</span>
+            <span class="lbl">Classes / wk</span>
+          </div>
+          <div class="stat">
+            <span class="num">4</span>
+            <span class="lbl">Open mats</span>
+          </div>
+          <div class="stat">
+            <span class="num">47</span>
+            <span class="lbl">Matfinders</span>
+          </div>
+        </div>
+
+        <div class="openmat-panel">
+          <div class="when">Next · Saturday 11:00 am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <p class="sub">Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi a4">SL</div>
+                <div class="avi more">+10</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary-big" style="height: 52px; font-size: 15px;">Check in here</button>
+        <div class="icon-grid">
+          <button class="btn">
+            <svg><use href="#i-nav"/></svg>
+            <span>Directions</span>
+          </button>
+          <button class="btn">
+            <svg><use href="#i-phone"/></svg>
+            <span>Call</span>
+          </button>
+          <button class="btn">
+            <svg><use href="#i-ig"/></svg>
+            <span>Instagram</span>
+          </button>
+        </div>
+
+        <!-- Full address — tappable, opens in Maps -->
+        <a href="#" class="address-line" onclick="event.preventDefault();">
+          <svg><use href="#i-pin"/></svg>
+          <span>2200 E 6th St, Austin, TX 78702</span>
+        </a>
+
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info"><svg><use href="#i-flag"/></svg>Report wrong info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="recap">
+  <h2>What changed from v1</h2>
+  <ul>
+    <li><strong>Name is now a website link.</strong> Subtle external-arrow icon next to it makes the affordance clear; hover lifts the icon and brightens the name. Click stops propagation so the rest of the card-click still selects the gym. Falls back to a plain non-link name if the gym has no website.</li>
+    <li><strong>Zero emojis.</strong> All buttons use proper Lucide-style stroke SVG icons — directions, phone, instagram, heart, check, flag, pin, external-link. Same icon set works in light + dark mode.</li>
+    <li><strong>Day strip — 2 versions side-by-side.</strong> Card A drops it entirely (cleaner). Card B/C keeps it, but it's now <em>functional</em> — clicking a day swaps the open-mat panel for that day's full class list (Card C shows the post-click state).</li>
+    <li><strong>Mobile sheet refined.</strong> Added quick stat row (classes/week · open mats · matfinders trained), full street address line (tap to open Maps), and switched action-grid emojis to SVG icons.</li>
+  </ul>
+
+  <h2 style="margin-top: 24px;">My take</h2>
+  <p>
+    <strong>Card A (no day strip)</strong> wins for the default list view. The day strip is real estate that costs us ~80px and only pays off for the small slice of users planning ahead — most just want "is there an open mat soon?", which the green panel already answers.
+  </p>
+  <p>
+    <strong>Card B/C's day-strip pattern is great for the full <code>/gym/[slug]</code> page</strong> where there's room to breathe and the user is already deep into the gym's details. So: A on the list, day-strip on the gym page. Best of both.
+  </p>
+
+  <h2 style="margin-top: 24px;">Decision needed</h2>
+  <ul>
+    <li>Lock <strong>A</strong> as the standard card? (My recommendation.)</li>
+    <li>Lock <strong>m1</strong> as the mobile sheet? (Anything else missing?)</li>
+    <li>Move <strong>day-strip pattern</strong> to the upcoming <code>/gym/[slug]</code> page — fully implemented + filterable?</li>
+  </ul>
+</div>
+
+</body>
+</html>

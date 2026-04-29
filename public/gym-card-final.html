@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym card · final 3 candidates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #F5F1E8;
+    --brown-50: #F5EFE6;
+    --brown-100: #E8DDC8;
+    --brown-200: #D4C2A0;
+    --brown-300: #B8A078;
+    --brown-400: #9C7A5C;
+    --brown-500: #7D5E3F;
+    --brown-600: #5C4430;
+    --brown-700: #3E2E20;
+    --brown-800: #2A1F15;
+    --brown-900: #1A1310;
+    --success: #5E8B5E;
+    --warning: #C8A145;
+    --processing: #D97706;
+    --danger: #C4352E;
+
+    --surface-base: var(--brown-900);
+    --surface-raised: var(--brown-800);
+    --surface-sunken: #120e0b;
+    --text-primary: var(--bone);
+    --text-secondary: var(--brown-200);
+    --text-muted: var(--brown-400);
+    --border: var(--brown-700);
+    --accent: var(--brown-300);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px 80px;
+  }
+
+  .page-header { max-width: 1280px; margin: 0 auto 36px; }
+  .page-header h1 { font-size: 28px; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .page-header p { color: var(--text-muted); font-size: 14px; margin: 0; max-width: 720px; }
+
+  .grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+  .card-frame { display: flex; flex-direction: column; gap: 12px; }
+  .card-frame .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .card-frame .label .name { color: var(--bone); font-weight: 700; }
+  .card-frame .rationale { color: var(--text-muted); font-size: 12px; line-height: 1.55; margin-top: -4px; }
+
+  /* ── Card primitives ── */
+  .card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 200ms cubic-bezier(0.32,0.72,0,1), box-shadow 200ms;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  /* Photo block */
+  .photo-block {
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.4), transparent 60%),
+      linear-gradient(45deg, var(--brown-700), var(--brown-500));
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-block::after {
+    content: '10P';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px; font-weight: 800;
+    color: rgba(245,241,232,0.18);
+    letter-spacing: 0.06em;
+  }
+
+  .heart-overlay {
+    position: absolute; top: 12px; right: 12px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: grid; place-items: center;
+    color: var(--bone); font-size: 18px;
+    cursor: pointer;
+    border: 1px solid rgba(245,241,232,0.18);
+    transition: transform 100ms;
+  }
+  .heart-overlay:hover { transform: scale(1.05); }
+
+  .verified-overlay {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(94,139,94,0.92);
+    color: var(--bone);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .verified-overlay::before { content: '✓'; font-size: 10px; font-weight: 900; }
+
+  /* Top status strip — only renders when something is live */
+  .top-strip {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 14px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .top-strip.live {
+    background: var(--processing);
+    color: var(--bone);
+  }
+  .top-strip.live::before {
+    content: '●'; font-size: 9px; margin-right: 6px;
+    animation: pulse-dot 1.6s ease-out infinite;
+  }
+  .top-strip.featured {
+    background: linear-gradient(90deg, var(--warning), #E8B85F);
+    color: #1A1310;
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+  }
+  .top-strip.featured::before {
+    content: '★'; font-size: 11px; margin-right: 6px;
+  }
+  @keyframes pulse-dot {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+
+  .body { padding: 16px 18px; }
+
+  /* Header — name on left, rating on right (locked from A1 feedback) */
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .header-row .name {
+    font-size: 18px; font-weight: 800;
+    color: var(--bone);
+    line-height: 1.25;
+    margin: 0;
+    flex: 1; min-width: 0;
+  }
+  .header-row .rating {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    font-weight: 700;
+    color: var(--bone);
+    font-size: 14px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .header-row .rating .star { color: var(--warning); font-size: 13px; }
+  .header-row .rating .count {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  /* Meta row under header */
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .status-badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+  .status-badge.live .dot {
+    background: var(--processing);
+    box-shadow: 0 0 0 0 var(--processing);
+    animation: pulse-ring 1.6s ease-out infinite;
+  }
+  .status-badge.closed .dot { background: var(--text-muted); }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(217,119,6,0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(217,119,6,0); }
+    100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+  }
+
+  /* Pills */
+  .pills-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 600; line-height: 1;
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .pill.success { background: rgba(94,139,94,0.14); color: var(--success); }
+  .pill.warning { background: rgba(200,161,69,0.16); color: var(--warning); }
+  .pill.discipline { background: rgba(91,43,90,0.20); color: #E1A6E0; border-color: rgba(91,43,90,0.40); }
+  .pill.discipline.muay { background: rgba(155,52,52,0.18); color: #F08080; border-color: rgba(155,52,52,0.4); }
+  .pill.discipline.boxing { background: rgba(72,107,168,0.18); color: #A6C3F0; border-color: rgba(72,107,168,0.4); }
+  .pill.discipline.mma { background: rgba(132,80,30,0.20); color: #F5C28B; border-color: rgba(132,80,30,0.4); }
+
+  /* Open-mat panel — the community wedge. Always RSVP + going count. */
+  .openmat-panel {
+    border: 1px solid rgba(94,139,94,0.45);
+    background: linear-gradient(135deg, rgba(94,139,94,0.16), rgba(94,139,94,0.06));
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .openmat-panel .when {
+    color: var(--success);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+  }
+  .openmat-panel .when::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--success);
+  }
+  .openmat-panel .title { font-size: 16px; font-weight: 700; margin: 0 0 2px; color: var(--bone); }
+  .openmat-panel .sub { font-size: 12px; color: var(--text-muted); margin: 0; }
+  .openmat-panel .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(94,139,94,0.25);
+    gap: 12px;
+  }
+
+  .going-stack {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .avatar-stack { display: flex; }
+  .avatar-stack .avi {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--brown-500);
+    border: 2px solid var(--surface-raised);
+    margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 9px; font-weight: 700;
+    color: var(--bone);
+  }
+  .avatar-stack .avi:first-child { margin-left: 0; }
+  .avatar-stack .avi.a1 { background: #5E4FB7; }
+  .avatar-stack .avi.a2 { background: #5E8B5E; }
+  .avatar-stack .avi.a3 { background: #D97706; }
+  .avatar-stack .avi.a4 { background: #B83A3A; }
+  .avatar-stack .avi.more {
+    background: rgba(245,241,232,0.12);
+    color: var(--text-secondary);
+    font-size: 10px;
+  }
+
+  /* Buttons — clear hierarchy from B2 feedback */
+  .btn {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, transform 100ms;
+    text-decoration: none;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn:active { transform: scale(0.98); }
+
+  /* Primary action — the BIG one. Used for Check in or RSVP. Full-width. */
+  .btn-primary-big {
+    width: 100%;
+    height: 48px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--accent);
+    color: var(--brown-900);
+    border-color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .btn-primary-big:hover { background: var(--brown-200); border-color: var(--brown-200); }
+  .btn-primary-big.success {
+    background: var(--success);
+    color: var(--bone);
+    border-color: var(--success);
+  }
+  .btn-primary-big.success:hover { background: #6FA06F; border-color: #6FA06F; }
+
+  /* Secondary actions — uniform 36px row, equally weighted */
+  .btn-secondary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .btn-secondary-row .btn {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+  }
+  .btn-secondary-row .btn:hover {
+    background: rgba(245,241,232,0.05);
+    border-color: var(--brown-500);
+    color: var(--bone);
+  }
+
+  /* Open-mat RSVP button (small, inside the panel) */
+  .btn-rsvp {
+    height: 32px;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--success);
+    color: var(--bone);
+    border-color: var(--success);
+  }
+  .btn-rsvp:hover { background: #6FA06F; border-color: #6FA06F; }
+
+  /* Meta footer — wrong info + social proof */
+  .meta-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .meta-footer .left {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .wrong-info {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    padding: 0;
+    transition: color 150ms;
+  }
+  .wrong-info:hover { color: var(--processing); }
+
+  /* Day strip (V2 only) */
+  .day-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+  .day-strip .day {
+    text-align: center;
+    padding: 8px 0 6px;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, color 150ms;
+    border: 1px solid var(--border);
+    background: rgba(245,241,232,0.03);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .day-strip .day .marker {
+    display: block;
+    margin-top: 2px;
+    font-size: 8px;
+    color: var(--text-muted);
+  }
+  .day-strip .day.has-class {
+    background: rgba(94,139,94,0.10);
+    border-color: rgba(94,139,94,0.30);
+    color: var(--success);
+  }
+  .day-strip .day.has-class .marker { color: var(--success); }
+  .day-strip .day.active {
+    background: var(--success);
+    border-color: var(--success);
+    color: var(--bone);
+    font-weight: 800;
+  }
+  .day-strip .day.active .marker { color: rgba(245,241,232,0.85); }
+  .day-strip .day:hover { transform: translateY(-1px); }
+
+  /* Mobile detail sheet — D4-derived */
+  .mobile-sheet {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-width: 420px;
+  }
+  .mobile-sheet .photo-block {
+    aspect-ratio: 4 / 3;
+  }
+  .mobile-sheet .photo-overlay-text {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 18px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 30%, transparent);
+  }
+  .mobile-sheet .photo-overlay-text .name {
+    font-size: 22px; font-weight: 800; color: var(--bone); margin: 0 0 4px;
+    line-height: 1.2;
+  }
+  .mobile-sheet .photo-overlay-text .meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: rgba(245,241,232,0.85);
+  }
+  .mobile-sheet .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .mobile-sheet .icon-grid .btn {
+    flex-direction: column;
+    height: 60px;
+    gap: 4px;
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .mobile-sheet .icon-grid .btn .icon-glyph {
+    font-size: 18px;
+  }
+  .mobile-sheet .icon-grid .btn:hover {
+    background: rgba(245,241,232,0.05);
+    border-color: var(--brown-500);
+    color: var(--bone);
+  }
+
+  .section-title {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 24px 0 -8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .recap {
+    max-width: 1280px;
+    margin: 60px auto 0;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .recap h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+  .recap p { margin: 0 0 8px; color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .recap p strong { color: var(--bone); }
+  .recap ul { margin: 8px 0 0; padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+  .recap ul li::marker { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Gym card · final 3 candidates</h1>
+  <p>Three takes synthesizing your feedback: rating right-side (A1), button hierarchy with one big primary + uniform 3-button secondary grid (B2), open-mat panel with RSVP always present, plus the mobile detail sheet (D4) shown below the standards.</p>
+</div>
+
+<div class="grid">
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">The 3 standard cards</div>
+
+  <!-- V1 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">v1</span> · standard photo card</div>
+    <div class="rationale">
+      The default. Photo hero, header (name + rating right), status meta, discipline pills, open-mat panel with RSVP, big check-in button, uniform 3-button secondary grid, wrong-info bottom-right.
+    </div>
+    <div class="card">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <h3 class="name">10th Planet Austin</h3>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">★ Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn">Directions</button>
+          <button class="btn">📞 Call</button>
+          <button class="btn">@ Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">v2</span> · day-strip card</div>
+    <div class="rationale">
+      C2-derived but with B2 button hierarchy added. Tap a day on the strip → open-mat panel updates to show that day's class. Sat is highlighted by default (most open mats). Same big check-in + 3-button grid below.
+    </div>
+    <div class="card">
+      <div class="top-strip live">In session · Mon 6:30 fundamentals</div>
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <h3 class="name">10th Planet Austin</h3>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span>Austin, TX · 2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="day-strip">
+          <div class="day has-class">M<span class="marker">●</span></div>
+          <div class="day has-class">T<span class="marker">●</span></div>
+          <div class="day">W<span class="marker">·</span></div>
+          <div class="day has-class">T<span class="marker">●</span></div>
+          <div class="day">F<span class="marker">·</span></div>
+          <div class="day active">S<span class="marker">●</span></div>
+          <div class="day has-class">S<span class="marker">●</span></div>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">★ Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn">Directions</button>
+          <button class="btn">📞 Call</button>
+          <button class="btn">@ Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V3 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">v3</span> · featured (paid tier)</div>
+    <div class="rationale">
+      D1-derived, refined. Gold outline + "Featured" strip on top — no "Sponsor" word. Same body structure as v1 with one extra premium pill ("First class free" or whatever the gym configures).
+    </div>
+    <div class="card" style="border-color: var(--warning); border-width: 1.5px;">
+      <div class="top-strip featured">Featured</div>
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay" style="background: rgba(200,161,69,0.92);">verified by gym</div>
+      </div>
+      <div class="body">
+        <div class="header-row">
+          <h3 class="name">10th Planet Austin</h3>
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill warning">★ First class free</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big">★ Check in here</button>
+        <div class="btn-secondary-row">
+          <button class="btn">Directions</button>
+          <button class="btn">📞 Call</button>
+          <button class="btn">@ Instagram</button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">Mobile detail sheet (locked from D4)</div>
+
+  <div class="card-frame" style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto;">
+    <div class="label"><span class="name">m1</span> · mobile detail sheet</div>
+    <div class="rationale">
+      What appears when a card is tapped on mobile. Full-bleed photo, name + rating overlaid on the photo gradient, big check-in CTA, icon-labeled action grid (Directions / Call / Instagram) — same DNA as desktop but thumb-friendly.
+    </div>
+    <div class="card mobile-sheet">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+        <div class="photo-overlay-text">
+          <h3 class="name">10th Planet Austin</h3>
+          <div class="meta">
+            <span class="rating" style="color: rgba(245,241,232,0.95)"><span class="star" style="color: var(--warning)">★</span> 4.9 <span style="color: rgba(245,241,232,0.7); font-weight: 500">(87)</span></span>
+            <span class="sep" style="background: rgba(245,241,232,0.5)"></span>
+            <span>2.1 mi · Austin, TX</span>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Next · Saturday 11:00 am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <p class="sub">Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi a4">SL</div>
+                <div class="avi more">+10</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn btn-rsvp">RSVP</button>
+          </div>
+        </div>
+        <button class="btn btn-primary-big" style="height: 52px; font-size: 15px;">★ Check in here</button>
+        <div class="icon-grid">
+          <button class="btn">
+            <span class="icon-glyph">📍</span>
+            <span>Directions</span>
+          </button>
+          <button class="btn">
+            <span class="icon-glyph">📞</span>
+            <span>Call</span>
+          </button>
+          <button class="btn">
+            <span class="icon-glyph">@</span>
+            <span>Instagram</span>
+          </button>
+        </div>
+        <div class="meta-footer">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Report wrong info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="recap">
+  <h2>Cross-card consistency rules (locked)</h2>
+  <ul>
+    <li><strong>Header layout:</strong> name on the left (18px / 22px on mobile), rating right-aligned with star + count. Same on every variant.</li>
+    <li><strong>Button hierarchy:</strong> ONE big primary action (full-width, 48px). Then a uniform 3-button secondary grid (Directions / Call / Instagram, all 36px equal width). RSVP lives <em>inside</em> the open-mat panel and stays small (32px) so it doesn't compete with check-in.</li>
+    <li><strong>Open-mat panel:</strong> always green-accented when present. RSVP button + going avatar stack on the same row. The same component renders on all 3 cards.</li>
+    <li><strong>Status indication:</strong> When in session → orange top strip (v2 shows it). When open mat today → green dot in meta row. When closed → muted gray dot. Universal.</li>
+    <li><strong>Wrong info?</strong> always bottom-right of the meta footer, ghost text-only style. Phase A treatment. Will move to overflow menu later.</li>
+    <li><strong>Featured tier (v3):</strong> single word "Featured" — no "Sponsor". Gold border + gold strip + gold "verified by gym" badge. Otherwise identical to v1.</li>
+  </ul>
+
+  <h2 style="margin-top: 24px;">My take on which to build</h2>
+  <p>
+    <strong>Build v1 as the default and v2 as a power-user toggle.</strong> v1 is what 80% of users will see. v2's day-strip is a great progressive-disclosure feature for users who want to plan further ahead — could live as an "expanded" mode after they tap the card the first time.
+  </p>
+  <p>
+    <strong>v3 (Featured) is just a CSS variant of v1</strong> — same component, different border + top strip. Easy to flip on/off based on the gym's tier.
+  </p>
+  <p>
+    <strong>m1 (Mobile sheet)</strong> is what the card expands into when tapped on mobile. Same component, different layout.
+  </p>
+  <p style="color: var(--text-muted); margin-top: 16px;">
+    Open this in your browser. Tell me which one(s) feel right or what to adjust. Once you confirm, I'll build the React component for real.
+  </p>
+</div>
+
+</body>
+</html>

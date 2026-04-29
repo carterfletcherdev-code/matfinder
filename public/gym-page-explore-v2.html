@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>matfinder · /gym page v2 · photo strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #F5F1E8;
+    --brown-50: #F5EFE6;
+    --brown-100: #E8DDC8;
+    --brown-200: #D4C2A0;
+    --brown-300: #B8A078;
+    --brown-400: #9C7A5C;
+    --brown-500: #7D5E3F;
+    --brown-600: #5C4430;
+    --brown-700: #3E2E20;
+    --brown-800: #2A1F15;
+    --brown-900: #1A1310;
+    --success: #5E8B5E;
+    --warning: #C8A145;
+    --processing: #D97706;
+    --danger: #C4352E;
+
+    --surface-base: var(--brown-900);
+    --surface-raised: var(--brown-800);
+    --surface-sunken: #120e0b;
+    --text-primary: var(--bone);
+    --text-secondary: var(--brown-200);
+    --text-muted: var(--brown-400);
+    --border: var(--brown-700);
+    --accent: var(--brown-300);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ───────── Top bar (same as v1) ───────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(26,19,16,0.90);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  .topbar-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text-secondary); font-size: 13px; font-weight: 500;
+    transition: color 150ms;
+  }
+  .back-link:hover { color: var(--bone); }
+  .back-link svg { width: 14px; height: 14px; }
+  .brand { font-weight: 800; font-size: 16px; color: var(--bone); }
+  .topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+  /* ───────── Featured banner strip ───────── */
+  .featured-banner {
+    background: linear-gradient(90deg, var(--warning) 0%, #E8B85F 50%, var(--warning) 100%);
+    color: #1A1310;
+    padding: 8px 24px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .featured-banner svg { width: 13px; height: 13px; }
+  .featured-banner .sub {
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0.75;
+    font-size: 11px;
+  }
+
+  /* ───────── Page layout ───────── */
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section-divider {
+    margin: 60px 0 32px;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent);
+  }
+  .section-divider h2 {
+    font-size: 20px; font-weight: 800;
+    margin: 0 0 6px;
+  }
+  .section-divider p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+
+  /* ───────── Pills ───────── */
+  .pills-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px; font-weight: 600; line-height: 1;
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .pill.success { background: rgba(94,139,94,0.14); color: var(--success); }
+  .pill.warning { background: rgba(200,161,69,0.16); color: var(--warning); }
+  .pill.discipline { background: rgba(91,43,90,0.20); color: #E1A6E0; border-color: rgba(91,43,90,0.40); }
+  .pill.discipline.muay { background: rgba(155,52,52,0.18); color: #F08080; border-color: rgba(155,52,52,0.4); }
+  .pill.discipline.boxing { background: rgba(72,107,168,0.18); color: #A6C3F0; border-color: rgba(72,107,168,0.4); }
+  .pill.discipline.mma { background: rgba(132,80,30,0.20); color: #F5C28B; border-color: rgba(132,80,30,0.4); }
+
+  /* ───────── Buttons (consistent sizing) ───────── */
+  .btn {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    gap: 6px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, transform 100ms, color 150ms;
+    text-decoration: none;
+    font-family: inherit;
+    white-space: nowrap;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .btn.primary {
+    background: var(--accent); color: var(--brown-900);
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--brown-200); border-color: var(--brown-200); }
+  .btn.secondary {
+    background: transparent; color: var(--bone);
+    border-color: var(--border);
+  }
+  .btn.secondary:hover { background: rgba(245,241,232,0.05); border-color: var(--brown-500); }
+  .btn.ghost {
+    background: transparent; color: var(--text-secondary);
+    border-color: transparent;
+  }
+  .btn.ghost:hover { background: rgba(245,241,232,0.05); color: var(--bone); }
+  .btn.success {
+    background: var(--success); color: var(--bone);
+    border-color: var(--success);
+  }
+  .btn.success:hover { background: #6FA06F; border-color: #6FA06F; }
+  .btn.sm { height: 32px; padding: 0 12px; font-size: 12px; }
+  .btn.lg { height: 48px; padding: 0 20px; font-size: 14px; font-weight: 700; }
+
+  /* ───────── Hero zone (3 photo treatments) ───────── */
+  .hero {
+    margin: 28px 0 32px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  /* TREATMENT V1 — Photo hero (only when claimed gym uploaded photos) */
+  .hero.photo {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 880px) {
+    .hero.photo { grid-template-columns: 1fr; }
+    .hero.photo .hero-side { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  }
+  .hero.photo .hero-photo {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.4), transparent 60%),
+      linear-gradient(45deg, var(--brown-700), var(--brown-500));
+    position: relative;
+    overflow: hidden;
+  }
+  .hero.photo .hero-photo::after {
+    content: '10P';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 72px; font-weight: 800;
+    color: rgba(245,241,232,0.16);
+    letter-spacing: 0.08em;
+  }
+  .hero.photo .hero-side {
+    display: grid; grid-template-rows: 1fr 1fr; gap: 16px;
+  }
+  .hero.photo .hero-thumb {
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--brown-600), var(--brown-700));
+    position: relative; overflow: hidden;
+    cursor: pointer; transition: transform 200ms;
+  }
+  .hero.photo .hero-thumb:hover { transform: translateY(-1px); }
+  .hero.photo .hero-thumb.t2 { background: linear-gradient(135deg, var(--brown-500), var(--brown-600)); }
+
+  /* TREATMENT V2 — Brand monogram fallback (default for unclaimed gyms) */
+  .hero.monogram {
+    aspect-ratio: 21 / 7;
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-700));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .hero.monogram::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(91,68,48,0.4), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(94,139,94,0.06), transparent 60%);
+  }
+  .hero.monogram .monogram-content {
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+  .hero.monogram .monogram-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--bone);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    line-height: 1;
+    opacity: 0.92;
+  }
+  .hero.monogram .monogram-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .hero.monogram .photo-cta {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    z-index: 2;
+  }
+  .hero.monogram .photo-cta button {
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 150ms, border-color 150ms;
+    font-family: inherit;
+  }
+  .hero.monogram .photo-cta button:hover {
+    background: rgba(245,241,232,0.06);
+    border-color: var(--brown-500);
+    color: var(--bone);
+  }
+  .hero.monogram .photo-cta button svg { width: 12px; height: 12px; }
+
+  /* TREATMENT V3 — Mosaic grid (when 4+ photos available) */
+  .hero.mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    height: 320px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .hero.mosaic .tile {
+    background: var(--brown-700);
+    position: relative;
+    cursor: pointer;
+    transition: opacity 150ms;
+  }
+  .hero.mosaic .tile:hover { opacity: 0.85; }
+  .hero.mosaic .tile.t1 {
+    grid-row: 1 / 3;
+    background: linear-gradient(135deg, var(--brown-700), var(--brown-500));
+  }
+  .hero.mosaic .tile.t2 { background: linear-gradient(45deg, var(--brown-600), var(--brown-700)); }
+  .hero.mosaic .tile.t3 { background: linear-gradient(135deg, var(--brown-700), var(--brown-800)); }
+  .hero.mosaic .tile.t4 { background: linear-gradient(45deg, var(--brown-500), var(--brown-600)); }
+  .hero.mosaic .tile.t5 {
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
+    position: relative;
+  }
+  .hero.mosaic .tile.t5::after {
+    content: '+ 12 more';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    background: rgba(0,0,0,0.55);
+    color: var(--bone);
+    font-size: 13px;
+    font-weight: 700;
+    backdrop-filter: blur(2px);
+  }
+
+  /* ───────── Header ───────── */
+  .hero-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-header .left { flex: 1; min-width: 0; }
+  .hero-header .name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .hero-header .name {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--bone);
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-header .name svg.ext-icon {
+    width: 18px; height: 18px;
+    opacity: 0.5;
+    transition: opacity 150ms, transform 150ms;
+    color: var(--text-muted);
+  }
+  .hero-header .name:hover svg.ext-icon {
+    opacity: 1; transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  .hero-header .meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .hero-header .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+  .hero-header .meta .rating {
+    color: var(--bone); font-weight: 700;
+    display: inline-flex; align-items: baseline; gap: 4px;
+  }
+  .hero-header .meta .rating .star { color: var(--warning); }
+  .hero-header .meta .rating .count { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+  .hero-header .meta .status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-weight: 600; color: var(--success);
+  }
+  .hero-header .meta .status .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--success);
+  }
+  .hero-header .meta .claimed {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--success); font-weight: 600;
+  }
+  .hero-header .meta .claimed svg { width: 11px; height: 11px; }
+
+  /* CONSISTENT BUTTON SIZING in header — both lg, both same height */
+  .hero-header .right {
+    display: flex; gap: 8px; flex-shrink: 0;
+  }
+  .hero-header .right .btn { height: 48px; font-size: 14px; }
+
+  /* ───────── 2-column ───────── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 880px) {
+    .main-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+  }
+
+  /* ───────── NEXT OPEN MAT hero panel ───────── */
+  .openmat-hero {
+    border: 1px solid var(--success);
+    background: linear-gradient(135deg, rgba(94,139,94,0.18), rgba(94,139,94,0.04));
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    margin-bottom: 32px;
+  }
+  .openmat-hero .when {
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+  }
+  .openmat-hero .when .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--success);
+    animation: pulse-ring 1.6s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(94,139,94,0.6); }
+    70%  { box-shadow: 0 0 0 6px rgba(94,139,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(94,139,94,0); }
+  }
+  .openmat-hero .title { font-size: 22px; font-weight: 800; margin: 0 0 4px; color: var(--bone); }
+  .openmat-hero .sub { font-size: 14px; color: var(--text-secondary); margin: 0 0 18px; }
+  .openmat-hero .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid rgba(94,139,94,0.25);
+  }
+  .going-stack {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .avatar-stack { display: flex; }
+  .avatar-stack .avi {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(94,139,94,0.2);
+    margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 10px; font-weight: 700;
+    color: var(--bone);
+  }
+  .avatar-stack .avi:first-child { margin-left: 0; }
+  .avatar-stack .avi.a1 { background: #5E4FB7; }
+  .avatar-stack .avi.a2 { background: #5E8B5E; }
+  .avatar-stack .avi.a3 { background: #D97706; }
+  .avatar-stack .avi.a4 { background: #B83A3A; }
+  .avatar-stack .avi.a5 { background: #4A8FA8; }
+  .avatar-stack .avi.more {
+    background: rgba(245,241,232,0.12);
+    color: var(--text-secondary); font-size: 11px;
+  }
+
+  /* ───────── Day strip ───────── */
+  .day-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .day-strip .day {
+    text-align: center;
+    padding: 14px 0 10px;
+    border-radius: var(--radius-md);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, color 150ms, transform 100ms;
+    border: 1px solid var(--border);
+    background: rgba(245,241,232,0.03);
+    color: var(--text-muted);
+    line-height: 1.3;
+    user-select: none;
+  }
+  .day-strip .day:hover { transform: translateY(-1px); border-color: var(--brown-500); }
+  .day-strip .day .full-day { display: block; font-size: 13px; color: var(--bone); font-weight: 700; margin-bottom: 4px; }
+  .day-strip .day .count { display: block; margin-top: 2px; font-size: 9px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.04em; }
+  .day-strip .day.has-class { background: rgba(94,139,94,0.10); border-color: rgba(94,139,94,0.30); }
+  .day-strip .day.has-class .count { color: var(--success); }
+  .day-strip .day.active {
+    background: var(--success); border-color: var(--success);
+    color: var(--bone); transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .day-strip .day.active .full-day { color: var(--bone); }
+  .day-strip .day.active .count { color: rgba(245,241,232,0.85); }
+
+  /* ───────── Schedule list ───────── */
+  .schedule-list {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .schedule-list .row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    transition: background 150ms;
+  }
+  .schedule-list .row:last-child { border-bottom: none; }
+  .schedule-list .row:hover { background: rgba(245,241,232,0.03); }
+  .schedule-list .row.openmat { background: rgba(94,139,94,0.06); }
+  .schedule-list .row.openmat:hover { background: rgba(94,139,94,0.10); }
+  .schedule-list .row .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--bone);
+  }
+  .schedule-list .row .name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .schedule-list .row .name.openmat-name { color: var(--success); }
+  .schedule-list .row .meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .schedule-list .row .badges { display: flex; gap: 6px; align-items: center; }
+  .schedule-list .row .rsvp-mini {
+    height: 28px; padding: 0 12px;
+    font-size: 11px; font-weight: 700;
+    background: rgba(94,139,94,0.18);
+    border: 1px solid rgba(94,139,94,0.5);
+    color: var(--success);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 4px;
+    transition: background 150ms, color 150ms;
+    font-family: inherit;
+  }
+  .schedule-list .row .rsvp-mini:hover { background: var(--success); color: var(--bone); }
+  .schedule-list .day-header {
+    padding: 10px 18px;
+    background: rgba(245,241,232,0.03);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .schedule-list .day-header .count {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ───────── About ───────── */
+  .about-section { margin-bottom: 36px; }
+  .about-text {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; margin: 0; max-width: 65ch;
+  }
+
+  /* ───────── Reviews ───────── */
+  .reviews-section { margin-bottom: 36px; }
+  .review-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    margin-bottom: 12px;
+    background: var(--surface-raised);
+  }
+  .review-card .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .review-card .author {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-secondary); font-weight: 600;
+  }
+  .review-card .author .avi {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #5E4FB7;
+    display: grid; place-items: center;
+    font-size: 11px; font-weight: 700; color: var(--bone);
+  }
+  .review-card .stars { color: var(--warning); font-size: 13px; letter-spacing: 1px; }
+  .review-card .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .review-card .body-text { font-size: 13px; color: var(--text-primary); line-height: 1.6; margin: 0; }
+  .review-card .when {
+    font-size: 11px; color: var(--text-muted);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ───────── Sidebar ───────── */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .side-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+  }
+  .side-card .section-title { margin-bottom: 14px; }
+
+  /* AT A GLANCE — REFINED with traveler-relevant stats */
+  .glance-list {
+    display: flex; flex-direction: column;
+  }
+  .glance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .glance-row:last-child { border-bottom: none; }
+  .glance-row .lbl {
+    color: var(--text-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .glance-row .lbl svg {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .glance-row .val {
+    color: var(--bone);
+    font-weight: 600;
+    text-align: right;
+  }
+  .glance-row .val.pos { color: var(--success); }
+  .glance-row .val.neg { color: var(--text-muted); font-weight: 500; }
+
+  /* Contact card */
+  .contact-list { display: flex; flex-direction: column; gap: 2px; }
+  .contact-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--text-secondary);
+    cursor: pointer; transition: color 150ms;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-row:hover { color: var(--bone); }
+  .contact-row svg { width: 16px; height: 16px; color: var(--text-muted); flex-shrink: 0; }
+  .contact-row .label-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .contact-row.link .label-text { color: var(--accent); }
+
+  /* Trained here */
+  .trained-row { display: flex; flex-direction: column; gap: 10px; }
+  .trained-row .text { font-size: 12px; color: var(--text-muted); }
+
+  /* Wrong info */
+  .wrong-info {
+    color: var(--text-muted); font-size: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; border: none; background: transparent;
+    font-family: inherit; padding: 8px 0;
+    transition: color 150ms;
+  }
+  .wrong-info svg { width: 12px; height: 12px; }
+  .wrong-info:hover { color: var(--processing); }
+
+  /* Annotations */
+  .annotations {
+    max-width: 1280px;
+    margin: 60px auto 0;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .annotations h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+  .annotations h3 { margin: 18px 0 8px; font-size: 14px; font-weight: 700; color: var(--bone); }
+  .annotations p { margin: 0 0 8px; color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .annotations p strong { color: var(--bone); }
+  .annotations ul { margin: 8px 0 0; padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+  .annotations ul li::marker { color: var(--accent); }
+  .annotations table {
+    width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px;
+  }
+  .annotations th, .annotations td {
+    padding: 10px 12px; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .annotations th {
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .annotations td { color: var(--text-secondary); }
+  .annotations td strong { color: var(--bone); }
+</style>
+</head>
+<body>
+
+<!-- SVG icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37a4 4 0 1 1-7.92 1.18A4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+    <symbol id="i-gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l4-3h10l4 3v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/><path d="M3 6l9 6 9-6"/></symbol>
+    <symbol id="i-belt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/><line x1="14" y1="9" x2="14" y2="15"/><line x1="17" y1="9" x2="17" y2="15"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55.47.98.97 1.21C12.15 18.75 13 20.24 13 22"/><path d="M14 14.66V17c0 .55-.47.98-.97 1.21C11.85 18.75 11 20.24 11 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  </defs>
+</svg>
+
+<!-- ─────────────────────────────────────────────────────────── -->
+<!-- VARIANT 1 · Featured gym, full photo hero (gym uploaded photos) -->
+<!-- ─────────────────────────────────────────────────────────── -->
+
+<div class="featured-banner">
+  <svg><use href="#i-shield"/></svg>
+  Featured
+  <span class="sub">·  verified by gym</span>
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="back-link"><svg><use href="#i-arrow-left"/></svg> Back to map</a>
+    <div class="brand">matfinder</div>
+    <div class="topbar-actions">
+      <button class="btn ghost sm"><svg><use href="#i-share"/></svg>Share</button>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO V1 — full photo + thumbs (claimed/uploaded) -->
+  <section class="hero photo">
+    <div class="hero-photo">
+      <div style="position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); color:var(--bone); font-size:11px; font-weight:600; padding:4px 10px; border-radius:var(--radius-full); border:1px solid rgba(245,241,232,0.2); cursor:pointer; display:inline-flex; align-items:center; gap:4px;">
+        <svg style="width:11px; height:11px;"><use href="#i-photo"/></svg>8 photos
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-thumb"></div>
+      <div class="hero-thumb t2"></div>
+    </div>
+  </section>
+
+  <!-- HEADER -->
+  <section style="margin-bottom: 36px;">
+    <div class="hero-header">
+      <div class="left">
+        <div class="name-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+        </div>
+        <div class="meta">
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87 reviews)</span></span>
+          <span class="sep"></span>
+          <span class="status"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>Austin, TX · 2.1 mi</span>
+          <span class="sep"></span>
+          <span class="claimed"><svg><use href="#i-check"/></svg>Claimed by gym</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+          <span class="pill warning">First class free</span>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn secondary"><svg><use href="#i-heart"/></svg>Save</button>
+        <button class="btn primary"><svg><use href="#i-check"/></svg>Check in here</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2-column body -->
+  <div class="main-grid">
+    <main>
+
+      <div class="openmat-hero">
+        <div class="when"><span class="dot"></span>Next open mat · Saturday 11:00 am</div>
+        <h2 class="title">All-levels open mat</h2>
+        <p class="sub">No-Gi · Free for visitors with rashguard. Hosted by Coach Marcus and the team.</p>
+        <div class="footer">
+          <div class="going-stack">
+            <div class="avatar-stack">
+              <div class="avi a1">JM</div>
+              <div class="avi a2">AK</div>
+              <div class="avi a3">RT</div>
+              <div class="avi a4">SL</div>
+              <div class="avi a5">PD</div>
+              <div class="avi more">+9</div>
+            </div>
+            <span><strong style="color:var(--bone)">14</strong> matfinders going</span>
+          </div>
+          <button class="btn success lg">RSVP — count me in</button>
+        </div>
+      </div>
+
+      <!-- WEEKLY SCHEDULE — DENSE TUESDAY DEMO -->
+      <section style="margin-bottom: 36px;">
+        <h2 class="section-title">Weekly schedule</h2>
+        <div class="day-strip">
+          <div class="day has-class"><span class="full-day">Mon</span><span class="count">2 classes</span></div>
+          <div class="day active"><span class="full-day">Tue</span><span class="count">6 classes</span></div>
+          <div class="day"><span class="full-day">Wed</span><span class="count">closed</span></div>
+          <div class="day has-class"><span class="full-day">Thu</span><span class="count">5 classes</span></div>
+          <div class="day"><span class="full-day">Fri</span><span class="count">closed</span></div>
+          <div class="day has-class"><span class="full-day">Sat</span><span class="count">1 open mat</span></div>
+          <div class="day has-class"><span class="full-day">Sun</span><span class="count">1 open mat</span></div>
+        </div>
+
+        <div class="schedule-list">
+          <div class="day-header">
+            <span>Tuesday</span>
+            <span class="count">6 classes · 1 open mat</span>
+          </div>
+
+          <div class="row">
+            <span class="time">10:00 am</span>
+            <div>
+              <div class="name">Beginner fundamentals</div>
+              <div class="meta">No-Gi · 60 min · all belts</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="row">
+            <span class="time">12:00 pm</span>
+            <div>
+              <div class="name">Lunch class</div>
+              <div class="meta">Drilling + light rolling · 60 min</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="row">
+            <span class="time">5:00 pm</span>
+            <div>
+              <div class="name">Kids class (ages 6-12)</div>
+              <div class="meta">No-Gi · 45 min</div>
+            </div>
+            <div class="badges"><span class="pill">Kids</span></div>
+          </div>
+
+          <div class="row">
+            <span class="time">6:30 pm</span>
+            <div>
+              <div class="name">Beginner fundamentals</div>
+              <div class="meta">No-Gi · 60 min · all belts welcome</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="row openmat">
+            <span class="time">7:30 pm</span>
+            <div>
+              <div class="name openmat-name">Open mat — all levels</div>
+              <div class="meta">No-Gi · Free for visitors · verified ✓</div>
+            </div>
+            <div class="badges">
+              <button class="rsvp-mini">8 going · RSVP</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="time">8:30 pm</span>
+            <div>
+              <div class="name">Advanced rolling</div>
+              <div class="meta">No-Gi · invite only · purple+</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="section-title">About this gym</h2>
+        <p class="about-text">
+          10th Planet Austin is the city's longest-running No-Gi-only academy. Founded in 2014, the gym focuses on the 10th Planet system pioneered by Eddie Bravo, with a strong competitor pipeline and a beginner-friendly fundamentals track. Saturday open mats are free for visiting practitioners with a rashguard.
+        </p>
+      </section>
+
+      <section class="reviews-section">
+        <h2 class="section-title">Recent reviews</h2>
+        <div class="review-card">
+          <div class="head">
+            <div class="author"><span class="avi">JM</span><span>Jordan M.</span></div>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="tag-row">
+            <span class="pill success">Beginner-friendly</span>
+            <span class="pill success">Technique focused</span>
+            <span class="pill success">Drop-in welcome</span>
+          </div>
+          <p class="body-text">Visited from Houston — coaches were welcoming, free open mat on Saturday, lots of brown and black belts to roll with.</p>
+          <div class="when">2 weeks ago · visited</div>
+        </div>
+        <button class="btn ghost" style="width:100%; margin-top:8px;">See all 87 reviews</button>
+      </section>
+
+    </main>
+
+    <aside class="sidebar">
+
+      <!-- AT A GLANCE — REFINED with traveler stats -->
+      <div class="side-card">
+        <h3 class="section-title">At a glance</h3>
+        <div class="glance-list">
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-dollar"/></svg>Drop-in fee</span>
+            <span class="val pos">Free for visitors</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-gi"/></svg>Loaner gi</span>
+            <span class="val">Available</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-belt"/></svg>Skill levels</span>
+            <span class="val">White → black</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-people"/></svg>Avg class size</span>
+            <span class="val">22 students</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-zap"/></svg>Best day to visit</span>
+            <span class="val">Saturday 11am</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-calendar"/></svg>Open since</span>
+            <span class="val">2014 · 9 years</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3 class="section-title">Contact</h3>
+        <div class="contact-list">
+          <a class="contact-row" href="https://maps.google.com/?q=2200+E+6th+St+Austin+TX">
+            <svg><use href="#i-pin"/></svg><span class="label-text">2200 E 6th St, Austin TX 78702</span>
+          </a>
+          <a class="contact-row" href="tel:+15125550142">
+            <svg><use href="#i-phone"/></svg><span class="label-text">(512) 555-0142</span>
+          </a>
+          <a class="contact-row link" href="https://10thplanetaustin.com" target="_blank" rel="noopener">
+            <svg><use href="#i-globe"/></svg><span class="label-text">10thplanetaustin.com</span>
+          </a>
+          <a class="contact-row link" href="https://instagram.com/10thplanetaustin" target="_blank" rel="noopener">
+            <svg><use href="#i-ig"/></svg><span class="label-text">@10thplanetaustin</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3 class="section-title">Trained here</h3>
+        <div class="trained-row">
+          <div class="avatar-stack">
+            <div class="avi a1">JM</div>
+            <div class="avi a2">AK</div>
+            <div class="avi a3">RT</div>
+            <div class="avi a4">SL</div>
+            <div class="avi a5">PD</div>
+            <div class="avi more">+42</div>
+          </div>
+          <div class="text">47 matfinders have trained here, 12 in the last week.</div>
+        </div>
+      </div>
+
+      <button class="wrong-info"><svg><use href="#i-flag"/></svg>Report wrong info on this listing</button>
+    </aside>
+
+  </div>
+
+</div>
+
+
+<!-- ─────────────────────────────────────────────────────────── -->
+<!-- VARIANT 2 · Unclaimed gym, no photo (monogram fallback) -->
+<!-- ─────────────────────────────────────────────────────────── -->
+
+<div class="page">
+  <div class="section-divider">
+    <h2>↓ Variant 2 — unclaimed gym, no photo</h2>
+    <p>For gyms we discovered but the owner hasn't claimed yet. Default state: no Google photo (which is often poor quality). Branded monogram fallback keeps the page polished. Subtle "Add photos" CTA invites the gym owner to upgrade their listing.</p>
+  </div>
+
+  <section class="hero monogram">
+    <div class="monogram-content">
+      <div class="monogram-icon">10P</div>
+      <div class="monogram-tag">10th Planet Austin · No-Gi BJJ</div>
+    </div>
+    <div class="photo-cta">
+      <button>
+        <svg><use href="#i-plus"/></svg>
+        Are you the gym? Add photos
+      </button>
+    </div>
+  </section>
+
+  <section style="margin-bottom: 36px;">
+    <div class="hero-header">
+      <div class="left">
+        <div class="name-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+        </div>
+        <div class="meta">
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+          <span class="sep"></span>
+          <span class="status"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>Austin, TX · 2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn secondary"><svg><use href="#i-heart"/></svg>Save</button>
+        <button class="btn primary"><svg><use href="#i-check"/></svg>Check in here</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ─────────────────────────────────────────────────────────── -->
+<!-- VARIANT 3 · Mosaic grid (4+ photos available) -->
+<!-- ─────────────────────────────────────────────────────────── -->
+
+<div class="page">
+  <div class="section-divider">
+    <h2>↓ Variant 3 — mosaic grid</h2>
+    <p>For gyms with 4+ photos. A bad single photo dragged across a hero is amateur; a 5-photo mosaic averages out and feels more "real gym, real people, real life." Click any tile → full-screen lightbox. Bottom-right tile shows "+12 more" to invite browsing.</p>
+  </div>
+
+  <section class="hero mosaic">
+    <div class="tile t1"></div>
+    <div class="tile t2"></div>
+    <div class="tile t3"></div>
+    <div class="tile t4"></div>
+    <div class="tile t5"></div>
+  </section>
+
+  <section style="margin-bottom: 36px;">
+    <div class="hero-header">
+      <div class="left">
+        <div class="name-row">
+          <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name">
+            10th Planet Austin
+            <svg class="ext-icon"><use href="#i-ext"/></svg>
+          </a>
+        </div>
+        <div class="meta">
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+          <span class="sep"></span>
+          <span class="status"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>Austin, TX · 2.1 mi</span>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn secondary"><svg><use href="#i-heart"/></svg>Save</button>
+        <button class="btn primary"><svg><use href="#i-check"/></svg>Check in here</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ─────────────────────────────────────────────────────────── -->
+<!-- ANNOTATIONS -->
+<!-- ─────────────────────────────────────────────────────────── -->
+
+<div class="annotations">
+  <h2>What changed from v1</h2>
+  <ul>
+    <li><strong>Featured banner now sits above the topbar</strong> — gold strip across full width, "Featured · verified by gym". Removed the inline gold pill next to the name (cleaner). The banner is impossible to miss but doesn't interrupt the typography.</li>
+    <li><strong>Save and Check in same height (40px) and same visual weight.</strong> Both regular size, hierarchy is variant (secondary vs primary) not size. Was inconsistent before.</li>
+    <li><strong>Day strip now demonstrates dense schedules.</strong> Tuesday selected with 6 classes shown — beginner fundamentals, lunch class, kids class, evening fundamentals, open mat (with RSVP), advanced rolling. Schedule list scrolls if a day has more than ~8 classes.</li>
+    <li><strong>At-a-glance stats refined for travelers.</strong> Drop-in fee, loaner gi, skill levels, avg class size, best day to visit, open since. Each row has a subtle icon. Drop-in fee uses semantic color (green = free, white = paid).</li>
+    <li><strong>Three photo treatments</strong> based on data quality (see below).</li>
+    <li><strong>"Trophy" upcoming events removed</strong> — you said you weren't sure what it was for yet. Easy to add back later when ticketing is wired.</li>
+  </ul>
+
+  <h3>Photo strategy — the key insight</h3>
+  <p>
+    You're right that bad photos drag the site down. Here's the rule I'd code into the page:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Photo source</th><th>Treatment</th><th>Rationale</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gym uploaded 1+ photos</strong> (claimed)</td>
+        <td>Photo hero (Variant 1)</td>
+        <td>The gym chose this photo. They own the brand impression.</td>
+      </tr>
+      <tr>
+        <td><strong>Gym uploaded 4+ photos</strong> (claimed, active)</td>
+        <td>Mosaic grid (Variant 3)</td>
+        <td>Multiple photos average out, more authentic, browseable gallery.</td>
+      </tr>
+      <tr>
+        <td><strong>No gym-uploaded photos</strong> (default / unclaimed)</td>
+        <td>Monogram fallback (Variant 2)</td>
+        <td>We don't show the Google photo unless it's high quality. The branded fallback looks intentional, not lazy. Adds an "Add photos" CTA that converts gym owners.</td>
+      </tr>
+      <tr>
+        <td><strong>Google photo only, exists, low confidence</strong></td>
+        <td>Monogram fallback (Variant 2)</td>
+        <td>Same as no-photo — we don't trust Google photos by default.</td>
+      </tr>
+      <tr>
+        <td><strong>Google photo only, exists, high confidence</strong></td>
+        <td>Photo hero with subtle "Photo from Google · click to update" tag</td>
+        <td>Edge case. Use only when we can verify the photo is gym interior + decent resolution.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 16px;">
+    <strong>The cheap default for now:</strong> show the monogram fallback (V2) by default. Show photos only when the gym is claimed AND has uploaded their own. This protects the site's look 100% and gives gyms a reason to claim ($30/mo Featured). Photos become a paid-tier signal, not a default.
+  </p>
+
+  <h3>One more piece I'd add: "Quick verify" for travelers</h3>
+  <p>
+    Travelers most often want to know: <em>can I just show up tomorrow?</em> Right now they have to read several sections to figure that out. I'd add a small green callout below the openmat-hero panel ONLY for travelers (when distance &gt; 50 mi):
+  </p>
+  <div style="margin-top: 12px; padding: 12px 16px; background: rgba(94,139,94,0.10); border-left: 3px solid var(--success); border-radius: var(--radius-sm); display: flex; gap: 12px; align-items: center;">
+    <svg style="width:16px; height:16px; color: var(--success);"><use href="#i-zap"/></svg>
+    <div>
+      <div style="font-weight: 700; color: var(--success); font-size: 13px;">Visiting Austin?</div>
+      <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">No reservation needed. Free for drop-ins with rashguard. Saturday is the easiest day.</div>
+    </div>
+  </div>
+  <p style="margin-top: 12px;">
+    Easy to wire when the user's location and the gym's drop-in policy are known. Skippable for v1 if it complicates things.
+  </p>
+
+  <h2 style="margin-top: 24px;">Decision list</h2>
+  <ul>
+    <li>Lock the Featured banner placement (above topbar)?</li>
+    <li>Lock the photo strategy (3 treatments, default to monogram)?</li>
+    <li>At-a-glance stats — those 6 are right, or add/remove any? (Drop-in fee, loaner gi, skill levels, avg class size, best day, open since)</li>
+    <li>Day strip + dense schedule row — looks right?</li>
+    <li>Add the "Quick verify for travelers" callout?</li>
+  </ul>
+  <p style="margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+    Once you confirm, I start building. Card A first (we already locked it), then this page.
+  </p>
+</div>
+
+</body>
+</html>

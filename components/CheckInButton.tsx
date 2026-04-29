@@ -4,15 +4,18 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from './AuthProvider';
+import { Button } from './ui';
 
 interface CheckInButtonProps {
   gymId: string;
   gymName: string;
   /** Compact rendering for the landscape compact-expanded card. */
   compact?: boolean;
+  /** New Card-A variant — full-width primary 48px button. */
+  variant?: 'default' | 'primary-big';
 }
 
-export default function CheckInButton({ gymId, gymName, compact }: CheckInButtonProps) {
+export default function CheckInButton({ gymId, gymName, compact, variant }: CheckInButtonProps) {
   const { user, requireAuth } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [sessionName, setSessionName] = useState('');
@@ -231,6 +234,26 @@ export default function CheckInButton({ gymId, gymName, compact }: CheckInButton
       </div>
     </div>
   );
+
+  // Card-A variant: full-width primary 48px button. Used in the new
+  // GymCard layout where Check in is the single big CTA below the
+  // open-mat panel.
+  if (variant === 'primary-big') {
+    return (
+      <>
+        <Button
+          variant="primary"
+          size="lg"
+          fullWidth
+          onClick={open}
+          style={{ height: 48, fontWeight: 700, marginBottom: 8 }}
+        >
+          Check in here
+        </Button>
+        {portalTarget && modal ? createPortal(modal, portalTarget) : null}
+      </>
+    );
+  }
 
   return (
     <>

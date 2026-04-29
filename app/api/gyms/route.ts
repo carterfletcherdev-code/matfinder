@@ -21,6 +21,9 @@ interface DbOverride {
   website?: string | null;
   phone?: string | null;
   instagram?: string | null;
+  photo_url?: string | null;
+  rating?: number | null;
+  review_count?: number | null;
 }
 
 function applyScheduleOverride(gym: Gym, schedule: ScheduleEntry[]): Gym {
@@ -76,7 +79,7 @@ async function fetchDbOverrides(): Promise<Record<string, DbOverride>> {
   const supa = createClient(url, key, { auth: { persistSession: false } });
   const { data, error } = await supa
     .from('gym_overrides')
-    .select('gym_id, schedule, website, phone, instagram');
+    .select('gym_id, schedule, website, phone, instagram, photo_url, rating, review_count');
   if (error || !data) return {};
   const map: Record<string, DbOverride> = {};
   for (const r of data as Array<{ gym_id: string } & DbOverride>) {
@@ -94,6 +97,9 @@ function applyDbOverride(gym: Gym, ov: DbOverride | undefined): Gym {
   if (ov.website)   next = { ...next, website: ov.website };
   if (ov.phone)     next = { ...next, phone: ov.phone };
   if (ov.instagram) next = { ...next, instagram: ov.instagram };
+  if (ov.photo_url !== undefined && ov.photo_url !== null) next = { ...next, photo_url: ov.photo_url };
+  if (ov.rating !== undefined && ov.rating !== null) next = { ...next, rating: ov.rating };
+  if (ov.review_count !== undefined && ov.review_count !== null) next = { ...next, review_count: ov.review_count };
   return next;
 }
 

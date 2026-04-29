@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym card · design exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ── Matfinder design tokens (mirrored from globals.css) ── */
+  :root {
+    --bone: #F5F1E8;
+    --brown-50: #F5EFE6;
+    --brown-100: #E8DDC8;
+    --brown-200: #D4C2A0;
+    --brown-300: #B8A078;
+    --brown-400: #9C7A5C;
+    --brown-500: #7D5E3F;
+    --brown-600: #5C4430;
+    --brown-700: #3E2E20;
+    --brown-800: #2A1F15;
+    --brown-900: #1A1310;
+    --success: #5E8B5E;
+    --warning: #C8A145;
+    --processing: #D97706;
+    --danger: #C4352E;
+
+    /* Dark variant — what the app uses on the map page */
+    --surface-base: var(--brown-900);
+    --surface-raised: var(--brown-800);
+    --surface-sunken: #120e0b;
+    --text-primary: var(--bone);
+    --text-secondary: var(--brown-200);
+    --text-muted: var(--brown-400);
+    --border: var(--brown-700);
+    --accent: var(--brown-300);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-xl: 0 8px 32px rgba(0,0,0,0.6);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px 80px;
+  }
+
+  /* Page header */
+  .page-header {
+    max-width: 1280px;
+    margin: 0 auto 36px;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* Card grid */
+  .grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 32px;
+  }
+  .card-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-frame .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .card-frame .label .name {
+    color: var(--bone);
+    font-weight: 700;
+  }
+  .card-frame .rationale {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: -4px;
+  }
+
+  /* ── Shared card primitives ── */
+  .card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 200ms cubic-bezier(0.32,0.72,0,1), box-shadow 200ms;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .photo-block {
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.4), transparent 60%),
+      linear-gradient(45deg, var(--brown-700), var(--brown-500));
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-block.tall { aspect-ratio: 4 / 3; }
+  .photo-block.square { aspect-ratio: 1 / 1; }
+  .photo-block::after {
+    content: '10P';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 800;
+    color: rgba(245,241,232,0.18);
+    letter-spacing: 0.06em;
+  }
+
+  .heart-overlay {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: grid; place-items: center;
+    color: var(--bone);
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid rgba(245,241,232,0.18);
+    transition: transform 100ms;
+  }
+  .heart-overlay:hover { transform: scale(1.05); }
+  .heart-overlay.active { color: #FF6B6B; }
+
+  .verified-overlay {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(94,139,94,0.92);
+    color: var(--bone);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .verified-overlay::before {
+    content: '✓';
+    font-size: 10px; font-weight: 900;
+  }
+
+  .featured-strip {
+    background: linear-gradient(90deg, var(--warning), #E8B85F);
+    color: #1A1310;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 12px;
+  }
+
+  .body { padding: 16px 18px; }
+  .body.tight { padding: 12px 14px; }
+
+  .name {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    color: var(--bone);
+    line-height: 1.25;
+  }
+  .name.big { font-size: 22px; }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    color: var(--bone);
+    font-size: 13px;
+  }
+  .rating .star { color: var(--warning); }
+  .rating .count { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .status-badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 0 var(--success);
+  }
+  .status-badge.live .dot {
+    background: var(--processing);
+    animation: pulse 1.6s ease-out infinite;
+  }
+  .status-badge.closed .dot { background: var(--text-muted); animation: none; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(217,119,6,0.5); }
+    70%  { box-shadow: 0 0 0 6px rgba(217,119,6,0); }
+    100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+  }
+
+  /* Pills */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .pill.success {
+    background: rgba(94,139,94,0.14);
+    color: var(--success);
+  }
+  .pill.warning {
+    background: rgba(200,161,69,0.16);
+    color: var(--warning);
+  }
+  .pill.discipline {
+    background: rgba(91,43,90,0.20);
+    color: #E1A6E0;
+    border-color: rgba(91,43,90,0.40);
+  }
+  .pill.discipline.muay { background: rgba(155,52,52,0.18); color: #F08080; border-color: rgba(155,52,52,0.4); }
+  .pill.discipline.boxing { background: rgba(72,107,168,0.18); color: #A6C3F0; border-color: rgba(72,107,168,0.4); }
+  .pill.discipline.mma { background: rgba(132,80,30,0.20); color: #F5C28B; border-color: rgba(132,80,30,0.4); }
+
+  .pills-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  /* Buttons (matching the new <Button> primitive) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, transform 100ms;
+    text-decoration: none;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--brown-900);
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--brown-200); border-color: var(--brown-200); }
+  .btn.secondary {
+    background: transparent;
+    color: var(--bone);
+    border-color: var(--border);
+  }
+  .btn.secondary:hover { background: rgba(245,241,232,0.06); }
+  .btn.ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: transparent;
+  }
+  .btn.ghost:hover { background: rgba(245,241,232,0.06); }
+  .btn.success {
+    background: var(--success);
+    color: var(--bone);
+    border-color: var(--success);
+  }
+  .btn.success:hover { background: #6FA06F; }
+  .btn.sm { height: 28px; padding: 0 10px; font-size: 12px; }
+  .btn.lg { height: 44px; padding: 0 18px; font-size: 14px; }
+  .btn.block { width: 100%; }
+  .btn.icon {
+    width: 36px; padding: 0;
+    border-radius: var(--radius-md);
+  }
+
+  /* Open mat hero panel */
+  .openmat-panel {
+    border: 1px solid var(--success);
+    background: rgba(94,139,94,0.10);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .openmat-panel .when {
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .openmat-panel .when::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+  .openmat-panel .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 2px;
+  }
+  .openmat-panel .sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .openmat-panel .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(94,139,94,0.25);
+    gap: 12px;
+  }
+
+  .going-stack {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .avatar-stack {
+    display: flex;
+  }
+  .avatar-stack .avi {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--brown-500);
+    border: 2px solid var(--surface-raised);
+    margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--bone);
+  }
+  .avatar-stack .avi:first-child { margin-left: 0; }
+  .avatar-stack .avi.a1 { background: #5E4FB7; }
+  .avatar-stack .avi.a2 { background: #5E8B5E; }
+  .avatar-stack .avi.a3 { background: #D97706; }
+  .avatar-stack .avi.a4 { background: #B83A3A; }
+  .avatar-stack .avi.more {
+    background: rgba(245,241,232,0.12);
+    color: var(--text-secondary);
+    font-size: 10px;
+  }
+
+  /* Action rows */
+  .action-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .action-row.split { justify-content: space-between; }
+  .action-row.tight { gap: 4px; }
+
+  .meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .meta-bar .left { display: inline-flex; align-items: center; gap: 6px; }
+  .wrong-info {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    padding: 0;
+  }
+  .wrong-info:hover { color: var(--processing); }
+
+  /* Schedule preview */
+  .sched-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .sched-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    padding: 4px 0;
+  }
+  .sched-row .day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 56px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sched-row .name { color: var(--text-primary); flex: 1; font-size: 13px; font-weight: 500; }
+  .sched-row .name.openmat { color: var(--success); font-weight: 600; }
+  .sched-row .rsvp-mini {
+    padding: 3px 8px;
+    background: rgba(94,139,94,0.18);
+    border: 1px solid rgba(94,139,94,0.5);
+    color: var(--success);
+    border-radius: var(--radius-full);
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Compact horizontal layout */
+  .row-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+  }
+  .row-card .photo-block {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  .row-card .body { padding: 14px 16px; }
+
+  /* SVG icon helper */
+  .icon { width: 14px; height: 14px; flex-shrink: 0; }
+  .icon-sm { width: 12px; height: 12px; }
+
+  /* Section spacer */
+  .section-title {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 24px 0 -8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Map popup variant */
+  .map-popup {
+    max-width: 320px;
+    border-radius: var(--radius-md);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Gym card · design exploration</h1>
+  <p>Eight variations to compare. Pick one (or mix-and-match the parts you like) and we build it.</p>
+</div>
+
+<div class="grid">
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">A · Hero photo + open-mat panel</div>
+
+  <!-- A1 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">A1</span> · Photo-hero with RSVP</div>
+    <div class="rationale">Airbnb pattern. Photo dominates, then info, then a green open-mat panel with RSVP. Most "polished app" feel.</div>
+    <div class="card">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:6px;">
+          <h3 class="name">10th Planet Austin</h3>
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="dot"></span>
+          <span>2.1 mi · 2200 E 6th St</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn success sm">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row tight">
+          <button class="btn primary">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary icon" aria-label="Call">📞</button>
+          <button class="btn secondary icon" aria-label="Instagram">@</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">A2</span> · Photo-hero, RSVP-first</div>
+    <div class="rationale">Same as A1 but RSVP is the SINGLE primary action. Check-in goes secondary. Better when growing community is goal #1.</div>
+    <div class="card">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <h3 class="name">10th Planet Austin</h3>
+        <div class="meta-row">
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+          <span class="dot"></span>
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="dot"></span>
+          <span>2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+        <div class="openmat-panel" style="border-color: var(--success); background: linear-gradient(135deg, rgba(94,139,94,0.18), rgba(94,139,94,0.06));">
+          <div class="when">Next open mat · Sat 11am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn success">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row split">
+          <button class="btn secondary sm">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">Call</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">12 trained here this week · 47 matfinders</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">B · Open-mat hero (no photo)</div>
+
+  <!-- B1 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">B1</span> · Open-mat-first, no photo</div>
+    <div class="rationale">For the 4% of gyms without photos. Open mat panel becomes the visual anchor with green accent. Still feels strong.</div>
+    <div class="card">
+      <div class="featured-strip" style="background: rgba(94,139,94,0.20); color: var(--success); border-bottom: 1px solid rgba(94,139,94,0.4);">▸ Open mat happening soon</div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px;">
+          <div>
+            <h3 class="name">10th Planet Austin</h3>
+            <div class="meta-row">
+              <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+              <span class="dot"></span>
+              <span>Austin, TX · 2.1 mi</span>
+            </div>
+          </div>
+          <button class="btn ghost icon" aria-label="Save">♥</button>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat</div>
+          <p class="sub">No-Gi · Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn success sm">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn primary sm">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">Call</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">B2</span> · Status strip + clean info</div>
+    <div class="rationale">Top status bar changes color (green=open mat today, orange=in session, gray=closed). No photo needed. Minimalist.</div>
+    <div class="card">
+      <div class="featured-strip" style="background: var(--processing); color: var(--bone);">● In session · Mon 6:30 fundamentals</div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px;">
+          <h3 class="name big">10th Planet Austin</h3>
+          <button class="btn ghost icon" aria-label="Save">♥</button>
+        </div>
+        <div class="meta-row">
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+          <span class="dot"></span>
+          <span>Austin, TX · 2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Next open mat · Sat 11am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi more">+12</div>
+              </div>
+              <span><strong style="color:var(--bone)">14 going</strong></span>
+            </div>
+            <button class="btn success sm">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn primary block">★ Check in</button>
+        </div>
+        <div class="action-row tight">
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">📞 Call</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">47 matfinders trained here</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">C · Schedule-list emphasis</div>
+
+  <!-- C1 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">C1</span> · Per-class RSVP</div>
+    <div class="rationale">Every upcoming open mat gets its own RSVP. Lets users plan further ahead. Tradeoff: list gets longer.</div>
+    <div class="card">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:6px;">
+          <h3 class="name">10th Planet Austin</h3>
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>3 open mats this week</span>
+          <span class="dot"></span>
+          <span>2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+        <div class="sched-preview">
+          <div class="sched-row">
+            <span class="day">Sat 11a</span>
+            <span class="name openmat">Open mat · No-Gi</span>
+            <button class="rsvp-mini">14 going</button>
+          </div>
+          <div class="sched-row">
+            <span class="day">Sun 10a</span>
+            <span class="name openmat">Open mat · BJJ</span>
+            <button class="rsvp-mini">8 going</button>
+          </div>
+          <div class="sched-row">
+            <span class="day">Wed 8p</span>
+            <span class="name openmat">Open mat · MMA</span>
+            <button class="rsvp-mini">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn primary block">★ Check in here</button>
+        </div>
+        <div class="action-row tight">
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">📞 Call</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">Full schedule · 12 classes/week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="card-frame">
+    <div class="label"><span class="name">C2</span> · Schedule strip with status</div>
+    <div class="rationale">Color-coded day strip showing the week at a glance. Green = open mat day, gray = no class. Compact + powerful.</div>
+    <div class="card">
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+      </div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:6px;">
+          <h3 class="name">10th Planet Austin</h3>
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="dot"></span>
+          <span>2.1 mi</span>
+        </div>
+        <!-- Day strip -->
+        <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:4px; margin-bottom:14px;">
+          <div style="text-align:center; padding:6px 0; background: rgba(94,139,94,0.18); border:1px solid rgba(94,139,94,0.4); border-radius:6px; font-size:10px; font-weight:700; color:var(--success); font-family:'JetBrains Mono',monospace;">M<br><span style="font-size:8px;">●</span></div>
+          <div style="text-align:center; padding:6px 0; background: rgba(94,139,94,0.18); border:1px solid rgba(94,139,94,0.4); border-radius:6px; font-size:10px; font-weight:700; color:var(--success); font-family:'JetBrains Mono',monospace;">T<br><span style="font-size:8px;">●</span></div>
+          <div style="text-align:center; padding:6px 0; background: rgba(245,241,232,0.04); border:1px solid var(--border); border-radius:6px; font-size:10px; font-weight:600; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">W<br><span style="font-size:8px;">·</span></div>
+          <div style="text-align:center; padding:6px 0; background: rgba(94,139,94,0.18); border:1px solid rgba(94,139,94,0.4); border-radius:6px; font-size:10px; font-weight:700; color:var(--success); font-family:'JetBrains Mono',monospace;">T<br><span style="font-size:8px;">●</span></div>
+          <div style="text-align:center; padding:6px 0; background: rgba(245,241,232,0.04); border:1px solid var(--border); border-radius:6px; font-size:10px; font-weight:600; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">F<br><span style="font-size:8px;">·</span></div>
+          <div style="text-align:center; padding:6px 0; background: var(--success); border:1px solid var(--success); border-radius:6px; font-size:10px; font-weight:800; color:var(--bone); font-family:'JetBrains Mono',monospace;">S<br><span style="font-size:8px;">●</span></div>
+          <div style="text-align:center; padding:6px 0; background: rgba(94,139,94,0.18); border:1px solid rgba(94,139,94,0.4); border-radius:6px; font-size:10px; font-weight:700; color:var(--success); font-family:'JetBrains Mono',monospace;">S<br><span style="font-size:8px;">●</span></div>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi more">+12</div>
+              </div>
+              <span><strong style="color:var(--bone)">14 going</strong></span>
+            </div>
+            <button class="btn success sm">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn primary sm">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">📞</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Wrong info?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="section-title">D · Special-purpose variants</div>
+
+  <!-- D1: Featured / Sponsor -->
+  <div class="card-frame">
+    <div class="label"><span class="name">D1</span> · Featured / Sponsor tier</div>
+    <div class="rationale">For paid gyms ($30/$99/mo). Gold accent strip + featured badge. Same content, signaling premium placement.</div>
+    <div class="card" style="border-color: var(--warning); border-width: 1.5px;">
+      <div class="featured-strip">★ Featured · Sponsor</div>
+      <div class="photo-block">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified by gym</div>
+      </div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:6px;">
+          <h3 class="name">10th Planet Austin</h3>
+          <div class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></div>
+        </div>
+        <div class="meta-row">
+          <span class="status-badge"><span class="dot"></span>Open mat today</span>
+          <span class="dot"></span>
+          <span>2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill warning">First class free</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Saturday · 11:00 am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <p class="sub">Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi more">+11</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn success sm">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn primary block">Book intro class — free</button>
+        </div>
+        <div class="action-row tight">
+          <button class="btn secondary sm">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">📞</button>
+          <button class="btn secondary sm">@ IG</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D2: Map popup compact -->
+  <div class="card-frame">
+    <div class="label"><span class="name">D2</span> · Map popup compact</div>
+    <div class="rationale">For map pin click/hover. Smaller. Same DNA as A1 but tighter. Essential info, one tap to expand.</div>
+    <div class="card map-popup">
+      <div class="photo-block tall" style="aspect-ratio: 21/9;">
+        <div class="heart-overlay" style="width:30px; height:30px; font-size:15px;">♥</div>
+      </div>
+      <div class="body tight">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:4px;">
+          <h3 class="name" style="font-size:15px;">10th Planet Austin</h3>
+          <div class="rating" style="font-size:12px;"><span class="star">★</span> 4.9</div>
+        </div>
+        <div class="meta-row" style="margin-bottom: 8px; font-size: 11px;">
+          <span class="status-badge" style="font-size:11px;"><span class="dot"></span>Open mat Sat 11am · 14 going</span>
+        </div>
+        <div class="action-row tight">
+          <button class="btn success sm" style="flex:1;">RSVP</button>
+          <button class="btn secondary sm">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3: List-row horizontal -->
+  <div class="card-frame">
+    <div class="label"><span class="name">D3</span> · List-row horizontal</div>
+    <div class="rationale">For tight desktop list views. Photo on the left, info on the right. Densest layout that still has RSVP.</div>
+    <div class="card row-card">
+      <div class="photo-block">
+        <div class="verified-overlay" style="top: 6px; left: 6px; padding: 2px 7px; font-size: 10px;">✓ verified</div>
+      </div>
+      <div class="body">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:4px;">
+          <h3 class="name" style="font-size:15px;">10th Planet Austin</h3>
+          <button class="btn ghost icon sm" style="height:24px; width:24px;" aria-label="Save">♥</button>
+        </div>
+        <div class="meta-row" style="margin-bottom: 8px;">
+          <div class="rating" style="font-size:12px;"><span class="star">★</span> 4.9</div>
+          <span class="dot"></span>
+          <span class="status-badge" style="font-size:11px;"><span class="dot"></span>Open mat today</span>
+          <span class="dot"></span>
+          <span>2.1 mi</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; background:rgba(94,139,94,0.10); border:1px solid rgba(94,139,94,0.3); border-radius:8px; margin-bottom: 8px;">
+          <div style="flex:1;">
+            <div style="font-size:10px; color: var(--success); font-weight:700; letter-spacing:0.04em;">SAT 11AM · NO-GI OPEN MAT</div>
+            <div style="font-size:11px; color:var(--text-muted);">14 going · Free for visitors</div>
+          </div>
+          <button class="btn success sm">RSVP</button>
+        </div>
+        <div class="action-row tight">
+          <button class="btn primary sm">★ Check in</button>
+          <button class="btn secondary sm">Directions</button>
+          <button class="btn secondary sm">📞</button>
+          <button class="btn secondary sm">@</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D4: Mobile detail sheet -->
+  <div class="card-frame">
+    <div class="label"><span class="name">D4</span> · Mobile detail sheet</div>
+    <div class="rationale">For mobile when card is tapped — bottom sheet style. Full-bleed photo, native-app feel. Big buttons for thumbs.</div>
+    <div class="card" style="border-radius: 20px 20px 0 0;">
+      <div class="photo-block tall">
+        <div class="heart-overlay">♥</div>
+        <div class="verified-overlay">verified 2d</div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding: 24px 18px 14px; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
+          <h3 class="name big" style="margin-bottom: 4px;">10th Planet Austin</h3>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color: rgba(245,241,232,0.85);">
+            <span class="rating" style="color:rgba(245,241,232,0.95)"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+            <span class="dot"></span>
+            <span>2.1 mi · Austin, TX</span>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+        </div>
+        <div class="openmat-panel">
+          <div class="when">Next · Saturday 11:00 am</div>
+          <div class="title">All-levels open mat · No-Gi</div>
+          <p class="sub">Free for visitors with rashguard</p>
+          <div class="footer">
+            <div class="going-stack">
+              <div class="avatar-stack">
+                <div class="avi a1">JM</div>
+                <div class="avi a2">AK</div>
+                <div class="avi a3">RT</div>
+                <div class="avi a4">SL</div>
+                <div class="avi more">+10</div>
+              </div>
+              <span><strong style="color:var(--bone)">14</strong> going</span>
+            </div>
+            <button class="btn success">RSVP</button>
+          </div>
+        </div>
+        <div class="action-row" style="margin-bottom: 10px;">
+          <button class="btn primary lg block">★ Check in here</button>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px;">
+          <button class="btn secondary lg" style="flex-direction:column; height: 56px; gap: 2px;">
+            <span>📍</span>
+            <span style="font-size:10px;">Directions</span>
+          </button>
+          <button class="btn secondary lg" style="flex-direction:column; height: 56px; gap: 2px;">
+            <span>📞</span>
+            <span style="font-size:10px;">Call</span>
+          </button>
+          <button class="btn secondary lg" style="flex-direction:column; height: 56px; gap: 2px;">
+            <span>@</span>
+            <span style="font-size:10px;">Instagram</span>
+          </button>
+        </div>
+        <div class="meta-bar">
+          <span class="left">12 trained here this week</span>
+          <button class="wrong-info">⚠ Report wrong info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="max-width: 1280px; margin: 60px auto 0; padding: 24px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+  <h2 style="margin: 0 0 12px; font-size: 18px; font-weight: 700;">My recommendation</h2>
+  <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 14px;">
+    <strong style="color: var(--bone);">A1 + B2 hybrid</strong> for the standard card,
+    <strong style="color: var(--bone);">D2</strong> for map popups,
+    <strong style="color: var(--bone);">D3</strong> for tight list rows,
+    <strong style="color: var(--bone);">D4</strong> for mobile detail sheet,
+    <strong style="color: var(--bone);">D1</strong> as the Featured/Sponsor tier visual.
+  </p>
+  <p style="margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.6;">
+    A1 nails the visual hierarchy and gives RSVP its rightful prominence inside the open-mat panel. B2's status strip on top is something we can layer on for extra information density when something is "live". Each card has the open-mat panel as a focal point with RSVP — this answers your community-first instinct directly.
+  </p>
+</div>
+
+</body>
+</html>

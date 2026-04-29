@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>matfinder · /gym page · final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #F5F1E8;
+    --brown-50: #F5EFE6;
+    --brown-100: #E8DDC8;
+    --brown-200: #D4C2A0;
+    --brown-300: #B8A078;
+    --brown-400: #9C7A5C;
+    --brown-500: #7D5E3F;
+    --brown-600: #5C4430;
+    --brown-700: #3E2E20;
+    --brown-800: #2A1F15;
+    --brown-900: #1A1310;
+    --success: #5E8B5E;
+    --warning: #C8A145;
+    --processing: #D97706;
+    --danger: #C4352E;
+
+    --surface-base: var(--brown-900);
+    --surface-raised: var(--brown-800);
+    --surface-sunken: #120e0b;
+    --text-primary: var(--bone);
+    --text-secondary: var(--brown-200);
+    --text-muted: var(--brown-400);
+    --border: var(--brown-700);
+    --accent: var(--brown-300);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Featured banner — single word, no subtext ── */
+  .featured-banner {
+    background: linear-gradient(90deg, var(--warning) 0%, #E8B85F 50%, var(--warning) 100%);
+    color: #1A1310;
+    padding: 8px 24px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .featured-banner svg { width: 13px; height: 13px; }
+
+  /* ── Topbar ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(26,19,16,0.90);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  .topbar-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text-secondary); font-size: 13px; font-weight: 500;
+    transition: color 150ms;
+  }
+  .back-link:hover { color: var(--bone); }
+  .back-link svg { width: 14px; height: 14px; }
+  .brand { font-weight: 800; font-size: 16px; color: var(--bone); }
+  .topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── Pills ── */
+  .pills-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px; font-weight: 600; line-height: 1;
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .pill.success { background: rgba(94,139,94,0.14); color: var(--success); }
+  .pill.warning { background: rgba(200,161,69,0.16); color: var(--warning); }
+  .pill.discipline { background: rgba(91,43,90,0.20); color: #E1A6E0; border-color: rgba(91,43,90,0.40); }
+  .pill.discipline.muay { background: rgba(155,52,52,0.18); color: #F08080; border-color: rgba(155,52,52,0.4); }
+  .pill.discipline.boxing { background: rgba(72,107,168,0.18); color: #A6C3F0; border-color: rgba(72,107,168,0.4); }
+  .pill.discipline.mma { background: rgba(132,80,30,0.20); color: #F5C28B; border-color: rgba(132,80,30,0.4); }
+  .pill.openmat {
+    background: var(--success);
+    color: var(--bone);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    gap: 6px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, transform 100ms, color 150ms;
+    text-decoration: none;
+    font-family: inherit;
+    white-space: nowrap;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn.primary { background: var(--accent); color: var(--brown-900); border-color: var(--accent); }
+  .btn.primary:hover { background: var(--brown-200); border-color: var(--brown-200); }
+  .btn.secondary { background: transparent; color: var(--bone); border-color: var(--border); }
+  .btn.secondary:hover { background: rgba(245,241,232,0.05); border-color: var(--brown-500); }
+  .btn.ghost { background: transparent; color: var(--text-secondary); border-color: transparent; }
+  .btn.ghost:hover { background: rgba(245,241,232,0.05); color: var(--bone); }
+  .btn.success { background: var(--success); color: var(--bone); border-color: var(--success); }
+  .btn.success:hover { background: #6FA06F; border-color: #6FA06F; }
+  .btn.sm { height: 32px; padding: 0 12px; font-size: 12px; }
+  .btn.lg { height: 48px; padding: 0 20px; font-size: 14px; font-weight: 700; }
+
+  /* ── Hero — single photo with browse-more ── */
+  .hero {
+    margin: 28px 0 32px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.4), transparent 60%),
+      linear-gradient(45deg, var(--brown-700), var(--brown-500));
+  }
+  .hero::after {
+    content: '10P';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 84px; font-weight: 800;
+    color: rgba(245,241,232,0.18);
+    letter-spacing: 0.08em;
+  }
+  .hero .photo-browse {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    z-index: 1;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    color: var(--bone);
+    font-size: 12px; font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(245,241,232,0.2);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 150ms, border-color 150ms;
+    font-family: inherit;
+  }
+  .hero .photo-browse:hover {
+    background: rgba(0,0,0,0.78);
+    border-color: rgba(245,241,232,0.35);
+  }
+  .hero .photo-browse svg { width: 13px; height: 13px; }
+
+  /* Hero — monogram fallback variant */
+  .hero.monogram {
+    aspect-ratio: 21 / 7;
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-700));
+    border: 1px solid var(--border);
+    display: grid; place-items: center;
+  }
+  .hero.monogram::after { content: ''; }
+  .hero.monogram::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(91,68,48,0.4), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(94,139,94,0.06), transparent 60%);
+  }
+  .hero.monogram .monogram-content {
+    position: relative; z-index: 1; text-align: center;
+  }
+  .hero.monogram .monogram-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px; font-weight: 800;
+    color: var(--bone);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    line-height: 1; opacity: 0.92;
+  }
+  .hero.monogram .monogram-tag {
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+  }
+  .hero.monogram .photo-cta {
+    position: absolute; bottom: 16px; right: 16px; z-index: 2;
+  }
+  .hero.monogram .photo-cta button {
+    background: rgba(245,241,232,0.10);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 150ms, border-color 150ms;
+    font-family: inherit;
+  }
+  .hero.monogram .photo-cta button:hover {
+    background: rgba(245,241,232,0.06); border-color: var(--brown-500); color: var(--bone);
+  }
+  .hero.monogram .photo-cta button svg { width: 12px; height: 12px; }
+
+  /* ── Header ── */
+  .hero-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-header .left { flex: 1; min-width: 0; }
+  .hero-header .name {
+    font-size: 32px; font-weight: 800;
+    color: var(--bone);
+    margin: 0 0 8px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .hero-header .name svg.ext-icon {
+    width: 18px; height: 18px;
+    opacity: 0.5;
+    transition: opacity 150ms, transform 150ms;
+    color: var(--text-muted);
+  }
+  .hero-header .name:hover svg.ext-icon {
+    opacity: 1; transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+  .hero-header .meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-muted);
+    flex-wrap: wrap; margin-bottom: 14px;
+  }
+  .hero-header .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+  .hero-header .meta .rating {
+    color: var(--bone); font-weight: 700;
+    display: inline-flex; align-items: baseline; gap: 4px;
+  }
+  .hero-header .meta .rating .star { color: var(--warning); }
+  .hero-header .meta .rating .count { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+  .hero-header .meta .status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-weight: 600; color: var(--success);
+  }
+  .hero-header .meta .status .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--success);
+  }
+  .hero-header .meta .claimed {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--success); font-weight: 600;
+  }
+  .hero-header .meta .claimed svg { width: 11px; height: 11px; }
+  .hero-header .right { display: flex; gap: 8px; flex-shrink: 0; }
+  .hero-header .right .btn { height: 40px; }
+
+  /* ── 2-col body ── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 880px) {
+    .main-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+  }
+
+  /* ── Open-mat hero panel ── */
+  .openmat-hero {
+    border: 1px solid var(--success);
+    background: linear-gradient(135deg, rgba(94,139,94,0.18), rgba(94,139,94,0.04));
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    margin-bottom: 32px;
+  }
+  .openmat-hero .when {
+    color: var(--success);
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+  }
+  .openmat-hero .when .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--success);
+    animation: pulse-ring 1.6s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(94,139,94,0.6); }
+    70%  { box-shadow: 0 0 0 6px rgba(94,139,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(94,139,94,0); }
+  }
+  .openmat-hero .title { font-size: 22px; font-weight: 800; margin: 0 0 4px; color: var(--bone); }
+  .openmat-hero .sub { font-size: 14px; color: var(--text-secondary); margin: 0 0 18px; }
+  .openmat-hero .footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid rgba(94,139,94,0.25);
+  }
+  .going-stack {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .avatar-stack { display: flex; }
+  .avatar-stack .avi {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--surface-raised);
+    margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 10px; font-weight: 700;
+    color: var(--bone);
+  }
+  .avatar-stack .avi:first-child { margin-left: 0; }
+  .avatar-stack .avi.a1 { background: #5E4FB7; }
+  .avatar-stack .avi.a2 { background: #5E8B5E; }
+  .avatar-stack .avi.a3 { background: #D97706; }
+  .avatar-stack .avi.a4 { background: #B83A3A; }
+  .avatar-stack .avi.a5 { background: #4A8FA8; }
+  .avatar-stack .avi.more {
+    background: rgba(245,241,232,0.12);
+    color: var(--text-secondary); font-size: 11px;
+  }
+
+  /* ── Day strip ── */
+  .day-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .day-strip .day {
+    text-align: center;
+    padding: 14px 0 10px;
+    border-radius: var(--radius-md);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms, color 150ms, transform 100ms;
+    border: 1px solid var(--border);
+    background: rgba(245,241,232,0.03);
+    color: var(--text-muted);
+    line-height: 1.3;
+    user-select: none;
+  }
+  .day-strip .day:hover { transform: translateY(-1px); border-color: var(--brown-500); }
+  .day-strip .day .full-day { display: block; font-size: 13px; color: var(--bone); font-weight: 700; margin-bottom: 4px; }
+  .day-strip .day .count { display: block; margin-top: 2px; font-size: 9px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.04em; }
+  .day-strip .day.has-class { background: rgba(94,139,94,0.10); border-color: rgba(94,139,94,0.30); }
+  .day-strip .day.has-class .count { color: var(--success); }
+  .day-strip .day.active {
+    background: var(--success); border-color: var(--success);
+    color: var(--bone); transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .day-strip .day.active .full-day { color: var(--bone); }
+  .day-strip .day.active .count { color: rgba(245,241,232,0.85); }
+
+  /* ── Schedule list with grouped sections ── */
+  .schedule-block {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  /* Group header — "Open mats" or "Classes" */
+  .group-header {
+    padding: 10px 18px;
+    background: rgba(245,241,232,0.03);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .group-header.openmat-group {
+    background: rgba(94,139,94,0.10);
+    color: var(--success);
+    border-bottom-color: rgba(94,139,94,0.25);
+  }
+  .group-header.openmat-group::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    margin-right: 8px;
+  }
+  .group-header .count { color: var(--text-muted); font-weight: 500; }
+  .group-header.openmat-group .count { color: var(--success); opacity: 0.8; }
+
+  /* Open mat row — strong differentiation */
+  .openmat-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 18px 18px 14px;
+    border-left: 4px solid var(--success);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(94,139,94,0.10), rgba(94,139,94,0.03));
+    transition: background 150ms;
+  }
+  .openmat-row:last-child { border-bottom: none; }
+  .openmat-row:hover { background: linear-gradient(90deg, rgba(94,139,94,0.16), rgba(94,139,94,0.06)); }
+  .openmat-row .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 800;
+    color: var(--bone);
+  }
+  .openmat-row .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 2px;
+  }
+  .openmat-row .sub {
+    font-size: 12px;
+    color: var(--success);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .openmat-row .sub .verified-tag {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .openmat-row .badges {
+    display: flex; gap: 8px; align-items: center;
+    flex-direction: column;
+  }
+  .rsvp-btn {
+    height: 32px; padding: 0 14px;
+    font-size: 12px; font-weight: 800;
+    background: var(--success);
+    color: var(--bone);
+    border: 1px solid var(--success);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 4px;
+    transition: background 150ms, transform 100ms;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .rsvp-btn:hover { background: #6FA06F; }
+  .rsvp-btn:active { transform: scale(0.97); }
+  .going-count {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* Regular class row */
+  .class-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    transition: background 150ms;
+  }
+  .class-row:last-child { border-bottom: none; }
+  .class-row:hover { background: rgba(245,241,232,0.03); }
+  .class-row .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--text-primary);
+  }
+  .class-row .title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+  .class-row .sub { font-size: 11px; color: var(--text-muted); }
+  .class-row .badges { display: flex; gap: 6px; align-items: center; }
+
+  /* About */
+  .about-section { margin-bottom: 36px; }
+  .about-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0; max-width: 65ch; }
+
+  /* Reviews */
+  .reviews-section { margin-bottom: 36px; }
+  .review-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    margin-bottom: 12px;
+    background: var(--surface-raised);
+  }
+  .review-card .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .review-card .author {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-secondary); font-weight: 600;
+  }
+  .review-card .author .avi {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #5E4FB7;
+    display: grid; place-items: center;
+    font-size: 11px; font-weight: 700; color: var(--bone);
+  }
+  .review-card .stars { color: var(--warning); font-size: 13px; letter-spacing: 1px; }
+  .review-card .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .review-card .body-text { font-size: 13px; color: var(--text-primary); line-height: 1.6; margin: 0; }
+  .review-card .when {
+    font-size: 11px; color: var(--text-muted);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Sidebar */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+  .side-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+  }
+  .side-card .section-title { margin-bottom: 12px; }
+
+  /* Contact */
+  .contact-list { display: flex; flex-direction: column; gap: 2px; }
+  .contact-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--text-secondary);
+    cursor: pointer; transition: color 150ms;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-row:hover { color: var(--bone); }
+  .contact-row svg { width: 16px; height: 16px; color: var(--text-muted); flex-shrink: 0; }
+  .contact-row .label-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .contact-row.link .label-text { color: var(--accent); }
+
+  /* At A Glance */
+  .glance-list { display: flex; flex-direction: column; }
+  .glance-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .glance-row:last-child { border-bottom: none; }
+  .glance-row .lbl {
+    color: var(--text-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .glance-row .lbl svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7; }
+  .glance-row .val { color: var(--bone); font-weight: 600; text-align: right; }
+  .glance-row .val.pos { color: var(--success); }
+  .glance-row .val.neg { color: var(--text-muted); font-weight: 500; }
+
+  /* Mini map */
+  .mini-map {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(circle at 50% 55%, rgba(217,119,6,0.18), transparent 30%),
+      linear-gradient(135deg, var(--brown-700), var(--brown-800));
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 200ms;
+    border: 1px solid var(--border);
+  }
+  .mini-map:hover { transform: scale(1.01); }
+  .mini-map .pin {
+    position: absolute;
+    top: 48%; left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 1;
+  }
+  .mini-map .pin .marker {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--processing);
+    border: 3px solid var(--bone);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  }
+  .mini-map .pin .pulse {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--processing);
+    opacity: 0.4;
+    animation: map-pulse 2s ease-out infinite;
+  }
+  @keyframes map-pulse {
+    0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+    100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+  }
+  .mini-map::before {
+    /* Simulate streets */
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, transparent 30%, rgba(245,241,232,0.06) 30.5%, rgba(245,241,232,0.06) 31%, transparent 31.5%),
+      linear-gradient(180deg, transparent 60%, rgba(245,241,232,0.06) 60.5%, rgba(245,241,232,0.06) 61%, transparent 61.5%),
+      linear-gradient(45deg, transparent 70%, rgba(245,241,232,0.04) 70.5%, rgba(245,241,232,0.04) 71%, transparent 71.5%);
+  }
+  .mini-map .open-in-maps {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    color: var(--bone);
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(245,241,232,0.18);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .mini-map .open-in-maps svg { width: 11px; height: 11px; }
+
+  /* Trained here */
+  .trained-row { display: flex; flex-direction: column; gap: 10px; }
+  .trained-row .text { font-size: 12px; color: var(--text-muted); }
+
+  /* Wrong info */
+  .wrong-info {
+    color: var(--text-muted); font-size: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; border: none; background: transparent;
+    font-family: inherit; padding: 8px 0;
+    transition: color 150ms;
+  }
+  .wrong-info svg { width: 12px; height: 12px; }
+  .wrong-info:hover { color: var(--processing); }
+
+  /* ── Photo lightbox modal mockup ── */
+  .lightbox-demo {
+    margin-top: 60px;
+    padding: 24px;
+    background: rgba(0,0,0,0.4);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--brown-600);
+  }
+  .lightbox-demo > h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+  }
+  .lightbox-window {
+    background: rgba(20, 13, 9, 0.98);
+    border: 1px solid rgba(245,241,232,0.18);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    max-width: 920px; margin: 0 auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  }
+  .lightbox-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .lightbox-header h4 {
+    margin: 0;
+    font-size: 16px; font-weight: 700;
+  }
+  .lightbox-header .meta {
+    font-size: 12px; color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lightbox-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(245,241,232,0.10);
+    border: 1px solid rgba(245,241,232,0.18);
+    color: var(--bone);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background 150ms;
+  }
+  .lightbox-close:hover { background: rgba(245,241,232,0.18); }
+  .lightbox-close svg { width: 14px; height: 14px; }
+  .lightbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .lightbox-grid .tile {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--brown-700), var(--brown-500));
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: opacity 150ms;
+  }
+  .lightbox-grid .tile:hover { opacity: 0.92; }
+  .lightbox-grid .tile.t2 { background: linear-gradient(45deg, var(--brown-600), var(--brown-700)); }
+  .lightbox-grid .tile.t3 { background: linear-gradient(135deg, var(--brown-700), var(--brown-800)); }
+  .lightbox-grid .tile.t4 { background: linear-gradient(45deg, var(--brown-500), var(--brown-600)); }
+  .lightbox-pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lightbox-pagination button {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(245,241,232,0.10);
+    border: 1px solid rgba(245,241,232,0.18);
+    color: var(--bone);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background 150ms;
+  }
+  .lightbox-pagination button:hover { background: rgba(245,241,232,0.18); }
+  .lightbox-pagination button svg { width: 14px; height: 14px; }
+
+  /* Annotations */
+  .section-divider {
+    margin: 60px 0 32px;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent);
+  }
+  .section-divider h2 { font-size: 20px; font-weight: 800; margin: 0 0 6px; }
+  .section-divider p { font-size: 13px; color: var(--text-muted); margin: 0; max-width: 720px; line-height: 1.6; }
+
+  .annotations {
+    max-width: 1280px;
+    margin: 60px auto 0;
+    padding: 24px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .annotations h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+  .annotations h3 { margin: 18px 0 8px; font-size: 14px; font-weight: 700; color: var(--bone); }
+  .annotations p { margin: 0 0 8px; color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .annotations p strong { color: var(--bone); }
+  .annotations ul { margin: 8px 0 0; padding-left: 20px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+  .annotations ul li::marker { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37a4 4 0 1 1-7.92 1.18A4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+    <symbol id="i-gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l4-3h10l4 3v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6z"/><path d="M3 6l9 6 9-6"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  </defs>
+</svg>
+
+<!-- ───────── FEATURED VARIANT (claimed gym, photo) ───────── -->
+<div class="featured-banner">
+  <svg><use href="#i-shield"/></svg>
+  Featured
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="back-link"><svg><use href="#i-arrow-left"/></svg> Back to map</a>
+    <div class="brand">matfinder</div>
+    <div class="topbar-actions">
+      <button class="btn ghost sm"><svg><use href="#i-share"/></svg>Share</button>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO — single header photo with "Browse photos" indicator -->
+  <section class="hero">
+    <button class="photo-browse">
+      <svg><use href="#i-photo"/></svg>
+      Browse 8 photos
+    </button>
+  </section>
+
+  <!-- HEADER -->
+  <section style="margin-bottom: 36px;">
+    <div class="hero-header">
+      <div class="left">
+        <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name">
+          10th Planet Austin
+          <svg class="ext-icon"><use href="#i-ext"/></svg>
+        </a>
+        <div class="meta">
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87 reviews)</span></span>
+          <span class="sep"></span>
+          <span class="status"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>Austin, TX · 2.1 mi</span>
+          <span class="sep"></span>
+          <span class="claimed"><svg><use href="#i-check"/></svg>Claimed by gym</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+          <span class="pill discipline boxing">Kickboxing</span>
+          <span class="pill warning">First class free</span>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn secondary"><svg><use href="#i-heart"/></svg>Save</button>
+        <button class="btn primary"><svg><use href="#i-check"/></svg>Check in here</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2-col body -->
+  <div class="main-grid">
+
+    <!-- ─ MAIN COLUMN ─ -->
+    <main>
+
+      <!-- Open mat hero -->
+      <div class="openmat-hero">
+        <div class="when"><span class="dot"></span>Next open mat · Saturday 11:00 am</div>
+        <h2 class="title">All-levels open mat</h2>
+        <p class="sub">No-Gi · Free for visitors with rashguard. Hosted by Coach Marcus.</p>
+        <div class="footer">
+          <div class="going-stack">
+            <div class="avatar-stack">
+              <div class="avi a1">JM</div>
+              <div class="avi a2">AK</div>
+              <div class="avi a3">RT</div>
+              <div class="avi a4">SL</div>
+              <div class="avi a5">PD</div>
+              <div class="avi more">+9</div>
+            </div>
+            <span><strong style="color:var(--bone)">14</strong> matfinders going</span>
+          </div>
+          <button class="btn success lg">RSVP — count me in</button>
+        </div>
+      </div>
+
+      <!-- Weekly schedule -->
+      <section style="margin-bottom: 36px;">
+        <h2 class="section-title">Weekly schedule</h2>
+        <div class="day-strip">
+          <div class="day has-class"><span class="full-day">Mon</span><span class="count">2 classes</span></div>
+          <div class="day active"><span class="full-day">Tue</span><span class="count">6 · 1 open</span></div>
+          <div class="day"><span class="full-day">Wed</span><span class="count">closed</span></div>
+          <div class="day has-class"><span class="full-day">Thu</span><span class="count">5 classes</span></div>
+          <div class="day"><span class="full-day">Fri</span><span class="count">closed</span></div>
+          <div class="day has-class"><span class="full-day">Sat</span><span class="count">1 open mat</span></div>
+          <div class="day has-class"><span class="full-day">Sun</span><span class="count">1 open mat</span></div>
+        </div>
+
+        <!-- Schedule block — open mats first, then classes -->
+        <div class="schedule-block">
+
+          <!-- OPEN MATS group — strong differentiator -->
+          <div class="group-header openmat-group">
+            <span>Open mats — Tuesday</span>
+            <span class="count">1 session</span>
+          </div>
+
+          <div class="openmat-row">
+            <span class="time">7:30 pm</span>
+            <div>
+              <div class="title">All-levels open mat</div>
+              <div class="sub">No-Gi · 90 min · Free for visitors <span class="verified-tag">· verified ✓</span></div>
+            </div>
+            <div class="badges">
+              <button class="rsvp-btn">RSVP</button>
+              <span class="going-count">8 going</span>
+            </div>
+          </div>
+
+          <!-- REGULAR CLASSES group -->
+          <div class="group-header">
+            <span>Classes</span>
+            <span class="count">5 sessions</span>
+          </div>
+
+          <div class="class-row">
+            <span class="time">10:00 am</span>
+            <div>
+              <div class="title">Beginner fundamentals</div>
+              <div class="sub">No-Gi · 60 min · all belts</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="class-row">
+            <span class="time">12:00 pm</span>
+            <div>
+              <div class="title">Lunch class</div>
+              <div class="sub">Drilling + light rolling · 60 min</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="class-row">
+            <span class="time">5:00 pm</span>
+            <div>
+              <div class="title">Kids class (ages 6-12)</div>
+              <div class="sub">No-Gi · 45 min</div>
+            </div>
+            <div class="badges"><span class="pill">Kids</span></div>
+          </div>
+
+          <div class="class-row">
+            <span class="time">6:30 pm</span>
+            <div>
+              <div class="title">Beginner fundamentals</div>
+              <div class="sub">No-Gi · 60 min · all belts welcome</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+          <div class="class-row">
+            <span class="time">8:30 pm</span>
+            <div>
+              <div class="title">Advanced rolling</div>
+              <div class="sub">No-Gi · invite only · purple+</div>
+            </div>
+            <div class="badges"><span class="pill">No-Gi</span></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="about-section">
+        <h2 class="section-title">About this gym</h2>
+        <p class="about-text">
+          10th Planet Austin is the city's longest-running No-Gi-only academy. Founded in 2014, the gym focuses on the 10th Planet system pioneered by Eddie Bravo, with a strong competitor pipeline and a beginner-friendly fundamentals track. Saturday open mats are free for visiting practitioners with a rashguard.
+        </p>
+      </section>
+
+      <!-- Reviews -->
+      <section class="reviews-section">
+        <h2 class="section-title">Recent reviews</h2>
+        <div class="review-card">
+          <div class="head">
+            <div class="author"><span class="avi">JM</span><span>Jordan M.</span></div>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="tag-row">
+            <span class="pill success">Beginner-friendly</span>
+            <span class="pill success">Technique focused</span>
+            <span class="pill success">Drop-in welcome</span>
+          </div>
+          <p class="body-text">Visited from Houston — coaches were welcoming, free open mat on Saturday, lots of brown and black belts to roll with.</p>
+          <div class="when">2 weeks ago · visited</div>
+        </div>
+        <button class="btn ghost" style="width:100%; margin-top:8px;">See all 87 reviews</button>
+      </section>
+
+    </main>
+
+    <!-- ─ SIDEBAR ─ -->
+    <aside class="sidebar">
+
+      <!-- CONTACT — promoted to FIRST position -->
+      <div class="side-card">
+        <h3 class="section-title">Contact</h3>
+        <div class="contact-list">
+          <a class="contact-row" href="https://maps.google.com/?q=2200+E+6th+St+Austin+TX">
+            <svg><use href="#i-pin"/></svg><span class="label-text">2200 E 6th St, Austin TX 78702</span>
+          </a>
+          <a class="contact-row" href="tel:+15125550142">
+            <svg><use href="#i-phone"/></svg><span class="label-text">(512) 555-0142</span>
+          </a>
+          <a class="contact-row link" href="https://10thplanetaustin.com" target="_blank" rel="noopener">
+            <svg><use href="#i-globe"/></svg><span class="label-text">10thplanetaustin.com</span>
+          </a>
+          <a class="contact-row link" href="https://instagram.com/10thplanetaustin" target="_blank" rel="noopener">
+            <svg><use href="#i-ig"/></svg><span class="label-text">@10thplanetaustin</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- AT A GLANCE — fixed 5 stats, always shown -->
+      <div class="side-card">
+        <h3 class="section-title">At a glance</h3>
+        <div class="glance-list">
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-dollar"/></svg>Drop-in fee</span>
+            <span class="val pos">Free for visitors</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-people"/></svg>Avg class size</span>
+            <span class="val">22 students</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-zap"/></svg>Best day to visit</span>
+            <span class="val">Saturday 11am</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-shield"/></svg>Affiliation</span>
+            <span class="val">10th Planet HQ</span>
+          </div>
+          <div class="glance-row">
+            <span class="lbl"><svg><use href="#i-calendar"/></svg>Open since</span>
+            <span class="val">2014 · 9 years</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAINED HERE -->
+      <div class="side-card">
+        <h3 class="section-title">Trained here</h3>
+        <div class="trained-row">
+          <div class="avatar-stack">
+            <div class="avi a1">JM</div>
+            <div class="avi a2">AK</div>
+            <div class="avi a3">RT</div>
+            <div class="avi a4">SL</div>
+            <div class="avi a5">PD</div>
+            <div class="avi more">+42</div>
+          </div>
+          <div class="text">47 matfinders have trained here, 12 in the last week.</div>
+        </div>
+      </div>
+
+      <button class="wrong-info"><svg><use href="#i-flag"/></svg>Report wrong info on this listing</button>
+    </aside>
+
+  </div>
+
+</div>
+
+
+<!-- ───────── PHOTO LIGHTBOX MOCKUP ───────── -->
+<div class="lightbox-demo">
+  <h3>↓ What "Browse 8 photos" opens (lightbox modal)</h3>
+  <div class="lightbox-window">
+    <div class="lightbox-header">
+      <div>
+        <h4>10th Planet Austin · Photos</h4>
+        <span class="meta">1–4 of 8</span>
+      </div>
+      <button class="lightbox-close" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <div class="lightbox-grid">
+      <div class="tile"></div>
+      <div class="tile t2"></div>
+      <div class="tile t3"></div>
+      <div class="tile t4"></div>
+    </div>
+    <div class="lightbox-pagination">
+      <button aria-label="Previous"><svg><use href="#i-arrow-left"/></svg></button>
+      <span>Page 1 of 2</span>
+      <button aria-label="Next"><svg><use href="#i-arrow-right"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ───────── UNCLAIMED VARIANT (no photo) ───────── -->
+<div class="page">
+  <div class="section-divider">
+    <h2>↓ Unclaimed gym variant — no photos</h2>
+    <p>Default state when the gym hasn't claimed and uploaded photos. Single header replaced with the monogram fallback. "Add photos" CTA invites the gym owner to claim and unlock photo hero.</p>
+  </div>
+
+  <section class="hero monogram">
+    <div class="monogram-content">
+      <div class="monogram-icon">10P</div>
+      <div class="monogram-tag">10th Planet Austin · No-Gi BJJ</div>
+    </div>
+    <div class="photo-cta">
+      <button>
+        <svg><use href="#i-plus"/></svg>
+        Are you the gym? Add photos
+      </button>
+    </div>
+  </section>
+
+  <section style="margin-bottom: 36px;">
+    <div class="hero-header">
+      <div class="left">
+        <a href="https://10thplanetaustin.com" target="_blank" rel="noopener" class="name">
+          10th Planet Austin
+          <svg class="ext-icon"><use href="#i-ext"/></svg>
+        </a>
+        <div class="meta">
+          <span class="rating"><span class="star">★</span> 4.9 <span class="count">(87)</span></span>
+          <span class="sep"></span>
+          <span class="status"><span class="dot"></span>Open mat today</span>
+          <span class="sep"></span>
+          <span>Austin, TX · 2.1 mi</span>
+        </div>
+        <div class="pills-row">
+          <span class="pill discipline">No-Gi BJJ</span>
+          <span class="pill discipline mma">MMA</span>
+          <span class="pill discipline muay">Muay Thai</span>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn secondary"><svg><use href="#i-heart"/></svg>Save</button>
+        <button class="btn primary"><svg><use href="#i-check"/></svg>Check in here</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ───────── ANNOTATIONS ───────── -->
+<div class="annotations">
+  <h2>Final changes locked in this version</h2>
+  <ul>
+    <li><strong>Featured banner</strong> — single word "Featured", no "verified by gym" subtext.</li>
+    <li><strong>Single header photo only</strong> — mosaic dropped. "Browse 8 photos" button bottom-right opens a lightbox modal (mocked above) with a 4-up grid + pagination. Encourages gyms to focus on getting <em>one</em> great hero shot.</li>
+    <li><strong>Monogram fallback</strong> stays for unclaimed/no-photo gyms (variant shown below).</li>
+    <li><strong>Open-mat differentiator in schedule list</strong> — open mats now have their own group header at the TOP of each day, with a colored bullet. Each open-mat row has a 4px green left border, lighter green-tinted background, larger row padding, larger time, prominent green RSVP pill, and a small "8 going" counter. Eyes go straight to it.</li>
+    <li><strong>Contact card promoted to top</strong> of sidebar — was buried below At A Glance before. Now first-thing-you-see when you scan the right column.</li>
+    <li><strong>Mini map preview added</strong> between Contact and At A Glance. Pin pulses, "Open in Maps" overlay click-action. Easy to wire to your existing Mapbox component.</li>
+    <li><strong>At A Glance refined:</strong> dropped Skill levels (you said). Made rows conditional based on what's known about the gym. New default set:
+      <ul style="margin-top: 4px;">
+        <li><strong>Drop-in fee</strong> · semantic green when free, neutral when paid</li>
+        <li><strong>Bring</strong> (replaces Loaner gi) · adapts per discipline. BJJ Gi school → "Gi, mouthguard". No-Gi → "Rashguard, mouthguard". Boxing → "Hand wraps, mouthguard". MMA → "Gloves, mouthguard, mouthpiece". Some schools won't have this.</li>
+        <li><strong>Avg class size</strong> · only when we have attendance data</li>
+        <li><strong>Best day to visit</strong> · computed from open-mat schedule</li>
+        <li><strong>Affiliation</strong> · for BJJ schools (Gracie Barra / 10th Planet / Atos / Alliance / etc.) · skipped for non-BJJ</li>
+        <li><strong>Open since</strong> · only when known</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Discipline-aware At A Glance — examples by gym type</h3>
+  <p style="font-size: 13px;">The rows are not fixed. The component renders only what's relevant for the gym's discipline + what data we have:</p>
+  <table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:8px;">
+    <tbody>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding:8px 0; color: var(--text-muted); width: 130px; vertical-align: top;"><strong style="color:var(--bone)">BJJ Gi school</strong></td>
+        <td style="padding:8px 0; color: var(--text-secondary);">Drop-in fee · Bring (gi, mouthguard) · Avg class size · Best day · Affiliation · Open since</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding:8px 0; color: var(--text-muted); vertical-align: top;"><strong style="color:var(--bone)">No-Gi only</strong></td>
+        <td style="padding:8px 0; color: var(--text-secondary);">Drop-in fee · Bring (rashguard, mouthguard) · Avg class size · Best day · Affiliation · Open since</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding:8px 0; color: var(--text-muted); vertical-align: top;"><strong style="color:var(--bone)">Muay Thai gym</strong></td>
+        <td style="padding:8px 0; color: var(--text-secondary);">Drop-in fee · Bring (hand wraps, mouthguard, gloves) · Sparring nights · Best day · Open since</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding:8px 0; color: var(--text-muted); vertical-align: top;"><strong style="color:var(--bone)">Boxing gym</strong></td>
+        <td style="padding:8px 0; color: var(--text-secondary);">Drop-in fee · Bring (hand wraps, mouthguard, gloves) · Avg class size · Best day · Open since</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 0; color: var(--text-muted); vertical-align: top;"><strong style="color:var(--bone)">MMA gym</strong></td>
+        <td style="padding:8px 0; color: var(--text-secondary);">Drop-in fee · Bring (gloves, mouthguard) · Sparring nights · Avg class size · Best day · Open since</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Research findings — what other directories do that we should consider</h3>
+  <ul>
+    <li><strong>Map embed in sidebar</strong> — every major directory (Yelp, Google, ClassPass, MindBody) shows one. We added a mini preview ✓</li>
+    <li><strong>Photo lightbox</strong> — universal pattern, modal with 4-up grid + arrow navigation. Added ✓</li>
+    <li><strong>Sticky check-in CTA</strong> on mobile scroll — Yelp pins a "Reserve" button to the bottom on mobile after you scroll past the hero. Worth adding when we ship the iOS app.</li>
+    <li><strong>"Walk-in policy" line</strong> — first thing visitors want to know. Captured in our "Drop-in fee" + "Best day to visit" rows.</li>
+    <li><strong>Coach/instructor profiles</strong> — important for BJJ where lineage matters. Future addition once we have a `coaches` table.</li>
+    <li><strong>Required gear / dress code</strong> — captured in "Bring" row.</li>
+    <li><strong>Pricing transparency</strong> — most gyms hide pricing. The "Drop-in fee" line is the single most useful thing we can show because it's the only price most travelers care about.</li>
+    <li><strong>FAQ / "What to expect on your first visit"</strong> — adds a lot. Could go between About and Reviews. Skip for v1, add once owner portal can populate it.</li>
+  </ul>
+
+  <h3>What I'd add later (not now)</h3>
+  <ul>
+    <li>Sticky "Check in" button on mobile scroll (iOS app)</li>
+    <li>Coach profiles section</li>
+    <li>"What to expect on first visit" expandable</li>
+    <li>Class videos (gym uploads short clips)</li>
+    <li>Live "X people training right now" counter</li>
+    <li>Embedded review-tag aggregator ("Best for: beginners, drop-ins, competitors")</li>
+  </ul>
+
+  <h2 style="margin-top: 24px;">Approval</h2>
+  <p>
+    If this looks right — say "lock it" and I start building <strong>Card A</strong> in React (already locked) and then this gym page. Both will use the existing Button primitive and design tokens.
+  </p>
+</div>
+
+</body>
+</html>
