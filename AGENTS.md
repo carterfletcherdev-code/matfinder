@@ -87,15 +87,30 @@ supabase/migrations/ — SQL migrations
 `gyms`, `gym_overrides`, `events`, `corrections`, `gym_owners`, `admins`, `subscriptions`, `ratings`, `favorites`, `check_in_sessions`, plus `auth.users`.
 
 ### What's NOT built yet
-- `/gym/[slug]` full-screen gym profile page
 - `sessions` + `ranks` tables (the Passport core)
 - `/u/[handle]` user profile page
 - Public feed / community page
-- RSVP system
+- RSVP system (currently stubbed — alert "coming soon")
 - Gym owner analytics dashboard ($99/mo Sponsor tier)
 - iOS app (Capacitor wrap planned)
 - Three-tab nav (Map / Passport / Community)
-- Reusable design-system component primitives (Card, Button, Pill, StatusBadge)
+- Click-through from list cards → gym detail page (manual URL only for now)
+- Photo lightbox on gym page (single hero only currently)
+- Correction form on new GymCard (stub button — legacy flow not yet ported)
+
+### What just shipped (Week 1)
+- ✅ Master charter (`AGENTS.md`)
+- ✅ Design-system foundation (`components/ui/`: Button, Card, Pill, StatusBadge)
+- ✅ Status helper (`lib/gymStatus.ts`)
+- ✅ Photo + rating columns on `gym_overrides` + Phase 1/1B/2 enrichment (~6,000 gyms)
+- ✅ `/api/gyms` merges photo_url, rating, review_count
+- ✅ Gym type extended with photo + rating fields
+- ✅ Button primitive migration across 9 high-impact files (paywall, auth,
+  onboarding, form submits)
+- ✅ GymCard rebuilt — Card A vertical (list) + landscape (mapOverlay popover)
+  with photo-header layout, status badges, RSVP-bearing open-mat panel
+- ✅ `/gym/[gymId]` full detail page — hero photo, header, day-strip schedule
+  with grouped open mats, sidebar (Contact / At a glance / Trained here)
 
 ---
 
