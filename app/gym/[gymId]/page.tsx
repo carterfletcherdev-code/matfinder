@@ -262,7 +262,11 @@ export default function GymPage({ params }: PageProps) {
   return (
     <div
       style={{
-        minHeight: '100dvh',
+        // Root <html> is locked at height 100dvh + overflow hidden by
+        // layout.tsx (the map page needs that). For this scrollable
+        // detail page, the gym page itself becomes the scroll container.
+        height: '100dvh',
+        overflowY: 'auto',
         background: 'var(--surface-base)',
         color: 'var(--text-primary)',
         fontFamily: "'Inter Tight', sans-serif",
