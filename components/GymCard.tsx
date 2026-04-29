@@ -318,11 +318,12 @@ export default function GymCard({
             </div>
           )}
 
-          {/* Heart top-right */}
+          {/* Heart bottom-right of photo — kept clear of the Mapbox
+              popup close X (which always sits at top-right). */}
           <div
             onClick={stop}
             style={{
-              position: 'absolute', top: 10, right: 10,
+              position: 'absolute', bottom: 10, right: 10,
               width: 34, height: 34, borderRadius: '50%',
               background: 'rgba(0,0,0,0.55)',
               backdropFilter: 'blur(10px)',
