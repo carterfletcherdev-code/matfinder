@@ -330,39 +330,52 @@ export default function Home() {
     const q = searchInput.trim();
     if (!q) return;
 
-    // PRIORITY 1: gym-name match. If the typed query matches a gym name,
-    // navigate to that gym instead of geocoding the query as a place.
-    // This fixes the bug where searching for a gym whose name contains
-    // "Austin" or "Texas" would land you on the city/state instead of
-    // the gym itself.
+    // PRIORITY 1: gym-name match.
     //
-    // Match logic, in order:
-    //   (a) exact-name match (case-insensitive)        → that gym
-    //   (b) starts-with match — closest to user wins   → that gym
-    //   (c) any substring match — closest to user wins → that gym
-    //   (d) no gym match                                → fall through
-    //                                                     to geocoder
+    // Score each gym for relevance to the query, then pick the highest
+    // score with distance as a tie-break. This fixes the bug where a
+    // query like "10th Planet Austin" (which clearly names a specific
+    // city) was getting routed to "10th Planet Round Rock" because the
+    // tie-breaker was distance-only — a closer-but-wrong gym beat a
+    // better-named-but-farther match.
+    //
+    // Score tiers (higher wins):
+    //   100 — exact name match
+    //    85 — name starts with full query
+    //    70 — name contains full query as substring
+    //    50 — every query token appears somewhere in the name
+    //    1-49 — partial token match (proportional to coverage)
+    //     0 — no match
     const ql = q.toLowerCase();
-    const exact = allGyms.find(g => g.name.toLowerCase() === ql);
-    let chosen = exact;
-    if (!chosen) {
-      const starts = allGyms.filter(g => g.name.toLowerCase().startsWith(ql));
-      const subs = starts.length > 0 ? starts
-                  : allGyms.filter(g => g.name.toLowerCase().includes(ql));
-      if (subs.length > 0) {
-        // Tie-break by distance to the current sort origin / map center
-        // so a "Corsair" search picks the nearest Corsair in a multi-
-        // location chain.
-        const ref = sortOrigin ?? mapCenter;
-        if (ref && subs.length > 1) {
-          subs.sort((a, b) =>
-            haversine(ref.lat, ref.lng, a.lat, a.lng) -
-            haversine(ref.lat, ref.lng, b.lat, b.lng));
-        }
-        chosen = subs[0];
-      }
+    const qTokens = ql.split(/\s+/).filter(Boolean);
+
+    function scoreGym(gym: Gym): number {
+      const nl = gym.name.toLowerCase();
+      if (nl === ql) return 100;
+      if (nl.startsWith(ql)) return 85;
+      if (nl.includes(ql)) return 70;
+      let hits = 0;
+      for (const t of qTokens) if (nl.includes(t)) hits++;
+      if (hits === qTokens.length && qTokens.length > 0) return 50;
+      if (hits > 0) return Math.round((hits / qTokens.length) * 49);
+      return 0;
     }
-    if (chosen) {
+
+    const ref = sortOrigin ?? mapCenter;
+    const scored = allGyms
+      .map(g => ({ gym: g, score: scoreGym(g) }))
+      .filter(s => s.score > 0);
+
+    if (scored.length > 0) {
+      // Sort: score desc, then distance asc (tie-break only matters
+      // among gyms at the same score tier).
+      scored.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        if (!ref) return 0;
+        return haversine(ref.lat, ref.lng, a.gym.lat, a.gym.lng) -
+               haversine(ref.lat, ref.lng, b.gym.lat, b.gym.lng);
+      });
+      const chosen = scored[0]!.gym;
       handleMapGymSelect(chosen.id);
       setMapFlyTarget({ lat: chosen.lat, lng: chosen.lng, zoom: 14 });
       setSearchInput('');
