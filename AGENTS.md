@@ -95,7 +95,9 @@ supabase/migrations/ — SQL migrations
 - iOS app (Capacitor wrap planned)
 - Three-tab nav (Map / Passport / Community)
 
-### What just shipped (Week 1)
+### Week 1 complete ✅
+
+All Week 1 scope shipped + polished. Key wins:
 - ✅ Master charter (`AGENTS.md`)
 - ✅ Design-system foundation (`components/ui/`: Button, Card, Pill, StatusBadge)
 - ✅ Status helper (`lib/gymStatus.ts`)
@@ -115,6 +117,30 @@ supabase/migrations/ — SQL migrations
 - ✅ `<CorrectionForm>` modal — replaces legacy inline form. Used by both
   GymCard "Wrong info?" link and gym page "Report wrong info". Posts to
   `/api/corrections` with optional Instagram side-channel record.
+
+### Week 1 follow-on polish (post-Week 1 fixes)
+- ✅ **Path B**: `gym_overrides` is a first-class gym source. 6,255 places_*
+  rows backfilled with name/address/lat/lng. API merges + synthesizes,
+  surfacing all 6,070 photos and 893 verified schedules that were stranded.
+- ✅ **Seed/places dedup** — when a places_* gym matches a seed gym by
+  normalized name + city within 25 km, enrichment is rerouted onto the
+  seed id instead of duplicating. One rich pin per gym, not two.
+- ✅ **Hi-res photos** via `lib/photoUrl.ts` — `PhotoSize.card` (800px),
+  `PhotoSize.hero` (1920px), `PhotoSize.lightbox` (2400px). Wired into
+  the gym page hero + lightbox.
+- ✅ **Click photo → /gym/[id]** with hover scale-up + "View full page"
+  pill overlay. Heart still stops propagation.
+- ✅ **Rich placeholder** for photoless gyms — full name in italic serif
+  (Instrument Serif) over diagonal-line pattern. Gym page hero adds an
+  "Are you the gym? Claim it free" CTA bottom-right.
+- ✅ **Search relevance scoring** — name-match score (0-100) instead of
+  distance-only tie-break, fixing the "10th Planet Austin → Round Rock"
+  bug where a closer-but-wrong match could win.
+- ✅ **Search auto-commit on blur removed** — was stealing card clicks
+  and routing users to the wrong gym mid-click.
+- ✅ **"Back to map" returns to the gym you came from** — sessionStorage
+  one-shot key set before nav, restored on mount + bfcache pageshow.
+  Guarded against StrictMode double-fire with a ref.
 
 ---
 
