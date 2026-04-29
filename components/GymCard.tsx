@@ -252,12 +252,12 @@ export default function GymCard({
   };
 
   // ─────────────────────────────────────────────────────────────────
-  // LANDSCAPE VARIANT — desktop map popover.
+  // POPOVER VARIANT — desktop map popover.
   //
-  // When a user clicks a pin on the map, the card pops out next to
-  // the pin. A vertical card forces scrolling and dominates the
-  // viewport; a landscape layout (photo left, info right) fits the
-  // popover context and shows everything above the fold.
+  // Photo as a header strip on top, info body below. Wider than the
+  // list card so info reads naturally left-to-right rather than
+  // stacking in a narrow column. The photo is a 21:7 hero strip —
+  // wide and not too tall, so the card stays compact.
   // ─────────────────────────────────────────────────────────────────
   if (mapOverlay) {
     return (
@@ -274,21 +274,22 @@ export default function GymCard({
           transition: 'border-color 150ms, box-shadow 200ms',
           fontFamily: "'Inter Tight', sans-serif",
           color: 'var(--text-primary)',
-          display: 'grid',
-          gridTemplateColumns: '240px 1fr',
+          display: 'flex',
+          flexDirection: 'column',
           width: '100%',
-          maxWidth: 800,
-          minHeight: 250,
+          maxWidth: 720,
         }}
       >
-        {/* ── Left: photo or monogram ── */}
+        {/* ── Top: hero photo strip (21:7 ratio) ── */}
         <div
           style={{
             position: 'relative',
+            aspectRatio: '21 / 7',
             background: gym.photo_url
               ? 'var(--brown-700)'
               : 'linear-gradient(135deg, var(--brown-700), var(--brown-500))',
             overflow: 'hidden',
+            flexShrink: 0,
           }}
         >
           {gym.photo_url ? (
@@ -307,7 +308,7 @@ export default function GymCard({
                 position: 'absolute', inset: 0,
                 display: 'grid', placeItems: 'center',
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 44, fontWeight: 800,
+                fontSize: 56, fontWeight: 800,
                 color: 'rgba(245,241,232,0.18)',
                 letterSpacing: '0.06em',
                 userSelect: 'none',
@@ -322,7 +323,7 @@ export default function GymCard({
             onClick={stop}
             style={{
               position: 'absolute', top: 10, right: 10,
-              width: 32, height: 32, borderRadius: '50%',
+              width: 34, height: 34, borderRadius: '50%',
               background: 'rgba(0,0,0,0.55)',
               backdropFilter: 'blur(10px)',
               WebkitBackdropFilter: 'blur(10px)',
@@ -333,11 +334,11 @@ export default function GymCard({
             <HeartButton gymId={gym.id} />
           </div>
 
-          {/* Verified badge bottom-left */}
+          {/* Verified badge top-left */}
           {hasVerifiedMats && (
             <span
               style={{
-                position: 'absolute', bottom: 10, left: 10,
+                position: 'absolute', top: 10, left: 10,
                 background: 'rgba(94,139,94,0.92)',
                 color: 'var(--bone)',
                 fontSize: 10, fontWeight: 700,
@@ -355,10 +356,10 @@ export default function GymCard({
           )}
         </div>
 
-        {/* ── Right: info body ── */}
-        <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', minWidth: 0, gap: 8 }}>
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
+        {/* ── Bottom: info body ── */}
+        <div style={{ padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', minWidth: 0, gap: 10 }}>
+          {/* Header — bigger now that the body has full 720px width */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
             {websiteHref ? (
               <a
                 href={websiteHref}
@@ -366,11 +367,11 @@ export default function GymCard({
                 rel="noopener noreferrer"
                 onClick={stop}
                 style={{
-                  fontSize: 16, fontWeight: 800,
+                  fontSize: 19, fontWeight: 800,
                   color: 'var(--bone)',
-                  lineHeight: 1.25,
+                  lineHeight: 1.2,
                   textDecoration: 'none',
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
                   flex: 1, minWidth: 0,
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                 }}
@@ -381,7 +382,7 @@ export default function GymCard({
                 <IconExt />
               </a>
             ) : (
-              <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--bone)', margin: 0, lineHeight: 1.25, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <h3 style={{ fontSize: 19, fontWeight: 800, color: 'var(--bone)', margin: 0, lineHeight: 1.2, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {gym.name}
               </h3>
             )}
@@ -389,21 +390,21 @@ export default function GymCard({
               <span
                 style={{
                   display: 'inline-flex', alignItems: 'baseline', gap: 4,
-                  fontWeight: 700, color: 'var(--bone)', fontSize: 13,
-                  flexShrink: 0,
+                  fontWeight: 700, color: 'var(--bone)', fontSize: 14,
+                  flexShrink: 0, paddingTop: 2,
                 }}
               >
-                <span style={{ color: 'var(--warning)', fontSize: 12 }}>★</span>
+                <span style={{ color: 'var(--warning)', fontSize: 13 }}>★</span>
                 {ratingValue.toFixed(1)}
                 {ratingCount != null && (
-                  <span style={{ color: 'var(--text-muted)', fontWeight: 500, fontSize: 11 }}>({ratingCount})</span>
+                  <span style={{ color: 'var(--text-muted)', fontWeight: 500, fontSize: 12 }}>({ratingCount})</span>
                 )}
               </span>
             )}
           </div>
 
           {/* Meta row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
             <StatusBadge status={status} size="sm" />
             {distance && (
               <>
@@ -419,11 +420,10 @@ export default function GymCard({
             )}
           </div>
 
-          {/* Discipline pills — marker color (bright) on translucent tint
-              for proper contrast on the dark brown surface. */}
+          {/* Discipline pills — bright marker color on translucent tint */}
           {disciplines.length > 0 && (
-            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-              {disciplines.slice(0, 4).map(d => {
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {disciplines.slice(0, 5).map(d => {
                 const c = DISCIPLINE_COLORS[d];
                 return (
                   <Pill
@@ -433,18 +433,14 @@ export default function GymCard({
                       background: hexToRgba(c.marker, 0.16),
                       color: c.marker,
                       borderColor: hexToRgba(c.marker, 0.45),
-                      fontSize: 10,
-                      padding: '3px 8px',
                     }}
                   >
                     {DISCIPLINE_LABELS[d]}
                   </Pill>
                 );
               })}
-              {disciplines.length > 4 && (
-                <Pill size="sm" style={{ fontSize: 10, padding: '3px 8px' }}>
-                  +{disciplines.length - 4}
-                </Pill>
+              {disciplines.length > 5 && (
+                <Pill size="sm">+{disciplines.length - 5}</Pill>
               )}
             </div>
           )}
@@ -468,14 +464,14 @@ export default function GymCard({
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div
                   style={{
-                    fontSize: 13, fontWeight: 700, color: 'var(--bone)',
-                    display: 'flex', alignItems: 'center', gap: 6,
+                    fontSize: 14, fontWeight: 700, color: 'var(--bone)',
+                    display: 'flex', alignItems: 'center', gap: 8,
                     lineHeight: 1.3,
                   }}
                 >
                   <span
                     style={{
-                      width: 7, height: 7, borderRadius: '50%',
+                      width: 8, height: 8, borderRadius: '50%',
                       background: 'var(--success)', flexShrink: 0,
                     }}
                   />
@@ -489,8 +485,8 @@ export default function GymCard({
                 </div>
                 <div
                   style={{
-                    fontSize: 11, color: 'var(--text-secondary)',
-                    marginTop: 2, marginLeft: 13, /* indent past the dot */
+                    fontSize: 12, color: 'var(--text-secondary)',
+                    marginTop: 3, marginLeft: 16, /* indent past the dot */
                     lineHeight: 1.3,
                   }}
                 >
@@ -537,9 +533,8 @@ export default function GymCard({
               target="_blank"
               rel="noopener noreferrer"
               variant="secondary"
-              size="sm"
+              size="md"
               onClick={() => trackEvent('directions_click', gym.id)}
-              style={{ fontSize: 11 }}
             >
               <IconNav />Directions
             </Button>
@@ -548,20 +543,19 @@ export default function GymCard({
                 as="a"
                 href={`tel:${gym.phone.replace(/[^\d+]/g, '')}`}
                 variant="secondary"
-                size="sm"
+                size="md"
                 onClick={() => trackEvent('phone_click', gym.id)}
-                style={{ fontSize: 11 }}
               >
                 <IconPhone />Call
               </Button>
             ) : (
               <Button
                 variant="secondary"
-                size="sm"
+                size="md"
                 onClick={(e) => e.preventDefault()}
                 aria-label="Phone unavailable"
                 title="No phone on file"
-                style={{ fontSize: 11, opacity: 0.4, cursor: 'not-allowed' }}
+                style={{ opacity: 0.4, cursor: 'not-allowed' }}
               >
                 <IconPhone />Call
               </Button>
@@ -573,20 +567,19 @@ export default function GymCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="secondary"
-                size="sm"
+                size="md"
                 onClick={() => trackEvent('ig_click', gym.id)}
-                style={{ fontSize: 11 }}
               >
                 <IconIg />Instagram
               </Button>
             ) : (
               <Button
                 variant="secondary"
-                size="sm"
+                size="md"
                 onClick={(e) => e.preventDefault()}
                 aria-label="Instagram unavailable"
                 title="No Instagram on file"
-                style={{ fontSize: 11, opacity: 0.4, cursor: 'not-allowed' }}
+                style={{ opacity: 0.4, cursor: 'not-allowed' }}
               >
                 <IconIg />Instagram
               </Button>
