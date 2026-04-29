@@ -13,6 +13,7 @@
 // All buttons inherit the `Button` primitive. All colors use design tokens.
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   Gym,
   Discipline,
@@ -25,6 +26,7 @@ import {
 import { computeGymStatus } from '@/lib/gymStatus';
 import { Button, Pill, StatusBadge } from './ui';
 import HeartButton from './HeartButton';
+import CorrectionForm from './CorrectionForm';
 import { trackEvent } from '@/lib/track';
 import { useOwnedGyms } from '@/lib/useOwnedGyms';
 import { formatTime, titleCase } from '@/lib/utils';
@@ -197,6 +199,9 @@ export default function GymCard({
   const ownedGymIds = useOwnedGyms();
   const ownsThisGym = ownedGymIds.includes(gym.id);
 
+  // Correction form modal toggle
+  const [showCorrectionForm, setShowCorrectionForm] = useState(false);
+
   // Status from schedule
   const status = computeGymStatus(gym.schedule);
 
@@ -238,11 +243,10 @@ export default function GymCard({
   // Stop-prop helpers for nested actions so card-click still works
   const stop = (e: React.SyntheticEvent) => e.stopPropagation();
 
-  // ── Local placeholder for "Wrong info?" until we port the legacy
-  // correction form into this card. Wired to a no-op alert for now.
+  // ── "Wrong info?" opens the correction modal (CorrectionForm).
   const onWrongInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    alert("Reporting flow coming soon. For now, click the gym name → check the gym's website.");
+    setShowCorrectionForm(true);
   };
 
   // ── RSVP placeholder. Real flow ships in Week 3 (Community core).
@@ -585,7 +589,30 @@ export default function GymCard({
               </Button>
             )}
           </div>
+
+          {/* View full page link — primary navigation to /gym/[id] */}
+          <Link
+            href={`/gym/${encodeURIComponent(gym.id)}`}
+            onClick={stop}
+            style={{
+              fontSize: 12, fontWeight: 600,
+              color: 'var(--accent)',
+              textAlign: 'center',
+              padding: '8px 0 2px',
+              textDecoration: 'none',
+              transition: 'color 150ms',
+              display: 'inline-block',
+              alignSelf: 'center',
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+          >
+            View full page →
+          </Link>
         </div>
+        {showCorrectionForm && (
+          <CorrectionForm gym={gym} onClose={() => setShowCorrectionForm(false)} />
+        )}
       </article>
     );
   }
@@ -976,6 +1003,27 @@ export default function GymCard({
           )}
         </div>
 
+        {/* View full page — primary navigation into /gym/[id] */}
+        <Link
+          href={`/gym/${encodeURIComponent(gym.id)}`}
+          onClick={stop}
+          style={{
+            display: 'inline-block',
+            fontSize: 13, fontWeight: 600,
+            color: 'var(--accent)',
+            textAlign: 'center',
+            padding: '8px 0',
+            textDecoration: 'none',
+            marginBottom: 6,
+            transition: 'color 150ms',
+            alignSelf: 'flex-start',
+          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--bone)'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+        >
+          View full page →
+        </Link>
+
         {/* Claim / Your gym row — small text-link only when relevant */}
         {ownsThisGym ? (
           <div style={{ marginBottom: 10 }} onClick={stop}>
@@ -1039,6 +1087,9 @@ export default function GymCard({
         </div>
 
       </div>
+      {showCorrectionForm && (
+        <CorrectionForm gym={gym} onClose={() => setShowCorrectionForm(false)} />
+      )}
     </article>
   );
 }

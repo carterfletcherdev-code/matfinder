@@ -94,9 +94,6 @@ supabase/migrations/ — SQL migrations
 - Gym owner analytics dashboard ($99/mo Sponsor tier)
 - iOS app (Capacitor wrap planned)
 - Three-tab nav (Map / Passport / Community)
-- Click-through from list cards → gym detail page (manual URL only for now)
-- Photo lightbox on gym page (single hero only currently)
-- Correction form on new GymCard (stub button — legacy flow not yet ported)
 
 ### What just shipped (Week 1)
 - ✅ Master charter (`AGENTS.md`)
@@ -111,6 +108,13 @@ supabase/migrations/ — SQL migrations
   with photo-header layout, status badges, RSVP-bearing open-mat panel
 - ✅ `/gym/[gymId]` full detail page — hero photo, header, day-strip schedule
   with grouped open mats, sidebar (Contact / At a glance / Trained here)
+- ✅ Card → gym page navigation (`View full page →` link on both list and
+  popover variants)
+- ✅ `<PhotoLightbox>` modal — opens via "Browse photos", supports 1+ photos
+  with arrow nav, thumb strip, Esc-to-close, body scroll lock
+- ✅ `<CorrectionForm>` modal — replaces legacy inline form. Used by both
+  GymCard "Wrong info?" link and gym page "Report wrong info". Posts to
+  `/api/corrections` with optional Instagram side-channel record.
 
 ---
 

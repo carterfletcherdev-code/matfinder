@@ -35,6 +35,8 @@ import { computeGymStatus } from '@/lib/gymStatus';
 import { Button, Pill, StatusBadge } from '@/components/ui';
 import HeartButton from '@/components/HeartButton';
 import CheckInButton from '@/components/CheckInButton';
+import PhotoLightbox from '@/components/PhotoLightbox';
+import CorrectionForm from '@/components/CorrectionForm';
 import { titleCase, formatTime } from '@/lib/utils';
 import { trackEvent } from '@/lib/track';
 
@@ -135,6 +137,8 @@ export default function GymPage({ params }: PageProps) {
   const [gym, setGym] = useState<Gym | null>(null);
   const [loadState, setLoadState] = useState<'loading' | 'ok' | 'notfound' | 'error'>('loading');
   const [activeDay, setActiveDay] = useState<DayOfWeek>(todayKey());
+  const [showLightbox, setShowLightbox] = useState(false);
+  const [showCorrectionForm, setShowCorrectionForm] = useState(false);
 
   // Fetch the gym list and find ours. Cached 30s edge so this is fast.
   useEffect(() => {
@@ -252,7 +256,7 @@ export default function GymPage({ params }: PageProps) {
   const hasVerifiedMats = gym.open_mats.some(o => o.verified);
 
   const onWrongInfoClick = () => {
-    alert("Reporting flow coming soon. For now, click the gym name → check the gym's website.");
+    setShowCorrectionForm(true);
   };
 
   const onRsvpClick = () => {
@@ -365,11 +369,13 @@ export default function GymPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Browse photos pill (stub for now — opens lightbox in v2) */}
+          {/* Browse photos — opens the lightbox modal. We currently only
+              have one Google Places photo per gym; the lightbox is built
+              to gracefully handle multi-photo when gym uploads land. */}
           {gym.photo_url && (
             <button
               type="button"
-              onClick={() => alert('Photo lightbox coming soon — for now this is a single hero photo per gym.')}
+              onClick={() => setShowLightbox(true)}
               style={{
                 position: 'absolute', bottom: 16, right: 16,
                 background: 'rgba(0,0,0,0.6)',
@@ -382,7 +388,10 @@ export default function GymPage({ params }: PageProps) {
                 cursor: 'pointer',
                 display: 'inline-flex', alignItems: 'center', gap: 6,
                 fontFamily: 'inherit',
+                transition: 'background 150ms',
               }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.78)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.6)'; }}
             >
               <IconPhoto />
               Browse photos
@@ -883,6 +892,22 @@ export default function GymPage({ params }: PageProps) {
           }
         }
       `}</style>
+
+      {/* Photo lightbox — escapes via portal to document.body */}
+      {showLightbox && gym.photo_url && (
+        <PhotoLightbox
+          photos={[gym.photo_url]}
+          onClose={() => setShowLightbox(false)}
+        />
+      )}
+
+      {/* Correction form modal */}
+      {showCorrectionForm && (
+        <CorrectionForm
+          gym={gym}
+          onClose={() => setShowCorrectionForm(false)}
+        />
+      )}
     </div>
   );
 }
