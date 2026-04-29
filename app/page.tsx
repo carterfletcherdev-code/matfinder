@@ -408,32 +408,35 @@ export default function Home() {
   // from sessionStorage so distance sort, dropped pins, etc. survive
   // navigation. Also restores the previous fly target so the map opens
   // wherever the user left off.
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    // Priority 1: "back to map" from a /gym/[id] page. The card sets
-    // a one-shot sessionStorage entry before navigating; we read +
-    // clear it here and fly to the gym they were viewing.
+  // ── Restore-on-return helper. Handles two cases:
+  //   1. User clicked 'View full page' on a card and is now coming back
+  //      from /gym/[id] — restore them to that gym's pin.
+  //   2. User round-tripped through /favorites or /account — restore
+  //      previously-saved map state.
+  //   3. First-time visitor — auto-locate via GPS.
+  // Returns true if a return-target / saved-state was applied (caller
+  // skips auto-locate). Pulled out as a function so we can call it both
+  // on mount AND on `pageshow` (which fires on bfcache restore that
+  // App Router triggers when navigating back).
+  const tryRestoreFromSession = (): boolean => {
+    if (typeof window === 'undefined') return true;
+    // Priority 1: "back to map" from a /gym/[id] page. One-shot key.
     try {
       const ret = sessionStorage.getItem('matfinder.return_to_gym');
       if (ret) {
         const r = JSON.parse(ret) as {
-          gymId?: string;
-          lat?: number;
-          lng?: number;
-          zoom?: number;
+          gymId?: string; lat?: number; lng?: number; zoom?: number;
         };
         sessionStorage.removeItem('matfinder.return_to_gym');
         if (r.gymId && r.lat != null && r.lng != null) {
           setSelectedGym(r.gymId);
           setExpandedGym(r.gymId);
           setMapFlyTarget({ lat: r.lat, lng: r.lng, zoom: r.zoom ?? 14 });
-          return; // skip the normal restore + auto-locate flow
+          return true;
         }
       }
     } catch { /* ignore */ }
-
-    // Priority 2: previously-saved map state (sort location, mode, center)
+    // Priority 2: previously-saved map state.
     try {
       const saved = sessionStorage.getItem('matfinder_map_state');
       if (saved) {
@@ -445,9 +448,29 @@ export default function Home() {
         if (s.sortLocation) setSortLocation(s.sortLocation);
         if (s.sortMode) setSortMode(s.sortMode);
         if (s.center) setMapFlyTarget(s.center);
-        if (s.sortLocation || s.center) return; // skip auto-locate
+        if (s.sortLocation || s.center) return true;
       }
     } catch { /* ignore */ }
+    return false;
+  };
+
+  // Re-check return target whenever the page becomes visible again.
+  // App Router preserves the / page in the router cache, so a Link from
+  // /gym/[id] back to / does NOT re-run a [] dep useEffect. The
+  // 'pageshow' event fires both on first paint and on cache restore,
+  // so it's the most reliable hook for "restore my state every time
+  // the user returns to this page."
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onPageShow = () => { tryRestoreFromSession(); };
+    window.addEventListener('pageshow', onPageShow);
+    return () => window.removeEventListener('pageshow', onPageShow);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (tryRestoreFromSession()) return;
 
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(
